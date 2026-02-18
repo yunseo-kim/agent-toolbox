@@ -1,6 +1,6 @@
 ---
 name: git-master
-description: "MUST USE for ANY git operations. Atomic commits, rebase/squash, history search (blame, bisect, log -S). STRONGLY RECOMMENDED: Use with task(category='quick', load_skills=['git-master'], ...) to save context. Triggers: 'commit', 'rebase', 'squash', 'who wrote', 'when was X added', 'find the commit that'."
+description: "MUST USE for ANY git operations. Atomic commits, rebase/squash, cherry-pick, worktree, reflog recovery, and history search (blame, bisect, log -S). STRONGLY RECOMMENDED: Use with task(category='quick', load_skills=['git-master'], ...) to save context. Triggers: 'commit', 'rebase', 'squash', 'cherry-pick', 'worktree', 'reflog', 'who wrote', 'when was X added', 'find the commit that'."
 ---
 
 # Git Master Agent
@@ -21,9 +21,29 @@ Analyze the user's request to determine operation mode:
 | "commit", "커밋", changes to commit | `COMMIT` | Phase 0-6 (existing) |
 | "rebase", "리베이스", "squash", "cleanup history" | `REBASE` | Phase R1-R4 |
 | "find when", "who changed", "언제 바뀌었", "git blame", "bisect" | `HISTORY_SEARCH` | Phase H1-H3 |
+| "cherry-pick", "체리픽", "worktree", "reflog", "recover commit" | `ADVANCED_WORKFLOW` | Phase A1-A4 |
 | "smart rebase", "rebase onto" | `REBASE` | Phase R1-R4 |
 
 **CRITICAL**: Don't default to COMMIT mode. Parse the actual request.
+
+---
+
+## REBASE VS MERGE DECISION MATRIX
+
+Use this before choosing rewrite vs integration strategy:
+
+| Scenario | Prefer | Why |
+|----------|--------|-----|
+| Local feature branch cleanup before PR | `REBASE` | Linear history, easier review |
+| Applying review feedback to local commits | `REBASE` + `--autosquash` | Keeps intent-focused commit set |
+| Shared branch with multiple collaborators | `MERGE` | Preserves public history safely |
+| Integrating completed feature to main | `MERGE` (or squash-merge in platform) | Avoids rewriting shared commits |
+| Emergency hotfix propagation | `CHERRY_PICK` | Apply exact fix without full branch merge |
+
+Decision guardrails:
+- Rebase only commits you control.
+- Merge when commit identity is already shared.
+- Use cherry-pick for selective propagation across release lines.
 
 ---
 
@@ -730,6 +750,12 @@ git commit -m "Combined: <summarize all changes>"
 ### R2.2 Autosquash Workflow
 
 ```bash
+# Create fixup commit against target
+git commit --fixup <target-hash>
+
+# Or squash commit preserving custom message editing
+git commit --squash <target-hash>
+
 # When you have fixup! or squash! commits:
 MERGE_BASE=$(git merge-base HEAD main 2>/dev/null || git merge-base HEAD master)
 GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash $MERGE_BASE
@@ -737,6 +763,8 @@ GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash $MERGE_BASE
 # The GIT_SEQUENCE_EDITOR=: trick auto-accepts the rebase todo
 # Fixup commits automatically merge into their targets
 ```
+
+Use autosquash when incorporating review feedback into existing commits.
 
 ### R2.3 Rebase Onto (Branch Update)
 
@@ -784,6 +812,26 @@ CONFLICT DETECTED -> WORKFLOW:
 | Need original commits | `git reflog` -> `git reset --hard <hash>` | Reflog keeps 90 days |
 | Accidentally force-pushed | `git reflog` -> coordinate with team | May need to notify others |
 | Lost commits after rebase | `git fsck --lost-found` | Nuclear option |
+
+### R2.6 Reflog Recovery Deep Dive
+
+```bash
+# 1) Inspect ref movement
+git reflog
+
+# 2) Safer recovery: branch first
+git branch recovery/<topic> <lost-hash>
+
+# 3) Optional destructive rollback
+git reset --hard <lost-hash>
+
+# 4) Branch-specific reflog
+git reflog show <branch>
+```
+
+Recovery policy:
+- Prefer creating `recovery/*` branch before any `reset --hard`.
+- Use `reset --hard` only when intent is explicit and working tree risk is understood.
 </rebase_execution>
 
 ---
@@ -839,6 +887,156 @@ NEXT STEPS:
 ```
 
 ---
+---
+
+# ADVANCED WORKFLOW MODE (Phase A1-A4)
+
+## PHASE A1: Workflow Classification and Safety Gate
+
+<advanced_context>
+### A1.1 Detect Exact Workflow
+
+| User Intent | Workflow | Primary Commands |
+|-------------|----------|------------------|
+| "apply fix to other branch", "hotfix to release" | `CHERRY_PICK` | `git cherry-pick` |
+| "parallel branches", "isolated workspace" | `WORKTREE` | `git worktree add/list/remove` |
+| "lost commit", "undo reset", "recover branch" | `REFLOG_RECOVERY` | `git reflog`, `git branch`, `git reset` |
+| "clean PR history", "fixup commits" | `AUTOSQUASH_CLEANUP` | `git commit --fixup`, `git rebase --autosquash` |
+
+### A1.2 Mandatory Safety Checks
+
+```bash
+git branch --show-current
+git status --porcelain
+git rev-parse --abbrev-ref @{upstream} 2>/dev/null || echo "NO_UPSTREAM"
+```
+
+Rules:
+- If on `main`/`master`: no history rewrite.
+- If working tree is dirty: clean/stash before cherry-pick or worktree cleanup.
+- If rewrite affects pushed branch: require `--force-with-lease`.
+</advanced_context>
+
+---
+
+## PHASE A2: Execute Playbooks
+
+<advanced_playbooks>
+### A2.1 Cherry-Pick Playbook
+
+```bash
+# Single commit
+git cherry-pick <commit>
+
+# Commit range (exclusive start, inclusive end)
+git cherry-pick <start>..<end>
+
+# Stage changes only
+git cherry-pick -n <commit>
+
+# Edit message during pick
+git cherry-pick -e <commit>
+```
+
+Conflict workflow:
+```bash
+git status
+# resolve conflicts
+git add <resolved-files>
+git cherry-pick --continue
+# or rollback
+git cherry-pick --abort
+```
+
+### A2.2 Worktree Playbook
+
+```bash
+# List worktrees
+git worktree list
+
+# Add worktree for existing branch
+git worktree add ../repo-feature feature/my-feature
+
+# Add worktree and create new branch from main
+git worktree add -b hotfix/urgent ../repo-hotfix main
+
+# Remove and cleanup
+git worktree remove ../repo-feature
+git worktree prune
+```
+
+Worktree guardrails:
+- Prefer project convention directories (`.worktrees/` or `worktrees/`) when available.
+- Never remove currently active worktree path.
+
+### A2.3 Reflog Recovery Playbook
+
+```bash
+git reflog
+git branch recovery/<topic> <lost-hash>
+git checkout recovery/<topic>
+```
+
+Escalation path:
+- If commit reachable via reflog -> recover by branch.
+- If reflog insufficient -> consider `git fsck --lost-found`.
+
+### A2.4 Pre-PR Cleanup Playbook
+
+```bash
+git commit --fixup <target-hash>
+BASE=$(git merge-base HEAD main 2>/dev/null || git merge-base HEAD master)
+GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash $BASE
+```
+
+Use when multiple "fix typo/address review" commits should fold into intent commits.
+</advanced_playbooks>
+
+---
+
+## PHASE A3: Validation and Push Strategy
+
+<advanced_verify>
+```bash
+git status
+git log --oneline -15
+```
+
+Validation checklist:
+- Cherry-picked changes build/test as expected.
+- Worktree paths are valid and pruned when no longer needed.
+- Recovery branch exists before destructive reset.
+
+Push rules:
+- New commits only -> `git push`
+- Rewritten commits -> `git push --force-with-lease`
+- Never force push `main`/`master`
+</advanced_verify>
+
+---
+
+## PHASE A4: Advanced Workflow Report
+
+```text
+ADVANCED WORKFLOW SUMMARY
+=========================
+Workflow: <CHERRY_PICK | WORKTREE | REFLOG_RECOVERY | AUTOSQUASH_CLEANUP>
+
+Actions performed:
+  1. <command/result>
+  2. <command/result>
+
+Safety measures:
+  - <backup branch / clean tree / force-with-lease decision>
+
+Current state:
+  - branch: <name>
+  - working tree: <clean|dirty>
+
+Next steps:
+  - <push/pr/follow-up>
+```
+
 ---
 
 # HISTORY SEARCH MODE (Phase H1-H3)
@@ -1086,6 +1284,19 @@ POTENTIAL ACTIONS:
 | Find deleted file | `git log --all --full-history -- "**/filename"` |
 | Author stats for file | `git shortlog -sn -- path/file.py` |
 
+## Quick Reference: Advanced Workflows
+
+| Goal | Command |
+|------|---------|
+| Cherry-pick one commit | `git cherry-pick <hash>` |
+| Cherry-pick range | `git cherry-pick <a>..<b>` |
+| Cherry-pick without committing | `git cherry-pick -n <hash>` |
+| List worktrees | `git worktree list` |
+| Add worktree with new branch | `git worktree add -b <branch> <path> <base>` |
+| Remove + prune worktree | `git worktree remove <path> && git worktree prune` |
+| Recover lost commit safely | `git reflog && git branch recovery/<name> <hash>` |
+| Autosquash fixups | `GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash <base>` |
+
 ---
 
 ## Anti-Patterns (ALL MODES)
@@ -1103,3 +1314,10 @@ POTENTIAL ACTIONS:
 - `-S` when `-G` is appropriate -> Wrong results
 - Blame without `-C` on moved code -> Wrong attribution
 - Bisect without proper good/bad boundaries -> Wasted time
+
+### Advanced Workflow Mode
+- Cherry-picking on dirty working tree -> Conflict chaos
+- Removing active worktree path -> Data loss risk
+- Reflog recovery without backup branch -> Unnecessary risk
+- Force push with `--force` instead of `--force-with-lease` -> Team overwrite risk
+- Running `git reset --hard` without explicit intent -> Destructive behavior
