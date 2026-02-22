@@ -27,6 +27,7 @@ Use this profile unless repository-specific rules require another profile.
 - Distinguish requirements from recommendations clearly (`must` vs `recommend`)
 - Prefer short examples with expected result
 - Use meaningful example names instead of placeholders like `foo` or `bar`
+- Avoid pre-announcing unreleased features without explicit status labels
 
 ## Formatting and readability
 
@@ -43,6 +44,18 @@ Use this profile unless repository-specific rules require another profile.
 - For step-by-step docs, start each step with an imperative verb
 - Explicitly mark optional steps
 - End with related links or next steps when useful
+
+## User-first planning prompts
+
+- Lead with the user goal before implementation detail
+- Answer "why this matters" before "how it works"
+- Anticipate common questions and likely failure points
+
+## Common document templates
+
+- README template: value proposition -> install -> quick start -> usage -> troubleshooting -> contributing
+- API reference template: summary -> parameters/options -> return/output -> examples -> errors
+- Tutorial template: prerequisites -> step-by-step tasks -> validation checks -> next steps
 
 ## Source priority
 

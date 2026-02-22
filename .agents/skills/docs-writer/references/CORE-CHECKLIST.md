@@ -5,6 +5,7 @@ Use this checklist with `docs-writer` across all repositories.
 ## Phase 1: Discover
 
 - Classify doc type: tutorial, how-to, reference, explanation
+- Inspect code diff/history relevant to the request
 - Confirm audience and primary task to complete
 - Identify affected behavior from code or requirements
 - Find canonical docs location and avoid duplicate targets
@@ -26,6 +27,7 @@ Use this checklist with `docs-writer` across all repositories.
 - Prefer concrete examples over abstract description
 - Preserve repository terminology and naming conventions
 - Keep code and commands runnable
+- Include expected output and common failure/edge cases when they help users debug
 
 ## Phase 4: Verify
 
@@ -33,6 +35,7 @@ Use this checklist with `docs-writer` across all repositories.
 - Re-check style and profile constraints
 - Validate links and references
 - Run formatting/lint/build commands used by the repository
+- Verify docs render correctly in preview/build output when available
 - Confirm no stale statements, filler, or contradiction
 
 ## Anti-Patterns
@@ -43,3 +46,4 @@ Use this checklist with `docs-writer` across all repositories.
 - Duplicating content instead of linking canonical sources
 - Shipping untested code snippets
 - Referring readers to external skill files when local profile guidance exists
+- Describing unreleased behavior as generally available without explicit status
