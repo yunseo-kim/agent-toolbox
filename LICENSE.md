@@ -1,4 +1,11 @@
-MIT License
+# License
+
+Portions of this software are licensed as follows:
+
+- All third party components incorporated into the awesome-agent-toolbox Software are licensed under the original license provided by the owner of the applicable component.
+- Content outside of the above mentioned files or restrictions is available under the MIT License as defined below.
+
+## MIT License
 
 (c) 12026 HE 김윤서(Yunseo Kim)
 
