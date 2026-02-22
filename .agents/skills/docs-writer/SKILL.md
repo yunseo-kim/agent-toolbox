@@ -1,6 +1,6 @@
 ---
 name: docs-writer
-description: Unified documentation workflow for writing, reviewing, and updating technical docs across repositories. Use when users ask to write or edit docs, review doc quality, map code changes to doc impact, scaffold new documentation, update README/API guides, or improve docs in `/docs` and `*.md`/`*.mdx` files. Supports self-contained profile-based behavior for generic docs, Next.js docs, and Angular adev docs.
+description: Unified documentation workflow for writing, reviewing, and updating technical docs across repositories. Use when users ask to write or edit docs, review doc quality, map code changes to doc impact, scaffold new documentation, update README/API guides, or improve docs in `/docs` and `*.md`/`*.mdx` files. Supports self-contained profile-based behavior for generic docs, Next.js docs, and Angular docs.
 ---
 
 # Docs Writer
@@ -15,13 +15,13 @@ Choose one profile before planning edits:
 
 1. `generic` (default) for most repositories
 2. `nextjs` for Next.js docs trees and MDX conventions
-3. `angular-adev` for Angular adev markdown/component conventions
+3. `angular` for Angular documentation conventions
 
 Profile references:
 
 - `references/PROFILE-GENERIC.md`
 - `references/PROFILE-NEXTJS.md`
-- `references/PROFILE-ANGULAR-ADEV.md`
+- `references/PROFILE-ANGULAR.md`
 
 ## Phase 1: Discover
 

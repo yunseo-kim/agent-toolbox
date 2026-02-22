@@ -8,7 +8,7 @@ Use this checklist with `docs-writer` across all repositories.
 - Confirm audience and primary task to complete
 - Identify affected behavior from code or requirements
 - Find canonical docs location and avoid duplicate targets
-- Choose profile: generic, nextjs, angular-adev
+- Choose profile: generic, nextjs, angular
 
 ## Phase 2: Plan
 

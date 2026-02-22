@@ -8,14 +8,14 @@ Use this profile for Next.js docs repositories with MDX and app/pages routing do
 2. Map changed source files to likely docs targets.
 3. Prioritize API surface changes, behavior changes, and new configuration.
 
-Common path mapping hints:
+Common mapping hints:
 
-| Source path area | Likely docs area |
+| Source area | Likely docs area |
 | --- | --- |
-| `packages/next/src/client/components/` | `docs/01-app/03-api-reference/02-components/` |
-| `packages/next/src/server/` | `docs/01-app/03-api-reference/04-functions/` |
-| `packages/next/src/build/` | `docs/01-app/03-api-reference/05-config/` |
-| `packages/next/src/lib/metadata/` | `docs/01-app/03-api-reference/03-file-conventions/01-metadata/` |
+| Routing, layouts, rendering | Routing/layout guides and API reference |
+| Server logic, request handling, caching | Server features and runtime behavior docs |
+| Build/configuration changes | Configuration and deployment docs |
+| Metadata/SEO behavior | Metadata and SEO guides/reference |
 
 ## Workflow: update existing docs
 
@@ -26,15 +26,15 @@ Common path mapping hints:
 
 Shared content rule:
 
-- If a pages-router file uses `source:` frontmatter, edit the app-router source page.
-- Keep `<AppOnly>` and `<PagesOnly>` blocks consistent with router-specific behavior.
+- If your docs system supports shared-source pages, edit the canonical source first.
+- Keep any app-router/pages-router variant content consistent with current behavior.
 
 ## Workflow: scaffold new docs
 
-- New component docs: `docs/01-app/03-api-reference/02-components/`
-- New function docs: `docs/01-app/03-api-reference/04-functions/`
-- New config option docs: `docs/01-app/03-api-reference/05-config/`
-- New concept/guide docs: `docs/01-app/02-guides/`
+- New component docs: component/API reference section
+- New function docs: function/hook API reference section
+- New config option docs: configuration reference section
+- New concept/guide docs: guides/tutorials section
 
 Naming rules:
 
@@ -52,22 +52,22 @@ Required fields:
 
 Frequently used optional fields:
 
-- `nav_title`
-- `source`
+- `nav_title` (if your docs system supports it)
+- `source` (if your docs system supports shared-source content)
 - `related`
 - `version`
 
 ### Code blocks
 
 - Use `filename` on code examples.
-- Use TS/JS `switcher` pairs when presenting both variants.
+- Use TS/JS paired examples when your docs system supports variant switchers.
 - Keep TypeScript first, JavaScript second.
 - Use `highlight` only where line emphasis adds real value.
 
-### MDX components
+### MDX and conditional content
 
-- Use `<AppOnly>` and `<PagesOnly>` for router-specific content.
-- Keep blank lines inside those blocks for markdown parsing stability.
+- If your docs system supports conditional blocks for router variants, use them consistently.
+- Keep markdown structure stable inside conditional blocks.
 - Use callout/note formatting consistently.
 
 ### Writing style
@@ -80,11 +80,11 @@ Frequently used optional fields:
 
 - Start from changed source files, then map to docs targets
 - Update shared content at the canonical source file when `source:` frontmatter is used
-- Keep TS/JS switcher examples aligned
+- Keep TS/JS paired examples aligned
 - Ensure frontmatter and related links remain valid
 
 ## Validation
 
-- Run repository lint/format commands used by the Next.js docs repo
+- Run repository lint/format commands used by your docs repo
 - Re-check cross-router content consistency
 - Verify related links/frontmatter paths resolve
