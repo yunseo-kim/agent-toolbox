@@ -1,6 +1,6 @@
 ---
 name: docs-writer
-description: Unified documentation workflow for writing, reviewing, and updating technical docs across repositories. Use when users ask to write or edit docs, review doc quality, map code changes to doc impact, scaffold new documentation, update README/API guides, or improve docs in `/docs` and `*.md`/`*.mdx` files. Supports profile-based behavior for generic docs, Next.js docs, Angular adev docs, and Gemini CLI docs.
+description: Unified documentation workflow for writing, reviewing, and updating technical docs across repositories. Use when users ask to write or edit docs, review doc quality, map code changes to doc impact, scaffold new documentation, update README/API guides, or improve docs in `/docs` and `*.md`/`*.mdx` files. Supports self-contained profile-based behavior for generic docs, Next.js docs, and Angular adev docs.
 ---
 
 # Docs Writer
@@ -16,14 +16,12 @@ Choose one profile before planning edits:
 1. `generic` (default) for most repositories
 2. `nextjs` for Next.js docs trees and MDX conventions
 3. `angular-adev` for Angular adev markdown/component conventions
-4. `gemini-cli` for Gemini CLI house style and process constraints
 
 Profile references:
 
 - `references/PROFILE-GENERIC.md`
 - `references/PROFILE-NEXTJS.md`
 - `references/PROFILE-ANGULAR-ADEV.md`
-- `references/PROFILE-GEMINI-CLI.md`
 
 ## Phase 1: Discover
 
@@ -37,7 +35,7 @@ Checklist:
 4. Select the profile and list constraints from that profile.
 
 If request is large collaborative drafting (RFC/spec/proposal), use
-`doc-coauthoring` workflow for guided co-authoring depth.
+the co-authoring mode in `references/CORE-CHECKLIST.md`.
 
 ## Phase 2: Plan
 
@@ -95,8 +93,5 @@ Before completion, report:
 ## Boundaries and Handoffs
 
 - Use this skill as default for docs work.
-- Keep `gemini-docs-writer` as a specialized legacy profile source for strict
-  Gemini CLI wording/process constraints.
-- Keep `adev-writing-guide` as Angular adev specialization source.
-- Keep `update-docs` as a specialized docs-impact skill while migration to
-  profile-based handling completes.
+- All profile guidance is self-contained under `references/` in this skill.
+- Keep framework-specific constraints inside profile documents, not the core flow.
