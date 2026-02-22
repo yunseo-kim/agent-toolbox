@@ -16,6 +16,7 @@ Use this checklist with `docs-writer` across all repositories.
 - List exact files to create or edit
 - Define section-level edits before touching files
 - Identify links, indexes, sidebars, and related pages to update
+- Reference `references/TEMPLATES.md` for document structure and common patterns
 - Decide validation commands (lint, link check, build, preview)
 - For collaborative long-form drafting (RFC/spec/proposal), run co-authoring mode:
   context dump -> section iteration -> reader test
@@ -47,3 +48,4 @@ Use this checklist with `docs-writer` across all repositories.
 - Shipping untested code snippets
 - Referring readers to external skill files when local profile guidance exists
 - Describing unreleased behavior as generally available without explicit status
+- Ignoring shared templates and producing inconsistent document structures

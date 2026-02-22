@@ -22,6 +22,7 @@ Profile references:
 - `references/PROFILE-GENERIC.md`
 - `references/PROFILE-NEXTJS.md`
 - `references/PROFILE-ANGULAR.md`
+- `references/TEMPLATES.md`
 
 ## Phase 1: Discover
 
@@ -50,6 +51,8 @@ Checklist:
 5. Define validation commands and quality gates.
 
 Use `references/CORE-CHECKLIST.md` for planning prompts.
+Consult `references/TEMPLATES.md` when selecting document structure and
+scaffolding.
 
 ## Phase 3: Write
 
@@ -63,6 +66,8 @@ Rules:
 4. Prefer updating canonical sources over duplicating content.
 5. For profile-specific formatting (frontmatter, MDX components, code block
    attributes), follow the selected profile strictly.
+6. Start from `references/TEMPLATES.md` for README/API/tutorial structure before
+   adding project-specific details.
 
 When creating new docs, include:
 
