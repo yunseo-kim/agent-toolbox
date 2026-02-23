@@ -8,16 +8,16 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 ### Productivity, Automation & Administration
 
-| Name | Repository | Stars | License | Description |
-|:----:|:----------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | License | Description |
+|:----:|:------:|:-----:|:-------:|:------------|
 | [loom-transcript](catalog/skills/loom-transcript) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and display the full transcript from a Loom video URL using Loom's public GraphQL API |
 
 ### Development
 
 #### Frontend
 
-| Name | Repository | Stars | License | Description |
-|:----:|:----------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | License | Description |
+|:----:|:------:|:-----:|:-------:|:------------|
 | [react-vendoring](https://github.com/vercel/next.js/tree/canary/.agents/skills/react-vendoring) | [vercel/next.js](https://github.com/vercel/next.js/tree/canary/.agents/skills) | ![](https://img.shields.io/github/stars/vercel/next.js?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/vercel/next.js?style=flat-square) | |
 | [fix-lint-and-formatting](https://github.com/facebook/react/tree/main/.claude/skills/fix) | [facebook/react](https://github.com/facebook/react/tree/main/.claude/skills) | ![](https://img.shields.io/github/stars/facebook/react?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/facebook/react?style=flat-square) | |
 | [flow-type-checking](https://github.com/facebook/react/tree/main/.claude/skills/flow) | [facebook/react](https://github.com/facebook/react/tree/main/.claude/skills) | ![](https://img.shields.io/github/stars/facebook/react?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/facebook/react?style=flat-square) | |
@@ -36,14 +36,14 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Package & Distribution
 
-#### low-level development
+#### Low-Level Development
 
 ### DevOps
 
 #### Git Workflows
 
-| Name | Repository | Stars | License | Description |
-|:----:|:----------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | License | Description |
+|:----:|:------:|:-----:|:-------:|:------------|
 | [create-pr](catalog/skills/create-pr) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Create GitHub PRs with Conventional Commits-formatted titles and structured bodies |
 
 #### CI/CD
@@ -54,14 +54,12 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Monitoring
 
-### Testing & Security
-
 #### Code Review
 
 #### Testing
 
-| Name | Repository | Stars | License | Description |
-|:----:|:----------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | License | Description |
+|:----:|:------:|:-----:|:-------:|:------------|
 | [reproduce-bug](catalog/skills/reproduce-bug) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Systematically reproduce a bug from a ticket with a failing regression test using hypothesis-driven methodology |
 
 #### Security
@@ -72,19 +70,13 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Technical Docs
 
-| Name | Repository | Stars | License | Description |
-|:----:|:----------:|:-----:|:-------:|:------------|
-| [update-docs](https://github.com/vercel/next.js/tree/canary/.claude/skills/update-docs) | [vercel/next.js](https://github.com/vercel/next.js/tree/canary/.claude/skills) | ![](https://img.shields.io/github/stars/vercel/next.js?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/vercel/next.js?style=flat-square) | |
-| [adev-writing-guide](https://github.com/angular/angular/tree/main/.gemini/skills/adev-writing-guide) | [angular/angular](https://github.com/angular/angular/tree/main/.gemini/skills) | ![](https://img.shields.io/github/stars/angular/angular?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/angular/angular?style=flat-square) | |
-| [technical-writer](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/awesome_agent_skills/technical-writer) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/awesome_agent_skills) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/Shubhamsaboo/awesome-llm-apps?style=flat-square) | |
+| Name | Source | Stars | License | Description |
+|:----:|:------:|:-----:|:-------:|:------------|
+| [docs-writer](catalog/skills/docs-writer) | [vercel/next.js](https://github.com/vercel/next.js), [angular/angular](https://github.com/angular/angular), [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli), [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | — | [![](https://img.shields.io/badge/license-MIT%20%2F%20Apache%202.0-97ca00?style=flat-square)](catalog/skills/docs-writer/LICENSE.md) | Unified documentation workflow with profile-based rules for generic, Next.js, and Angular docs |
 | [docs-changelog](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills/docs-changelog) | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills) | ![](https://img.shields.io/github/stars/google-gemini/gemini-cli?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/google-gemini/gemini-cli?style=flat-square) | |
-| [docs-writer](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills/docs-writer) | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills) | ![](https://img.shields.io/github/stars/google-gemini/gemini-cli?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/google-gemini/gemini-cli?style=flat-square) | |
 | [doc-coauthoring](https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring) | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills?tab=readme-ov-file#about-this-repository) | |
 | [microsoft-docs](https://github.com/microsoft/ai-agents-for-beginners/tree/main/.agents/skills/microsoft-docs) | [microsoft/ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners/tree/main/.agents/skills) | ![](https://img.shields.io/github/stars/microsoft/ai-agents-for-beginners?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/microsoft/ai-agents-for-beginners?style=flat-square) | |
 | [context7-docs-lookup](https://github.com/upstash/context7/tree/master/plugins/cursor/context7/skills/context7-docs-lookup) | [upstash/context7](https://github.com/upstash/context7/tree/master/plugins/cursor/context7/skills) | ![](https://img.shields.io/github/stars/upstash/context7?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/upstash/context7?style=flat-square) | |
-| [content-design](catalog/skills/content-design) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Product content designer for UI copy -- writing, reviewing, and auditing user-facing text |
-
-#### Education
 
 ### Databases
 
@@ -94,7 +86,7 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 ### Research
 
-#### Research Assistant & Citation Management
+#### Citation Management
 
 #### Bioinformatics
 
@@ -108,17 +100,15 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Project Management
 
-| Name | Repository | Stars | License | Description |
-|:----:|:----------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | License | Description |
+|:----:|:------:|:-----:|:-------:|:------------|
 | [issue-analysis](catalog/skills/issue-analysis) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and analyze issues from any tracker with media gathering, context collection, and effort estimation |
 
 #### Finance & Investment
 
-#### Weather, Health & Fitness
-
 #### Legal
 
-#### Eenterprise business solutions
+#### Enterprise Business Solutions
 
 #### Payment
 
@@ -126,10 +116,20 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 ### Content & Media
 
+#### Education
+
+#### Content Design
+
+| Name | Source | Stars | License | Description |
+|:----:|:------:|:-----:|:-------:|:------------|
+| [content-design](catalog/skills/content-design) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Product content designer for UI copy -- writing, reviewing, and auditing user-facing text |
+
+#### Media Processing
+
 ## References
 
-| Repository | Stars | Description |
-|:-----------|:-----:|:------------|
+| Source | Stars | Description |
+|:-------|:-----:|:------------|
 | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | Dynamic instruction folders that teach Claude specialized tasks like doc creation and data analysis |
 | [anthropics/claude-code-action](https://github.com/anthropics/claude-code-action) | ![](https://img.shields.io/github/stars/anthropics/claude-code-action?style=flat-square&logo=github) | GitHub Action for PR reviews, code changes, and issue triage via @claude mentions |
 | [anthropics/claude-code-security-review](https://github.com/anthropics/claude-code-security-review) | ![](https://img.shields.io/github/stars/anthropics/claude-code-security-review?style=flat-square&logo=github) | GitHub Action that detects security vulnerabilities in PR diffs using semantic analysis |
