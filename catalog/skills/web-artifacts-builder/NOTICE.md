@@ -1,7 +1,10 @@
-# License Notice
+# Attribution Notice
 
-This skill is derived from [anthropics/skills](https://github.com/anthropics/skills),
-licensed under the [Apache License, Version 2.0](https://github.com/anthropics/skills/blob/main/LICENSE).
+This skill incorporates material derived from [anthropics/skills](https://github.com/anthropics/skills),
+originally released under the [Apache License, Version 2.0](https://github.com/anthropics/skills/blob/main/LICENSE).
+This adapted version is governed by the [Sustainable Use License](../../LICENSE.md) at the
+root of this repository. The upstream copyright notice and license text are reproduced below
+to satisfy the attribution requirements of the original Apache 2.0 license.
 
 ## Modifications
 
@@ -12,18 +15,11 @@ in the awesome-agent-toolbox catalog. Changes include:
 - Removed Anthropic-specific license frontmatter field
 - Generalized Anthropic-specific references to be tool-agnostic (e.g., "claude.ai HTML artifacts" → "interactive HTML artifacts")
 
-## Original License Terms
+## Upstream Copyright and License
 
 Copyright 2025 Anthropic, PBC
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+The original work was released under the Apache License, Version 2.0.
+A copy of the original license is available at:
 
     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.

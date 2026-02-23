@@ -1,8 +1,10 @@
-# License for docs-writer
+# Attribution Notice
 
 This skill is a derivative work that incorporates and adapts material from the
-following projects. Each source's license terms apply to the portions derived
-from that source.
+following projects. This adapted version is governed by the
+[Sustainable Use License](../../LICENSE.md) at the root of this repository.
+The upstream copyright notices and license texts are reproduced below to satisfy
+the attribution requirements of the respective original licenses.
 
 ## NOTICE of Modification
 
@@ -17,9 +19,12 @@ and scope compared to the originals.**
 
 Source: <https://github.com/vercel/next.js>
 
-### The MIT License (MIT)
+### Upstream Copyright and License
 
 Copyright (c) 2025 Vercel, Inc.
+
+The original work was released under the MIT License (MIT). The following
+permission notice is reproduced to satisfy the MIT License's requirements:
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -45,9 +50,12 @@ SOFTWARE.
 
 Source: <https://github.com/angular/angular>
 
-### The MIT License
+### Upstream Copyright and License
 
 Copyright (c) 2010-2026 Google LLC. <https://angular.dev/license>
+
+The original work was released under the MIT License. The following
+permission notice is reproduced to satisfy the MIT License's requirements:
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -73,21 +81,14 @@ THE SOFTWARE.
 
 Source: <https://github.com/google-gemini/gemini-cli>
 
-### Apache License, Version 2.0
+### Upstream Copyright and License
 
 Copyright 2025 Google LLC
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+The original work was released under the Apache License, Version 2.0.
+A copy of the original license is available at:
 
     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
 
 ---
 
@@ -95,18 +96,11 @@ limitations under the License.
 
 Source: <https://github.com/Shubhamsaboo/awesome-llm-apps>
 
-### Apache License, Version 2.0
+### Upstream Copyright and License
 
 Copyright 2024 Shubham Saboo
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+The original work was released under the Apache License, Version 2.0.
+A copy of the original license is available at:
 
     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.

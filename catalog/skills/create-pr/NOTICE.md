@@ -1,7 +1,9 @@
-# License Notice
+# Attribution Notice
 
-This skill is derived from [n8n-io/n8n](https://github.com/n8n-io/n8n), licensed under the
-[Sustainable Use License 1.0](https://github.com/n8n-io/n8n/blob/master/LICENSE.md).
+This skill incorporates material derived from [n8n-io/n8n](https://github.com/n8n-io/n8n),
+originally released under the [Sustainable Use License 1.0](https://github.com/n8n-io/n8n/blob/master/LICENSE.md).
+This adapted version is governed by the [Sustainable Use License](../../LICENSE.md) at the
+root of this repository. The upstream license terms are summarized below for attribution.
 
 ## Modifications
 
@@ -20,15 +22,11 @@ in the awesome-agent-toolbox catalog. Changes include:
 - Added PR template auto-detection step
 - Added `revert` to the types table
 
-## Original License Terms
+## Upstream License
 
-The Sustainable Use License grants a non-exclusive, royalty-free, worldwide license to use, copy,
-distribute, and prepare derivative works of the software, subject to these limitations:
+The original work was released under the Sustainable Use License 1.0, which grants a
+non-exclusive, royalty-free, worldwide license to use, copy, distribute, and prepare
+derivative works of the software, subject to certain limitations including non-commercial
+distribution and preservation of notices.
 
-- You may use or modify the software only for your own internal business purposes or for
-  non-commercial or personal use.
-- You may distribute the software or provide it to others only if you do so free of charge for
-  non-commercial purposes.
-- You may not alter, remove, or obscure any licensing, copyright, or other notices of the licensor.
-
-For the full license text, see: https://github.com/n8n-io/n8n/blob/master/LICENSE.md
+For the full upstream license text, see: https://github.com/n8n-io/n8n/blob/master/LICENSE.md
