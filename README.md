@@ -14,10 +14,6 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 ### Development
 
-#### Architecture Patterns
-
-#### CMS & Platform
-
 #### Frontend
 
 | Name | Repository | Stars | License | Description |
@@ -40,11 +36,15 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Package & Distribution
 
-#### E-commerce Development
+#### low-level development
 
 ### DevOps
 
 #### Git Workflows
+
+| Name | Repository | Stars | License | Description |
+|:----:|:----------:|:-----:|:-------:|:------------|
+| [create-pr](catalog/skills/create-pr) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Create GitHub PRs with Conventional Commits-formatted titles and structured bodies |
 
 #### CI/CD
 
@@ -56,7 +56,7 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 ### Testing & Security
 
-#### Code Quality
+#### Code Review
 
 #### Testing
 
@@ -94,6 +94,14 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 ### Research
 
+#### Research Assistant & Citation Management
+
+#### Bioinformatics
+
+#### Computational Chemistry
+
+#### Astronomy & Physics
+
 ### Business
 
 #### Sales & Marketing
@@ -106,19 +114,17 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Finance & Investment
 
-#### Health & Fitness
+#### Weather, Health & Fitness
 
-#### Real Estate & Legal
+#### Legal
 
-#### Business Apps
+#### Eenterprise business solutions
 
 #### Payment
 
 #### E-commerce
 
 ### Content & Media
-
-
 
 ## References
 
