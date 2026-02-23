@@ -10,7 +10,7 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 | Name | Repository | Stars | License | Description |
 |:----:|:----------:|:-----:|:-------:|:------------|
-| [loom-transcript](catalog/skills/loom-transcript) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Sustainable%20Use-blue?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and display the full transcript from a Loom video URL using Loom's public GraphQL API |
+| [loom-transcript](catalog/skills/loom-transcript) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and display the full transcript from a Loom video URL using Loom's public GraphQL API |
 
 ### Development
 
@@ -62,7 +62,7 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 | Name | Repository | Stars | License | Description |
 |:----:|:----------:|:-----:|:-------:|:------------|
-| [reproduce-bug](catalog/skills/reproduce-bug) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Sustainable%20Use-blue?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Systematically reproduce a bug from a ticket with a failing regression test using hypothesis-driven methodology |
+| [reproduce-bug](catalog/skills/reproduce-bug) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Systematically reproduce a bug from a ticket with a failing regression test using hypothesis-driven methodology |
 
 #### Security
 
@@ -79,10 +79,10 @@ A curated collection of agent skills, plugins, and MCP servers.
 | [technical-writer](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/awesome_agent_skills/technical-writer) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/awesome_agent_skills) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/Shubhamsaboo/awesome-llm-apps?style=flat-square) | |
 | [docs-changelog](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills/docs-changelog) | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills) | ![](https://img.shields.io/github/stars/google-gemini/gemini-cli?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/google-gemini/gemini-cli?style=flat-square) | |
 | [docs-writer](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills/docs-writer) | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills) | ![](https://img.shields.io/github/stars/google-gemini/gemini-cli?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/google-gemini/gemini-cli?style=flat-square) | |
-| [doc-coauthoring](https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring) | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [Apache 2.0](https://github.com/anthropics/skills?tab=readme-ov-file#about-this-repository) | |
+| [doc-coauthoring](https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring) | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills?tab=readme-ov-file#about-this-repository) | |
 | [microsoft-docs](https://github.com/microsoft/ai-agents-for-beginners/tree/main/.agents/skills/microsoft-docs) | [microsoft/ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners/tree/main/.agents/skills) | ![](https://img.shields.io/github/stars/microsoft/ai-agents-for-beginners?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/microsoft/ai-agents-for-beginners?style=flat-square) | |
 | [context7-docs-lookup](https://github.com/upstash/context7/tree/master/plugins/cursor/context7/skills/context7-docs-lookup) | [upstash/context7](https://github.com/upstash/context7/tree/master/plugins/cursor/context7/skills) | ![](https://img.shields.io/github/stars/upstash/context7?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/upstash/context7?style=flat-square) | |
-| [content-design](catalog/skills/content-design) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Sustainable%20Use-blue?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Product content designer for UI copy -- writing, reviewing, and auditing user-facing text |
+| [content-design](catalog/skills/content-design) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Product content designer for UI copy -- writing, reviewing, and auditing user-facing text |
 
 #### Education
 
@@ -102,7 +102,7 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 | Name | Repository | Stars | License | Description |
 |:----:|:----------:|:-----:|:-------:|:------------|
-| [issue-analysis](catalog/skills/issue-analysis) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Sustainable%20Use-blue?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and analyze issues from any tracker with media gathering, context collection, and effort estimation |
+| [issue-analysis](catalog/skills/issue-analysis) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and analyze issues from any tracker with media gathering, context collection, and effort estimation |
 
 #### Finance & Investment
 
