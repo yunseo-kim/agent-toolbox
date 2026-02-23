@@ -1,0 +1,77 @@
+# Controlled vocabulary for catalog item classification.
+# All `domain` and `subdomain` values in SKILL.md frontmatter MUST exist here.
+# Adding new entries requires updating this file first.
+
+domains:
+  productivity:
+    description: Workflow automation, task management, and general productivity tools
+    subdomains: []
+
+  development:
+    description: Software development tools, patterns, and frameworks
+    subdomains:
+      - architecture-patterns
+      - cms-platform
+      - frontend
+      - backend
+      - full-stack
+      - game-development
+      - scripting
+      - mobile
+      - package-distribution
+      - ecommerce-development
+
+  devops:
+    description: Infrastructure, deployment, and operations tooling
+    subdomains:
+      - git
+      - ci-cd
+      - cloud
+      - containers
+      - monitoring
+
+  testing:
+    description: Testing, security, and code quality tools
+    subdomains:
+      - code-quality
+      - testing
+      - security
+
+  documentation:
+    description: Documentation authoring, generation, and management
+    subdomains:
+      - knowledge-base
+      - technical-docs
+      - education
+
+  databases:
+    description: Database management, querying, and optimization
+    subdomains: []
+
+  blockchain:
+    description: Blockchain, smart contracts, and Web3 development
+    subdomains: []
+
+  data-ai:
+    description: Data engineering, machine learning, and AI tools
+    subdomains: []
+
+  research:
+    description: Academic research, literature review, and analysis
+    subdomains: []
+
+  business:
+    description: Business operations, marketing, and finance
+    subdomains:
+      - sales-marketing
+      - project-management
+      - finance-investment
+      - health-fitness
+      - real-estate-legal
+      - business-apps
+      - payment
+      - ecommerce
+
+  content-media:
+    description: Content creation, media processing, and publishing
+    subdomains: []

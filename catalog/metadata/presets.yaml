@@ -1,0 +1,12 @@
+# Curated install bundles for common use cases.
+# Each preset references catalog items by name.
+# Presets are cross-cutting - they can include items from any domain.
+
+presets: []
+# Example:
+#   - name: devops-essentials
+#     description: Core DevOps skills for CI/CD and infrastructure
+#     items:
+#       - github-actions-templates
+#       - gitlab-ci-patterns
+#       - secrets-management
