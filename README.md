@@ -6,18 +6,23 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 ## Skills
 
+> **Note:** The "Upstream License" column shows the original license of the source
+> project each skill was derived from. Catalog skills may be modified from their
+> originals and are governed by the project's [Sustainable Use License](LICENSE.md).
+> See each skill's `NOTICE.md` for specific attribution and modification details.
+
 ### Productivity, Automation & Administration
 
-| Name | Source | Stars | License | Description |
-|:----:|:------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
 | [loom-transcript](catalog/skills/loom-transcript) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and display the full transcript from a Loom video URL using Loom's public GraphQL API |
 
 ### Development
 
 #### Frontend
 
-| Name | Source | Stars | License | Description |
-|:----:|:------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
 | [react-vendoring](https://github.com/vercel/next.js/tree/canary/.agents/skills/react-vendoring) | [vercel/next.js](https://github.com/vercel/next.js/tree/canary/.agents/skills) | ![](https://img.shields.io/github/stars/vercel/next.js?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/vercel/next.js?style=flat-square) | |
 | [fix-lint-and-formatting](https://github.com/facebook/react/tree/main/.claude/skills/fix) | [facebook/react](https://github.com/facebook/react/tree/main/.claude/skills) | ![](https://img.shields.io/github/stars/facebook/react?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/facebook/react?style=flat-square) | |
 | [flow-type-checking](https://github.com/facebook/react/tree/main/.claude/skills/flow) | [facebook/react](https://github.com/facebook/react/tree/main/.claude/skills) | ![](https://img.shields.io/github/stars/facebook/react?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/facebook/react?style=flat-square) | |
@@ -42,8 +47,8 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Git Workflows
 
-| Name | Source | Stars | License | Description |
-|:----:|:------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
 | [create-pr](catalog/skills/create-pr) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Create GitHub PRs with Conventional Commits-formatted titles and structured bodies |
 
 #### CI/CD
@@ -58,8 +63,8 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Testing
 
-| Name | Source | Stars | License | Description |
-|:----:|:------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
 | [reproduce-bug](catalog/skills/reproduce-bug) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Systematically reproduce a bug from a ticket with a failing regression test using hypothesis-driven methodology |
 
 #### Security
@@ -70,9 +75,9 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Technical Docs
 
-| Name | Source | Stars | License | Description |
-|:----:|:------:|:-----:|:-------:|:------------|
-| [docs-writer](catalog/skills/docs-writer) | [vercel/next.js](https://github.com/vercel/next.js), [angular/angular](https://github.com/angular/angular), [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli), [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | — | [![](https://img.shields.io/badge/license-MIT%20%2F%20Apache%202.0-97ca00?style=flat-square)](catalog/skills/docs-writer/LICENSE.md) | Unified documentation workflow with profile-based rules for generic, Next.js, and Angular docs |
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [docs-writer](catalog/skills/docs-writer) | [vercel/next.js](https://github.com/vercel/next.js), [angular/angular](https://github.com/angular/angular), [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli), [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | — | [![](https://img.shields.io/badge/license-MIT%20%2F%20Apache%202.0-97ca00?style=flat-square)](catalog/skills/docs-writer/NOTICE.md) | Unified documentation workflow with profile-based rules for generic, Next.js, and Angular docs |
 | [docs-changelog](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills/docs-changelog) | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills) | ![](https://img.shields.io/github/stars/google-gemini/gemini-cli?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/google-gemini/gemini-cli?style=flat-square) | |
 | [doc-coauthoring](https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring) | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills?tab=readme-ov-file#about-this-repository) | |
 | [microsoft-docs](https://github.com/microsoft/ai-agents-for-beginners/tree/main/.agents/skills/microsoft-docs) | [microsoft/ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners/tree/main/.agents/skills) | ![](https://img.shields.io/github/stars/microsoft/ai-agents-for-beginners?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/microsoft/ai-agents-for-beginners?style=flat-square) | |
@@ -100,8 +105,8 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Project Management
 
-| Name | Source | Stars | License | Description |
-|:----:|:------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
 | [issue-analysis](catalog/skills/issue-analysis) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and analyze issues from any tracker with media gathering, context collection, and effort estimation |
 
 #### Finance & Investment
@@ -120,8 +125,8 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Content Design
 
-| Name | Source | Stars | License | Description |
-|:----:|:------:|:-----:|:-------:|:------------|
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
 | [content-design](catalog/skills/content-design) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Product content designer for UI copy -- writing, reviewing, and auditing user-facing text |
 
 #### Media Processing

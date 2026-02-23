@@ -180,7 +180,7 @@ README.md skill tables use the following column structure and provenance rules.
 | **Name** | Skill display name, linked to catalog entry (if hosted) or original source (if external-only) |
 | **Source** | Original upstream repository or repositories the skill derives from |
 | **Stars** | GitHub stars badge(s) for the source repository |
-| **License** | License badge for the source, linked to license file |
+| **Upstream License** | Upstream license badge for the source, linked to license or notice file |
 | **Description** | One-line summary of what the skill does |
 
 ### Provenance Types
@@ -192,12 +192,12 @@ Skills fall into four provenance categories. Each has distinct listing rules:
 | **External** | Listed in README only; not in `catalog/` | Links to original repo/skill path | Single `[org/repo](url)` | Stars badge of source repo | License badge of source repo |
 | **Ported** | Copied to `catalog/` with minimal changes from one source | Links to `catalog/skills/<name>` | Single `[org/repo](url)` | Stars badge of source repo | License badge of source repo |
 | **Adapted** | In `catalog/` with moderate edits from one source | Links to `catalog/skills/<name>` | Single `[org/repo](url)` | Stars badge of source repo | License badge of source repo |
-| **Synthesized** | In `catalog/` as original work combining multiple sources | Links to `catalog/skills/<name>` | All sources inline: `[org1/repo1](url), [org2/repo2](url), ...` | `—` (dash) | Multi-license badge linking to `catalog/skills/<name>/LICENSE.md` |
+| **Synthesized** | In `catalog/` as original work combining multiple sources | Links to `catalog/skills/<name>` | All sources inline: `[org1/repo1](url), [org2/repo2](url), ...` | `—` (dash) | Multi-license badge linking to `catalog/skills/<name>/NOTICE.md` |
 
 ### Editing Rules
 
-- Every skill in `catalog/skills/` MUST have a LICENSE.md with attribution and modification notices.
-- For synthesized skills, LICENSE.md MUST list all source projects with their respective license texts.
+- Every skill in `catalog/skills/` MUST have a NOTICE.md with attribution and modification notices.
+- For synthesized skills, NOTICE.md MUST list all source projects with their respective license texts.
 - Multi-license badges use the format: `MIT / Apache 2.0` (list unique licenses, separated by ` / `).
 - When a synthesized skill replaces multiple individual external entries, remove the individual rows and add one synthesized row.
 - Source column links point to the repository root (not the skill subdirectory) for badge compatibility.
