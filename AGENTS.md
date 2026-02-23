@@ -1,7 +1,7 @@
 # PROJECT KNOWLEDGE BASE
 
-**Generated:** 2026-02-19
-**Commit:** 9eb7f3e
+**Generated:** 2026-02-24
+**Commit:** e7d49e4
 **Branch:** main
 
 ## OVERVIEW
@@ -10,10 +10,10 @@ This repository started as a curated skills collection and is evolving into a cr
 
 ## CURRENT STATE
 
-- No distributable project content exists yet. The planned `catalog/` directory (neutral source-of-truth for skills, agents, commands, hooks, etc.) has not been created.
+- `catalog/` exists with 6 distributable skills (`content-design`, `create-pr`, `docs-writer`, `issue-analysis`, `loom-transcript`, `reproduce-bug`) and metadata (`taxonomy.yaml`, `presets.yaml`). The `catalog-index.json` is not yet generated.
 - `.agents/skills/`, `.agent/skills/`, `.claude/skills/`, `.cursor/skills/`, `.windsurf/skills/` are **development tooling only** — skills used by contributors while working on this repo (e.g. `git-master`, `create-pr`, `skill-creator`, `mcp-builder`). They are **not** project content or distribution artifacts.
-- Planned architecture directories (`catalog/`, `src/`, `templates/`, `dist/`, `tests/`) are not yet materialized in this branch.
-- Catalog items will use **domain/framework-based taxonomy** for selective installation. Taxonomy is defined in `catalog/metadata/taxonomy.yaml`; categories live in SKILL.md frontmatter (`domain`, `subdomain`, `tags`, `frameworks` fields).
+- Planned architecture directories (`src/`, `templates/`, `dist/`, `tests/`) are not yet materialized. The build toolchain (Bun-first TS) and CI/CD (GitHub Actions) are planned but not implemented.
+- Catalog items use **domain/framework-based taxonomy** for selective installation. Taxonomy is defined in `catalog/metadata/taxonomy.yaml`; categories live in SKILL.md frontmatter (`domain`, `subdomain`, `tags`, `frameworks` fields).
 
 ## TARGETS
 
@@ -65,6 +65,8 @@ awesome-agent-toolbox/
 | Skill packaging script | `.agents/skills/skill-creator/scripts/package_skill.py` | Current `.skill` packager |
 | MCP builder guidance | `.agents/skills/mcp-builder/SKILL.md` | Canonical MCP extension guidance |
 | Root architecture decisions | `AGENTS.md` | This file is authoritative |
+| Dev tooling conventions | `.agents/skills/AGENTS.md` | Skill inventory, symlink structure, dev scripts |
+| Catalog conventions | `catalog/AGENTS.md` | Distributable content rules, frontmatter, licensing |
 | Active skill source tree | `.agents/skills/` | Dev tooling source; symlinked to `.agent/`, `.claude/`, `.cursor/`, `.windsurf/` |
 | Catalog taxonomy | `catalog/metadata/taxonomy.yaml` | Controlled vocabulary for domains/subdomains |
 | Install presets | `catalog/metadata/presets.yaml` | Curated skill bundles for common use cases |
@@ -75,7 +77,7 @@ awesome-agent-toolbox/
 
 ## DISTRIBUTION MODEL
 
-- **Source-of-truth**: only `catalog/` (not yet created; `.agents/skills/` is dev tooling, not content).
+- **Source-of-truth**: only `catalog/` (`.agents/skills/` is dev tooling, not content).
 - **Generated artifacts**: only `dist/targets/*` and `dist/marketplace/*`; avoid manual edits.
 - **Bun first**: build/test/release tooling uses Bun runtime and Bun scripts.
 - **npm compatibility**: publish CLI binaries and package artifacts so users can install via `npm`/`npx` as fallback.
