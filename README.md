@@ -15,6 +15,8 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 | Name | Source | Stars | Upstream License | Description |
 |:----:|:------:|:-----:|:----------------:|:------------|
+| [docx](https://github.com/anthropics/skills/tree/main/skills/docx) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)](https://github.com/anthropics/skills/blob/main/skills/docx/LICENSE.txt) | Create, edit, and analyze Word documents with tracked changes, comments, and formatting |
+| [pdf](https://github.com/anthropics/skills/tree/main/skills/pdf) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)](https://github.com/anthropics/skills/blob/main/skills/pdf/LICENSE.txt) | Read, create, merge, split, rotate, watermark, fill forms, and OCR PDF files |
 | [loom-transcript](catalog/skills/loom-transcript) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and display the full transcript from a Loom video URL using Loom's public GraphQL API |
 
 ### Development
@@ -23,6 +25,8 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 | Name | Source | Stars | Upstream License | Description |
 |:----:|:------:|:-----:|:----------------:|:------------|
+| [frontend-design](catalog/skills/frontend-design) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Create distinctive, production-grade frontend interfaces with high design quality |
+| [web-artifacts-builder](catalog/skills/web-artifacts-builder) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui |
 | [react-vendoring](https://github.com/vercel/next.js/tree/canary/.agents/skills/react-vendoring) | [vercel/next.js](https://github.com/vercel/next.js/tree/canary/.agents/skills) | ![](https://img.shields.io/github/stars/vercel/next.js?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/vercel/next.js?style=flat-square) | |
 | [fix-lint-and-formatting](https://github.com/facebook/react/tree/main/.claude/skills/fix) | [facebook/react](https://github.com/facebook/react/tree/main/.claude/skills) | ![](https://img.shields.io/github/stars/facebook/react?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/facebook/react?style=flat-square) | |
 | [flow-type-checking](https://github.com/facebook/react/tree/main/.claude/skills/flow) | [facebook/react](https://github.com/facebook/react/tree/main/.claude/skills) | ![](https://img.shields.io/github/stars/facebook/react?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/facebook/react?style=flat-square) | |
@@ -34,6 +38,13 @@ A curated collection of agent skills, plugins, and MCP servers.
 #### Full Stack
 
 #### Game Development
+
+#### Developer Tooling
+
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [mcp-builder](catalog/skills/mcp-builder) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Guide for creating high-quality MCP servers that enable LLMs to interact with external services |
+| [skill-creator](catalog/skills/skill-creator) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Guide for creating effective skills that extend AI assistant capabilities |
 
 #### Scripting
 
@@ -65,6 +76,7 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 | Name | Source | Stars | Upstream License | Description |
 |:----:|:------:|:-----:|:----------------:|:------------|
+| [webapp-testing](catalog/skills/webapp-testing) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Test local web applications using Playwright with server lifecycle management and browser automation |
 | [reproduce-bug](catalog/skills/reproduce-bug) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Systematically reproduce a bug from a ticket with a failing regression test using hypothesis-driven methodology |
 
 #### Security
@@ -77,9 +89,9 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 | Name | Source | Stars | Upstream License | Description |
 |:----:|:------:|:-----:|:----------------:|:------------|
+| [doc-coauthoring](catalog/skills/doc-coauthoring) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](catalog/skills/doc-coauthoring/NOTICE.md) | Guide users through a structured workflow for co-authoring documentation, proposals, and specs |
 | [docs-writer](catalog/skills/docs-writer) | [vercel/next.js](https://github.com/vercel/next.js), [angular/angular](https://github.com/angular/angular), [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli), [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | — | [![](https://img.shields.io/badge/license-MIT%20%2F%20Apache%202.0-97ca00?style=flat-square)](catalog/skills/docs-writer/NOTICE.md) | Unified documentation workflow with profile-based rules for generic, Next.js, and Angular docs |
 | [docs-changelog](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills/docs-changelog) | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills) | ![](https://img.shields.io/github/stars/google-gemini/gemini-cli?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/google-gemini/gemini-cli?style=flat-square) | |
-| [doc-coauthoring](https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring) | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills?tab=readme-ov-file#about-this-repository) | |
 | [microsoft-docs](https://github.com/microsoft/ai-agents-for-beginners/tree/main/.agents/skills/microsoft-docs) | [microsoft/ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners/tree/main/.agents/skills) | ![](https://img.shields.io/github/stars/microsoft/ai-agents-for-beginners?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/microsoft/ai-agents-for-beginners?style=flat-square) | |
 | [context7-docs-lookup](https://github.com/upstash/context7/tree/master/plugins/cursor/context7/skills/context7-docs-lookup) | [upstash/context7](https://github.com/upstash/context7/tree/master/plugins/cursor/context7/skills) | ![](https://img.shields.io/github/stars/upstash/context7?style=flat-square&logo=github) | ![](https://img.shields.io/github/license/upstash/context7?style=flat-square) | |
 
@@ -101,6 +113,12 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 ### Business
 
+#### Communications
+
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [internal-comms](catalog/skills/internal-comms) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Write internal communications including status reports, newsletters, 3P updates, FAQs, and incident reports |
+
 #### Sales & Marketing
 
 #### Project Management
@@ -110,6 +128,10 @@ A curated collection of agent skills, plugins, and MCP servers.
 | [issue-analysis](catalog/skills/issue-analysis) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and analyze issues from any tracker with media gathering, context collection, and effort estimation |
 
 #### Finance & Investment
+
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [xlsx](https://github.com/anthropics/skills/tree/main/skills/xlsx) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)](https://github.com/anthropics/skills/blob/main/skills/xlsx/LICENSE.txt) | Create, edit, and analyze Excel spreadsheets with formulas, formatting, and financial models |
 
 #### Legal
 
@@ -123,13 +145,26 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Education
 
+#### Generative Art
+
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [algorithmic-art](catalog/skills/algorithmic-art) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Create algorithmic art using p5.js with seeded randomness and interactive parameter exploration |
+| [canvas-design](catalog/skills/canvas-design) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Create beautiful visual art in .png and .pdf documents using design philosophy |
+
 #### Content Design
 
 | Name | Source | Stars | Upstream License | Description |
 |:----:|:------:|:-----:|:----------------:|:------------|
+| [theme-factory](catalog/skills/theme-factory) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Style artifacts with 10 pre-set themes or generate custom themes with colors and fonts |
+| [pptx](https://github.com/anthropics/skills/tree/main/skills/pptx) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)](https://github.com/anthropics/skills/blob/main/skills/pptx/LICENSE.txt) | Create, edit, and analyze PowerPoint presentations with professional design patterns |
 | [content-design](catalog/skills/content-design) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Product content designer for UI copy -- writing, reviewing, and auditing user-facing text |
 
-#### Media Processing
+#### Media
+
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [slack-gif-creator](catalog/skills/slack-gif-creator) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Create animated GIFs optimized for Slack with validation tools and animation utilities |
 
 ## References
 
