@@ -1,10 +1,38 @@
 # Controlled vocabulary for catalog item classification.
 # All `domain` and `subdomain` values in SKILL.md frontmatter MUST exist here.
 # Adding new entries requires updating this file first.
+#
+# === DISAMBIGUATION RULES (for overlapping domains) ===
+#
+# productivity vs business:
+#   productivity = domain-agnostic tools (task runners, calendar, clipboard, generic automation)
+#   business     = domain-specific operations (sales CRM, invoicing, legal review, HR)
+#   Ambiguous items default to productivity.
+#
+# development > scripting vs productivity:
+#   development > scripting = scripts tied to a codebase or dev workflow (build scripts, codegen)
+#   productivity            = general-purpose automation not tied to a project (file renaming, data munging)
+#
+# development > package-distribution vs devops > ci-cd:
+#   development > package-distribution = package structure, manifests, build config (package.json, Cargo.toml)
+#   devops > ci-cd                     = pipeline-driven automated build, test, publish, deploy
+#
+# data-ai vs research:
+#   data-ai  = general-purpose data engineering, ML/AI tooling, MLOps (pandas, tensorflow, Airflow)
+#   research = academic/scientific workflows (literature search, citation, domain-specific tools)
+#   Scientific ML applications (e.g. AlphaFold, molecular dynamics) belong in research.
+#
+# documentation vs content-media:
+#   documentation = technical/developer-facing (API refs, READMEs, knowledge bases, changelogs)
+#   content-media = non-technical/audience-facing (education, UI copy, marketing, video, tutorials)
+#
+# development > ecommerce-development vs business > ecommerce:
+#   development > ecommerce-development = platform engineering (Shopify themes, WooCommerce plugins, storefront code)
+#   business > ecommerce                = business operations (inventory management, pricing strategy, fulfillment)
 
 domains:
   productivity:
-    description: Workflow automation, task management, and general productivity tools
+    description: Domain-agnostic workflow automation, task management, and general productivity tools
     subdomains: []
 
   development:
@@ -20,29 +48,25 @@ domains:
       - mobile
       - package-distribution
       - ecommerce-development
+      - low-level
 
   devops:
-    description: Infrastructure, deployment, and operations tooling
+    description: Infrastructure, deployment, operations, testing, security, and code quality
     subdomains:
       - git
       - ci-cd
       - cloud
       - containers
       - monitoring
-
-  testing:
-    description: Testing, security, and code quality tools
-    subdomains:
-      - code-quality
-      - testing
-      - security
+      - code-review        # formerly testing > code-quality
+      - testing            # formerly testing domain
+      - security           # formerly testing > security
 
   documentation:
-    description: Documentation authoring, generation, and management
+    description: Technical documentation, API references, knowledge bases, and developer-facing docs
     subdomains:
       - knowledge-base
       - technical-docs
-      - education
 
   databases:
     description: Database management, querying, and optimization
@@ -53,25 +77,31 @@ domains:
     subdomains: []
 
   data-ai:
-    description: Data engineering, machine learning, and AI tools
+    description: General-purpose data engineering, machine learning, and AI tooling
     subdomains: []
 
   research:
-    description: Academic research, literature review, and analysis
-    subdomains: []
+    description: Academic research, scientific workflows, literature review, and domain-specific analysis
+    subdomains:
+      - citation-management
+      - bioinformatics
+      - computational-chemistry
+      - astronomy-physics
 
   business:
-    description: Business operations, marketing, and finance
+    description: Domain-specific business operations, marketing, finance, and commerce
     subdomains:
       - sales-marketing
       - project-management
       - finance-investment
-      - health-fitness
       - real-estate-legal
       - business-apps
       - payment
       - ecommerce
 
   content-media:
-    description: Content creation, media processing, and publishing
-    subdomains: []
+    description: Non-technical content creation, education, media processing, and publishing
+    subdomains:
+      - education           # formerly documentation > education
+      - content-design
+      - media-processing
