@@ -13,6 +13,7 @@ This repository started as a curated skills collection and is evolving into a cr
 - No distributable project content exists yet. The planned `catalog/` directory (neutral source-of-truth for skills, agents, commands, hooks, etc.) has not been created.
 - `.agents/skills/`, `.agent/skills/`, `.claude/skills/`, `.cursor/skills/`, `.windsurf/skills/` are **development tooling only** — skills used by contributors while working on this repo (e.g. `git-master`, `create-pr`, `skill-creator`, `mcp-builder`). They are **not** project content or distribution artifacts.
 - Planned architecture directories (`catalog/`, `src/`, `templates/`, `dist/`, `tests/`) are not yet materialized in this branch.
+- Catalog items will use **domain/framework-based taxonomy** for selective installation. Taxonomy is defined in `catalog/metadata/taxonomy.yaml`; categories live in SKILL.md frontmatter (`domain`, `subdomain`, `tags`, `frameworks` fields).
 
 ## TARGETS
 
@@ -24,13 +25,16 @@ This repository started as a curated skills collection and is evolving into a cr
 ```
 awesome-agent-toolbox/
 ├── catalog/                          # Neutral source-of-truth
-│   ├── skills/
+│   ├── skills/                       # Flat — one dir per skill, taxonomy via frontmatter
 │   ├── agents/
 │   ├── commands/
 │   ├── hooks/
 │   ├── mcp/
 │   ├── lsp/
-│   └── metadata/
+│   └── metadata/                     # Taxonomy, presets, and generated index
+│       ├── taxonomy.yaml             # Controlled vocabulary (domains + subdomains)
+│       ├── presets.yaml              # Curated install bundles
+│       └── catalog-index.json        # Auto-generated aggregated metadata
 ├── src/                              # Bun-first TS toolchain
 │   ├── cli/                          # install/build/validate entrypoints
 │   ├── generators/                   # emit_gemini / emit_opencode / emit_claude / emit_cursor
@@ -62,6 +66,9 @@ awesome-agent-toolbox/
 | MCP builder guidance | `.agents/skills/mcp-builder/SKILL.md` | Canonical MCP extension guidance |
 | Root architecture decisions | `AGENTS.md` | This file is authoritative |
 | Active skill source tree | `.agents/skills/` | Dev tooling source; symlinked to `.agent/`, `.claude/`, `.cursor/`, `.windsurf/` |
+| Catalog taxonomy | `catalog/metadata/taxonomy.yaml` | Controlled vocabulary for domains/subdomains |
+| Install presets | `catalog/metadata/presets.yaml` | Curated skill bundles for common use cases |
+| Catalog index | `catalog/metadata/catalog-index.json` | Auto-generated; do not hand-edit |
 
 > **Note:** The `.agents/skills/` paths above are **development tools** for contributors, not project content.
 > They will remain as dev tooling even after `catalog/` is populated with distributable content.
@@ -72,7 +79,50 @@ awesome-agent-toolbox/
 - **Generated artifacts**: only `dist/targets/*` and `dist/marketplace/*`; avoid manual edits.
 - **Bun first**: build/test/release tooling uses Bun runtime and Bun scripts.
 - **npm compatibility**: publish CLI binaries and package artifacts so users can install via `npm`/`npx` as fallback.
-- **Install UX (target)**: single entrypoint with `install --target <gemini|opencode|claude|cursor>`.
+- **Install UX**: `install --target <tool> [--domain <domain>] [--subdomain <subdomain>] [--framework <fw>] [--preset <name>] [--skill <name>] [--tag <tag>] [--interactive] [--dry-run]`. Target selects the tool; domain/framework/preset/skill/tag filters select catalog items. Filters compose with AND. Default (no filters) installs all items.
+
+## CATALOG TAXONOMY
+
+### Taxonomy Model
+
+Catalog items are categorized using metadata in SKILL.md frontmatter, not directory structure. The `catalog/skills/` directory remains flat (one dir per skill).
+
+- **Domain** (required, controlled vocabulary): Primary grouping — `productivity`, `development`, `devops`, `testing`, `documentation`, `databases`, `blockchain`, `data-ai`, `research`, `business`, `content-media`.
+- **Subdomain** (optional, controlled vocabulary): Secondary grouping within domain — `git`, `ci-cd`, `frontend`, `technical-docs`, etc.
+- **Tags** (optional, freeform): Searchable keywords for discovery — `github`, `yaml`, `react`, etc.
+- **Frameworks** (optional, freeform): Framework/tool associations — `nextjs`, `angular`, `django`, etc.
+
+The controlled vocabulary is defined in `catalog/metadata/taxonomy.yaml`. Adding new domains or subdomains requires updating this file.
+
+### SKILL.md Frontmatter Schema
+
+```yaml
+---
+name: skill-name                        # required, kebab-case, max 64 chars
+description: "What this skill does..."  # required, max 1024 chars
+domain: devops                          # required, from taxonomy.yaml
+subdomain: ci-cd                        # optional, from taxonomy.yaml
+tags: [github, yaml, automation]        # optional, freeform kebab-case
+frameworks: [nextjs]                    # optional, freeform kebab-case
+---
+```
+
+### Install Presets
+
+Presets are curated bundles of catalog items for common use cases, defined in `catalog/metadata/presets.yaml`. Each preset has a name, description, and list of item names. Presets are cross-cutting — they reference items from any domain.
+
+### Selective Install Composition
+
+| Flags | Behavior |
+|-------|----------|
+| `--target` only | All items (backward-compatible default) |
+| `--target --domain D` | Items where `domain == D` |
+| `--target --domain D --subdomain S` | Items where `domain == D && subdomain == S` |
+| `--target --framework F` | Items where `F in frameworks` |
+| `--target --preset P` | Items listed in preset P |
+| `--target --skill N` | Specific item(s) by name |
+| `--target --tag T` | Items where `T in tags` |
+| Multiple filters | AND composition |
 
 ## TOOL ADAPTER RULES
 
@@ -102,6 +152,10 @@ awesome-agent-toolbox/
 - **Installer tests**: OS-path and symlink/junction branch coverage.
 - **Behavior tests**: smoke tests per target (load plugin, discover skills, invoke representative workflow).
 - **Drift tests**: fail CI when generated outputs diverge from catalog unexpectedly.
+- **Taxonomy tests**: validate all SKILL.md `domain`/`subdomain` values against `catalog/metadata/taxonomy.yaml`.
+- **Preset tests**: validate all preset item references resolve to existing catalog items.
+- **Index tests**: verify `catalog-index.json` is consistent with individual SKILL.md frontmatter.
+- **Selective install tests**: verify filter composition (domain, subdomain, framework, tag, preset, skill) produces correct item sets.
 
 ## CONVENTIONS
 
@@ -110,6 +164,8 @@ awesome-agent-toolbox/
 - Progressive disclosure: short core instructions in `SKILL.md`, deep detail in references.
 - Keep files ASCII unless existing file requires Unicode.
 - Keep generated artifacts clearly marked and reproducible.
+- Catalog items require `domain` in frontmatter (from `taxonomy.yaml`); `subdomain`, `tags`, `frameworks` are optional.
+- `catalog/metadata/catalog-index.json` is auto-generated by `bun run build:index`; do not hand-edit.
 
 ## ANTI-PATTERNS (THIS PROJECT)
 
@@ -119,6 +175,9 @@ awesome-agent-toolbox/
 - Do not rely on one shell behavior for installer logic (must branch by OS/runtime).
 - Do not store secrets or machine-local credentials in catalog/templates.
 - Do not claim Gemini command/hook parity with Claude/OpenCode/Cursor without explicit adapter tests.
+- Do not nest catalog items in domain subdirectories; taxonomy is metadata-driven, not directory-driven.
+- Do not use freeform strings for `domain` or `subdomain`; always validate against `taxonomy.yaml`.
+- Do not define presets inside individual SKILL.md files; presets are cross-cutting and live in `presets.yaml`.
 
 ## COMMANDS (CURRENT)
 
@@ -141,6 +200,9 @@ python3 .agents/skills/skill-creator/scripts/package_skill.py <path/to/skill-fol
 # Validate neutral catalog and schemas
 bun run validate
 
+# Build catalog index from all SKILL.md frontmatter
+bun run build:index
+
 # Generate tool artifacts
 bun run build:gemini
 bun run build:claude
@@ -148,14 +210,28 @@ bun run build:opencode
 bun run build:cursor
 bun run build:all
 
-# Install to target environment
+# Install to target environment (all items)
 bun run install --target gemini
 bun run install --target claude
 bun run install --target opencode
 bun run install --target cursor
 
+# Install with selective filters
+bun run install --target claude --domain devops
+bun run install --target gemini --domain devops --subdomain ci-cd
+bun run install --target opencode --framework nextjs
+bun run install --target cursor --preset devops-essentials
+bun run install --target claude --skill git-master --skill docs-writer
+bun run install --target gemini --tag yaml
+
+# Interactive mode
+bun run install --target claude --interactive
+
+# Dry run (preview without installing)
+bun run install --target gemini --domain devops --dry-run
+
 # npm fallback
-npx awesome-agent-toolbox install --target gemini
+npx awesome-agent-toolbox install --target gemini --domain devops
 ```
 
 ## NOTES
