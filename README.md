@@ -1,8 +1,12 @@
+<div align="center">
+
 # awesome-agent-toolbox
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 A curated collection of agent skills, plugins, and MCP servers.
+
+</div>
 
 ## Skills
 
