@@ -33,6 +33,8 @@ A curated collection of agent skills, plugins, and MCP servers.
 | [summarize-cli](catalog/skills/summarize-cli) | [openclaw/openclaw](https://github.com/openclaw/openclaw) | ![](https://img.shields.io/github/stars/openclaw/openclaw?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-MIT-97ca00?style=flat-square)](https://github.com/openclaw/openclaw/blob/main/LICENSE) | Summarize or extract text and transcripts from URLs, podcasts, and local files |
 | [things-mac-cli](catalog/skills/things-mac-cli) | [openclaw/openclaw](https://github.com/openclaw/openclaw) | ![](https://img.shields.io/github/stars/openclaw/openclaw?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-MIT-97ca00?style=flat-square)](https://github.com/openclaw/openclaw/blob/main/LICENSE) | Manage Things 3 via the things CLI on macOS — add, update, search, and list todos and projects |
 | [trello-api](catalog/skills/trello-api) | [openclaw/openclaw](https://github.com/openclaw/openclaw) | ![](https://img.shields.io/github/stars/openclaw/openclaw?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-MIT-97ca00?style=flat-square)](https://github.com/openclaw/openclaw/blob/main/LICENSE) | Manage Trello boards, lists, and cards via the Trello REST API |
+| [meeting-notes](catalog/skills/meeting-notes) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Structured meeting summaries with action items, decisions, key discussion points, and follow-up tracking |
+| [decision-helper](catalog/skills/decision-helper) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Structured decision-making frameworks for evaluating options, weighing trade-offs, and making informed choices |
 
 ### Development
 
@@ -52,6 +54,10 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Full Stack
 
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [fullstack-developer](catalog/skills/fullstack-developer) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Modern web development expertise covering React, Node.js, TypeScript, databases, and full-stack architecture patterns |
+
 #### Game Development
 
 #### Developer Tooling
@@ -64,6 +70,10 @@ A curated collection of agent skills, plugins, and MCP servers.
 | [tmux-controller](catalog/skills/tmux-controller) | [openclaw/openclaw](https://github.com/openclaw/openclaw) | ![](https://img.shields.io/github/stars/openclaw/openclaw?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-MIT-97ca00?style=flat-square)](https://github.com/openclaw/openclaw/blob/main/LICENSE) | Remote-control tmux sessions by sending keystrokes and scraping pane output |
 
 #### Scripting
+
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [python-expert](catalog/skills/python-expert) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Senior Python developer expertise for writing clean, efficient, and well-documented code with type hints |
 
 #### Mobile
 
@@ -90,12 +100,17 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### Code Review
 
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [code-reviewer](catalog/skills/code-reviewer) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Thorough code review with focus on security vulnerabilities, performance issues, and best practices |
+
 #### Testing
 
 | Name | Source | Stars | Upstream License | Description |
 |:----:|:------:|:-----:|:----------------:|:------------|
 | [webapp-testing](catalog/skills/webapp-testing) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Test local web applications using Playwright with server lifecycle management and browser automation |
 | [reproduce-bug](catalog/skills/reproduce-bug) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Systematically reproduce a bug from a ticket with a failing regression test using hypothesis-driven methodology |
+| [debugger](catalog/skills/debugger) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Systematic debugging and root cause analysis using binary search, bisect, and structured hypothesis testing |
 
 #### Security
 
@@ -126,6 +141,12 @@ A curated collection of agent skills, plugins, and MCP servers.
 |:----:|:------:|:-----:|:----------------:|:------------|
 | [gemini-cli](catalog/skills/gemini-cli) | [openclaw/openclaw](https://github.com/openclaw/openclaw) | ![](https://img.shields.io/github/stars/openclaw/openclaw?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-MIT-97ca00?style=flat-square)](https://github.com/openclaw/openclaw/blob/main/LICENSE) | Use Gemini CLI for one-shot Q&A, summaries, and generation tasks with model selection and JSON output |
 | [oracle-cli](catalog/skills/oracle-cli) | [openclaw/openclaw](https://github.com/openclaw/openclaw) | ![](https://img.shields.io/github/stars/openclaw/openclaw?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-MIT-97ca00?style=flat-square)](https://github.com/openclaw/openclaw/blob/main/LICENSE) | Bundle prompts and files into one-shot AI consultations via the oracle CLI with multiple model providers |
+| [data-analyst](catalog/skills/data-analyst) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | SQL, pandas, and statistical analysis expertise for data exploration, cleaning, and insight generation |
+| [visualization-expert](catalog/skills/visualization-expert) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Chart selection and data visualization guidance for effective data communication |
+| [rag-patterns](catalog/skills/rag-patterns) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Implementation patterns for Retrieval-Augmented Generation covering basic chains, corrective RAG, hybrid search, and more |
+| [llm-memory-patterns](catalog/skills/llm-memory-patterns) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Implementation patterns for LLM memory systems from conversation buffers to agentic memory |
+| [google-adk-guide](catalog/skills/google-adk-guide) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Guide to building AI agents with Google Agent Development Kit covering tools, memory, and multi-agent orchestration |
+| [openai-agents-guide](catalog/skills/openai-agents-guide) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Guide to building AI agents with OpenAI Agents SDK covering tools, guardrails, handoffs, and multi-agent orchestration |
 
 ### Research
 
@@ -133,8 +154,14 @@ A curated collection of agent skills, plugins, and MCP servers.
 |:----:|:------:|:-----:|:----------------:|:------------|
 | [goplaces](catalog/skills/goplaces) | [openclaw/openclaw](https://github.com/openclaw/openclaw) | ![](https://img.shields.io/github/stars/openclaw/openclaw?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-MIT-97ca00?style=flat-square)](https://github.com/openclaw/openclaw/blob/main/LICENSE) | Query Google Places API (New) via the goplaces CLI — text search, place details, and reviews |
 | [weather-cli](catalog/skills/weather-cli) | [openclaw/openclaw](https://github.com/openclaw/openclaw) | ![](https://img.shields.io/github/stars/openclaw/openclaw?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-MIT-97ca00?style=flat-square)](https://github.com/openclaw/openclaw/blob/main/LICENSE) | Get current weather conditions and forecasts for any location via wttr.in with no API key needed |
+| [deep-research](catalog/skills/deep-research) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Comprehensive research that synthesizes information from multiple sources with proper citations |
+| [fact-checker](catalog/skills/fact-checker) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Systematic fact verification and misinformation identification with confidence ratings and source evaluation |
 
 #### Citation Management
+
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [academic-researcher](catalog/skills/academic-researcher) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Academic research for literature reviews, paper analysis, scholarly writing, and citation formatting |
 
 #### Bioinformatics
 
@@ -149,6 +176,7 @@ A curated collection of agent skills, plugins, and MCP servers.
 | Name | Source | Stars | Upstream License | Description |
 |:----:|:------:|:-----:|:----------------:|:------------|
 | [internal-comms](catalog/skills/internal-comms) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Write internal communications including status reports, newsletters, 3P updates, FAQs, and incident reports |
+| [email-drafter](catalog/skills/email-drafter) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Professional email composition for business communication including meeting requests and follow-ups |
 
 #### Sales & Marketing
 
@@ -157,6 +185,8 @@ A curated collection of agent skills, plugins, and MCP servers.
 | Name | Source | Stars | Upstream License | Description |
 |:----:|:------:|:-----:|:----------------:|:------------|
 | [issue-analysis](catalog/skills/issue-analysis) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Fetch and analyze issues from any tracker with media gathering, context collection, and effort estimation |
+| [project-planner](catalog/skills/project-planner) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Breaks down complex projects into actionable tasks with timelines, dependencies, and milestones |
+| [sprint-planner](catalog/skills/sprint-planner) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Agile sprint planning with story estimation, capacity planning, velocity tracking, and sprint goals |
 
 #### Finance & Investment
 
@@ -171,6 +201,12 @@ A curated collection of agent skills, plugins, and MCP servers.
 #### Payment
 
 #### E-commerce
+
+#### Business Apps
+
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [strategy-advisor](catalog/skills/strategy-advisor) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | High-level strategic thinking and business decision guidance for planning and competitive analysis |
 
 ### Content & Media
 
@@ -192,6 +228,8 @@ A curated collection of agent skills, plugins, and MCP servers.
 | [theme-factory](catalog/skills/theme-factory) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/anthropics/skills/blob/main/LICENSE) | Style artifacts with 10 pre-set themes or generate custom themes with colors and fonts |
 | [pptx](https://github.com/anthropics/skills/tree/main/skills/pptx) | [anthropics/skills](https://github.com/anthropics/skills) | ![](https://img.shields.io/github/stars/anthropics/skills?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)](https://github.com/anthropics/skills/blob/main/skills/pptx/LICENSE.txt) | Create, edit, and analyze PowerPoint presentations with professional design patterns |
 | [content-design](catalog/skills/content-design) | [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/.claude/skills) | ![](https://img.shields.io/github/stars/n8n-io/n8n?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-SUL%201.0-97ca00?style=flat-square)](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) | Product content designer for UI copy -- writing, reviewing, and auditing user-facing text |
+| [content-creator](catalog/skills/content-creator) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Creates engaging content for blogs, social media, and marketing materials with audience focus |
+| [editor](catalog/skills/editor) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-Apache%202.0-97ca00?style=flat-square)](https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/LICENSE) | Professional editing and proofreading for clarity, grammar, style, and readability improvements |
 
 #### Media
 
@@ -221,3 +259,4 @@ A curated collection of agent skills, plugins, and MCP servers.
 | [anthropics/claude-cookbooks](https://github.com/anthropics/claude-cookbooks) | ![](https://img.shields.io/github/stars/anthropics/claude-cookbooks?style=flat-square&logo=github) | Copy-paste notebooks for RAG, tool use, vision, classification, and Claude integrations |
 | [openclaw/openclaw](https://github.com/openclaw/openclaw) | ![](https://img.shields.io/github/stars/openclaw/openclaw?style=flat-square&logo=github) | AI coding assistant with 50+ CLI skills for productivity, media, smart home, and development |
 | [leonardomso/33-js-concepts](https://github.com/leonardomso/33-js-concepts) | ![](https://img.shields.io/github/stars/leonardomso/33-js-concepts?style=flat-square&logo=github) | Curated list of 33 JavaScript concepts with documentation skills for SEO, fact-checking, and resource curation |
+| [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | ![](https://img.shields.io/github/stars/Shubhamsaboo/awesome-llm-apps?style=flat-square&logo=github) | Collection of awesome LLM apps with RAG, AI agents, and memory tutorials using OpenAI, Anthropic, and Gemini |

@@ -11,6 +11,7 @@ catalog/
 │   ├── presets.yaml           # Curated install bundles (cross-cutting)
 │   └── catalog-index.json     # Auto-generated; do NOT hand-edit
 └── skills/                    # Flat -- one dir per skill, taxonomy via frontmatter
+    ├── academic-researcher/
     ├── algorithmic-art/
     │   └── templates/
     ├── apple-notes/
@@ -20,37 +21,59 @@ catalog/
     ├── blucli/
     ├── canvas-design/
     │   └── canvas-fonts/
+    ├── code-reviewer/
+    │   └── references/
+    ├── content-creator/
     ├── content-design/
     ├── create-pr/
+    ├── data-analyst/
+    ├── debugger/
+    ├── decision-helper/
+    ├── deep-research/
     ├── doc-coauthoring/
     ├── docs-writer/
     │   └── references/
+    ├── editor/
     ├── eightctl/
+    ├── email-drafter/
+    ├── fact-checker/
     ├── frontend-design/
+    ├── fullstack-developer/
     ├── gemini-cli/
     ├── gifgrep/
     ├── github-cli/
+    ├── google-adk-guide/
     ├── goplaces/
     ├── internal-comms/
     │   └── examples/
     ├── issue-analysis/
+    ├── js-docs-fact-check/
+    ├── js-resource-curator/
+    ├── llm-memory-patterns/
     ├── loom-transcript/
     ├── mcp-builder/
     │   ├── reference/
     │   └── scripts/
     ├── mcporter/
+    ├── meeting-notes/
     ├── nano-banana-pro/
     ├── nano-pdf/
     ├── notion-api/
     ├── obsidian-vault/
+    ├── openai-agents-guide/
     ├── openai-image-gen/
     ├── openai-whisper-api/
     ├── openai-whisper-local/
     ├── openhue/
     ├── oracle-cli/
     ├── ordercli/
+    ├── project-planner/
+    ├── python-expert/
+    ├── rag-patterns/
     ├── reproduce-bug/
     ├── sag-tts/
+    ├── seo-content-audit/
+    ├── seo-review/
     ├── sherpa-onnx-tts/
     ├── skill-creator/
     │   ├── references/
@@ -60,6 +83,8 @@ catalog/
     ├── songsee/
     ├── sonoscli/
     ├── spotify-player/
+    ├── sprint-planner/
+    ├── strategy-advisor/
     ├── summarize-cli/
     ├── theme-factory/
     │   └── themes/
@@ -67,6 +92,7 @@ catalog/
     ├── tmux-controller/
     ├── trello-api/
     ├── video-frames/
+    ├── visualization-expert/
     ├── weather-cli/
     ├── web-artifacts-builder/
     │   └── scripts/
@@ -110,12 +136,23 @@ frameworks: [nextjs]                    # optional, freeform kebab-case
 | Skill | Domain | Subdomain | Provenance |
 |-------|--------|-----------|------------|
 | algorithmic-art | content-media | generative-art | Ported (anthropics/skills) |
+| academic-researcher | research | citation-management | Ported (awesome-llm-apps) |
 | canvas-design | content-media | generative-art | Ported (anthropics/skills) |
 | content-design | content-media | content-design | Ported (n8n) |
 | create-pr | devops | git | Ported (n8n) |
+| code-reviewer | devops | code-review | Ported (awesome-llm-apps) |
+| content-creator | content-media | content-design | Ported (awesome-llm-apps) |
 | doc-coauthoring | documentation | technical-docs | Ported (anthropics/skills) |
 | docs-writer | documentation | technical-docs | Synthesized (next.js, angular, gemini-cli, awesome-llm-apps) |
+| data-analyst | data-ai | -- | Ported (awesome-llm-apps) |
+| debugger | devops | testing | Ported (awesome-llm-apps) |
+| decision-helper | productivity | -- | Ported (awesome-llm-apps) |
+| deep-research | research | -- | Ported (awesome-llm-apps) |
 | frontend-design | development | frontend | Ported (anthropics/skills) |
+| editor | content-media | content-design | Ported (awesome-llm-apps) |
+| email-drafter | business | communications | Ported (awesome-llm-apps) |
+| fact-checker | research | -- | Ported (awesome-llm-apps) |
+| fullstack-developer | development | full-stack | Ported (awesome-llm-apps) |
 | internal-comms | business | communications | Ported (anthropics/skills) |
 | issue-analysis | business | project-management | Ported (n8n) |
 | loom-transcript | productivity | -- | Ported (n8n) |
@@ -133,10 +170,13 @@ frameworks: [nextjs]                    # optional, freeform kebab-case
 | blucli | productivity | -- | Ported (openclaw/openclaw) |
 | eightctl | productivity | -- | Ported (openclaw/openclaw) |
 | gemini-cli | data-ai | -- | Ported (openclaw/openclaw) |
+| google-adk-guide | data-ai | -- | Adapted (awesome-llm-apps) |
 | gifgrep | content-media | media-processing | Ported (openclaw/openclaw) |
 | github-cli | devops | git | Ported (openclaw/openclaw) |
 | goplaces | research | -- | Ported (openclaw/openclaw) |
+| llm-memory-patterns | data-ai | -- | Adapted (awesome-llm-apps) |
 | mcporter | development | developer-tooling | Ported (openclaw/openclaw) |
+| meeting-notes | productivity | -- | Ported (awesome-llm-apps) |
 | nano-banana-pro | content-media | generative-art | Ported (openclaw/openclaw) |
 | nano-pdf | productivity | -- | Ported (openclaw/openclaw) |
 | notion-api | productivity | -- | Ported (openclaw/openclaw) |
@@ -146,17 +186,24 @@ frameworks: [nextjs]                    # optional, freeform kebab-case
 | openai-whisper-local | content-media | media-processing | Ported (openclaw/openclaw) |
 | openhue | productivity | -- | Ported (openclaw/openclaw) |
 | oracle-cli | data-ai | -- | Ported (openclaw/openclaw) |
+| openai-agents-guide | data-ai | -- | Adapted (awesome-llm-apps) |
 | ordercli | productivity | -- | Ported (openclaw/openclaw) |
+| project-planner | business | project-management | Ported (awesome-llm-apps) |
+| python-expert | development | scripting | Ported (awesome-llm-apps) |
 | sag-tts | content-media | media-processing | Ported (openclaw/openclaw) |
+| rag-patterns | data-ai | -- | Adapted (awesome-llm-apps) |
 | sherpa-onnx-tts | content-media | media-processing | Ported (openclaw/openclaw) |
 | songsee | content-media | media-processing | Ported (openclaw/openclaw) |
 | sonoscli | productivity | -- | Ported (openclaw/openclaw) |
 | spotify-player | content-media | media-processing | Ported (openclaw/openclaw) |
+| sprint-planner | business | project-management | Ported (awesome-llm-apps) |
+| strategy-advisor | business | business-apps | Ported (awesome-llm-apps) |
 | summarize-cli | productivity | -- | Ported (openclaw/openclaw) |
 | things-mac-cli | productivity | -- | Ported (openclaw/openclaw) |
 | tmux-controller | development | developer-tooling | Ported (openclaw/openclaw) |
 | trello-api | productivity | -- | Ported (openclaw/openclaw) |
 | video-frames | content-media | media-processing | Ported (openclaw/openclaw) |
+| visualization-expert | data-ai | -- | Ported (awesome-llm-apps) |
 | weather-cli | research | -- | Ported (openclaw/openclaw) |
 
 ## LICENSING RULES
