@@ -120,6 +120,7 @@ metadata:
 | sonoscli | productivity | -- | Ported (openclaw/openclaw) |
 | spotify-player | content-media | media-processing | Ported (openclaw/openclaw) |
 | sprint-planner | business | project-management | Ported (awesome-llm-apps) |
+| streamdown | development | frontend | Ported (vercel/streamdown) |
 | strategy-advisor | business | business-apps | Ported (awesome-llm-apps) |
 | summarize-cli | productivity | -- | Ported (openclaw/openclaw) |
 | things-mac-cli | productivity | -- | Ported (openclaw/openclaw) |
