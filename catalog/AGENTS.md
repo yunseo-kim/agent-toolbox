@@ -57,6 +57,7 @@ metadata:
 |-------|--------|-----------|------------|
 | algorithmic-art | content-media | generative-art | Ported (anthropics/skills) |
 | academic-researcher | research | citation-management | Ported (awesome-llm-apps) |
+| ai-sdk | data-ai | -- | Ported (vercel/ai) |
 | canvas-design | content-media | generative-art | Ported (anthropics/skills) |
 | ci-triage | devops | ci-cd | Adapted (vercel/next.js) |
 | content-design | content-media | content-design | Ported (n8n) |
