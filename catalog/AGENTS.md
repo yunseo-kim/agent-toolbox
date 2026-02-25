@@ -58,6 +58,8 @@ metadata:
 | algorithmic-art | content-media | generative-art | Ported (anthropics/skills) |
 | academic-researcher | research | citation-management | Ported (awesome-llm-apps) |
 | ai-sdk | data-ai | -- | Ported (vercel/ai) |
+| ai-elements | development | frontend | Adapted (vercel/ai-elements) |
+| chat-sdk | development | backend | Adapted (vercel/chat) |
 | canvas-design | content-media | generative-art | Ported (anthropics/skills) |
 | ci-triage | devops | ci-cd | Adapted (vercel/next.js) |
 | content-design | content-media | content-design | Ported (n8n) |
@@ -71,6 +73,7 @@ metadata:
 | decision-helper | productivity | -- | Ported (awesome-llm-apps) |
 | deep-research | research | -- | Ported (awesome-llm-apps) |
 | frontend-design | development | frontend | Ported (anthropics/skills) |
+| flags-sdk | development | frontend | Adapted (vercel/flags) |
 | editor | content-media | content-design | Ported (awesome-llm-apps) |
 | email-drafter | business | communications | Ported (awesome-llm-apps) |
 | fact-checker | research | -- | Ported (awesome-llm-apps) |
