@@ -4,11 +4,14 @@ description: >
   List, configure, authenticate, and call MCP servers and tools directly via
   the mcporter CLI. Supports HTTP and stdio transports, ad-hoc servers,
   config management, and CLI/TypeScript code generation.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: developer-tooling
   tags: "mcp, cli, tool-calling, server, codegen"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # mcporter

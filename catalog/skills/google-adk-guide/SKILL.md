@@ -1,11 +1,14 @@
 ---
 name: google-adk-guide
 description: "Guide to building AI agents with Google Agent Development Kit covering agent creation, tool integration, memory, callbacks, plugins, and multi-agent orchestration"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: data-ai
   tags: "google-adk, agents, multi-agent, tool-use, gemini"
   frameworks: "google-adk"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # Google Agent Development Kit (ADK) Guide

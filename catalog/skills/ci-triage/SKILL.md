@@ -1,11 +1,14 @@
 ---
 name: ci-triage
 description: "Triage CI failures and PR review comments with structured methodology. Use when investigating failing CI jobs, flaky tests, or analyzing PR review feedback. Covers blocker-first prioritization, failure categorization, local reproduction discipline, and parallel log analysis."
+license: Sustainable Use License 1.0
 
 metadata:
   domain: devops
   subdomain: ci-cd
   tags: "ci, testing, debugging, github-actions, pr-review, triage"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # CI Triage

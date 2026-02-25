@@ -4,10 +4,13 @@ description: >
   Check past food delivery orders and track active order status via the
   ordercli CLI. Supports Foodora with history, reorder, and session
   management.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "food-delivery, foodora, order-tracking, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # ordercli

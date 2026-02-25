@@ -1,11 +1,14 @@
 ---
 name: doc-coauthoring
 description: "Guide users through a structured workflow for co-authoring documentation, proposals, technical specs, and decision docs. Use when writing docs, creating proposals, drafting specs, or collaborative documentation tasks."
+license: Sustainable Use License 1.0
 
 metadata:
   domain: documentation
   subdomain: technical-docs
   tags: "co-authoring, documentation-workflow, proposals, specs, collaborative-writing"
+  author: "Keith Lazuka <klazuka@anthropic.com>"
+  lastUpdated: "12025-12-04"
 ---
 
 # Doc Co-Authoring Workflow

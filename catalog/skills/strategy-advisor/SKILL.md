@@ -1,11 +1,14 @@
 ---
 name: strategy-advisor
 description: "High-level strategic thinking and business decision guidance for planning, competitive analysis, and direction-setting"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: business
   subdomain: business-apps
   tags: "strategy, decision-making, business-analysis, swot"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Strategy Advisor

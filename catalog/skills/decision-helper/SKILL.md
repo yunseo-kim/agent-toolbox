@@ -1,10 +1,13 @@
 ---
 name: decision-helper
 description: "Structured decision-making frameworks for evaluating options, weighing trade-offs, and making informed choices using proven methodologies"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "decision-making, analysis, frameworks, tradeoffs"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Decision Helper

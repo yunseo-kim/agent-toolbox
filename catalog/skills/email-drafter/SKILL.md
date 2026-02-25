@@ -1,11 +1,14 @@
 ---
 name: email-drafter
 description: "Professional email composition for business communication including meeting requests, follow-ups, and sensitive correspondence"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: business
   subdomain: communications
   tags: "email, professional-writing, correspondence, business"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Email Drafter

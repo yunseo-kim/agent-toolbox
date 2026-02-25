@@ -1,11 +1,14 @@
 ---
 name: code-reviewer
 description: "Thorough code review with focus on security vulnerabilities, performance issues, and best practices using prioritized rule-based analysis"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: devops
   subdomain: code-review
   tags: "security, performance, best-practices, pull-request"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Code Reviewer

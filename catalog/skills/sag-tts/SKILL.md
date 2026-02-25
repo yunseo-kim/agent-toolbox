@@ -3,11 +3,14 @@ name: sag-tts
 description: >
   ElevenLabs text-to-speech with mac-style say UX via the sag CLI. Supports
   multiple voices, models, audio tags, and pronunciation control.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: media-processing
   tags: "elevenlabs, tts, text-to-speech, audio, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # sag

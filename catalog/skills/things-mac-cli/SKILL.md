@@ -3,10 +3,13 @@ name: things-mac-cli
 description: >
   Manage Things 3 via the things CLI on macOS. Add, update, search, and list
   todos and projects via URL scheme and local database reads.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "macos, things, task-management, gtd, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # Things 3 CLI

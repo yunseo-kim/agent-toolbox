@@ -1,12 +1,15 @@
 ---
 name: web-artifacts-builder
 description: "Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui. Use for complex interactive artifacts requiring state management, routing, or component libraries."
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: frontend
   tags: "react, tailwind, shadcn, artifacts, html-bundling"
   frameworks: "react, tailwind, shadcn-ui"
+  author: "ant-andi <andibrae@anthropic.com>"
+  lastUpdated: "12025-12-01"
 ---
 
 # Web Artifacts Builder

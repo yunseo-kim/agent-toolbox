@@ -1,10 +1,13 @@
 ---
 name: meeting-notes
 description: "Structured meeting summaries with action items, decisions, key discussion points, and follow-up tracking"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "meetings, notes, action-items, summaries, minutes"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Meeting Notes

@@ -4,10 +4,13 @@ description: >
   Get current weather conditions and forecasts for any location via wttr.in.
   Supports multiple output formats including JSON, one-liners, and PNG
   images. No API key needed.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: research
   tags: "weather, forecast, wttr, cli"
+  author: "DylanWoodAkers <dylan@lec.com>"
+  lastUpdated: "12026-02-18"
 ---
 
 # Weather Skill

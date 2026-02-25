@@ -5,12 +5,15 @@ description: >
   Proactively activates in projects with cacheComponents enabled, providing
   patterns for 'use cache' directive, cacheLife(), cacheTag(), cache
   invalidation, and parameter permutation rendering.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: frontend
   tags: "nextjs, react, caching, ppr, partial-prerendering, server-components, use-cache"
   frameworks: "nextjs, react"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # Next.js Cache Components

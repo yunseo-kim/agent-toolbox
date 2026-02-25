@@ -41,15 +41,22 @@ Compliant with the [Agent Skills specification](https://agentskills.io/specifica
 ---
 name: skill-name                        # required, kebab-case, max 64 chars
 description: "What this skill does..."  # required, max 1024 chars
+license: Sustainable Use License 1.0     # required, default unless NOTICE.md overrides
 metadata:
   domain: devops                        # required, from taxonomy.yaml
   subdomain: ci-cd                      # optional, from taxonomy.yaml
   tags: "github, yaml, automation"      # optional, comma-separated, freeform kebab-case
   frameworks: "nextjs"                  # optional, comma-separated, freeform kebab-case
+  author: "Yunseo Kim <dev@yunseo.kim>" # required, modifier or upstream author
+  lastUpdated: "12026-02-25"            # required, Holocene Era YYYYY-MM-DD
 ---
 ```
 
-`metadata.domain` is **required** for catalog items (unlike dev skills in `.agents/skills/`). All `metadata.domain` and `metadata.subdomain` values must exist in `metadata/taxonomy.yaml`.
+`metadata.domain`, `metadata.author`, and `metadata.lastUpdated` are **required** for catalog items (unlike dev skills in `.agents/skills/`). All `metadata.domain` and `metadata.subdomain` values must exist in `metadata/taxonomy.yaml`.
+
+**License field**: Default is `Sustainable Use License 1.0` (per root `LICENSE.md`). Only override when `NOTICE.md` explicitly specifies different license terms for that skill.
+
+**Author/lastUpdated rules**: When body content (excluding frontmatter and NOTICE.md additions) was modified from upstream, set `metadata.author` to the modifier and `metadata.lastUpdated` to the last commit date in Holocene Era format (`YYYYY-MM-DD`, Gregorian year + 10000). When body content is unmodified from source, look up the upstream repository for the original author and last update date, converting the date to Holocene Era format.
 
 ## CURRENT SKILLS
 

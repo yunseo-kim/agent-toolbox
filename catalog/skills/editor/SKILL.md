@@ -1,11 +1,14 @@
 ---
 name: editor
 description: "Professional editing and proofreading for clarity, grammar, style, and readability improvements across all document types"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: content-design
   tags: "editing, proofreading, style-guide, tone"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Editor

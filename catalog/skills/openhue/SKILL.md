@@ -3,10 +3,13 @@ name: openhue
 description: >
   Control Philips Hue lights and scenes via the OpenHue CLI. Turn on/off,
   adjust brightness, set colors, and activate scenes.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "philips-hue, iot, smart-lighting, smart-home, cli"
+  author: "Blakeshannon <blake@blakeshannon.com>"
+  lastUpdated: "12026-02-18"
 ---
 
 # OpenHue CLI

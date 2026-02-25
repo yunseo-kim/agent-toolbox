@@ -4,10 +4,13 @@ description: >
   Summarize or extract text and transcripts from URLs, podcasts, and local
   files. Supports YouTube transcript extraction, multiple AI providers, and
   configurable output length.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "summarization, transcription, url, youtube, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # Summarize

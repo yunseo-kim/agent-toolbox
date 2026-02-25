@@ -1,11 +1,14 @@
 ---
 name: project-planner
 description: "Breaks down complex projects into actionable tasks with timelines, dependencies, milestones, and resource allocation"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: business
   subdomain: project-management
   tags: "planning, wbs, milestones, estimation, dependencies"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Project Planner

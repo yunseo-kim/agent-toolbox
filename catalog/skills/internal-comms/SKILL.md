@@ -1,11 +1,14 @@
 ---
 name: internal-comms
 description: "Write internal communications including status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, and project updates."
+license: Sustainable Use License 1.0
 
 metadata:
   domain: business
   subdomain: communications
   tags: "communications, status-reports, newsletters, faq, corporate"
+  author: "ant-andi <andibrae@anthropic.com>"
+  lastUpdated: "12025-12-01"
 ---
 
 ## When to use this skill

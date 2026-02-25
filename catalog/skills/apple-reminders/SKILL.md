@@ -4,10 +4,13 @@ description: >
   Manage Apple Reminders via remindctl CLI. List, add, edit, complete, and
   delete reminders with support for lists, date filters, and JSON/plain
   output.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "macos, apple-reminders, cli, task-management"
+  author: "Blakeshannon <blake@blakeshannon.com>"
+  lastUpdated: "12026-02-18"
 ---
 
 # Apple Reminders CLI (remindctl)

@@ -3,10 +3,13 @@ name: obsidian-vault
 description: >
   Work with Obsidian vaults (plain Markdown notes) and automate via
   obsidian-cli. Search, create, move, rename, and manage notes.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "obsidian, markdown, knowledge-base, note-taking, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # Obsidian

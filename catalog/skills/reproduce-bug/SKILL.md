@@ -1,11 +1,14 @@
 ---
 name: reproduce-bug
 description: Systematically reproduce a bug from a ticket or report with a failing regression test, using a structured hypothesis-driven methodology.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: devops
   subdomain: testing
   tags: "debugging, bug-reproduction, regression-test, tdd"
+  author: "Declan Carroll <declan@n8n.io>"
+  lastUpdated: "12026-02-20"
 ---
 
 # Bug Reproduction Framework

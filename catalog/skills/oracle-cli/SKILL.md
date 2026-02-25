@@ -4,10 +4,13 @@ description: >
   Bundle prompts and files into one-shot AI consultations via the oracle
   CLI. Supports browser and API engines, session management, and multiple
   model providers for code review and architecture analysis.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: data-ai
   tags: "ai, code-review, consultation, llm, oracle-cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # oracle — best use

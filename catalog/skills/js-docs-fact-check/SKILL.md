@@ -4,11 +4,14 @@ description: >
   Verify technical accuracy of JavaScript documentation by checking code examples,
   MDN/ECMAScript compliance, and common misconceptions. Use before publishing,
   after major edits, or during periodic accuracy audits.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: documentation
   subdomain: technical-docs
   tags: "fact-checking, accuracy, verification, javascript, documentation, quality"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # Skill: JavaScript Fact Checker

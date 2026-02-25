@@ -7,12 +7,15 @@ description: >
   (3) customize component styles and behavior, (4) integrate with Vercel AI SDK's useChat.
   Triggers on "ai-elements", "AI chat components", "chat UI", "message component", "prompt input",
   "shadcn ai", building AI-native interfaces with pre-built composable components.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: frontend
   tags: "ai-elements, chat-ui, components, shadcn, tailwind, streaming, composable"
   frameworks: "ai-elements, nextjs, react, ai-sdk"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # AI Elements

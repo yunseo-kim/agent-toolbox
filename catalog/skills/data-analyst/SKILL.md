@@ -1,10 +1,13 @@
 ---
 name: data-analyst
 description: "SQL, pandas, and statistical analysis expertise for data exploration, cleaning, transformation, and insight generation"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: data-ai
   tags: "sql, pandas, statistics, data-analysis, data-cleaning"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Data Analyst

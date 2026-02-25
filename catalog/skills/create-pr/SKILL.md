@@ -4,11 +4,14 @@ description: >
   Create GitHub pull requests with Conventional Commits-formatted titles and
   structured PR bodies. Use when creating PRs, submitting changes for review,
   or when the user says /pr or asks to create a pull request.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: devops
   subdomain: git
   tags: "github, pull-request, conventional-commits, gh-cli"
+  author: "Mutasem Aldmour <4711238+mutdmour@users.noreply.github.com>"
+  lastUpdated: "12026-01-14"
 ---
 
 # Create Pull Request

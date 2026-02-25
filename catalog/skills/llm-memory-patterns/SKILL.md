@@ -1,10 +1,13 @@
 ---
 name: llm-memory-patterns
 description: "Implementation patterns for LLM memory systems covering conversation buffers, persistent vector memory, bidirectional storage, local-private memory, and agentic memory"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: data-ai
   tags: "memory, conversation-history, vector-memory, mem0, qdrant, personalization"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # LLM Memory Patterns

@@ -4,12 +4,15 @@ description: >
   Review frontend code (React, TypeScript, CSS) for code quality, performance,
   and best practices. Supports pending-change reviews and focused file reviews
   with urgency-based findings and structured output templates.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: devops
   subdomain: code-review
   tags: "frontend, react, typescript, code-quality, performance, tailwind"
   frameworks: "react, nextjs"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # Frontend Code Review

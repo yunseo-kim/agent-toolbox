@@ -3,11 +3,14 @@ name: video-frames
 description: >
   Extract frames or short clips from videos using ffmpeg. Quick thumbnails
   and frame extraction at specific timestamps.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: media-processing
   tags: "ffmpeg, video, frames, extraction, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # Video Frames (ffmpeg)

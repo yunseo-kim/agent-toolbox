@@ -8,12 +8,15 @@ description: >-
   (2) Configuring plugins (code, mermaid, math, cjk), (3) Styling or theming Streamdown output,
   (4) Integrating with AI chat/streaming, (5) Configuring security, link safety, or custom HTML tags,
   (6) Using carets, static mode, or custom components, (7) Troubleshooting Tailwind, Shiki, or Vite issues.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: frontend
   tags: "markdown, streaming, ai, react, tailwind, shiki, mermaid, katex, cjk"
   frameworks: "react, nextjs, streamdown"
+  author: "Hayden Bleasel <hello@haydenbleasel.com>"
+  lastUpdated: "12026-02-18"
 ---
 
 # Streamdown

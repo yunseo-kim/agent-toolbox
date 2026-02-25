@@ -1,12 +1,15 @@
 ---
 name: fullstack-developer
 description: "Modern web development expertise covering React, Node.js, TypeScript, databases, and full-stack architecture patterns"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: full-stack
   tags: "react, nodejs, typescript, api, database"
   frameworks: "nextjs, express, prisma"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Full-Stack Developer

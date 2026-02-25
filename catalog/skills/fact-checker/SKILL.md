@@ -1,10 +1,13 @@
 ---
 name: fact-checker
 description: "Systematic fact verification and misinformation identification using evidence-based analysis with confidence ratings and source evaluation"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: research
   tags: "verification, fact-checking, credibility, source-evaluation"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Fact Checker

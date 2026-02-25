@@ -1,10 +1,13 @@
 ---
 name: deep-research
 description: "Comprehensive research assistant that synthesizes information from multiple sources with proper citations and source evaluation"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: research
   tags: "research, synthesis, citations, multi-source"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Deep Research

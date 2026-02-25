@@ -4,11 +4,14 @@ description: >
   Remote-control tmux sessions for interactive CLIs by sending keystrokes
   and scraping pane output. Essential for managing long-running terminal
   processes.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: developer-tooling
   tags: "tmux, terminal, session, automation, cli"
+  author: "Blakeshannon <blake@blakeshannon.com>"
+  lastUpdated: "12026-02-18"
 ---
 
 # tmux Session Control

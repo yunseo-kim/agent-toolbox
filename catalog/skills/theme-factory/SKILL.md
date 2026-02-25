@@ -1,11 +1,14 @@
 ---
 name: theme-factory
 description: "Toolkit for styling artifacts with pre-set or custom themes including colors and fonts. Use when applying consistent professional styling to slides, docs, reports, or HTML landing pages."
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: content-design
   tags: "themes, styling, color-palette, typography, presentation"
+  author: "ant-andi <andibrae@anthropic.com>"
+  lastUpdated: "12025-12-01"
 ---
 
 

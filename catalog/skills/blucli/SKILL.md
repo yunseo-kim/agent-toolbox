@@ -3,10 +3,13 @@ name: blucli
 description: >
   Control Bluesound/NAD players via the BluOS CLI. Discovery, playback,
   grouping, and volume management from the terminal.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "bluos, audio, smart-speaker, iot, media-playback, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # blucli (blu)

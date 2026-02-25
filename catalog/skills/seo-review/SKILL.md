@@ -5,11 +5,14 @@ description: >
   search visibility, featured snippet optimization, and ranking potential.
   Use when publishing new pages, optimizing underperforming content, or running
   periodic content audits.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: documentation
   subdomain: technical-docs
   tags: "seo, search, content-optimization, documentation, audit"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # Skill: SEO Audit for Documentation Pages

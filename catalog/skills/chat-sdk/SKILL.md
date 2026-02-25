@@ -8,12 +8,15 @@ description: >
   (4) Send interactive cards or stream AI responses to chat platforms.
   Triggers on "chat sdk", "chat bot", "slack bot", "teams bot", "discord bot", "@chat-adapter",
   building bots that work across multiple chat platforms.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: backend
   tags: "chat-sdk, bots, slack, discord, teams, google-chat, github, linear, webhooks, streaming, jsx, cards"
   frameworks: "chat-sdk"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # Chat SDK

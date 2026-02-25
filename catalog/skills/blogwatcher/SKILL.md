@@ -3,10 +3,13 @@ name: blogwatcher
 description: >
   Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI.
   Track new articles, mark as read, and manage blog subscriptions.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "rss, atom, blog, feed-reader, monitoring, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # blogwatcher

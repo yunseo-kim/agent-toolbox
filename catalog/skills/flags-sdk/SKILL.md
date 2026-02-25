@@ -11,12 +11,15 @@ description: >
   (9) Any task involving the `flags`, `flags/next`, `flags/sveltekit`, `flags/react`, or `@flags-sdk/*` packages.
   Triggers on: feature flags, A/B testing, experimentation, flags SDK, flag adapters, precompute flags,
   Flags Explorer, feature gates, flag overrides.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: frontend
   tags: "feature-flags, a-b-testing, experimentation, flags-explorer, precompute, vercel"
   frameworks: "flags-sdk, nextjs, sveltekit"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # Flags SDK

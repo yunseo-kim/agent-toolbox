@@ -1,10 +1,13 @@
 ---
 name: rag-patterns
 description: "Implementation patterns for Retrieval-Augmented Generation covering basic chains, corrective RAG, hybrid search, knowledge graphs with community detection, agentic RAG, multimodal retrieval, and reasoning-based vectorless RAG"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: data-ai
   tags: "rag, retrieval-augmented-generation, vector-search, embeddings, langchain, llamaindex, graphrag, knowledge-graph, pageindex, reasoning-rag, vectorless-rag, community-detection"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # RAG Implementation Patterns

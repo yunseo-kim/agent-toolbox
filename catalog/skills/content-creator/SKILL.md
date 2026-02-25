@@ -1,11 +1,14 @@
 ---
 name: content-creator
 description: "Creates engaging content for blogs, social media, and marketing materials with audience focus and platform-specific optimization"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: content-design
   tags: "blog, social-media, content-marketing, seo"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Content Creator

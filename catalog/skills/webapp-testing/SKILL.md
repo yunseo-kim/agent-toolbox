@@ -1,12 +1,15 @@
 ---
 name: webapp-testing
 description: "Test local web applications using Playwright with server lifecycle management, browser automation, and visual verification. Use for frontend testing, debugging UI, capturing screenshots, and viewing browser logs."
+license: Sustainable Use License 1.0
 
 metadata:
   domain: devops
   subdomain: testing
   tags: "playwright, browser-testing, e2e, web-testing, automation"
   frameworks: "playwright"
+  author: "ant-andi <andibrae@anthropic.com>"
+  lastUpdated: "12025-12-01"
 ---
 
 # Web Application Testing

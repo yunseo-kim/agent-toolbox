@@ -3,11 +3,14 @@ name: songsee
 description: >
   Generate spectrograms and feature-panel visualizations from audio files.
   Supports multiple visualization types and time slicing.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: media-processing
   tags: "audio, spectrogram, visualization, analysis, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # songsee

@@ -1,11 +1,14 @@
 ---
 name: debugger
 description: "Systematic debugging and root cause analysis for identifying and fixing software issues using binary search, bisect, and structured hypothesis testing"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: devops
   subdomain: testing
   tags: "debugging, root-cause-analysis, troubleshooting, git-bisect"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Debugger

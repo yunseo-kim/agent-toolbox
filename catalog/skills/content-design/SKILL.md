@@ -4,11 +4,14 @@ description: >
   Product content designer for UI copy. Use when writing, reviewing, or auditing
   user-facing text: button labels, error messages, tooltips, empty states, modal copy,
   placeholder text, confirmation dialogs, onboarding flows, or i18n strings.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: content-design
   tags: "ux-writing, content-design, ui-copy, microcopy, i18n"
+  author: "Albert Alises <albert.alises@gmail.com>"
+  lastUpdated: "12026-02-13"
 ---
 
 # Content Design

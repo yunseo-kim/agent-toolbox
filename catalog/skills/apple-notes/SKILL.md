@@ -4,10 +4,13 @@ description: >
   Manage Apple Notes via the memo CLI on macOS. Create, view, edit, delete,
   search, move, and export notes from the terminal. Use when managing Apple
   Notes programmatically.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "macos, apple-notes, cli, note-taking"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # Apple Notes CLI

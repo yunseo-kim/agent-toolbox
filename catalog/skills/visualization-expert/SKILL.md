@@ -1,10 +1,13 @@
 ---
 name: visualization-expert
 description: "Chart selection and data visualization guidance for effective data communication using matplotlib, plotly, and dashboard design"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: data-ai
   tags: "charts, dashboards, data-visualization, matplotlib, plotly"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Visualization Expert

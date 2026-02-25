@@ -1,11 +1,14 @@
 ---
 name: slack-gif-creator
 description: "Create animated GIFs optimized for Slack with validation tools and animation utilities. Use when users request animated GIFs for Slack."
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: media-processing
   tags: "gif, slack, animation, pillow, creative"
+  author: "ant-andi <andibrae@anthropic.com>"
+  lastUpdated: "12025-12-01"
 ---
 
 # Slack GIF Creator

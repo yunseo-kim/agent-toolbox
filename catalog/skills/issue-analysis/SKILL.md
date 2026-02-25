@@ -5,11 +5,14 @@ description: >
   attachments, media, linked resources, and provides effort estimates. Use when starting
   work on a ticket, triaging issues, or gathering comprehensive context about a bug report
   or feature request.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: business
   subdomain: project-management
   tags: "issue-tracking, triage, effort-estimation, context-gathering"
+  author: "Svetoslav Dekov <svetoslav.dekov@n8n.io>"
+  lastUpdated: "12026-02-25"
 ---
 
 # Issue Analysis

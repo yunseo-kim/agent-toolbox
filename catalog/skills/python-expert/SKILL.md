@@ -1,11 +1,14 @@
 ---
 name: python-expert
 description: "Senior Python developer expertise for writing clean, efficient, and well-documented code with type hints and PEP 8 compliance"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: scripting
   tags: "python, clean-code, type-hints, best-practices"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Python Expert

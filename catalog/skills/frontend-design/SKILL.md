@@ -1,11 +1,14 @@
 ---
 name: frontend-design
 description: "Create distinctive, production-grade frontend interfaces with high design quality. Use when building web components, pages, applications, posters, or when styling and beautifying any web UI."
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: frontend
   tags: "ui-design, frontend, css, react, html, web-design, creative"
+  author: "Keith Lazuka <klazuka@anthropic.com>"
+  lastUpdated: "12025-12-04"
 ---
 
 This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.

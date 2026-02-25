@@ -3,10 +3,13 @@ name: notion-api
 description: >
   Interact with the Notion API for creating and managing pages, databases,
   and blocks. Use when automating Notion workflows via REST API calls.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "notion, api, database, pages, project-management"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # notion

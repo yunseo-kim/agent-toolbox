@@ -6,12 +6,15 @@ description: >
   layer separation. Use when components exceed 300 lines, have deep nesting,
   mix business logic with UI, or manage too many state variables. Avoid for
   simple or well-structured components.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: development
   subdomain: frontend
   tags: "react, refactoring, hooks, components, code-splitting, complexity-reduction"
   frameworks: "react, nextjs"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # React Component Refactoring

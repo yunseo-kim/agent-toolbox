@@ -3,11 +3,14 @@ name: openai-whisper-local
 description: >
   Local speech-to-text transcription with the Whisper CLI. No API key
   required -- runs entirely offline with configurable model sizes.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: media-processing
   tags: "whisper, transcription, speech-to-text, local, offline"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # Whisper (CLI)

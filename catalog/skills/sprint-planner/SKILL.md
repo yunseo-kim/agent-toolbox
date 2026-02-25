@@ -1,11 +1,14 @@
 ---
 name: sprint-planner
 description: "Agile sprint planning with story estimation, capacity planning, velocity tracking, and sprint goal setting"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: business
   subdomain: project-management
   tags: "agile, scrum, sprint, story-points, estimation"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Sprint Planner

@@ -1,11 +1,14 @@
 ---
 name: academic-researcher
 description: "Academic research assistant for literature reviews, paper analysis, scholarly writing, and citation formatting in APA, MLA, and Chicago styles"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: research
   subdomain: citation-management
   tags: "academic, literature-review, papers, apa, mla"
+  author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
+  lastUpdated: "12026-02-04"
 ---
 
 # Academic Researcher

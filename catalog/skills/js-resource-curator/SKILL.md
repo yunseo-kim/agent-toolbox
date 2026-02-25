@@ -5,11 +5,14 @@ description: >
   documentation, including trusted source lists, link auditing, and publication
   date guidelines for ES features. Use when adding resources, refreshing pages,
   or running link audits.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: documentation
   subdomain: technical-docs
   tags: "resources, links, curation, javascript, documentation, audit"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # Skill: Resource Curator for JavaScript Documentation

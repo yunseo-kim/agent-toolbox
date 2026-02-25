@@ -9,11 +9,14 @@ description: >
   React hooks like useChat or useCompletion. Triggers on: "AI SDK", "Vercel AI SDK",
   "generateText", "streamText", "add AI to my app", "build an agent", "tool calling",
   "structured output", "useChat".
+license: Sustainable Use License 1.0
 
 metadata:
   domain: data-ai
   tags: "vercel, ai-sdk, llm, openai, anthropic, google, streaming, agents, tool-calling, structured-output, embeddings, react, typescript"
   frameworks: "ai-sdk, react, nextjs"
+  author: "Nico Albanese <49612682+nicoalbanese@users.noreply.github.com>"
+  lastUpdated: "12026-02-11"
 ---
 
 ## Prerequisites

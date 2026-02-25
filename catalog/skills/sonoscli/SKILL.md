@@ -3,10 +3,13 @@ name: sonoscli
 description: >
   Control Sonos speakers from the terminal. Discover, play, pause, adjust
   volume, manage groups, and search Spotify via SMAPI.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: productivity
   tags: "sonos, audio, smart-speaker, iot, media-playback, cli"
+  author: "Harold Hunt <huntharo@gmail.com>"
+  lastUpdated: "12026-02-21"
 ---
 
 # Sonos CLI

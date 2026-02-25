@@ -3,11 +3,14 @@ name: gifgrep
 description: >
   Search GIF providers (Tenor/Giphy) with CLI/TUI, download results, and
   extract stills or contact sheets for review and sharing.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: media-processing
   tags: "gif, search, image, tenor, giphy, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # gifgrep

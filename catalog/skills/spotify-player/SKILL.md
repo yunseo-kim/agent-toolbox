@@ -4,11 +4,14 @@ description: >
   Terminal Spotify playback and search via spogo (preferred) or
   spotify_player CLI. Search tracks, control playback, manage devices, and
   browse playlists.
+license: Sustainable Use License 1.0
 
 metadata:
   domain: content-media
   subdomain: media-processing
   tags: "spotify, music, playback, search, cli"
+  author: "cpojer <christoph.pojer@gmail.com>"
+  lastUpdated: "12026-01-31"
 ---
 
 # spogo / spotify_player

@@ -1,11 +1,14 @@
 ---
 name: openai-agents-guide
 description: "Guide to building AI agents with the OpenAI Agents SDK covering agent creation, tool use, context management, guardrails, handoffs, multi-agent orchestration, and tracing"
+license: Sustainable Use License 1.0
 
 metadata:
   domain: data-ai
   tags: "openai, agents-sdk, multi-agent, guardrails, handoffs, tracing"
   frameworks: "openai-agents-sdk"
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-25"
 ---
 
 # OpenAI Agents SDK Guide
