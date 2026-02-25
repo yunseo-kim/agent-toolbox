@@ -17,8 +17,8 @@ Specifically:
 
 - Adapted SKILL.md frontmatter to catalog schema (added `metadata.domain`, `metadata.subdomain`, `metadata.tags`, `metadata.frameworks`)
 - Generalized description from project-internal ("creating new components in packages/elements/src") to end-user-facing
-- Preserved all 47 reference files documenting individual components
-- Moved scripts/ examples to assets/examples/ per catalog conventions
+- Preserved all 48 reference files documenting individual components
+- Preserved all 80 script examples in scripts/ directory
 - Retained all core content: installation, usage, customization, troubleshooting, and component documentation
 
 ---
