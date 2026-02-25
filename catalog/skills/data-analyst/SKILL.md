@@ -8,6 +8,7 @@ metadata:
   tags: "sql, pandas, statistics, data-analysis, data-cleaning"
   author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
   lastUpdated: "12026-02-04"
+  provenance: ported
 ---
 
 # Data Analyst

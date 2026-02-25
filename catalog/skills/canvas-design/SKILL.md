@@ -9,6 +9,7 @@ metadata:
   tags: "design, visual-art, pdf, png, typography, creative-design"
   author: "ant-andi <andibrae@anthropic.com>"
   lastUpdated: "12025-12-01"
+  provenance: ported
 ---
 
 These are instructions for creating design philosophies - aesthetic movements that are then EXPRESSED VISUALLY. Output only .md files, .pdf files, and .png files.

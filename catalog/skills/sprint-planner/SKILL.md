@@ -9,6 +9,7 @@ metadata:
   tags: "agile, scrum, sprint, story-points, estimation"
   author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
   lastUpdated: "12026-02-04"
+  provenance: ported
 ---
 
 # Sprint Planner

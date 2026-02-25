@@ -49,6 +49,7 @@ metadata:
   frameworks: "nextjs"                  # optional, comma-separated, freeform kebab-case
   author: "Yunseo Kim <dev@yunseo.kim>" # required, modifier or upstream author
   lastUpdated: "12026-02-25"            # required, Holocene Era YYYYY-MM-DD
+  provenance: ported                    # required, ported | adapted | synthesized | original
 ---
 ```
 
@@ -57,6 +58,8 @@ metadata:
 **License field**: Default is `Sustainable Use License 1.0` (per root `LICENSE.md`). Only override when `NOTICE.md` explicitly specifies different license terms for that skill.
 
 **Author/lastUpdated rules**: When body content (excluding frontmatter and NOTICE.md additions) was modified from upstream, set `metadata.author` to the modifier and `metadata.lastUpdated` to the last commit date in Holocene Era format (`YYYYY-MM-DD`, Gregorian year + 10000). When body content is unmodified from source, look up the upstream repository for the original author and last update date, converting the date to Holocene Era format.
+
+**Provenance field**: Required for catalog items. Valid values: `ported` (copied with minimal changes), `adapted` (significant modifications), `synthesized` (combined from multiple sources), `original` (created in this project). Ported skills listed in `metadata/upstream-sources.yaml` are eligible for automated upstream sync.
 
 ## CURRENT SKILLS
 
@@ -139,6 +142,12 @@ metadata:
 | video-frames | content-media | media-processing | Ported (openclaw/openclaw) |
 | visualization-expert | data-ai | -- | Ported (awesome-llm-apps) |
 | weather-cli | research | -- | Ported (openclaw/openclaw) |
+| frontend-code-review | devops | code-review | Adapted (langgenius/dify) |
+| frontend-testing | devops | testing | Adapted (langgenius/dify) |
+| react-refactoring | development | frontend | Adapted (langgenius/dify) |
+| js-docs-fact-check | documentation | technical-docs | Adapted (leonardomso/33-js-concepts) |
+| js-resource-curator | documentation | technical-docs | Adapted (leonardomso/33-js-concepts) |
+| seo-review | documentation | technical-docs | Adapted (leonardomso/33-js-concepts) |
 
 ## LICENSING RULES
 
@@ -156,6 +165,8 @@ metadata:
 | Check generated index | `metadata/catalog-index.json` (auto-generated) |
 | Skill authoring conventions | `../.agents/skills/skill-creator/SKILL.md` |
 | README listing rules | Root `AGENTS.md` > README LISTING POLICY |
+| Upstream sync config | `metadata/upstream-sources.yaml` |
+| Upstream sync SHA cache | `../.github/upstream-sync/sha-cache.json` (auto-managed) |
 
 ## ANTI-PATTERNS
 

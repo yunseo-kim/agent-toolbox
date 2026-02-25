@@ -10,6 +10,7 @@ metadata:
   tags: "trello, kanban, board, api, project-management"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # Trello Skill

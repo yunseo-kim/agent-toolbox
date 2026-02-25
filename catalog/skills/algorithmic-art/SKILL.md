@@ -9,6 +9,7 @@ metadata:
   tags: "generative-art, p5js, creative-coding, algorithmic, interactive"
   author: "ant-andi <andibrae@anthropic.com>"
   lastUpdated: "12025-12-01"
+  provenance: ported
 ---
 
 Algorithmic philosophies are computational aesthetic movements that are then expressed through code. Output .md files (philosophy), .html files (interactive viewer), and .js files (generative algorithms).

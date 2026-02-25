@@ -11,6 +11,7 @@ metadata:
   tags: "weather, forecast, wttr, cli"
   author: "DylanWoodAkers <dylan@lec.com>"
   lastUpdated: "12026-02-18"
+  provenance: ported
 ---
 
 # Weather Skill

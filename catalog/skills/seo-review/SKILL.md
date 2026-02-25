@@ -13,6 +13,7 @@ metadata:
   tags: "seo, search, content-optimization, documentation, audit"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: adapted
 ---
 
 # Skill: SEO Audit for Documentation Pages

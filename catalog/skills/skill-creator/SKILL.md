@@ -9,6 +9,7 @@ metadata:
   tags: "skill-authoring, plugin-development, agent-tools"
   author: "Kenshiro Nakagawa <kenshiro@anthropic.com>"
   lastUpdated: "12026-02-25"
+  provenance: ported
 ---
 
 # Skill Creator

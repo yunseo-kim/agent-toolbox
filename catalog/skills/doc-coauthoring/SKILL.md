@@ -9,6 +9,7 @@ metadata:
   tags: "co-authoring, documentation-workflow, proposals, specs, collaborative-writing"
   author: "Keith Lazuka <klazuka@anthropic.com>"
   lastUpdated: "12025-12-04"
+  provenance: ported
 ---
 
 # Doc Co-Authoring Workflow

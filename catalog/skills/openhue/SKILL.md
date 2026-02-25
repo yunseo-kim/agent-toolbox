@@ -10,6 +10,7 @@ metadata:
   tags: "philips-hue, iot, smart-lighting, smart-home, cli"
   author: "Blakeshannon <blake@blakeshannon.com>"
   lastUpdated: "12026-02-18"
+  provenance: ported
 ---
 
 # OpenHue CLI

@@ -9,6 +9,7 @@ metadata:
   tags: "strategy, decision-making, business-analysis, swot"
   author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
   lastUpdated: "12026-02-04"
+  provenance: ported
 ---
 
 # Strategy Advisor

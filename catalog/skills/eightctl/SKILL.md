@@ -10,6 +10,7 @@ metadata:
   tags: "eight-sleep, iot, smart-home, sleep, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # eightctl

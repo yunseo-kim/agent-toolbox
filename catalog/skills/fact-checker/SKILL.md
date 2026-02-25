@@ -8,6 +8,7 @@ metadata:
   tags: "verification, fact-checking, credibility, source-evaluation"
   author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
   lastUpdated: "12026-02-04"
+  provenance: ported
 ---
 
 # Fact Checker

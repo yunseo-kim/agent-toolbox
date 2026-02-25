@@ -12,6 +12,7 @@ metadata:
   tags: "github, pull-request, conventional-commits, gh-cli"
   author: "Mutasem Aldmour <4711238+mutdmour@users.noreply.github.com>"
   lastUpdated: "12026-01-14"
+  provenance: ported
 ---
 
 # Create Pull Request

@@ -11,6 +11,7 @@ metadata:
   tags: "openai, dall-e, gpt-image, image-generation, ai"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # OpenAI Image Gen

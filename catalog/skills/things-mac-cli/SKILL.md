@@ -10,6 +10,7 @@ metadata:
   tags: "macos, things, task-management, gtd, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # Things 3 CLI

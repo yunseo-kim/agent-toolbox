@@ -11,6 +11,7 @@ metadata:
   tags: "food-delivery, foodora, order-tracking, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # ordercli

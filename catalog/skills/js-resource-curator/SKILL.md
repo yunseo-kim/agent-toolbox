@@ -13,6 +13,7 @@ metadata:
   tags: "resources, links, curation, javascript, documentation, audit"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: adapted
 ---
 
 # Skill: Resource Curator for JavaScript Documentation

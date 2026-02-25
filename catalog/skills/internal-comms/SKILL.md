@@ -9,6 +9,7 @@ metadata:
   tags: "communications, status-reports, newsletters, faq, corporate"
   author: "ant-andi <andibrae@anthropic.com>"
   lastUpdated: "12025-12-01"
+  provenance: ported
 ---
 
 ## When to use this skill

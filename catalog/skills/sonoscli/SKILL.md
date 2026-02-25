@@ -10,6 +10,7 @@ metadata:
   tags: "sonos, audio, smart-speaker, iot, media-playback, cli"
   author: "Harold Hunt <huntharo@gmail.com>"
   lastUpdated: "12026-02-21"
+  provenance: ported
 ---
 
 # Sonos CLI

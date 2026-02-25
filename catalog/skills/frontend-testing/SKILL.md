@@ -15,6 +15,7 @@ metadata:
   frameworks: "react, nextjs, vitest"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: adapted
 ---
 
 # Frontend Testing

@@ -20,6 +20,7 @@ metadata:
   frameworks: "flags-sdk, nextjs, sveltekit"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: adapted
 ---
 
 # Flags SDK

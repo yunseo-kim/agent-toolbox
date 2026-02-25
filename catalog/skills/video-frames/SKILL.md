@@ -11,6 +11,7 @@ metadata:
   tags: "ffmpeg, video, frames, extraction, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # Video Frames (ffmpeg)

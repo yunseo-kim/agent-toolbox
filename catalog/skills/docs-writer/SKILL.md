@@ -15,6 +15,7 @@ metadata:
   tags: "docs, markdown, mdx, technical-writing, documentation-workflow"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: synthesized
 ---
 
 # Docs Writer

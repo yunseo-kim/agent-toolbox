@@ -8,6 +8,7 @@ metadata:
   tags: "rag, retrieval-augmented-generation, vector-search, embeddings, langchain, llamaindex, graphrag, knowledge-graph, pageindex, reasoning-rag, vectorless-rag, community-detection"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: synthesized
 ---
 
 # RAG Implementation Patterns

@@ -10,6 +10,7 @@ metadata:
   tags: "bluos, audio, smart-speaker, iot, media-playback, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # blucli (blu)

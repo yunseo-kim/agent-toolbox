@@ -94,6 +94,7 @@ Catalog items are categorized using metadata in SKILL.md frontmatter (under the 
 - **Frameworks** (`metadata.frameworks`, optional, freeform): Comma-separated framework/tool associations — `nextjs`, `angular`, `django`, etc.
 - **Author** (`metadata.author`, required for catalog items): Attribution. Format: `"Name <email>"`. Use modifier's identity when body content was modified beyond frontmatter/NOTICE.md additions; use upstream author when body content is unmodified from source.
 - **Last Updated** (`metadata.lastUpdated`, required for catalog items): Last modification date in Holocene Era format `YYYYY-MM-DD` (Gregorian year + 10000). Use last commit date when body content was modified; use upstream last update date when body content is unmodified.
+- **Provenance** (`metadata.provenance`, required for catalog items): Origin classification. Controlled vocabulary: `ported` (copied with minimal changes), `adapted` (significant modifications), `synthesized` (combined from multiple sources), `original` (created in this project).
 
 The controlled vocabulary is defined in `catalog/metadata/taxonomy.yaml`. Adding new domains or subdomains requires updating this file.
 
@@ -111,6 +112,7 @@ metadata:
   frameworks: "nextjs"                  # optional, comma-separated, freeform kebab-case
   author: "Yunseo Kim <dev@yunseo.kim>" # required, modifier or upstream author
   lastUpdated: "12026-02-25"            # required, Holocene Era YYYYY-MM-DD
+  provenance: ported                    # required, ported | adapted | synthesized | original
 ---
 ```
 
@@ -163,6 +165,8 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 - **Preset tests**: validate all preset item references resolve to existing catalog items.
 - **Index tests**: verify `catalog-index.json` is consistent with individual SKILL.md frontmatter.
 - **Selective install tests**: verify filter composition (domain, subdomain, framework, tag, preset, skill) produces correct item sets.
+- **Provenance tests**: validate all SKILL.md `metadata.provenance` values are valid (`ported`, `adapted`, `synthesized`, `original`) and consistent with `catalog/metadata/upstream-sources.yaml` mappings.
+- **Upstream sync tests**: verify upstream-sources.yaml skill entries map to existing catalog skill directories.
 
 ## CONVENTIONS
 
@@ -176,6 +180,8 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 - **Catalog curation scope**: Skills specialized for a specific language (e.g., JavaScript) or framework (e.g., React, Next.js) ARE considered universally useful for developers in that domain and belong in the catalog. When porting, retain technology-specific expertise, standard tooling references (MDN, official docs), and community best practices — these are the skill's core value. Only strip project-specific internal conventions (proprietary file paths, project-unique workflows, custom component libraries) that would not apply outside the original project.
 - **License field**: Default is `Sustainable Use License 1.0` (per `LICENSE.md`). Only override when `NOTICE.md` explicitly specifies different license terms for that skill.
 - **Author/lastUpdated rules**: When body content (excluding frontmatter and NOTICE.md additions) was modified from upstream, set `metadata.author` to the modifier and `metadata.lastUpdated` to the last commit date in Holocene Era format (YYYYY-MM-DD, Gregorian year + 10000). When body content is unmodified, look up the upstream repository for the original author and last update date, converting the date to Holocene Era format.
+- **Provenance field**: Required for catalog items. Valid values: `ported`, `adapted`, `synthesized`, `original`. Ported skills listed in `catalog/metadata/upstream-sources.yaml` are eligible for automated upstream sync.
+- `catalog/metadata/upstream-sources.yaml` maps ported skills to their upstream repos and paths. Used by the `upstream-sync` GitHub Action for body content sync and new-skill detection.
 
 ## README LISTING POLICY
 

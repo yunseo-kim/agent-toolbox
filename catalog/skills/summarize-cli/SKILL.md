@@ -11,6 +11,7 @@ metadata:
   tags: "summarization, transcription, url, youtube, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # Summarize

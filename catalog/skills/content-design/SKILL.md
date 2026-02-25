@@ -12,6 +12,7 @@ metadata:
   tags: "ux-writing, content-design, ui-copy, microcopy, i18n"
   author: "Albert Alises <albert.alises@gmail.com>"
   lastUpdated: "12026-02-13"
+  provenance: ported
 ---
 
 # Content Design

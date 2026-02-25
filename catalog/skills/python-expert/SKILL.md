@@ -9,6 +9,7 @@ metadata:
   tags: "python, clean-code, type-hints, best-practices"
   author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
   lastUpdated: "12026-02-04"
+  provenance: ported
 ---
 
 # Python Expert

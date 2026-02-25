@@ -12,6 +12,7 @@ metadata:
   tags: "fact-checking, accuracy, verification, javascript, documentation, quality"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: adapted
 ---
 
 # Skill: JavaScript Fact Checker

@@ -8,6 +8,7 @@ metadata:
   tags: "loom, transcript, video, graphql"
   author: "Eugene <eugene@n8n.io>"
   lastUpdated: "12026-02-18"
+  provenance: ported
 ---
 
 # Loom Transcript Fetcher

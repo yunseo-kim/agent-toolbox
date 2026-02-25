@@ -12,6 +12,7 @@ metadata:
   tags: "tmux, terminal, session, automation, cli"
   author: "Blakeshannon <blake@blakeshannon.com>"
   lastUpdated: "12026-02-18"
+  provenance: ported
 ---
 
 # tmux Session Control

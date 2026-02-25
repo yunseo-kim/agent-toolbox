@@ -11,6 +11,7 @@ metadata:
   tags: "openai, whisper, transcription, speech-to-text, api"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # OpenAI Whisper API (curl)

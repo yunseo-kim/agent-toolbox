@@ -9,6 +9,7 @@ metadata:
   tags: "email, professional-writing, correspondence, business"
   author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
   lastUpdated: "12026-02-04"
+  provenance: ported
 ---
 
 # Email Drafter

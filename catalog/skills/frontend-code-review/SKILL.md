@@ -13,6 +13,7 @@ metadata:
   frameworks: "react, nextjs"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: adapted
 ---
 
 # Frontend Code Review

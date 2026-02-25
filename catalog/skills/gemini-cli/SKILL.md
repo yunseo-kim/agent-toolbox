@@ -10,6 +10,7 @@ metadata:
   tags: "google, gemini, ai, cli, llm"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # Gemini CLI

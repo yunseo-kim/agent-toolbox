@@ -11,6 +11,7 @@ metadata:
   tags: "macos, apple-reminders, cli, task-management"
   author: "Blakeshannon <blake@blakeshannon.com>"
   lastUpdated: "12026-02-18"
+  provenance: ported
 ---
 
 # Apple Reminders CLI (remindctl)

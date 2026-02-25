@@ -12,6 +12,7 @@ metadata:
   tags: "github, cli, issues, pull-request, ci"
   author: "DylanWoodAkers <dylan@lec.com>"
   lastUpdated: "12026-02-18"
+  provenance: ported
 ---
 
 # GitHub Skill

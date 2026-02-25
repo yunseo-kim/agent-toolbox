@@ -17,6 +17,7 @@ metadata:
   frameworks: "ai-sdk, react, nextjs"
   author: "Nico Albanese <49612682+nicoalbanese@users.noreply.github.com>"
   lastUpdated: "12026-02-11"
+  provenance: ported
 ---
 
 ## Prerequisites

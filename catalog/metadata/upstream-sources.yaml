@@ -1,0 +1,139 @@
+# Upstream repository sources for catalog skill sync and discovery.
+# Used by the upstream-sync GitHub Action for:
+#   1. Syncing body content updates to ported skills
+#   2. Detecting new skills added to upstream repos
+#
+# Schema:
+#   sources.<repo>:
+#     ref:       Default branch to track
+#     discover:
+#       root:       Directory prefix where skills live
+#       skill_file: Filename to look for (always SKILL.md)
+#     skills:     Map of catalog_name -> { upstream_dir }
+#     ignored:    Upstream skill dirs we chose NOT to port (excluded from new-skill alerts)
+#
+# Only repos with ported skills are tracked here. Repos with only adapted/synthesized
+# skills are excluded -- those skills have significant local modifications and don't
+# benefit from automated body sync or skill discovery.
+#
+# Naming: when upstream_dir differs from catalog_name, the skill was renamed during porting.
+
+sources:
+  anthropics/skills:
+    ref: main
+    discover:
+      root: skills/
+      skill_file: SKILL.md
+    skills:
+      algorithmic-art:      { upstream_dir: algorithmic-art }
+      canvas-design:        { upstream_dir: canvas-design }
+      doc-coauthoring:      { upstream_dir: doc-coauthoring }
+      frontend-design:      { upstream_dir: frontend-design }
+      internal-comms:       { upstream_dir: internal-comms }
+      mcp-builder:          { upstream_dir: mcp-builder }
+      skill-creator:        { upstream_dir: skill-creator }
+      slack-gif-creator:    { upstream_dir: slack-gif-creator }
+      theme-factory:        { upstream_dir: theme-factory }
+      web-artifacts-builder: { upstream_dir: web-artifacts-builder }
+      webapp-testing:       { upstream_dir: webapp-testing }
+    ignored:
+      - docx    # Proprietary license
+      - pdf     # Proprietary license
+      - pptx    # Proprietary license
+      - xlsx    # Proprietary license
+
+  Shubhamsaboo/awesome-llm-apps:
+    ref: main
+    discover:
+      root: awesome_agent_skills/
+      skill_file: SKILL.md
+    skills:
+      academic-researcher:  { upstream_dir: academic-researcher }
+      code-reviewer:        { upstream_dir: code-reviewer }
+      content-creator:      { upstream_dir: content-creator }
+      data-analyst:         { upstream_dir: data-analyst }
+      debugger:             { upstream_dir: debugger }
+      decision-helper:      { upstream_dir: decision-helper }
+      deep-research:        { upstream_dir: deep-research }
+      editor:               { upstream_dir: editor }
+      email-drafter:        { upstream_dir: email-drafter }
+      fact-checker:         { upstream_dir: fact-checker }
+      fullstack-developer:  { upstream_dir: fullstack-developer }
+      meeting-notes:        { upstream_dir: meeting-notes }
+      project-planner:      { upstream_dir: project-planner }
+      python-expert:        { upstream_dir: python-expert }
+      sprint-planner:       { upstream_dir: sprint-planner }
+      strategy-advisor:     { upstream_dir: strategy-advisor }
+      visualization-expert: { upstream_dir: visualization-expert }
+    ignored: []
+
+  n8n-io/n8n:
+    ref: master
+    discover:
+      root: .claude/skills/
+      skill_file: SKILL.md
+    skills:
+      content-design:  { upstream_dir: content-design }
+      create-pr:       { upstream_dir: create-pr }
+      issue-analysis:  { upstream_dir: linear-issue }       # renamed
+      loom-transcript: { upstream_dir: loom-transcript }
+      reproduce-bug:   { upstream_dir: reproduce-bug }
+    ignored: []
+
+  openclaw/openclaw:
+    ref: main
+    discover:
+      root: skills/
+      skill_file: SKILL.md
+    skills:
+      apple-notes:        { upstream_dir: apple-notes }
+      apple-reminders:    { upstream_dir: apple-reminders }
+      bear-notes:         { upstream_dir: bear-notes }
+      blogwatcher:        { upstream_dir: blogwatcher }
+      blucli:             { upstream_dir: blucli }
+      eightctl:           { upstream_dir: eightctl }
+      gemini-cli:         { upstream_dir: gemini-cli }
+      gifgrep:            { upstream_dir: gifgrep }
+      github-cli:         { upstream_dir: github }            # renamed
+      goplaces:           { upstream_dir: goplaces }
+      mcporter:           { upstream_dir: mcporter }
+      nano-banana-pro:    { upstream_dir: nano-banana-pro }
+      nano-pdf:           { upstream_dir: nano-pdf }
+      notion-api:         { upstream_dir: notion }            # renamed
+      obsidian-vault:     { upstream_dir: obsidian-vault }
+      openai-image-gen:   { upstream_dir: openai-image-gen }
+      openai-whisper-api: { upstream_dir: openai-whisper-api }
+      openai-whisper-local: { upstream_dir: openai-whisper-local }
+      openhue:            { upstream_dir: openhue }
+      oracle-cli:         { upstream_dir: oracle-cli }
+      ordercli:           { upstream_dir: ordercli }
+      sag-tts:            { upstream_dir: sag-tts }
+      sherpa-onnx-tts:    { upstream_dir: sherpa-onnx-tts }
+      songsee:            { upstream_dir: songsee }
+      sonoscli:           { upstream_dir: sonoscli }
+      spotify-player:     { upstream_dir: spotify-player }
+      summarize-cli:      { upstream_dir: summarize-cli }
+      things-mac-cli:     { upstream_dir: things-mac-cli }
+      tmux-controller:    { upstream_dir: tmux }              # renamed
+      trello-api:         { upstream_dir: trello }            # renamed
+      video-frames:       { upstream_dir: video-frames }
+      weather-cli:        { upstream_dir: weather-cli }
+    ignored: []
+
+  vercel/ai:
+    ref: main
+    discover:
+      root: skills/
+      skill_file: SKILL.md
+    skills:
+      ai-sdk: { upstream_dir: use-ai-sdk }                   # renamed
+    ignored: []
+
+  vercel/streamdown:
+    ref: main
+    discover:
+      root: skills/
+      skill_file: SKILL.md
+    skills:
+      streamdown: { upstream_dir: streamdown }
+    ignored: []

@@ -8,6 +8,7 @@ metadata:
   tags: "memory, conversation-history, vector-memory, mem0, qdrant, personalization"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: adapted
 ---
 
 # LLM Memory Patterns

@@ -11,6 +11,7 @@ metadata:
   tags: "image-generation, ai, banana-dev, python"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # Nano Banana Pro (Gemini 3 Pro Image)

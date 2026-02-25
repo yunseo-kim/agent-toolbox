@@ -11,6 +11,7 @@ metadata:
   tags: "whisper, transcription, speech-to-text, local, offline"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # Whisper (CLI)

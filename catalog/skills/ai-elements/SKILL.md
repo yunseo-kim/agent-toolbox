@@ -16,6 +16,7 @@ metadata:
   frameworks: "ai-elements, nextjs, react, ai-sdk"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: adapted
 ---
 
 # AI Elements

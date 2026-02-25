@@ -10,6 +10,7 @@ metadata:
   tags: "macos, bear, cli, note-taking"
   author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
+  provenance: ported
 ---
 
 # Bear Notes

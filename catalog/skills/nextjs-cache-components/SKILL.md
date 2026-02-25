@@ -14,6 +14,7 @@ metadata:
   frameworks: "nextjs, react"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
+  provenance: adapted
 ---
 
 # Next.js Cache Components

@@ -11,6 +11,7 @@ metadata:
   tags: "tts, text-to-speech, local, offline, onnx"
   author: "Peter Steinberger <steipete@gmail.com>"
   lastUpdated: "12026-02-16"
+  provenance: ported
 ---
 
 # sherpa-onnx-tts

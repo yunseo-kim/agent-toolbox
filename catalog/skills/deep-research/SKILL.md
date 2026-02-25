@@ -8,6 +8,7 @@ metadata:
   tags: "research, synthesis, citations, multi-source"
   author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
   lastUpdated: "12026-02-04"
+  provenance: ported
 ---
 
 # Deep Research

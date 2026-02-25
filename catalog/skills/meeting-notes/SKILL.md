@@ -8,6 +8,7 @@ metadata:
   tags: "meetings, notes, action-items, summaries, minutes"
   author: "Shubhamsaboo <shubhamsaboo111@gmail.com>"
   lastUpdated: "12026-02-04"
+  provenance: ported
 ---
 
 # Meeting Notes
