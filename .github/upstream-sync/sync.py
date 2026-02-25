@@ -2,8 +2,11 @@
 """Upstream sync for ported and adapted catalog skills.
 
 Checks upstream repositories for body content changes in ported skills,
-applies updates preserving local frontmatter, detects new upstream skills,
-and monitors adapted skills for upstream changes (advisory only).
+applies safe updates (no local modifications) via PR, reports non-safe
+changes as issues, detects new upstream skills, and monitors adapted
+skills for upstream changes (advisory only).
+
+Use --diff to manually inspect body diffs between local catalog and upstream.
 
 Requirements: Python 3.10+ stdlib only. Runs on GitHub Actions with `gh` CLI.
 """
@@ -11,6 +14,7 @@ Requirements: Python 3.10+ stdlib only. Runs on GitHub Actions with `gh` CLI.
 from __future__ import annotations
 
 import argparse
+import difflib
 import hashlib
 import json
 import os
@@ -425,9 +429,19 @@ def process_repo(
     *,
     init: bool = False,
     dry_run: bool = False,
-    mode: str = "sync",
 ) -> dict:
-    """Process a single upstream repo. Returns a report dict."""
+    """Process a single upstream repo.
+
+    Hybrid behavior:
+      - safe ported changes (no local body mods): apply upstream body to local
+        file for inclusion in a PR.
+      - review ported changes (local body mods exist): do NOT modify local file,
+        report in issue for manual review.
+      - adapted skills: advisory monitoring only, never modify local files.
+      - new upstream skills: report with links.
+
+    Returns a report dict.
+    """
     ref = config["ref"]
     discover = config.get("discover", {})
     skills = config.get("skills", {})
@@ -438,18 +452,17 @@ def process_repo(
         "safe": [],  # (catalog_name, new_date)
         "review": [],  # (catalog_name, new_date)
         "deleted": [],  # catalog_name
-        "new_skills": [],  # upstream_dir
+        "new_skills": [],  # (upstream_dir, skill_url)
         "errors": [],  # message
         "adapted_changed": [],  # (catalog_name, section_diff, history_url)
         "adapted_deleted": [],  # catalog_name
     }
 
-    total_tracked = len(skills) + len(adapted_skills_cfg)
     print(
         f"::group::Processing {owner_repo} (ref={ref}, {len(skills)} ported, {len(adapted_skills_cfg)} adapted)"
     )
 
-    # --- Sync existing skills ---
+    # --- Sync existing ported skills ---
     for catalog_name, skill_cfg in skills.items():
         upstream_dir = skill_cfg.get("upstream_dir", catalog_name)
         root = discover.get("root", "")
@@ -483,12 +496,11 @@ def process_repo(
             continue
 
         if cached_hash == upstream_hash:
-            # No change
-            if mode != "notify":
-                cache.setdefault("skills", {})[catalog_name] = {
-                    "upstream_body_sha256": upstream_hash,
-                    "last_checked": datetime.now(timezone.utc).isoformat(),
-                }
+            # No change — refresh last_checked
+            cache.setdefault("skills", {})[catalog_name] = {
+                "upstream_body_sha256": upstream_hash,
+                "last_checked": datetime.now(timezone.utc).isoformat(),
+            }
             continue
 
         # Change detected!
@@ -521,26 +533,27 @@ def process_repo(
             holocene_date = "unknown"
             new_fm = local_fm
 
-        if not dry_run and mode != "notify":
-            # Write updated file: our frontmatter + upstream body
-            new_content = new_fm + upstream_body
-            local_path.write_text(new_content)
-
-        # Update cache
-        if mode != "notify":
+        if classification == "safe":
+            # Safe: apply upstream body, preserving local frontmatter
+            if not dry_run:
+                new_content = new_fm + upstream_body
+                local_path.write_text(new_content)
             cache.setdefault("skills", {})[catalog_name] = {
                 "upstream_body_sha256": upstream_hash,
                 "last_checked": datetime.now(timezone.utc).isoformat(),
             }
-
-        if classification == "safe":
             report["safe"].append((catalog_name, holocene_date))
+            print(f"    [safe] Updated {catalog_name} (lastUpdated: {holocene_date})")
         else:
+            # Review: do NOT modify local file, report for manual review
+            cache.setdefault("skills", {})[catalog_name] = {
+                "upstream_body_sha256": upstream_hash,
+                "last_checked": datetime.now(timezone.utc).isoformat(),
+            }
             report["review"].append((catalog_name, holocene_date))
-
-        print(
-            f"    [{classification}] Updated {catalog_name} (lastUpdated: {holocene_date})"
-        )
+            print(
+                f"    [review] Change requires review for {catalog_name} (lastUpdated: {holocene_date})"
+            )
 
     # --- Monitor adapted skills (advisory only) ---
     for catalog_name, skill_cfg in adapted_skills_cfg.items():
@@ -585,13 +598,12 @@ def process_repo(
             continue
 
         if cached_hash == upstream_hash:
-            # No change
-            if mode != "notify":
-                cache.setdefault("adapted_skills", {})[catalog_name] = {
-                    "upstream_body_sha256": upstream_hash,
-                    "upstream_sections": new_headings,
-                    "last_checked": datetime.now(timezone.utc).isoformat(),
-                }
+            # No change — refresh last_checked
+            cache.setdefault("adapted_skills", {})[catalog_name] = {
+                "upstream_body_sha256": upstream_hash,
+                "upstream_sections": new_headings,
+                "last_checked": datetime.now(timezone.utc).isoformat(),
+            }
             continue
 
         # Change detected — advisory only, NEVER write to local files
@@ -604,13 +616,12 @@ def process_repo(
             f"    [advisory] Upstream change in adapted skill {catalog_name}: {section_diff}"
         )
 
-        # Update cache
-        if mode != "notify":
-            cache.setdefault("adapted_skills", {})[catalog_name] = {
-                "upstream_body_sha256": upstream_hash,
-                "upstream_sections": new_headings,
-                "last_checked": datetime.now(timezone.utc).isoformat(),
-            }
+        # Update cache so the same change isn't re-flagged
+        cache.setdefault("adapted_skills", {})[catalog_name] = {
+            "upstream_body_sha256": upstream_hash,
+            "upstream_sections": new_headings,
+            "last_checked": datetime.now(timezone.utc).isoformat(),
+        }
 
     # --- Discover new upstream skills ---
     if discover and not init:
@@ -652,97 +663,41 @@ def process_repo(
         new_dirs -= internal_dirs
 
         if new_dirs:
-            report["new_skills"] = sorted(new_dirs)
-            for d in sorted(new_dirs):
-                print(f"    [new] {root}{d}/{skill_file}")
+            report["new_skills"] = [
+                (d, f"https://github.com/{owner_repo}/tree/{ref}/{root}{d}")
+                for d in sorted(new_dirs)
+            ]
+            for d, url in report["new_skills"]:
+                print(f"    [new] {url}")
     print("::endgroup::")
     return report
 
 
 def build_pr_body(owner_repo: str, report: dict) -> str:
-    """Build PR body markdown from report."""
-    total = len(report["safe"]) + len(report["review"])
+    """Build PR body markdown from report (safe updates only)."""
     lines = [
         f"## Upstream Sync: {owner_repo}",
         "",
-        f"Detected upstream changes in **{total}** ported skill(s).",
+        f"Auto-applied upstream body updates to **{len(report['safe'])}** ported skill(s).",
+        "These skills had no local body modifications \u2014 the new upstream body was applied",
+        "directly with local frontmatter preserved.",
+        "",
+        "### Updated Skills",
         "",
     ]
-
-    # Safe updates
-    lines.append("### Safe Updates (no local modifications)")
-    lines.append("These skills had body content identical to the last-known upstream.")
-    lines.append("The new upstream body was applied directly.")
+    for name, date in report["safe"]:
+        lines.append(f"- `{name}` (lastUpdated: {date})")
     lines.append("")
-    if report["safe"]:
-        for name, date in report["safe"]:
-            lines.append(f"- `{name}` (lastUpdated: {date})")
-    else:
-        lines.append("None")
-    lines.append("")
-
-    # Needs review
-    lines.append("### Needs Review (local modifications exist)")
-    lines.append(
-        "These skills had local body modifications. The upstream body has been applied --"
-    )
-    lines.append(
-        "**review the diff carefully** to verify no important local changes were lost."
-    )
-    lines.append("")
-    if report["review"]:
-        for name, date in report["review"]:
-            lines.append(f"- `{name}` (lastUpdated: {date})")
-    else:
-        lines.append("None")
-    lines.append("")
-
-    # New upstream skills
-    lines.append("### New Upstream Skills Detected")
-    lines.append(
-        "The following skill directories were found upstream but are not yet in our catalog:"
-    )
-    lines.append("")
-    if report["new_skills"]:
-        for d in report["new_skills"]:
-            lines.append(f"- `{d}`")
-    else:
-        lines.append("None")
-    lines.append("")
-
-    # Upstream deletions
-    lines.append("### Upstream Deletions")
-    lines.append("These skills returned 404 from upstream. They were NOT auto-deleted.")
-    lines.append("")
-    if report["deleted"]:
-        for name in report["deleted"]:
-            lines.append(f"- `{name}`")
-    else:
-        lines.append("None")
-    lines.append("")
-
-    # Adapted skill changes (advisory)
-    adapted_changed = report.get("adapted_changed", [])
-    adapted_deleted = report.get("adapted_deleted", [])
-    if adapted_changed or adapted_deleted:
-        lines.append("### Adapted Skill Changes (advisory)")
-        lines.append(
-            "The following adapted skills have upstream body changes. These are NOT auto-applied."
-        )
-        lines.append("Review the upstream changes and manually integrate if desired.")
-        lines.append("")
-        for name, section_diff, history_url in adapted_changed:
-            lines.append(f"- `{name}` \u2014 {section_diff} ([history]({history_url}))")
-        for name in adapted_deleted:
-            lines.append(f"- `{name}` \u2014 upstream returned 404")
-        lines.append("")
 
     return "\n".join(lines)
 
 
 def build_issue_body(all_reports: dict) -> str:
-    """Build consolidated issue body markdown from all repo reports."""
-    total_safe = sum(len(r["safe"]) for r in all_reports.values())
+    """Build consolidated issue body from all repo reports.
+
+    Excludes safe updates (those are handled via auto-PR).
+    Use ``python3 .github/upstream-sync/sync.py --diff`` to inspect diffs.
+    """
     total_review = sum(len(r["review"]) for r in all_reports.values())
     total_deleted = sum(len(r["deleted"]) for r in all_reports.values())
     total_new = sum(len(r["new_skills"]) for r in all_reports.values())
@@ -755,21 +710,30 @@ def build_issue_body(all_reports: dict) -> str:
     lines = [
         f"## Upstream Sync Report \u2014 {date_str}",
         "",
-        "Automated scan detected changes in upstream repositories.",
-        "To apply these changes, run the",
-        "[Apply Workflow](../../actions/workflows/upstream-sync-apply.yml)",
-        "manually.",
+        "Automated scan detected upstream changes requiring manual review.",
         "",
+    ]
+
+    # Note about safe updates handled separately
+    total_safe = sum(len(r["safe"]) for r in all_reports.values())
+    if total_safe > 0:
+        lines.append(
+            f"> **Note:** {total_safe} safe update(s) were auto-applied via separate PR(s)."
+        )
+        lines.append("")
+
+    lines += [
         "### Summary",
         "",
         "| Metric | Count |",
         "|--------|-------|",
-        f"| Safe updates | {total_safe} |",
-        f"| Needs review | {total_review} |",
-        f"| Upstream 404s | {total_deleted} |",
-        f"| New skills | {total_new} |",
+        f"| Needs review (ported) | {total_review} |",
+        f"| Upstream 404s (ported) | {total_deleted} |",
+        f"| New upstream skills | {total_new} |",
         f"| Adapted changes (advisory) | {total_adapted} |",
         f"| Adapted 404s | {total_adapted_deleted} |",
+        "",
+        "Use `python3 .github/upstream-sync/sync.py --diff` to inspect body diffs locally.",
         "",
     ]
 
@@ -777,8 +741,7 @@ def build_issue_body(all_reports: dict) -> str:
         adapted_changed = report.get("adapted_changed", [])
         adapted_deleted = report.get("adapted_deleted", [])
         has_any = (
-            report["safe"]
-            or report["review"]
+            report["review"]
             or report["deleted"]
             or report["new_skills"]
             or adapted_changed
@@ -790,32 +753,27 @@ def build_issue_body(all_reports: dict) -> str:
         lines.append(f"### {owner_repo}")
         lines.append("")
 
-        # Safe updates
-        if report["safe"]:
-            lines.append("**Safe Updates** (body unchanged locally):")
-            for name, date in report["safe"]:
-                lines.append(f"- `{name}` (lastUpdated: {date})")
-            lines.append("")
-
         # Needs review
         if report["review"]:
             lines.append(
-                "**Needs Review** (local modifications exist \u2014 review carefully):"
+                "**Needs Review** (local body modifications exist \u2014 upstream body NOT auto-applied):"
             )
             for name, date in report["review"]:
                 lines.append(f"- `{name}` (lastUpdated: {date})")
             lines.append("")
 
-        # New upstream skills
+        # New upstream skills (with links)
         if report["new_skills"]:
             lines.append("**New Upstream Skills Detected:**")
-            for d in report["new_skills"]:
-                lines.append(f"- `{d}`")
+            for dir_name, url in report["new_skills"]:
+                lines.append(f"- [`{dir_name}`]({url})")
             lines.append("")
 
         # Upstream deletions
         if report["deleted"]:
-            lines.append("**Upstream Deletions (404):**")
+            lines.append(
+                "**Upstream Deletions (404)** \u2014 these skills were NOT auto-deleted:"
+            )
             for name in report["deleted"]:
                 lines.append(f"- `{name}`")
             lines.append("")
@@ -826,6 +784,7 @@ def build_issue_body(all_reports: dict) -> str:
             lines.append(
                 "These adapted skills have upstream body changes. Review manually \u2014 auto-sync is not applied."
             )
+            lines.append("")
             for name, section_diff, history_url in adapted_changed:
                 lines.append(
                     f"- `{name}` \u2014 {section_diff} ([history]({history_url}))"
@@ -842,14 +801,13 @@ def create_consolidated_issue(
     *,
     dry_run: bool = False,
 ) -> None:
-    """Create a single GitHub issue summarizing all upstream changes.
+    """Create a single GitHub issue summarizing non-safe upstream changes.
 
-    Skips creation if no changes detected or an open issue already exists.
+    Skips creation if no non-safe changes detected or an open issue already exists.
     """
-    # Check if there are any findings at all
+    # Check if there are any non-safe findings
     has_findings = any(
-        r["safe"]
-        or r["review"]
+        r["review"]
         or r["deleted"]
         or r["new_skills"]
         or r.get("adapted_changed")
@@ -857,7 +815,7 @@ def create_consolidated_issue(
         for r in all_reports.values()
     )
     if not has_findings:
-        print("  No upstream changes detected \u2014 skipping issue creation")
+        print("  No non-safe upstream changes detected \u2014 skipping issue creation")
         return
 
     body = build_issue_body(all_reports)
@@ -921,14 +879,9 @@ def create_pr_for_repo(
     *,
     dry_run: bool = False,
 ) -> None:
-    """Create a branch, commit changes, and open a PR for one upstream repo."""
-    has_changes = report["safe"] or report["review"]
-    if not has_changes:
-        if report["new_skills"]:
-            print(
-                f"  New upstream skills found in {owner_repo} but no content changes to PR."
-            )
-            print(f"  New skills: {', '.join(report['new_skills'])}")
+    """Create a branch, commit safe changes, and open a PR for one upstream repo."""
+    has_safe = bool(report["safe"])
+    if not has_safe:
         return
 
     repo_slug = owner_repo.replace("/", "-")
@@ -953,10 +906,8 @@ def create_pr_for_repo(
         print(f"::error::Failed to create branch {branch}: {result.stderr.strip()}")
         return
 
-    # Stage changed skill files
-    changed_skills = [name for name, _ in report["safe"]] + [
-        name for name, _ in report["review"]
-    ]
+    # Stage changed skill files (safe items only)
+    changed_skills = [name for name, _ in report["safe"]]
     for name in changed_skills:
         skill_path = f"catalog/skills/{name}/SKILL.md"
         git("add", skill_path)
@@ -1021,6 +972,119 @@ def create_pr_for_repo(
 
 
 # ---------------------------------------------------------------------------
+# Manual diff inspection (--diff)
+# ---------------------------------------------------------------------------
+
+
+def _print_skill_diff(
+    owner_repo: str,
+    ref: str,
+    upstream_path: str,
+    catalog_name: str,
+    provenance: str,
+) -> None:
+    """Fetch upstream and print unified diff for one skill."""
+    header = f"=== {catalog_name} ({provenance}) \u2014 {owner_repo} ==="
+
+    # Read local file
+    local_path = CATALOG_SKILLS / catalog_name / "SKILL.md"
+    if not local_path.exists():
+        print(header)
+        print(f"  Local file not found: {local_path}")
+        print()
+        return
+
+    local_raw = local_path.read_text()
+    _, local_body = split_frontmatter(local_raw)
+
+    # Fetch upstream
+    upstream_raw = fetch_raw_file(owner_repo, ref, upstream_path)
+    if upstream_raw is None:
+        print(header)
+        print(f"  Upstream not found: {owner_repo}/{upstream_path} (404)")
+        print()
+        return
+
+    _, upstream_body = split_frontmatter(upstream_raw)
+
+    # Compare
+    if sha256(local_body) == sha256(upstream_body):
+        print(header)
+        print("  No changes")
+        print()
+        return
+
+    # Generate and print diff
+    local_lines = local_body.splitlines(keepends=True)
+    upstream_lines = upstream_body.splitlines(keepends=True)
+    diff = difflib.unified_diff(
+        local_lines,
+        upstream_lines,
+        fromfile=f"catalog/skills/{catalog_name}/SKILL.md (local body)",
+        tofile=f"{upstream_path} ({owner_repo}@{ref})",
+    )
+
+    print(header)
+    for line in diff:
+        print(line, end="")
+    print()
+
+
+def diff_skills(
+    sources: dict,
+    *,
+    skill_filter: str | None = None,
+) -> None:
+    """Print unified diffs between local catalog bodies and upstream bodies.
+
+    Read-only inspection — no files are modified, no cache is updated.
+    """
+    found_any = False
+
+    for owner_repo, config in sources.items():
+        ref = config["ref"]
+        discover = config.get("discover", {})
+        skills = config.get("skills", {})
+        adapted_skills_cfg = config.get("adapted_skills", {})
+
+        # Process ported skills
+        for catalog_name, skill_cfg in skills.items():
+            if skill_filter and catalog_name != skill_filter:
+                continue
+
+            upstream_dir = skill_cfg.get("upstream_dir", catalog_name)
+            root = discover.get("root", "")
+            skill_file = discover.get("skill_file", "SKILL.md")
+            upstream_path = f"{root}{upstream_dir}/{skill_file}"
+
+            _print_skill_diff(owner_repo, ref, upstream_path, catalog_name, "ported")
+            found_any = True
+
+        # Process adapted skills
+        for catalog_name, skill_cfg in adapted_skills_cfg.items():
+            if skill_filter and catalog_name != skill_filter:
+                continue
+
+            root = discover.get("root", "")
+            skill_file = discover.get("skill_file", "SKILL.md")
+
+            if "upstream_path" in skill_cfg:
+                upstream_path = skill_cfg["upstream_path"]
+            else:
+                upstream_dir = skill_cfg.get("upstream_dir", catalog_name)
+                upstream_path = f"{root}{upstream_dir}/{skill_file}"
+
+            _print_skill_diff(owner_repo, ref, upstream_path, catalog_name, "adapted")
+            found_any = True
+
+    if not found_any:
+        if skill_filter:
+            print(f"Skill '{skill_filter}' not found in upstream-sources.yaml")
+        else:
+            print("No skills to diff")
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -1032,12 +1096,12 @@ def main() -> None:
     parser.add_argument(
         "--init",
         action="store_true",
-        help="Populate SHA cache without creating PRs (first-run bootstrap)",
+        help="Populate SHA cache without creating PRs or issues (first-run bootstrap)",
     )
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Print what would change without modifying files or creating PRs",
+        help="Print what would change without modifying files or creating PRs/issues",
     )
     parser.add_argument(
         "--repo",
@@ -1046,12 +1110,20 @@ def main() -> None:
         help="Process only one upstream repo (e.g., openclaw/openclaw)",
     )
     parser.add_argument(
-        "--mode",
-        choices=["sync", "notify"],
-        default="sync",
-        help="sync: apply changes and create PRs (default). notify: detect changes and create issue only.",
+        "--diff",
+        action="store_true",
+        help="Show unified diff between local and upstream body for tracked skills (read-only)",
+    )
+    parser.add_argument(
+        "--skill",
+        type=str,
+        default=None,
+        help="Filter to specific skill by catalog name (used with --diff)",
     )
     args = parser.parse_args()
+
+    if args.skill and not args.diff:
+        parser.error("--skill can only be used with --diff")
 
     # Load config
     if not CONFIG_PATH.exists():
@@ -1063,8 +1135,6 @@ def main() -> None:
         print("::error::No sources found in upstream-sources.yaml")
         sys.exit(1)
 
-    print(f"Loaded {len(sources)} upstream source(s)")
-
     # Filter to single repo if requested
     if args.repo:
         if args.repo not in sources:
@@ -1073,6 +1143,13 @@ def main() -> None:
             )
             sys.exit(1)
         sources = {args.repo: sources[args.repo]}
+
+    # Diff mode: read-only inspection, then exit
+    if args.diff:
+        diff_skills(sources, skill_filter=args.skill)
+        return
+
+    print(f"Loaded {len(sources)} upstream source(s)")
 
     # Load cache
     cache = load_cache()
@@ -1086,21 +1163,18 @@ def main() -> None:
             cache,
             init=args.init,
             dry_run=args.dry_run,
-            mode=args.mode,
         )
         all_reports[owner_repo] = report
 
-    # Save cache (skip in dry-run and notify modes)
-    if not args.dry_run and args.mode != "notify":
+    # Save cache
+    if not args.dry_run:
         save_cache(cache)
 
-    # Create PRs or issue depending on mode
+    # Create PRs for safe changes and issue for non-safe findings
     if not args.init:
-        if args.mode == "notify":
-            create_consolidated_issue(all_reports, dry_run=args.dry_run)
-        else:
-            for owner_repo, report in all_reports.items():
-                create_pr_for_repo(owner_repo, report, dry_run=args.dry_run)
+        for owner_repo, report in all_reports.items():
+            create_pr_for_repo(owner_repo, report, dry_run=args.dry_run)
+        create_consolidated_issue(all_reports, dry_run=args.dry_run)
 
     # Summary
     print("\n::group::Summary")
@@ -1121,18 +1195,18 @@ def main() -> None:
         print(f"Initialized SHA cache for {total_cached} ported skill(s)")
         print(f"Initialized SHA cache for {total_adapted_cached} adapted skill(s)")
     else:
-        print(f"Safe updates:     {total_safe}")
-        print(f"Needs review:     {total_review}")
-        print(f"Upstream 404s:    {total_deleted}")
-        print(f"New skills found: {total_new}")
-        print(f"Adapted changes:  {total_adapted} (advisory)")
-        print(f"Adapted 404s:     {total_adapted_deleted}")
+        print(f"Safe updates (PR): {total_safe}")
+        print(f"Needs review:      {total_review}")
+        print(f"Upstream 404s:     {total_deleted}")
+        print(f"New skills found:  {total_new}")
+        print(f"Adapted changes:   {total_adapted} (advisory)")
+        print(f"Adapted 404s:      {total_adapted_deleted}")
 
     if total_new > 0:
         print("\nNew upstream skills detected:")
         for repo, report in all_reports.items():
-            for d in report.get("new_skills", []):
-                print(f"  {repo}: {d}")
+            for d, url in report.get("new_skills", []):
+                print(f"  {repo}: {d} -> {url}")
 
     print("::endgroup::")
 
