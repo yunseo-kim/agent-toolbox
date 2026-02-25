@@ -100,6 +100,7 @@ metadata:
 | meeting-notes | productivity | -- | Ported (awesome-llm-apps) |
 | nano-banana-pro | content-media | generative-art | Ported (openclaw/openclaw) |
 | nano-pdf | productivity | -- | Ported (openclaw/openclaw) |
+| nextjs-cache-components | development | frontend | Adapted (vercel/next.js) |
 | notion-api | productivity | -- | Ported (openclaw/openclaw) |
 | obsidian-vault | productivity | -- | Ported (openclaw/openclaw) |
 | openai-image-gen | content-media | generative-art | Ported (openclaw/openclaw) |
