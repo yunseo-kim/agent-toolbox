@@ -197,6 +197,37 @@ def split_frontmatter(text: str) -> tuple[str, str]:
     body = "\n".join(lines[end + 1 :])
     return fm, body
 
+def _has_metadata_internal(text: str) -> bool:
+    """Check if SKILL.md frontmatter has metadata.internal set to true.
+
+    Uses minimal parsing — scans for 'metadata:' section then looks for
+    'internal: true' at one indent level deeper. NOT full YAML parsing.
+    """
+    fm, _ = split_frontmatter(text)
+    if not fm:
+        return False
+
+    in_metadata = False
+    metadata_indent = -1
+    for line in fm.split("\n"):
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        indent = _indent_level(line)
+        if stripped == "metadata:":
+            in_metadata = True
+            metadata_indent = indent
+            continue
+        if in_metadata:
+            if indent <= metadata_indent:
+                # Left the metadata section
+                in_metadata = False
+                continue
+            if stripped.startswith("internal:"):
+                val = _parse_yaml_value(stripped.split(":", 1)[1])
+                return val.lower() == "true"
+    return False
+
 
 def to_holocene_date(iso_date: str) -> str:
     """Convert ISO date string to Holocene Era YYYYY-MM-DD."""
@@ -295,6 +326,7 @@ def process_repo(
     *,
     init: bool = False,
     dry_run: bool = False,
+    mode: str = "sync",
 ) -> dict:
     """Process a single upstream repo. Returns a report dict."""
     ref = config["ref"]
@@ -347,10 +379,11 @@ def process_repo(
 
         if cached_hash == upstream_hash:
             # No change
-            cache.setdefault("skills", {})[catalog_name] = {
-                "upstream_body_sha256": upstream_hash,
-                "last_checked": datetime.now(timezone.utc).isoformat(),
-            }
+            if mode != "notify":
+                cache.setdefault("skills", {})[catalog_name] = {
+                    "upstream_body_sha256": upstream_hash,
+                    "last_checked": datetime.now(timezone.utc).isoformat(),
+                }
             continue
 
         # Change detected!
@@ -383,16 +416,17 @@ def process_repo(
             holocene_date = "unknown"
             new_fm = local_fm
 
-        if not dry_run:
+        if not dry_run and mode != "notify":
             # Write updated file: our frontmatter + upstream body
             new_content = new_fm + upstream_body
             local_path.write_text(new_content)
 
         # Update cache
-        cache.setdefault("skills", {})[catalog_name] = {
-            "upstream_body_sha256": upstream_hash,
-            "last_checked": datetime.now(timezone.utc).isoformat(),
-        }
+        if mode != "notify":
+            cache.setdefault("skills", {})[catalog_name] = {
+                "upstream_body_sha256": upstream_hash,
+                "last_checked": datetime.now(timezone.utc).isoformat(),
+            }
 
         if classification == "safe":
             report["safe"].append((catalog_name, holocene_date))
@@ -425,11 +459,20 @@ def process_repo(
         ignored_set = set(ignored)
         new_dirs = found_dirs - known_dirs - ignored_set
 
+        # Filter out skills with metadata.internal: true
+        internal_dirs = set()
+        for d in new_dirs:
+            skill_path = f"{root}{d}/{skill_file}"
+            raw = fetch_raw_file(owner_repo, ref, skill_path)
+            if raw is not None and _has_metadata_internal(raw):
+                print(f"    [skipped:internal] {root}{d}/{skill_file}")
+                internal_dirs.add(d)
+        new_dirs -= internal_dirs
+
         if new_dirs:
             report["new_skills"] = sorted(new_dirs)
             for d in sorted(new_dirs):
                 print(f"    [new] {root}{d}/{skill_file}")
-
     print("::endgroup::")
     return report
 
@@ -498,6 +541,142 @@ def build_pr_body(owner_repo: str, report: dict) -> str:
     return "\n".join(lines)
 
 
+def build_issue_body(all_reports: dict) -> str:
+    """Build consolidated issue body markdown from all repo reports."""
+    total_safe = sum(len(r["safe"]) for r in all_reports.values())
+    total_review = sum(len(r["review"]) for r in all_reports.values())
+    total_deleted = sum(len(r["deleted"]) for r in all_reports.values())
+    total_new = sum(len(r["new_skills"]) for r in all_reports.values())
+
+    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    lines = [
+        f"## Upstream Sync Report \u2014 {date_str}",
+        "",
+        "Automated scan detected changes in upstream repositories.",
+        "To apply these changes, run the",
+        "[Apply Workflow](../../actions/workflows/upstream-sync-apply.yml)",
+        "manually.",
+        "",
+        "### Summary",
+        "",
+        "| Metric | Count |",
+        "|--------|-------|",
+        f"| Safe updates | {total_safe} |",
+        f"| Needs review | {total_review} |",
+        f"| Upstream 404s | {total_deleted} |",
+        f"| New skills | {total_new} |",
+        "",
+    ]
+
+    for owner_repo, report in all_reports.items():
+        has_any = (
+            report["safe"]
+            or report["review"]
+            or report["deleted"]
+            or report["new_skills"]
+        )
+        if not has_any:
+            continue
+
+        lines.append(f"### {owner_repo}")
+        lines.append("")
+
+        # Safe updates
+        if report["safe"]:
+            lines.append("**Safe Updates** (body unchanged locally):")
+            for name, date in report["safe"]:
+                lines.append(f"- `{name}` (lastUpdated: {date})")
+            lines.append("")
+
+        # Needs review
+        if report["review"]:
+            lines.append(
+                "**Needs Review** (local modifications exist \u2014 review carefully):"
+            )
+            for name, date in report["review"]:
+                lines.append(f"- `{name}` (lastUpdated: {date})")
+            lines.append("")
+
+        # New upstream skills
+        if report["new_skills"]:
+            lines.append("**New Upstream Skills Detected:**")
+            for d in report["new_skills"]:
+                lines.append(f"- `{d}`")
+            lines.append("")
+
+        # Upstream deletions
+        if report["deleted"]:
+            lines.append("**Upstream Deletions (404):**")
+            for name in report["deleted"]:
+                lines.append(f"- `{name}`")
+            lines.append("")
+
+    return "\n".join(lines)
+
+
+def create_consolidated_issue(
+    all_reports: dict,
+    *,
+    dry_run: bool = False,
+) -> None:
+    """Create a single GitHub issue summarizing all upstream changes.
+
+    Skips creation if no changes detected or an open issue already exists.
+    """
+    # Check if there are any findings at all
+    has_findings = any(
+        r["safe"] or r["review"] or r["deleted"] or r["new_skills"]
+        for r in all_reports.values()
+    )
+    if not has_findings:
+        print("  No upstream changes detected \u2014 skipping issue creation")
+        return
+
+    body = build_issue_body(all_reports)
+
+    if dry_run:
+        print("  [dry-run] Would create issue with body:")
+        print(body)
+        return
+
+    # Check for existing open issue with upstream-sync label
+    check_result = subprocess.run(
+        [
+            "gh", "issue", "list",
+            "--label", "upstream-sync",
+            "--state", "open",
+            "--json", "number",
+        ],
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    existing = json.loads(check_result.stdout) if check_result.returncode == 0 else []
+    if existing:
+        print(
+            f"  Open upstream-sync issue already exists (#{existing[0]['number']}), skipping"
+        )
+        return
+
+    # Create issue
+    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    issue_result = subprocess.run(
+        [
+            "gh", "issue", "create",
+            "--title", f"Upstream sync report \u2014 {date_str}",
+            "--body", body,
+            "--label", "upstream-sync",
+        ],
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    if issue_result.returncode == 0:
+        print(f"  Issue created: {issue_result.stdout.strip()}")
+    else:
+        print(f"::error::Issue creation failed: {issue_result.stderr.strip()}")
+
+
 def create_pr_for_repo(
     owner_repo: str,
     report: dict,
@@ -515,7 +694,7 @@ def create_pr_for_repo(
         return
 
     repo_slug = owner_repo.replace("/", "-")
-    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    date_str = datetime.now(timezone.utc).strftime("1%Y-%m-%d")
     branch = f"chore/upstream-sync/{repo_slug}/{date_str}"
 
     if dry_run:
@@ -628,6 +807,12 @@ def main() -> None:
         default=None,
         help="Process only one upstream repo (e.g., openclaw/openclaw)",
     )
+    parser.add_argument(
+        "--mode",
+        choices=["sync", "notify"],
+        default="sync",
+        help="sync: apply changes and create PRs (default). notify: detect changes and create issue only.",
+    )
     args = parser.parse_args()
 
     # Load config
@@ -658,18 +843,22 @@ def main() -> None:
     all_reports = {}
     for owner_repo, config in sources.items():
         report = process_repo(
-            owner_repo, config, cache, init=args.init, dry_run=args.dry_run
+            owner_repo, config, cache,
+            init=args.init, dry_run=args.dry_run, mode=args.mode,
         )
         all_reports[owner_repo] = report
 
-    # Save cache (even on dry-run we update last_checked timestamps)
-    if not args.dry_run:
+    # Save cache (skip in dry-run and notify modes)
+    if not args.dry_run and args.mode != "notify":
         save_cache(cache)
 
-    # Create PRs (one per repo with changes)
+    # Create PRs or issue depending on mode
     if not args.init:
-        for owner_repo, report in all_reports.items():
-            create_pr_for_repo(owner_repo, report, dry_run=args.dry_run)
+        if args.mode == "notify":
+            create_consolidated_issue(all_reports, dry_run=args.dry_run)
+        else:
+            for owner_repo, report in all_reports.items():
+                create_pr_for_repo(owner_repo, report, dry_run=args.dry_run)
 
     # Summary
     print("\n::group::Summary")

@@ -1,4 +1,4 @@
-name: Upstream Skill Sync
+name: Upstream Skill Sync (Notify)
 
 on:
   schedule:
@@ -7,29 +7,20 @@ on:
   workflow_dispatch:
     inputs:
       repo:
-        description: 'Sync specific repo only (e.g., openclaw/openclaw)'
+        description: 'Check specific repo only (e.g., openclaw/openclaw)'
         required: false
         type: string
-      dry_run:
-        description: 'Dry run -- print changes without creating PRs'
-        type: boolean
-        default: false
-      init:
-        description: 'Initialize SHA cache without creating PRs'
-        type: boolean
-        default: false
 
 # Prevent concurrent runs
 concurrency:
-  group: upstream-sync
+  group: upstream-sync-notify
   cancel-in-progress: false
 
 permissions:
-  contents: write
-  pull-requests: write
+  issues: write
 
 jobs:
-  sync:
+  notify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -40,17 +31,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Configure git identity
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Run upstream sync
+      - name: Run upstream sync (notify mode)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 .github/upstream-sync/sync.py \
-            ${{ inputs.init && '--init' || '' }} \
-            ${{ inputs.dry_run && '--dry-run' || '' }} \
+            --mode=notify \
             ${{ inputs.repo && format('--repo {0}', inputs.repo) || '' }}
