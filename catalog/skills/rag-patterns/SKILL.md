@@ -1,13 +1,13 @@
 ---
 name: rag-patterns
-description: "Implementation patterns for Retrieval-Augmented Generation covering basic chains, corrective RAG, hybrid search, knowledge graphs, agentic RAG, and multimodal retrieval"
+description: "Implementation patterns for Retrieval-Augmented Generation covering basic chains, corrective RAG, hybrid search, knowledge graphs with community detection, agentic RAG, multimodal retrieval, and reasoning-based vectorless RAG"
 domain: data-ai
-tags: [rag, retrieval-augmented-generation, vector-search, embeddings, langchain, llamaindex]
+tags: [rag, retrieval-augmented-generation, vector-search, embeddings, langchain, llamaindex, graphrag, knowledge-graph, pageindex, reasoning-rag, vectorless-rag, community-detection]
 ---
 
 # RAG Implementation Patterns
 
-Retrieval-Augmented Generation (RAG) extends Large Language Models by providing them with specific, authoritative context retrieved from external data sources. This guide defines common architectural patterns for implementing RAG systems, ranging from simple linear pipelines to complex agentic loops.
+Retrieval-Augmented Generation (RAG) extends Large Language Models by providing them with specific, authoritative context retrieved from external data sources. This guide defines common architectural patterns for implementing RAG systems, ranging from simple linear pipelines through graph-based knowledge retrieval to reasoning-driven vectorless approaches.
 
 ## 1. Basic RAG Chain
 
@@ -105,33 +105,44 @@ Use for domain-specific knowledge bases where technical terms, acronyms, or spec
 
 ## 4. Knowledge Graph RAG
 
-Knowledge Graph RAG (GraphRAG) utilizes structured relationships between entities to enable complex reasoning and multi-hop retrieval.
+Knowledge Graph RAG (GraphRAG) utilizes structured relationships between entities to enable complex reasoning, multi-hop retrieval, and holistic corpus understanding. Microsoft's GraphRAG project demonstrates a production-grade implementation of this pattern.
 
 ### Use Case
-Use for datasets with deep relationships, such as legal documents, medical research, or complex technical specifications where multi-hop reasoning is required.
+Use for datasets with deep relationships, such as legal documents, medical research, or complex technical specifications where multi-hop reasoning is required. Also effective when the system must answer holistic questions about a large corpus (e.g., "What are the main themes?") where simple vector retrieval fails to connect disparate pieces of information.
 
 ### Architecture Overview
-1. Extract entities and their relationships from the source text.
-2. Populate a graph database with nodes (entities) and edges (relationships).
-3. At query time, identify key entities and traverse the graph to find connected information.
-4. Map the graph paths back to the original source text for citation.
-5. Generate an answer backed by explicit relational paths and citations.
+1. Slice the input corpus into TextUnits that serve as analyzable units and provide fine-grained references.
+2. Extract entities (people, places, organizations, concepts) and their relationships from each TextUnit using LLM-based extraction.
+3. Construct a knowledge graph with entities as nodes and relationships as edges.
+4. Apply hierarchical community detection (Leiden algorithm) to partition the graph into clusters of related entities.
+5. Generate summaries for each community from the bottom up, enabling holistic understanding of the dataset.
+6. At query time, select the appropriate search mode based on the question type:
+   - **Global Search**: Leverages community summaries to reason about holistic, corpus-wide questions (e.g., "What are the top themes in this dataset?"). Operates by map-reduce over community summaries.
+   - **Local Search**: Fans out from identified entities to their neighbors and associated concepts. Best for specific, entity-centric questions.
+   - **DRIFT Search**: Combines local entity fan-out with community-level context for richer, more contextualized answers.
+7. Map the graph paths back to the original source text for citation and traceability.
 
 ### Key Components
-- Entity Extraction: Identifies people, places, things, and concepts.
-- Relationship Extraction: Identifies how entities interact or relate.
-- Graph Database: Stores and queries the relational structure.
+- Entity and Relationship Extraction: LLM-driven identification of entities, relationships, and key claims from text.
+- Graph Database: Stores the relational structure of entities and their connections.
+- Community Detection: Leiden algorithm partitions the graph into hierarchical communities of related entities.
+- Community Summarization: Bottom-up LLM summaries of each community that capture key themes and relationships.
+- Multi-Mode Query Engine: Global, Local, and DRIFT search modes for different question types.
 - Citation Engine: Maintains links between graph nodes and source documents.
 
 ### Trade-offs and Considerations
-- Reasoning: Exceptional at answering questions about relationships and broad themes.
+- Reasoning: Exceptional at answering questions about relationships, broad themes, and connecting disparate information.
 - Auditability: Provides clear reasoning paths and verifiable citations.
-- Pre-processing: Heavy computational cost for graph construction and entity extraction.
+- Pre-processing Cost: Heavy computational cost for graph construction, entity extraction, and community summarization. Indexing requires many LLM calls.
+- Query Mode Selection: Choosing the correct search mode (Global vs Local vs DRIFT) is critical to answer quality.
+- Prompt Tuning: Out-of-the-box performance may require fine-tuning extraction and summarization prompts for the specific domain.
 
 ### Common Libraries
+- GraphRAG (Microsoft)
 - Neo4j
+- NetworkX
+- Leiden Algorithm (graspologic)
 - Ollama
-- Dataclasses (for structured citations)
 
 ## 5. Agentic RAG
 
@@ -281,6 +292,44 @@ Use for enterprise systems with multiple distinct knowledge bases (e.g., HR, Eng
 - Semantic Router
 - Vector Store Metadata filtering
 
+## 10. Reasoning-based / Vectorless RAG
+
+Reasoning-based RAG replaces vector similarity search with LLM-driven reasoning over a structured document index. Instead of embedding and chunking, the system builds a hierarchical tree index and uses the LLM to navigate it, simulating how human experts find information in long documents.
+
+### Use Case
+Use for long, structured, domain-specific documents (financial reports, legal filings, regulatory documents, technical manuals) where vector similarity frequently retrieves semantically similar but irrelevant chunks, and where cross-referencing between sections is required.
+
+### Architecture Overview
+1. Parse the input document (PDF, markdown) and generate a hierarchical tree index in JSON format, similar to a table of contents. Each node contains a title, summary, page range, and child nodes.
+2. Store the tree index as an in-context index — a structure that resides within the LLM's active reasoning context, not in an external database.
+3. At query time, present the tree index to the LLM and begin an iterative reasoning loop:
+   a. The LLM reads the index and selects the section most likely to contain the answer.
+   b. The system retrieves the raw content of the selected section and presents it to the LLM.
+   c. The LLM extracts relevant information and evaluates whether the answer is complete.
+   d. If the information is insufficient, the LLM returns to the index and selects another section.
+   e. When sufficient information is gathered, the LLM generates the final answer with page and section citations.
+4. If the selected content contains internal references (e.g., "see Appendix G"), the LLM follows the reference by navigating the tree index to the referenced section.
+
+### Key Components
+- Hierarchical Tree Index: A JSON-based ToC structure with nodes containing titles, summaries, page ranges, and nested sub-nodes.
+- In-Context Index: The tree resides inside the LLM context window, enabling reasoning-driven navigation rather than external similarity lookup.
+- Reasoning-based Tree Search: The LLM decides where to look based on understanding of the query intent and document structure.
+- Iterative Retrieval Loop: The system loops through select-read-evaluate until the answer is complete.
+- Cross-Reference Resolver: The LLM follows in-document references by navigating the tree to the cited section.
+
+### Trade-offs and Considerations
+- Relevance over Similarity: Retrieves contextually relevant information by reasoning about query intent, not just matching embeddings.
+- No Infrastructure Overhead: Eliminates the need for a vector database, embedding model, and chunking pipeline.
+- Explainability: Retrieval is traceable — every retrieved section has a clear reasoning path and page citation.
+- LLM Cost: Requires LLM calls at both index-build time and query time, increasing per-query costs compared to vector lookup.
+- Context Window Dependency: The tree index must fit within the LLM's context window, which limits applicability to extremely large corpora without hierarchical partitioning.
+- Index Build Time: Generating the tree index from a document requires LLM processing, though this is a one-time cost per document.
+
+### Common Libraries
+- PageIndex
+- OpenAI GPT-4o (for tree generation and reasoning)
+- Vision-capable LLMs (for OCR-free PDF processing)
+
 ## Pattern Selection Guide
 
 Use this matrix to select the appropriate RAG pattern based on your requirements.
@@ -296,13 +345,17 @@ Use this matrix to select the appropriate RAG pattern based on your requirements
 | Visual/Diagram Data | **Vision/Multimodal RAG** | Incorporates images into the context. |
 | Strict Data Privacy | **Local/Private RAG** | Processes everything locally with no cloud calls. |
 | Multiple Knowledge Bases | **Database Routing RAG** | Directs queries to the relevant domain-specific silo. |
+| Long Structured Documents | **Reasoning-based / Vectorless RAG** | Uses LLM reasoning over a tree index instead of vector similarity. |
+| Holistic Corpus Understanding | **Knowledge Graph RAG (Global Search)** | Community summaries enable corpus-wide thematic answers. |
 
 ### Decision Flow
 1. **Is the data sensitive?** If yes, start with **Local/Private RAG**.
 2. **Does the data have images?** If yes, use **Vision/Multimodal RAG**.
-3. **Are relationships between entities critical?** If yes, use **Knowledge Graph RAG**.
-4. **Is exact term matching required?** If yes, use **Hybrid Search RAG**.
-5. **Does the system need to self-correct?** If yes, use **Corrective RAG**.
-6. **Is the task multi-step or non-linear?** If yes, use **Agentic RAG**.
-7. **Are there multiple distinct silos?** If yes, use **Database Routing RAG**.
-8. **Otherwise**, start with a **Basic RAG Chain**.
+3. **Is the document long and structured (e.g., financial report, legal filing)?** If yes, use **Reasoning-based / Vectorless RAG**.
+4. **Are relationships between entities critical?** If yes, use **Knowledge Graph RAG**.
+5. **Do you need holistic, corpus-wide thematic answers?** If yes, use **Knowledge Graph RAG (Global Search)**.
+6. **Is exact term matching required?** If yes, use **Hybrid Search RAG**.
+7. **Does the system need to self-correct?** If yes, use **Corrective RAG**.
+8. **Is the task multi-step or non-linear?** If yes, use **Agentic RAG**.
+9. **Are there multiple distinct silos?** If yes, use **Database Routing RAG**.
+10. **Otherwise**, start with a **Basic RAG Chain**.
