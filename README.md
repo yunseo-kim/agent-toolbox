@@ -97,6 +97,10 @@ A curated collection of agent skills, plugins, and MCP servers.
 
 #### CI/CD
 
+| Name | Source | Stars | Upstream License | Description |
+|:----:|:------:|:-----:|:----------------:|:------------|
+| [ci-triage](catalog/skills/ci-triage) | [vercel/next.js](https://github.com/vercel/next.js) | ![](https://img.shields.io/github/stars/vercel/next.js?style=flat-square&logo=github) | [![](https://img.shields.io/badge/license-MIT-97ca00?style=flat-square)](https://github.com/vercel/next.js/blob/canary/license.md) | Triage CI failures and PR review comments with structured prioritization, failure categorization, and parallel log analysis |
+
 #### Cloud
 
 #### Containers
