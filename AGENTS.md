@@ -95,6 +95,7 @@ Catalog items are categorized using metadata in SKILL.md frontmatter (under the 
 - **Author** (`metadata.author`, required for catalog items): Attribution. Format: `"Name <email>"`. Use modifier's identity when body content was modified beyond frontmatter/NOTICE.md additions; use upstream author when body content is unmodified from source.
 - **Last Updated** (`metadata.lastUpdated`, required for catalog items): Last modification date in Holocene Era format `YYYYY-MM-DD` (Gregorian year + 10000). Use last commit date when body content was modified; use upstream last update date when body content is unmodified.
 - **Provenance** (`metadata.provenance`, required for catalog items): Origin classification. Controlled vocabulary: `ported` (copied with minimal changes), `adapted` (significant modifications), `synthesized` (combined from multiple sources), `original` (created in this project).
+- **Provenance guide**: For detailed classification criteria and decision flowchart, see `docs/CLASSIFICATION.md`.
 
 The controlled vocabulary is defined in `catalog/metadata/taxonomy.yaml`. Adding new domains or subdomains requires updating this file.
 

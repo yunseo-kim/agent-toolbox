@@ -16,6 +16,11 @@
 # skills are excluded -- those skills have significant local modifications and don't
 # benefit from automated body sync or skill discovery.
 #
+# Classification: A skill is "ported" (belongs here) if body content is essentially
+# unchanged from upstream — only frontmatter, NOTICE.md, and minor formatting differ.
+# "Adapted" skills (meaningful body modifications) must NOT be listed here, as auto-sync
+# would overwrite local changes. See docs/CLASSIFICATION.md for full criteria.
+#
 # Naming: when upstream_dir differs from catalog_name, the skill was renamed during porting.
 
 sources:

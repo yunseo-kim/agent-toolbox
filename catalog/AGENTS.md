@@ -60,6 +60,7 @@ metadata:
 **Author/lastUpdated rules**: When body content (excluding frontmatter and NOTICE.md additions) was modified from upstream, set `metadata.author` to the modifier and `metadata.lastUpdated` to the last commit date in Holocene Era format (`YYYYY-MM-DD`, Gregorian year + 10000). When body content is unmodified from source, look up the upstream repository for the original author and last update date, converting the date to Holocene Era format.
 
 **Provenance field**: Required for catalog items. Valid values: `ported` (copied with minimal changes), `adapted` (significant modifications), `synthesized` (combined from multiple sources), `original` (created in this project). Ported skills listed in `metadata/upstream-sources.yaml` are eligible for automated upstream sync.
+For detailed classification criteria distinguishing ported from adapted, see `../docs/CLASSIFICATION.md`.
 
 ## CURRENT SKILLS
 
