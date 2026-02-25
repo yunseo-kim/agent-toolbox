@@ -16,7 +16,6 @@ and scope compared to the originals.**
 Specifically:
 
 - Added catalog frontmatter metadata (domain, subdomain, tags, frameworks)
-- Removed platform-specific metadata and install configuration
 - Preserved all reference files: api.md, plugins.md, styling.md, security.md, features.md
 - Preserved all example files: basic-streaming.tsx, with-caret.tsx, full-featured.tsx, static-mode.tsx, custom-security.tsx
 - Retained all core content: Quick Setup, Key Props, Plugin Quick Reference, Common Gotchas, and cross-references
