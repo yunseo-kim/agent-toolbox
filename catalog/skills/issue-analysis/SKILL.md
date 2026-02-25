@@ -11,9 +11,9 @@ metadata:
   domain: business
   subdomain: project-management
   tags: "issue-tracking, triage, effort-estimation, context-gathering"
-  author: "Svetoslav Dekov <svetoslav.dekov@n8n.io>"
-  lastUpdated: "12026-02-25"
-  provenance: ported
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-26"
+  provenance: adapted
 ---
 
 # Issue Analysis

@@ -18,9 +18,9 @@ metadata:
   subdomain: frontend
   tags: "feature-flags, a-b-testing, experimentation, flags-explorer, precompute, vercel"
   frameworks: "flags-sdk, nextjs, sveltekit"
-  author: "Yunseo Kim <dev@yunseo.kim>"
-  lastUpdated: "12026-02-25"
-  provenance: adapted
+  author: "Hayden Bleasel <hello@haydenbleasel.com>"
+  lastUpdated: "12026-02-24"
+  provenance: ported
 ---
 
 # Flags SDK

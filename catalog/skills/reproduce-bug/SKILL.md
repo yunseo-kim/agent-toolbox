@@ -7,9 +7,9 @@ metadata:
   domain: devops
   subdomain: testing
   tags: "debugging, bug-reproduction, regression-test, tdd"
-  author: "Declan Carroll <declan@n8n.io>"
-  lastUpdated: "12026-02-20"
-  provenance: ported
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-26"
+  provenance: adapted
 ---
 
 # Bug Reproduction Framework

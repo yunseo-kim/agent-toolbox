@@ -10,9 +10,9 @@ metadata:
   domain: content-media
   subdomain: content-design
   tags: "ux-writing, content-design, ui-copy, microcopy, i18n"
-  author: "Albert Alises <albert.alises@gmail.com>"
-  lastUpdated: "12026-02-13"
-  provenance: ported
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-26"
+  provenance: adapted
 ---
 
 # Content Design

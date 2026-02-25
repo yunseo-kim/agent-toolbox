@@ -10,9 +10,9 @@ metadata:
   domain: devops
   subdomain: git
   tags: "github, pull-request, conventional-commits, gh-cli"
-  author: "Mutasem Aldmour <4711238+mutdmour@users.noreply.github.com>"
-  lastUpdated: "12026-01-14"
-  provenance: ported
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-26"
+  provenance: adapted
 ---
 
 # Create Pull Request
