@@ -1,9 +1,11 @@
 ---
 name: editor
 description: "Professional editing and proofreading for clarity, grammar, style, and readability improvements across all document types"
-domain: content-media
-subdomain: content-design
-tags: [editing, proofreading, style-guide, tone]
+
+metadata:
+  domain: content-media
+  subdomain: content-design
+  tags: "editing, proofreading, style-guide, tone"
 ---
 
 # Editor

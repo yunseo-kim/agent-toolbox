@@ -1,9 +1,11 @@
 ---
 name: skill-creator
 description: "Guide for creating effective skills that extend AI assistant capabilities with specialized knowledge, workflows, and tool integrations. Use when creating or updating skills."
-domain: development
-subdomain: developer-tooling
-tags: [skill-authoring, plugin-development, agent-tools]
+
+metadata:
+  domain: development
+  subdomain: developer-tooling
+  tags: "skill-authoring, plugin-development, agent-tools"
 ---
 
 # Skill Creator

@@ -1,8 +1,10 @@
 ---
 name: deep-research
 description: "Comprehensive research assistant that synthesizes information from multiple sources with proper citations and source evaluation"
-domain: research
-tags: [research, synthesis, citations, multi-source]
+
+metadata:
+  domain: research
+  tags: "research, synthesis, citations, multi-source"
 ---
 
 # Deep Research

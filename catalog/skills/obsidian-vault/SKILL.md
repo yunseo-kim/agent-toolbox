@@ -3,8 +3,10 @@ name: obsidian-vault
 description: >
   Work with Obsidian vaults (plain Markdown notes) and automate via
   obsidian-cli. Search, create, move, rename, and manage notes.
-domain: productivity
-tags: [obsidian, markdown, knowledge-base, note-taking, cli]
+
+metadata:
+  domain: productivity
+  tags: "obsidian, markdown, knowledge-base, note-taking, cli"
 ---
 
 # Obsidian

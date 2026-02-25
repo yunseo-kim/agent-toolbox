@@ -1,9 +1,11 @@
 ---
 name: doc-coauthoring
 description: "Guide users through a structured workflow for co-authoring documentation, proposals, technical specs, and decision docs. Use when writing docs, creating proposals, drafting specs, or collaborative documentation tasks."
-domain: documentation
-subdomain: technical-docs
-tags: [co-authoring, documentation-workflow, proposals, specs, collaborative-writing]
+
+metadata:
+  domain: documentation
+  subdomain: technical-docs
+  tags: "co-authoring, documentation-workflow, proposals, specs, collaborative-writing"
 ---
 
 # Doc Co-Authoring Workflow

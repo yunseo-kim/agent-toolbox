@@ -3,9 +3,11 @@ name: openai-image-gen
 description: >
   Batch-generate images via OpenAI Images API using GPT Image models or
   DALL-E. Includes random prompt sampler and HTML gallery output.
-domain: content-media
-subdomain: generative-art
-tags: [openai, dall-e, gpt-image, image-generation, ai]
+
+metadata:
+  domain: content-media
+  subdomain: generative-art
+  tags: "openai, dall-e, gpt-image, image-generation, ai"
 ---
 
 # OpenAI Image Gen

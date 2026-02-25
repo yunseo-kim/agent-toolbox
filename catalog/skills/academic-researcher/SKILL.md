@@ -1,9 +1,11 @@
 ---
 name: academic-researcher
 description: "Academic research assistant for literature reviews, paper analysis, scholarly writing, and citation formatting in APA, MLA, and Chicago styles"
-domain: research
-subdomain: citation-management
-tags: [academic, literature-review, papers, apa, mla]
+
+metadata:
+  domain: research
+  subdomain: citation-management
+  tags: "academic, literature-review, papers, apa, mla"
 ---
 
 # Academic Researcher

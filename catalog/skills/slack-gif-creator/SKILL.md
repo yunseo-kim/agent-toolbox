@@ -1,9 +1,11 @@
 ---
 name: slack-gif-creator
 description: "Create animated GIFs optimized for Slack with validation tools and animation utilities. Use when users request animated GIFs for Slack."
-domain: content-media
-subdomain: media-processing
-tags: [gif, slack, animation, pillow, creative]
+
+metadata:
+  domain: content-media
+  subdomain: media-processing
+  tags: "gif, slack, animation, pillow, creative"
 ---
 
 # Slack GIF Creator

@@ -3,8 +3,10 @@ name: nano-pdf
 description: >
   Lightweight PDF processing from the command line. Use when working with
   PDF files for extraction, conversion, or manipulation.
-domain: productivity
-tags: [pdf, document, processing, cli]
+
+metadata:
+  domain: productivity
+  tags: "pdf, document, processing, cli"
 ---
 
 # nano-pdf

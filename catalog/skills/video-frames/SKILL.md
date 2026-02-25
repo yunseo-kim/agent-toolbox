@@ -3,9 +3,11 @@ name: video-frames
 description: >
   Extract frames or short clips from videos using ffmpeg. Quick thumbnails
   and frame extraction at specific timestamps.
-domain: content-media
-subdomain: media-processing
-tags: [ffmpeg, video, frames, extraction, cli]
+
+metadata:
+  domain: content-media
+  subdomain: media-processing
+  tags: "ffmpeg, video, frames, extraction, cli"
 ---
 
 # Video Frames (ffmpeg)

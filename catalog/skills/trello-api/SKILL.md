@@ -3,8 +3,10 @@ name: trello-api
 description: >
   Manage Trello boards, lists, and cards via the Trello REST API. Create,
   move, archive cards and add comments using curl.
-domain: productivity
-tags: [trello, kanban, board, api, project-management]
+
+metadata:
+  domain: productivity
+  tags: "trello, kanban, board, api, project-management"
 ---
 
 # Trello Skill

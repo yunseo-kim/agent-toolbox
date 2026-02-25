@@ -1,9 +1,11 @@
 ---
 name: sprint-planner
 description: "Agile sprint planning with story estimation, capacity planning, velocity tracking, and sprint goal setting"
-domain: business
-subdomain: project-management
-tags: [agile, scrum, sprint, story-points, estimation]
+
+metadata:
+  domain: business
+  subdomain: project-management
+  tags: "agile, scrum, sprint, story-points, estimation"
 ---
 
 # Sprint Planner

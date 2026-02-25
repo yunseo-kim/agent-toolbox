@@ -3,8 +3,10 @@ name: eightctl
 description: >
   Control Eight Sleep pods via CLI. Check status, set temperature, manage
   alarms, and configure sleep schedules.
-domain: productivity
-tags: [eight-sleep, iot, smart-home, sleep, cli]
+
+metadata:
+  domain: productivity
+  tags: "eight-sleep, iot, smart-home, sleep, cli"
 ---
 
 # eightctl

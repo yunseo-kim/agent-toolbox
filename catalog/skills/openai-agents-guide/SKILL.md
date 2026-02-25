@@ -1,9 +1,11 @@
 ---
 name: openai-agents-guide
 description: "Guide to building AI agents with the OpenAI Agents SDK covering agent creation, tool use, context management, guardrails, handoffs, multi-agent orchestration, and tracing"
-domain: data-ai
-tags: [openai, agents-sdk, multi-agent, guardrails, handoffs, tracing]
-frameworks: [openai-agents-sdk]
+
+metadata:
+  domain: data-ai
+  tags: "openai, agents-sdk, multi-agent, guardrails, handoffs, tracing"
+  frameworks: "openai-agents-sdk"
 ---
 
 # OpenAI Agents SDK Guide

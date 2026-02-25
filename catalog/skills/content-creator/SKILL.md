@@ -1,9 +1,11 @@
 ---
 name: content-creator
 description: "Creates engaging content for blogs, social media, and marketing materials with audience focus and platform-specific optimization"
-domain: content-media
-subdomain: content-design
-tags: [blog, social-media, content-marketing, seo]
+
+metadata:
+  domain: content-media
+  subdomain: content-design
+  tags: "blog, social-media, content-marketing, seo"
 ---
 
 # Content Creator

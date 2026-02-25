@@ -3,9 +3,11 @@ name: sherpa-onnx-tts
 description: >
   Local text-to-speech via sherpa-onnx. Fully offline, no cloud dependency,
   supports multiple voice models across platforms.
-domain: content-media
-subdomain: media-processing
-tags: [tts, text-to-speech, local, offline, onnx]
+
+metadata:
+  domain: content-media
+  subdomain: media-processing
+  tags: "tts, text-to-speech, local, offline, onnx"
 ---
 
 # sherpa-onnx-tts

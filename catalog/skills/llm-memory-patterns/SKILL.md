@@ -1,8 +1,10 @@
 ---
 name: llm-memory-patterns
 description: "Implementation patterns for LLM memory systems covering conversation buffers, persistent vector memory, bidirectional storage, local-private memory, and agentic memory"
-domain: data-ai
-tags: [memory, conversation-history, vector-memory, mem0, qdrant, personalization]
+
+metadata:
+  domain: data-ai
+  tags: "memory, conversation-history, vector-memory, mem0, qdrant, personalization"
 ---
 
 # LLM Memory Patterns

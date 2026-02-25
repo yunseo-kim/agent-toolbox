@@ -1,9 +1,11 @@
 ---
 name: theme-factory
 description: "Toolkit for styling artifacts with pre-set or custom themes including colors and fonts. Use when applying consistent professional styling to slides, docs, reports, or HTML landing pages."
-domain: content-media
-subdomain: content-design
-tags: [themes, styling, color-palette, typography, presentation]
+
+metadata:
+  domain: content-media
+  subdomain: content-design
+  tags: "themes, styling, color-palette, typography, presentation"
 ---
 
 

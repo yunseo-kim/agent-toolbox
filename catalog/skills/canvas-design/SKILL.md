@@ -1,9 +1,11 @@
 ---
 name: canvas-design
 description: "Create beautiful visual art in .png and .pdf documents using design philosophy. Use when creating posters, art pieces, designs, or other static visual content."
-domain: content-media
-subdomain: generative-art
-tags: [design, visual-art, pdf, png, typography, creative-design]
+
+metadata:
+  domain: content-media
+  subdomain: generative-art
+  tags: "design, visual-art, pdf, png, typography, creative-design"
 ---
 
 These are instructions for creating design philosophies - aesthetic movements that are then EXPRESSED VISUALLY. Output only .md files, .pdf files, and .png files.

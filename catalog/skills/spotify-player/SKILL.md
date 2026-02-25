@@ -4,9 +4,11 @@ description: >
   Terminal Spotify playback and search via spogo (preferred) or
   spotify_player CLI. Search tracks, control playback, manage devices, and
   browse playlists.
-domain: content-media
-subdomain: media-processing
-tags: [spotify, music, playback, search, cli]
+
+metadata:
+  domain: content-media
+  subdomain: media-processing
+  tags: "spotify, music, playback, search, cli"
 ---
 
 # spogo / spotify_player

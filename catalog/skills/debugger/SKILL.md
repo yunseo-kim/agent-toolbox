@@ -1,9 +1,11 @@
 ---
 name: debugger
 description: "Systematic debugging and root cause analysis for identifying and fixing software issues using binary search, bisect, and structured hypothesis testing"
-domain: devops
-subdomain: testing
-tags: [debugging, root-cause-analysis, troubleshooting, git-bisect]
+
+metadata:
+  domain: devops
+  subdomain: testing
+  tags: "debugging, root-cause-analysis, troubleshooting, git-bisect"
 ---
 
 # Debugger

@@ -1,8 +1,10 @@
 ---
 name: data-analyst
 description: "SQL, pandas, and statistical analysis expertise for data exploration, cleaning, transformation, and insight generation"
-domain: data-ai
-tags: [sql, pandas, statistics, data-analysis, data-cleaning]
+
+metadata:
+  domain: data-ai
+  tags: "sql, pandas, statistics, data-analysis, data-cleaning"
 ---
 
 # Data Analyst

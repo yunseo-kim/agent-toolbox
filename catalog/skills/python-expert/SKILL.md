@@ -1,9 +1,11 @@
 ---
 name: python-expert
 description: "Senior Python developer expertise for writing clean, efficient, and well-documented code with type hints and PEP 8 compliance"
-domain: development
-subdomain: scripting
-tags: [python, clean-code, type-hints, best-practices]
+
+metadata:
+  domain: development
+  subdomain: scripting
+  tags: "python, clean-code, type-hints, best-practices"
 ---
 
 # Python Expert

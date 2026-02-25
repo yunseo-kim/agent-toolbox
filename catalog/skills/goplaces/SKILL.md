@@ -4,8 +4,10 @@ description: >
   Query Google Places API (New) via the goplaces CLI. Text search, place
   details, resolve locations, and read reviews with human-friendly or JSON
   output.
-domain: research
-tags: [google-places, maps, location, search, cli]
+
+metadata:
+  domain: research
+  tags: "google-places, maps, location, search, cli"
 ---
 
 # goplaces

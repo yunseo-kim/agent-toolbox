@@ -4,9 +4,11 @@ description: >
   Verify technical accuracy of JavaScript documentation by checking code examples,
   MDN/ECMAScript compliance, and common misconceptions. Use before publishing,
   after major edits, or during periodic accuracy audits.
-domain: documentation
-subdomain: technical-docs
-tags: [fact-checking, accuracy, verification, javascript, documentation, quality]
+
+metadata:
+  domain: documentation
+  subdomain: technical-docs
+  tags: "fact-checking, accuracy, verification, javascript, documentation, quality"
 ---
 
 # Skill: JavaScript Fact Checker

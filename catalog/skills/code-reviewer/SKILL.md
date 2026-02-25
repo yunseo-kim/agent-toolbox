@@ -1,9 +1,11 @@
 ---
 name: code-reviewer
 description: "Thorough code review with focus on security vulnerabilities, performance issues, and best practices using prioritized rule-based analysis"
-domain: devops
-subdomain: code-review
-tags: [security, performance, best-practices, pull-request]
+
+metadata:
+  domain: devops
+  subdomain: code-review
+  tags: "security, performance, best-practices, pull-request"
 ---
 
 # Code Reviewer

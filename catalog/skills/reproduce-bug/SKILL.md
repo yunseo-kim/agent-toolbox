@@ -1,9 +1,11 @@
 ---
 name: reproduce-bug
 description: Systematically reproduce a bug from a ticket or report with a failing regression test, using a structured hypothesis-driven methodology.
-domain: devops
-subdomain: testing
-tags: [debugging, bug-reproduction, regression-test, tdd]
+
+metadata:
+  domain: devops
+  subdomain: testing
+  tags: "debugging, bug-reproduction, regression-test, tdd"
 ---
 
 # Bug Reproduction Framework

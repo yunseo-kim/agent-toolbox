@@ -5,9 +5,11 @@ description: >
   search visibility, featured snippet optimization, and ranking potential.
   Use when publishing new pages, optimizing underperforming content, or running
   periodic content audits.
-domain: documentation
-subdomain: technical-docs
-tags: [seo, search, content-optimization, documentation, audit]
+
+metadata:
+  domain: documentation
+  subdomain: technical-docs
+  tags: "seo, search, content-optimization, documentation, audit"
 ---
 
 # Skill: SEO Audit for Documentation Pages

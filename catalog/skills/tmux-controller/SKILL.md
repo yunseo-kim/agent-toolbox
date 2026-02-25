@@ -4,9 +4,11 @@ description: >
   Remote-control tmux sessions for interactive CLIs by sending keystrokes
   and scraping pane output. Essential for managing long-running terminal
   processes.
-domain: development
-subdomain: developer-tooling
-tags: [tmux, terminal, session, automation, cli]
+
+metadata:
+  domain: development
+  subdomain: developer-tooling
+  tags: "tmux, terminal, session, automation, cli"
 ---
 
 # tmux Session Control

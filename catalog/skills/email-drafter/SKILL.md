@@ -1,9 +1,11 @@
 ---
 name: email-drafter
 description: "Professional email composition for business communication including meeting requests, follow-ups, and sensitive correspondence"
-domain: business
-subdomain: communications
-tags: [email, professional-writing, correspondence, business]
+
+metadata:
+  domain: business
+  subdomain: communications
+  tags: "email, professional-writing, correspondence, business"
 ---
 
 # Email Drafter

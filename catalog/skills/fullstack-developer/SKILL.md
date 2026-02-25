@@ -1,10 +1,12 @@
 ---
 name: fullstack-developer
 description: "Modern web development expertise covering React, Node.js, TypeScript, databases, and full-stack architecture patterns"
-domain: development
-subdomain: full-stack
-tags: [react, nodejs, typescript, api, database]
-frameworks: [nextjs, express, prisma]
+
+metadata:
+  domain: development
+  subdomain: full-stack
+  tags: "react, nodejs, typescript, api, database"
+  frameworks: "nextjs, express, prisma"
 ---
 
 # Full-Stack Developer

@@ -1,8 +1,10 @@
 ---
 name: fact-checker
 description: "Systematic fact verification and misinformation identification using evidence-based analysis with confidence ratings and source evaluation"
-domain: research
-tags: [verification, fact-checking, credibility, source-evaluation]
+
+metadata:
+  domain: research
+  tags: "verification, fact-checking, credibility, source-evaluation"
 ---
 
 # Fact Checker

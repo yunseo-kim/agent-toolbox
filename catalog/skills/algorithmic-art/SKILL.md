@@ -1,9 +1,11 @@
 ---
 name: algorithmic-art
 description: "Create algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use for generative art, flow fields, particle systems, and creative coding."
-domain: content-media
-subdomain: generative-art
-tags: [generative-art, p5js, creative-coding, algorithmic, interactive]
+
+metadata:
+  domain: content-media
+  subdomain: generative-art
+  tags: "generative-art, p5js, creative-coding, algorithmic, interactive"
 ---
 
 Algorithmic philosophies are computational aesthetic movements that are then expressed through code. Output .md files (philosophy), .html files (interactive viewer), and .js files (generative algorithms).

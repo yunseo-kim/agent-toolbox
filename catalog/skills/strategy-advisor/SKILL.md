@@ -1,9 +1,11 @@
 ---
 name: strategy-advisor
 description: "High-level strategic thinking and business decision guidance for planning, competitive analysis, and direction-setting"
-domain: business
-subdomain: business-apps
-tags: [strategy, decision-making, business-analysis, swot]
+
+metadata:
+  domain: business
+  subdomain: business-apps
+  tags: "strategy, decision-making, business-analysis, swot"
 ---
 
 # Strategy Advisor

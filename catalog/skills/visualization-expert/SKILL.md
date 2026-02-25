@@ -1,8 +1,10 @@
 ---
 name: visualization-expert
 description: "Chart selection and data visualization guidance for effective data communication using matplotlib, plotly, and dashboard design"
-domain: data-ai
-tags: [charts, dashboards, data-visualization, matplotlib, plotly]
+
+metadata:
+  domain: data-ai
+  tags: "charts, dashboards, data-visualization, matplotlib, plotly"
 ---
 
 # Visualization Expert

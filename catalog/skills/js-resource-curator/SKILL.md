@@ -5,9 +5,11 @@ description: >
   documentation, including trusted source lists, link auditing, and publication
   date guidelines for ES features. Use when adding resources, refreshing pages,
   or running link audits.
-domain: documentation
-subdomain: technical-docs
-tags: [resources, links, curation, javascript, documentation, audit]
+
+metadata:
+  domain: documentation
+  subdomain: technical-docs
+  tags: "resources, links, curation, javascript, documentation, audit"
 ---
 
 # Skill: Resource Curator for JavaScript Documentation

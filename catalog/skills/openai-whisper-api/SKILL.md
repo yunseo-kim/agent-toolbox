@@ -3,9 +3,11 @@ name: openai-whisper-api
 description: >
   Transcribe audio files via OpenAI Audio Transcriptions API (Whisper).
   Supports multiple formats with language detection and custom prompts.
-domain: content-media
-subdomain: media-processing
-tags: [openai, whisper, transcription, speech-to-text, api]
+
+metadata:
+  domain: content-media
+  subdomain: media-processing
+  tags: "openai, whisper, transcription, speech-to-text, api"
 ---
 
 # OpenAI Whisper API (curl)

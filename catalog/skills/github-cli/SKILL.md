@@ -4,9 +4,11 @@ description: >
   GitHub operations via the gh CLI. Manage issues, PRs, CI runs, code
   review, and API queries. Use for checking PR status, creating issues,
   viewing workflow logs, and querying repository data.
-domain: devops
-subdomain: git
-tags: [github, cli, issues, pull-request, ci]
+
+metadata:
+  domain: devops
+  subdomain: git
+  tags: "github, cli, issues, pull-request, ci"
 ---
 
 # GitHub Skill

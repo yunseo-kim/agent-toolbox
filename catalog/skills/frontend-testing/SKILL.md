@@ -6,10 +6,12 @@ description: >
   async patterns, mocking strategies, and coverage goals. Use when writing or
   reviewing frontend tests, improving coverage, or setting up testing
   infrastructure for React projects.
-domain: devops
-subdomain: testing
-tags: [vitest, react-testing-library, unit-testing, integration-testing, frontend, mocking]
-frameworks: [react, nextjs, vitest]
+
+metadata:
+  domain: devops
+  subdomain: testing
+  tags: "vitest, react-testing-library, unit-testing, integration-testing, frontend, mocking"
+  frameworks: "react, nextjs, vitest"
 ---
 
 # Frontend Testing

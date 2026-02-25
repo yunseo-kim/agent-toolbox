@@ -1,8 +1,10 @@
 ---
 name: decision-helper
 description: "Structured decision-making frameworks for evaluating options, weighing trade-offs, and making informed choices using proven methodologies"
-domain: productivity
-tags: [decision-making, analysis, frameworks, tradeoffs]
+
+metadata:
+  domain: productivity
+  tags: "decision-making, analysis, frameworks, tradeoffs"
 ---
 
 # Decision Helper

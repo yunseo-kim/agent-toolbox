@@ -1,7 +1,7 @@
 # PROJECT KNOWLEDGE BASE
 
-**Generated:** 2026-02-24
-**Commit:** e7d49e4
+**Generated:** 12026-02-25
+**Commit:** 9857cec
 **Branch:** main
 
 ## OVERVIEW
@@ -10,7 +10,6 @@ This repository started as a curated skills collection and is evolving into a cr
 
 ## CURRENT STATE
 
-- `catalog/` exists with 6 distributable skills (`content-design`, `create-pr`, `docs-writer`, `issue-analysis`, `loom-transcript`, `reproduce-bug`) and metadata (`taxonomy.yaml`, `presets.yaml`). The `catalog-index.json` is not yet generated.
 - `.agents/skills/`, `.agent/skills/`, `.claude/skills/`, `.cursor/skills/`, `.windsurf/skills/` are **development tooling only** — skills used by contributors while working on this repo (e.g. `git-master`, `create-pr`, `skill-creator`, `mcp-builder`). They are **not** project content or distribution artifacts.
 - Planned architecture directories (`src/`, `templates/`, `dist/`, `tests/`) are not yet materialized. The build toolchain (Bun-first TS) and CI/CD (GitHub Actions) are planned but not implemented.
 - Catalog items use **domain/framework-based taxonomy** for selective installation. Taxonomy is defined in `catalog/metadata/taxonomy.yaml`; categories live in SKILL.md frontmatter (`domain`, `subdomain`, `tags`, `frameworks` fields).
@@ -87,12 +86,12 @@ awesome-agent-toolbox/
 
 ### Taxonomy Model
 
-Catalog items are categorized using metadata in SKILL.md frontmatter, not directory structure. The `catalog/skills/` directory remains flat (one dir per skill).
+Catalog items are categorized using metadata in SKILL.md frontmatter (under the `metadata` field per the [Agent Skills specification](https://agentskills.io/specification.md)), not directory structure. The `catalog/skills/` directory remains flat (one dir per skill).
 
-- **Domain** (required, controlled vocabulary): Primary grouping — `productivity`, `development`, `devops`, `documentation`, `databases`, `blockchain`, `data-ai`, `research`, `business`, `content-media`.
-- **Subdomain** (optional, controlled vocabulary): Secondary grouping within domain — `git`, `ci-cd`, `frontend`, `technical-docs`, `testing`, `security`, `education`, etc.
-- **Tags** (optional, freeform): Searchable keywords for discovery — `github`, `yaml`, `react`, etc.
-- **Frameworks** (optional, freeform): Framework/tool associations — `nextjs`, `angular`, `django`, etc.
+- **Domain** (`metadata.domain`, required, controlled vocabulary): Primary grouping — `productivity`, `development`, `devops`, `documentation`, `databases`, `blockchain`, `data-ai`, `research`, `business`, `content-media`.
+- **Subdomain** (`metadata.subdomain`, optional, controlled vocabulary): Secondary grouping within domain — `git`, `ci-cd`, `frontend`, `technical-docs`, `testing`, `security`, `education`, etc.
+- **Tags** (`metadata.tags`, optional, freeform): Comma-separated searchable keywords for discovery — `github`, `yaml`, `react`, etc.
+- **Frameworks** (`metadata.frameworks`, optional, freeform): Comma-separated framework/tool associations — `nextjs`, `angular`, `django`, etc.
 
 The controlled vocabulary is defined in `catalog/metadata/taxonomy.yaml`. Adding new domains or subdomains requires updating this file.
 
@@ -102,10 +101,11 @@ The controlled vocabulary is defined in `catalog/metadata/taxonomy.yaml`. Adding
 ---
 name: skill-name                        # required, kebab-case, max 64 chars
 description: "What this skill does..."  # required, max 1024 chars
-domain: devops                          # required, from taxonomy.yaml
-subdomain: ci-cd                        # optional, from taxonomy.yaml
-tags: [github, yaml, automation]        # optional, freeform kebab-case
-frameworks: [nextjs]                    # optional, freeform kebab-case
+metadata:
+  domain: devops                        # required, from taxonomy.yaml
+  subdomain: ci-cd                      # optional, from taxonomy.yaml
+  tags: "github, yaml, automation"      # optional, comma-separated, freeform kebab-case
+  frameworks: "nextjs"                  # optional, comma-separated, freeform kebab-case
 ---
 ```
 
@@ -154,7 +154,7 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 - **Installer tests**: OS-path and symlink/junction branch coverage.
 - **Behavior tests**: smoke tests per target (load plugin, discover skills, invoke representative workflow).
 - **Drift tests**: fail CI when generated outputs diverge from catalog unexpectedly.
-- **Taxonomy tests**: validate all SKILL.md `domain`/`subdomain` values against `catalog/metadata/taxonomy.yaml`.
+- **Taxonomy tests**: validate all SKILL.md `metadata.domain`/`metadata.subdomain` values against `catalog/metadata/taxonomy.yaml`.
 - **Preset tests**: validate all preset item references resolve to existing catalog items.
 - **Index tests**: verify `catalog-index.json` is consistent with individual SKILL.md frontmatter.
 - **Selective install tests**: verify filter composition (domain, subdomain, framework, tag, preset, skill) produces correct item sets.
@@ -166,7 +166,7 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 - Progressive disclosure: short core instructions in `SKILL.md`, deep detail in references.
 - Keep files ASCII unless existing file requires Unicode.
 - Keep generated artifacts clearly marked and reproducible.
-- Catalog items require `domain` in frontmatter (from `taxonomy.yaml`); `subdomain`, `tags`, `frameworks` are optional.
+- Catalog items require `metadata.domain` in frontmatter (from `taxonomy.yaml`); `metadata.subdomain`, `metadata.tags`, `metadata.frameworks` are optional.
 - `catalog/metadata/catalog-index.json` is auto-generated by `bun run build:index`; do not hand-edit.
 - **Catalog curation scope**: Skills specialized for a specific language (e.g., JavaScript) or framework (e.g., React, Next.js) ARE considered universally useful for developers in that domain and belong in the catalog. When porting, retain technology-specific expertise, standard tooling references (MDN, official docs), and community best practices — these are the skill's core value. Only strip project-specific internal conventions (proprietary file paths, project-unique workflows, custom component libraries) that would not apply outside the original project.
 

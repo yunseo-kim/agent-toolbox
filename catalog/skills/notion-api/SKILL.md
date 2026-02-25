@@ -3,8 +3,10 @@ name: notion-api
 description: >
   Interact with the Notion API for creating and managing pages, databases,
   and blocks. Use when automating Notion workflows via REST API calls.
-domain: productivity
-tags: [notion, api, database, pages, project-management]
+
+metadata:
+  domain: productivity
+  tags: "notion, api, database, pages, project-management"
 ---
 
 # notion

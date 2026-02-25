@@ -1,8 +1,10 @@
 ---
 name: loom-transcript
 description: Fetch and display the full transcript from a Loom video URL using Loom's public GraphQL API.
-domain: productivity
-tags: [loom, transcript, video, graphql]
+
+metadata:
+  domain: productivity
+  tags: "loom, transcript, video, graphql"
 ---
 
 # Loom Transcript Fetcher

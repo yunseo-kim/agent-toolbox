@@ -35,18 +35,21 @@ skill-name/
 
 ## FRONTMATTER SCHEMA (CATALOG)
 
+Compliant with the [Agent Skills specification](https://agentskills.io/specification.md).
+
 ```yaml
 ---
 name: skill-name                        # required, kebab-case, max 64 chars
 description: "What this skill does..."  # required, max 1024 chars
-domain: devops                          # required, from taxonomy.yaml
-subdomain: ci-cd                        # optional, from taxonomy.yaml
-tags: [github, yaml, automation]        # optional, freeform kebab-case
-frameworks: [nextjs]                    # optional, freeform kebab-case
+metadata:
+  domain: devops                        # required, from taxonomy.yaml
+  subdomain: ci-cd                      # optional, from taxonomy.yaml
+  tags: "github, yaml, automation"      # optional, comma-separated, freeform kebab-case
+  frameworks: "nextjs"                  # optional, comma-separated, freeform kebab-case
 ---
 ```
 
-`domain` is **required** for catalog items (unlike dev skills in `.agents/skills/`). All `domain` and `subdomain` values must exist in `metadata/taxonomy.yaml`.
+`metadata.domain` is **required** for catalog items (unlike dev skills in `.agents/skills/`). All `metadata.domain` and `metadata.subdomain` values must exist in `metadata/taxonomy.yaml`.
 
 ## CURRENT SKILLS
 
@@ -55,6 +58,7 @@ frameworks: [nextjs]                    # optional, freeform kebab-case
 | algorithmic-art | content-media | generative-art | Ported (anthropics/skills) |
 | academic-researcher | research | citation-management | Ported (awesome-llm-apps) |
 | canvas-design | content-media | generative-art | Ported (anthropics/skills) |
+| ci-triage | devops | ci-cd | Adapted (vercel/next.js) |
 | content-design | content-media | content-design | Ported (n8n) |
 | create-pr | devops | git | Ported (n8n) |
 | code-reviewer | devops | code-review | Ported (awesome-llm-apps) |

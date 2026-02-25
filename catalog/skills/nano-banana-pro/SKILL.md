@@ -3,9 +3,11 @@ name: nano-banana-pro
 description: >
   Generate images using the Banana.dev inference API. Lightweight image
   generation with Python script and configurable prompts.
-domain: content-media
-subdomain: generative-art
-tags: [image-generation, ai, banana-dev, python]
+
+metadata:
+  domain: content-media
+  subdomain: generative-art
+  tags: "image-generation, ai, banana-dev, python"
 ---
 
 # Nano Banana Pro (Gemini 3 Pro Image)

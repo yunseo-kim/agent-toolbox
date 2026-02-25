@@ -1,9 +1,11 @@
 ---
 name: internal-comms
 description: "Write internal communications including status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, and project updates."
-domain: business
-subdomain: communications
-tags: [communications, status-reports, newsletters, faq, corporate]
+
+metadata:
+  domain: business
+  subdomain: communications
+  tags: "communications, status-reports, newsletters, faq, corporate"
 ---
 
 ## When to use this skill

@@ -3,8 +3,10 @@ name: bear-notes
 description: >
   Create, search, and manage Bear notes via the grizzly CLI on macOS. Use
   when working with Bear note management from the terminal.
-domain: productivity
-tags: [macos, bear, cli, note-taking]
+
+metadata:
+  domain: productivity
+  tags: "macos, bear, cli, note-taking"
 ---
 
 # Bear Notes

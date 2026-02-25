@@ -1,9 +1,11 @@
 ---
 name: project-planner
 description: "Breaks down complex projects into actionable tasks with timelines, dependencies, milestones, and resource allocation"
-domain: business
-subdomain: project-management
-tags: [planning, wbs, milestones, estimation, dependencies]
+
+metadata:
+  domain: business
+  subdomain: project-management
+  tags: "planning, wbs, milestones, estimation, dependencies"
 ---
 
 # Project Planner

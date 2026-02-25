@@ -3,8 +3,10 @@ name: blogwatcher
 description: >
   Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI.
   Track new articles, mark as read, and manage blog subscriptions.
-domain: productivity
-tags: [rss, atom, blog, feed-reader, monitoring, cli]
+
+metadata:
+  domain: productivity
+  tags: "rss, atom, blog, feed-reader, monitoring, cli"
 ---
 
 # blogwatcher

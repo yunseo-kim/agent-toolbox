@@ -4,8 +4,10 @@ description: >
   Bundle prompts and files into one-shot AI consultations via the oracle
   CLI. Supports browser and API engines, session management, and multiple
   model providers for code review and architecture analysis.
-domain: data-ai
-tags: [ai, code-review, consultation, llm, oracle-cli]
+
+metadata:
+  domain: data-ai
+  tags: "ai, code-review, consultation, llm, oracle-cli"
 ---
 
 # oracle — best use

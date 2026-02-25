@@ -1,8 +1,10 @@
 ---
 name: rag-patterns
 description: "Implementation patterns for Retrieval-Augmented Generation covering basic chains, corrective RAG, hybrid search, knowledge graphs with community detection, agentic RAG, multimodal retrieval, and reasoning-based vectorless RAG"
-domain: data-ai
-tags: [rag, retrieval-augmented-generation, vector-search, embeddings, langchain, llamaindex, graphrag, knowledge-graph, pageindex, reasoning-rag, vectorless-rag, community-detection]
+
+metadata:
+  domain: data-ai
+  tags: "rag, retrieval-augmented-generation, vector-search, embeddings, langchain, llamaindex, graphrag, knowledge-graph, pageindex, reasoning-rag, vectorless-rag, community-detection"
 ---
 
 # RAG Implementation Patterns

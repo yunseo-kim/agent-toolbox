@@ -1,9 +1,11 @@
 ---
 name: google-adk-guide
 description: "Guide to building AI agents with Google Agent Development Kit covering agent creation, tool integration, memory, callbacks, plugins, and multi-agent orchestration"
-domain: data-ai
-tags: [google-adk, agents, multi-agent, tool-use, gemini]
-frameworks: [google-adk]
+
+metadata:
+  domain: data-ai
+  tags: "google-adk, agents, multi-agent, tool-use, gemini"
+  frameworks: "google-adk"
 ---
 
 # Google Agent Development Kit (ADK) Guide

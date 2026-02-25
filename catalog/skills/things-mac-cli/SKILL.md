@@ -3,8 +3,10 @@ name: things-mac-cli
 description: >
   Manage Things 3 via the things CLI on macOS. Add, update, search, and list
   todos and projects via URL scheme and local database reads.
-domain: productivity
-tags: [macos, things, task-management, gtd, cli]
+
+metadata:
+  domain: productivity
+  tags: "macos, things, task-management, gtd, cli"
 ---
 
 # Things 3 CLI

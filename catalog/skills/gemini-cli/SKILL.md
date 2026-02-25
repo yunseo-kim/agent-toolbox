@@ -3,8 +3,10 @@ name: gemini-cli
 description: >
   Use Gemini CLI for one-shot Q&A, summaries, and generation tasks. Supports
   model selection, JSON output, and extension management.
-domain: data-ai
-tags: [google, gemini, ai, cli, llm]
+
+metadata:
+  domain: data-ai
+  tags: "google, gemini, ai, cli, llm"
 ---
 
 # Gemini CLI

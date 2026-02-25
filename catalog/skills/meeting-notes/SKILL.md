@@ -1,8 +1,10 @@
 ---
 name: meeting-notes
 description: "Structured meeting summaries with action items, decisions, key discussion points, and follow-up tracking"
-domain: productivity
-tags: [meetings, notes, action-items, summaries, minutes]
+
+metadata:
+  domain: productivity
+  tags: "meetings, notes, action-items, summaries, minutes"
 ---
 
 # Meeting Notes
