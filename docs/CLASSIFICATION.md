@@ -18,7 +18,8 @@ Every catalog skill requires a `metadata.provenance` field declaring how it rela
 - Combined with content from other sources (if only one primary source)
 - Rewritten for different context or audience
 - The upstream sync script should NOT auto-update — changes would overwrite local modifications
-- Must NOT be tracked in `upstream-sources.yaml`
+- SHOULD be tracked in `adapted_skills` section of `upstream-sources.yaml` for advisory monitoring
+- Upstream changes are reported as advisories but never auto-applied
 
 ## Synthesized
 
@@ -56,7 +57,12 @@ Did you modify the body content beyond frontmatter, NOTICE.md, and minor formatt
 
 | Provenance | In upstream-sources.yaml? | Auto-sync safe? | Appears in sync report? |
 |------------|---------------------------|-----------------|------------------------|
-| Ported     | Yes (required)            | Yes             | Yes                    |
-| Adapted    | No                        | No              | No                     |
+| Ported     | Yes — `skills` section (required) | Yes | Yes — changes auto-applied |
+| Adapted    | Yes — `adapted_skills` section (advisory) | No | Yes — advisory only, never auto-applied |
 | Synthesized| No                        | No              | No                     |
 | Original   | No                        | N/A             | No                     |
+
+> **Note:** Adapted skills in `adapted_skills` are monitored for upstream changes but the sync
+> script will NEVER write upstream content to local files. When upstream changes are detected,
+> the sync report includes a section-heading diff and a link to the upstream commit history
+> so maintainers can manually review and integrate changes if desired.

@@ -2,24 +2,29 @@
 # Used by the upstream-sync GitHub Action for:
 #   1. Syncing body content updates to ported skills
 #   2. Detecting new skills added to upstream repos
+#   3. Monitoring upstream changes to adapted skills (advisory only)
 #
 # Schema:
 #   sources.<repo>:
-#     ref:       Default branch to track
+#     ref:              Default branch to track
 #     discover:
-#       root:       Directory prefix where skills live
-#       skill_file: Filename to look for (always SKILL.md)
-#     skills:     Map of catalog_name -> { upstream_dir }
-#     ignored:    Upstream skill dirs we chose NOT to port (excluded from new-skill alerts)
+#       root:           Directory prefix where skills live
+#       skill_file:     Filename to look for (always SKILL.md)
+#     skills:           Map of catalog_name -> { upstream_dir } (ported skills)
+#     adapted_skills:   Map of catalog_name -> { upstream_dir } or { upstream_path } (adapted skills, advisory only)
+#     ignored:          Upstream skill dirs we chose NOT to port (excluded from new-skill alerts)
 #
-# Only repos with ported skills are tracked here. Repos with only adapted/synthesized
-# skills are excluded -- those skills have significant local modifications and don't
-# benefit from automated body sync or skill discovery.
+# Ported skills (in 'skills') are eligible for automated body sync.
+# Adapted skills (in 'adapted_skills') are monitored for upstream changes
+# but NEVER auto-updated — changes are reported as advisories only.
+# See docs/CLASSIFICATION.md for full criteria.
 #
-# Classification: A skill is "ported" (belongs here) if body content is essentially
+# Adapted skills may use 'upstream_path' instead of 'upstream_dir' when the
+# upstream file location doesn't follow the standard discover.root + dir + skill_file pattern.
+#
+# Classification: A skill is "ported" (in 'skills') if body content is essentially
 # unchanged from upstream — only frontmatter, NOTICE.md, and minor formatting differ.
-# "Adapted" skills (meaningful body modifications) must NOT be listed here, as auto-sync
-# would overwrite local changes. See docs/CLASSIFICATION.md for full criteria.
+# "Adapted" skills (in 'adapted_skills') have meaningful body modifications.
 #
 # Naming: when upstream_dir differs from catalog_name, the skill was renamed during porting.
 
@@ -80,11 +85,12 @@ sources:
       root: .claude/skills/
       skill_file: SKILL.md
     skills:
-      content-design:  { upstream_dir: content-design }
-      create-pr:       { upstream_dir: create-pr }
-      issue-analysis:  { upstream_dir: linear-issue }       # renamed
       loom-transcript: { upstream_dir: loom-transcript }
-      reproduce-bug:   { upstream_dir: reproduce-bug }
+    adapted_skills:
+      content-design:   { upstream_dir: content-design }
+      create-pr:        { upstream_dir: create-pr }
+      issue-analysis:   { upstream_dir: linear-issue }     # renamed
+      reproduce-bug:    { upstream_dir: reproduce-bug }
     ignored:
       - n8n-conventions
 
@@ -167,4 +173,68 @@ sources:
       skill_file: SKILL.md
     skills:
       streamdown: { upstream_dir: streamdown }
+    ignored: []
+
+  vercel/flags:
+    ref: main
+    discover:
+      root: skills/
+      skill_file: SKILL.md
+    skills:
+      flags-sdk: { upstream_dir: flags-sdk }
+    ignored: []
+
+  vercel/next.js:
+    ref: canary
+    discover:
+      root: .agents/skills/
+      skill_file: SKILL.md
+    skills: {}
+    adapted_skills:
+      ci-triage:              { upstream_dir: pr-status-triage }   # renamed
+      nextjs-cache-components: { upstream_path: .claude-plugin/plugins/cache-components/SKILL.md }
+    ignored: []
+
+  langgenius/dify:
+    ref: main
+    discover:
+      root: .agents/skills/
+      skill_file: SKILL.md
+    skills: {}
+    adapted_skills:
+      frontend-code-review: { upstream_dir: frontend-code-review }
+      frontend-testing:     { upstream_dir: frontend-testing }
+      react-refactoring:    { upstream_dir: component-refactoring }  # renamed
+    ignored: []
+
+  leonardomso/33-js-concepts:
+    ref: master
+    discover:
+      root: .opencode/skill/
+      skill_file: SKILL.md
+    skills: {}
+    adapted_skills:
+      js-docs-fact-check: { upstream_dir: fact-check }     # renamed
+      js-resource-curator: { upstream_dir: resource-curator }  # renamed
+      seo-review:         { upstream_dir: seo-review }
+    ignored: []
+
+  vercel/ai-elements:
+    ref: main
+    discover:
+      root: skills/
+      skill_file: SKILL.md
+    skills: {}
+    adapted_skills:
+      ai-elements: { upstream_dir: ai-elements }
+    ignored: []
+
+  vercel/chat:
+    ref: main
+    discover:
+      root: skills/
+      skill_file: SKILL.md
+    skills: {}
+    adapted_skills:
+      chat-sdk: { upstream_dir: chat }                     # renamed
     ignored: []

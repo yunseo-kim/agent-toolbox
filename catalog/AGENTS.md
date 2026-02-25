@@ -59,7 +59,7 @@ metadata:
 
 **Author/lastUpdated rules**: When body content (excluding frontmatter and NOTICE.md additions) was modified from upstream, set `metadata.author` to the modifier and `metadata.lastUpdated` to the last commit date in Holocene Era format (`YYYYY-MM-DD`, Gregorian year + 10000). When body content is unmodified from source, look up the upstream repository for the original author and last update date, converting the date to Holocene Era format.
 
-**Provenance field**: Required for catalog items. Valid values: `ported` (copied with minimal changes), `adapted` (significant modifications), `synthesized` (combined from multiple sources), `original` (created in this project). Ported skills listed in `metadata/upstream-sources.yaml` are eligible for automated upstream sync.
+**Provenance field**: Required for catalog items. Valid values: `ported` (copied with minimal changes), `adapted` (significant modifications), `synthesized` (combined from multiple sources), `original` (created in this project). Ported skills listed in `metadata/upstream-sources.yaml` `skills` section are eligible for automated upstream sync. Adapted skills listed in the `adapted_skills` section are monitored for upstream changes (advisory only, never auto-applied).
 For detailed classification criteria distinguishing ported from adapted, see `../docs/CLASSIFICATION.md`.
 
 ## CURRENT SKILLS
@@ -73,8 +73,8 @@ For detailed classification criteria distinguishing ported from adapted, see `..
 | chat-sdk | development | backend | Adapted (vercel/chat) |
 | canvas-design | content-media | generative-art | Ported (anthropics/skills) |
 | ci-triage | devops | ci-cd | Adapted (vercel/next.js) |
-| content-design | content-media | content-design | Ported (n8n) |
-| create-pr | devops | git | Ported (n8n) |
+| content-design | content-media | content-design | Adapted (n8n) |
+| create-pr | devops | git | Adapted (n8n) |
 | code-reviewer | devops | code-review | Ported (awesome-llm-apps) |
 | content-creator | content-media | content-design | Ported (awesome-llm-apps) |
 | doc-coauthoring | documentation | technical-docs | Ported (anthropics/skills) |
@@ -84,16 +84,16 @@ For detailed classification criteria distinguishing ported from adapted, see `..
 | decision-helper | productivity | -- | Ported (awesome-llm-apps) |
 | deep-research | research | -- | Ported (awesome-llm-apps) |
 | frontend-design | development | frontend | Ported (anthropics/skills) |
-| flags-sdk | development | frontend | Adapted (vercel/flags) |
+| flags-sdk | development | frontend | Ported (vercel/flags) |
 | editor | content-media | content-design | Ported (awesome-llm-apps) |
 | email-drafter | business | communications | Ported (awesome-llm-apps) |
 | fact-checker | research | -- | Ported (awesome-llm-apps) |
 | fullstack-developer | development | full-stack | Ported (awesome-llm-apps) |
 | internal-comms | business | communications | Ported (anthropics/skills) |
-| issue-analysis | business | project-management | Ported (n8n) |
+| issue-analysis | business | project-management | Adapted (n8n) |
 | loom-transcript | productivity | -- | Ported (n8n) |
 | mcp-builder | development | developer-tooling | Ported (anthropics/skills) |
-| reproduce-bug | devops | testing | Ported (n8n) |
+| reproduce-bug | devops | testing | Adapted (n8n) |
 | skill-creator | development | developer-tooling | Ported (anthropics/skills) |
 | slack-gif-creator | content-media | media-processing | Ported (anthropics/skills) |
 | theme-factory | content-media | content-design | Ported (anthropics/skills) |

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Upstream sync for ported catalog skills.
+"""Upstream sync for ported and adapted catalog skills.
 
 Checks upstream repositories for body content changes in ported skills,
-applies updates preserving local frontmatter, and detects new upstream skills.
+applies updates preserving local frontmatter, detects new upstream skills,
+and monitors adapted skills for upstream changes (advisory only).
 
 Requirements: Python 3.10+ stdlib only. Runs on GitHub Actions with `gh` CLI.
 """
@@ -52,6 +53,7 @@ def parse_upstream_sources(path: Path) -> dict:
                 "ref": "main",
                 "discover": {"root": "skills/", "skill_file": "SKILL.md"},
                 "skills": {"catalog-name": {"upstream_dir": "dir-name"}, ...},
+                "adapted_skills": {"catalog-name": {"upstream_dir": "dir-name"}, ...},
                 "ignored": ["dir1", ...]
             },
             ...
@@ -60,7 +62,9 @@ def parse_upstream_sources(path: Path) -> dict:
     lines = path.read_text().splitlines()
     sources: dict = {}
     current_repo = None
-    current_section = None  # "skills" | "ignored" | "discover" | None
+    current_section = (
+        None  # "skills" | "adapted_skills" | "ignored" | "discover" | None
+    )
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -83,6 +87,7 @@ def parse_upstream_sources(path: Path) -> dict:
                 "ref": "main",
                 "discover": {},
                 "skills": {},
+                "adapted_skills": {},
                 "ignored": [],
             }
             current_section = None
@@ -102,6 +107,24 @@ def parse_upstream_sources(path: Path) -> dict:
                 current_section = "discover"
             elif stripped == "skills:":
                 current_section = "skills"
+            elif stripped.startswith("skills:"):
+                # Handle inline empty: skills: {}
+                rest = stripped.split(":", 1)[1].strip()
+                if rest == "{}":
+                    repo["skills"] = {}
+                    current_section = None
+                else:
+                    current_section = "skills"
+            elif stripped == "adapted_skills:":
+                current_section = "adapted_skills"
+            elif stripped.startswith("adapted_skills:"):
+                # Handle inline empty: adapted_skills: {}
+                rest = stripped.split(":", 1)[1].strip()
+                if rest == "{}":
+                    repo["adapted_skills"] = {}
+                    current_section = None
+                else:
+                    current_section = "adapted_skills"
             elif stripped.startswith("ignored:"):
                 rest = stripped.split(":", 1)[1].strip()
                 if rest == "[]":
@@ -132,6 +155,28 @@ def parse_upstream_sources(path: Path) -> dict:
             repo["skills"][catalog_name] = {"upstream_dir": upstream_dir}
             continue
 
+        # Adapted skill entries (indent 6) — may have upstream_path or upstream_dir
+        if indent == 6 and current_section == "adapted_skills":
+            key, _, val = stripped.partition(":")
+            catalog_name = key.strip()
+            val = val.strip()
+            # Check for upstream_path first (explicit full path)
+            mp = re.search(r"upstream_path:\s*([^}#]+)", val)
+            if mp:
+                upstream_path = mp.group(1).strip().rstrip(",").strip()
+                upstream_path = _parse_yaml_value(upstream_path)
+                repo["adapted_skills"][catalog_name] = {"upstream_path": upstream_path}
+            else:
+                # Fall back to upstream_dir
+                m = re.search(r"upstream_dir:\s*([^}#]+)", val)
+                if m:
+                    upstream_dir = m.group(1).strip().rstrip(",").strip()
+                    upstream_dir = _parse_yaml_value(upstream_dir)
+                else:
+                    upstream_dir = catalog_name
+                repo["adapted_skills"][catalog_name] = {"upstream_dir": upstream_dir}
+            continue
+
         # Ignored list items (indent 6)
         if indent == 6 and current_section == "ignored":
             if stripped.startswith("- "):
@@ -155,9 +200,14 @@ def parse_upstream_sources(path: Path) -> dict:
 def load_cache() -> dict:
     if CACHE_PATH.exists():
         data = json.loads(CACHE_PATH.read_text())
-        if data.get("version") == 1:
+        if data.get("version") == 2:
             return data
-    return {"version": 1, "skills": {}}
+        if data.get("version") == 1:
+            # Migrate v1 -> v2: add adapted_skills
+            data["version"] = 2
+            data.setdefault("adapted_skills", {})
+            return data
+    return {"version": 2, "skills": {}, "adapted_skills": {}}
 
 
 def save_cache(cache: dict) -> None:
@@ -197,6 +247,7 @@ def split_frontmatter(text: str) -> tuple[str, str]:
     body = "\n".join(lines[end + 1 :])
     return fm, body
 
+
 def _has_metadata_internal(text: str) -> bool:
     """Check if SKILL.md frontmatter has metadata.internal set to true.
 
@@ -227,6 +278,54 @@ def _has_metadata_internal(text: str) -> bool:
                 val = _parse_yaml_value(stripped.split(":", 1)[1])
                 return val.lower() == "true"
     return False
+
+
+def extract_section_headings(body: str) -> list[str]:
+    """Extract all markdown headings from body text.
+
+    Returns list of heading lines in order, e.g.:
+        ["## Overview", "### Setup", "## API Reference"]
+    """
+    headings = []
+    for line in body.split("\n"):
+        stripped = line.rstrip()
+        if stripped.startswith("#"):
+            headings.append(stripped)
+    return headings
+
+
+def diff_section_headings(old_headings: list[str], new_headings: list[str]) -> str:
+    """Compare two lists of section headings and return a concise summary.
+
+    Returns a human-readable string for inclusion in reports.
+    """
+    if old_headings == new_headings:
+        return "No structural changes"
+
+    old_set = set(old_headings)
+    new_set = set(new_headings)
+    added = sorted(new_set - old_set)
+    removed = sorted(old_set - new_set)
+
+    if not added and not removed:
+        return "No structural changes"
+
+    # For small diffs, list specifics
+    if len(added) + len(removed) <= 4:
+        parts = []
+        if added:
+            parts.append("Added: " + ", ".join(f"`{h}`" for h in added))
+        if removed:
+            parts.append("Removed: " + ", ".join(f"`{h}`" for h in removed))
+        return "; ".join(parts)
+
+    # For larger diffs, summarize counts
+    parts = []
+    if added:
+        parts.append(f"+{len(added)} added")
+    if removed:
+        parts.append(f"-{len(removed)} removed")
+    return "Sections: " + ", ".join(parts)
 
 
 def to_holocene_date(iso_date: str) -> str:
@@ -332,6 +431,7 @@ def process_repo(
     ref = config["ref"]
     discover = config.get("discover", {})
     skills = config.get("skills", {})
+    adapted_skills_cfg = config.get("adapted_skills", {})
     ignored = config.get("ignored", [])
 
     report = {
@@ -340,9 +440,14 @@ def process_repo(
         "deleted": [],  # catalog_name
         "new_skills": [],  # upstream_dir
         "errors": [],  # message
+        "adapted_changed": [],  # (catalog_name, section_diff, history_url)
+        "adapted_deleted": [],  # catalog_name
     }
 
-    print(f"::group::Processing {owner_repo} (ref={ref}, {len(skills)} skills)")
+    total_tracked = len(skills) + len(adapted_skills_cfg)
+    print(
+        f"::group::Processing {owner_repo} (ref={ref}, {len(skills)} ported, {len(adapted_skills_cfg)} adapted)"
+    )
 
     # --- Sync existing skills ---
     for catalog_name, skill_cfg in skills.items():
@@ -437,6 +542,76 @@ def process_repo(
             f"    [{classification}] Updated {catalog_name} (lastUpdated: {holocene_date})"
         )
 
+    # --- Monitor adapted skills (advisory only) ---
+    for catalog_name, skill_cfg in adapted_skills_cfg.items():
+        root = discover.get("root", "")
+        skill_file = discover.get("skill_file", "SKILL.md")
+
+        # Determine upstream path
+        if "upstream_path" in skill_cfg:
+            upstream_path = skill_cfg["upstream_path"]
+        else:
+            upstream_dir = skill_cfg.get("upstream_dir", catalog_name)
+            upstream_path = f"{root}{upstream_dir}/{skill_file}"
+
+        print(f"  Monitoring adapted {catalog_name} <- {upstream_path}")
+
+        # Fetch upstream content
+        upstream_raw = fetch_raw_file(owner_repo, ref, upstream_path)
+        if upstream_raw is None:
+            print(
+                f"::warning::Adapted skill upstream not found: {owner_repo}/{upstream_path}"
+            )
+            report["adapted_deleted"].append(catalog_name)
+            continue
+
+        # Strip upstream frontmatter, get body
+        _, upstream_body = split_frontmatter(upstream_raw)
+        upstream_hash = sha256(upstream_body)
+        new_headings = extract_section_headings(upstream_body)
+
+        # Check cache
+        cached = cache.get("adapted_skills", {}).get(catalog_name, {})
+        cached_hash = cached.get("upstream_body_sha256")
+
+        if init:
+            # Bootstrap: store hash and sections, don't flag changes
+            cache.setdefault("adapted_skills", {})[catalog_name] = {
+                "upstream_body_sha256": upstream_hash,
+                "upstream_sections": new_headings,
+                "last_checked": datetime.now(timezone.utc).isoformat(),
+            }
+            print(f"    [init] Cached adapted hash for {catalog_name}")
+            continue
+
+        if cached_hash == upstream_hash:
+            # No change
+            if mode != "notify":
+                cache.setdefault("adapted_skills", {})[catalog_name] = {
+                    "upstream_body_sha256": upstream_hash,
+                    "upstream_sections": new_headings,
+                    "last_checked": datetime.now(timezone.utc).isoformat(),
+                }
+            continue
+
+        # Change detected — advisory only, NEVER write to local files
+        old_headings = cached.get("upstream_sections", [])
+        section_diff = diff_section_headings(old_headings, new_headings)
+        history_url = f"https://github.com/{owner_repo}/commits/{ref}/{upstream_path}"
+
+        report["adapted_changed"].append((catalog_name, section_diff, history_url))
+        print(
+            f"    [advisory] Upstream change in adapted skill {catalog_name}: {section_diff}"
+        )
+
+        # Update cache
+        if mode != "notify":
+            cache.setdefault("adapted_skills", {})[catalog_name] = {
+                "upstream_body_sha256": upstream_hash,
+                "upstream_sections": new_headings,
+                "last_checked": datetime.now(timezone.utc).isoformat(),
+            }
+
     # --- Discover new upstream skills ---
     if discover and not init:
         root = discover.get("root", "")
@@ -455,7 +630,14 @@ def process_repo(
             if m:
                 found_dirs.add(m.group(1))
 
+        # Exclude ported skill dirs
         known_dirs = set(s.get("upstream_dir", name) for name, s in skills.items())
+        # Exclude adapted skill dirs (those under discover root)
+        for name, s in adapted_skills_cfg.items():
+            if "upstream_path" in s:
+                # upstream_path skills don't live under discover root — skip
+                continue
+            known_dirs.add(s.get("upstream_dir", name))
         ignored_set = set(ignored)
         new_dirs = found_dirs - known_dirs - ignored_set
 
@@ -537,6 +719,23 @@ def build_pr_body(owner_repo: str, report: dict) -> str:
             lines.append(f"- `{name}`")
     else:
         lines.append("None")
+    lines.append("")
+
+    # Adapted skill changes (advisory)
+    adapted_changed = report.get("adapted_changed", [])
+    adapted_deleted = report.get("adapted_deleted", [])
+    if adapted_changed or adapted_deleted:
+        lines.append("### Adapted Skill Changes (advisory)")
+        lines.append(
+            "The following adapted skills have upstream body changes. These are NOT auto-applied."
+        )
+        lines.append("Review the upstream changes and manually integrate if desired.")
+        lines.append("")
+        for name, section_diff, history_url in adapted_changed:
+            lines.append(f"- `{name}` \u2014 {section_diff} ([history]({history_url}))")
+        for name in adapted_deleted:
+            lines.append(f"- `{name}` \u2014 upstream returned 404")
+        lines.append("")
 
     return "\n".join(lines)
 
@@ -547,8 +746,12 @@ def build_issue_body(all_reports: dict) -> str:
     total_review = sum(len(r["review"]) for r in all_reports.values())
     total_deleted = sum(len(r["deleted"]) for r in all_reports.values())
     total_new = sum(len(r["new_skills"]) for r in all_reports.values())
+    total_adapted = sum(len(r.get("adapted_changed", [])) for r in all_reports.values())
+    total_adapted_deleted = sum(
+        len(r.get("adapted_deleted", [])) for r in all_reports.values()
+    )
 
-    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    date_str = datetime.now(timezone.utc).strftime("1%Y-%m-%d")
     lines = [
         f"## Upstream Sync Report \u2014 {date_str}",
         "",
@@ -565,15 +768,21 @@ def build_issue_body(all_reports: dict) -> str:
         f"| Needs review | {total_review} |",
         f"| Upstream 404s | {total_deleted} |",
         f"| New skills | {total_new} |",
+        f"| Adapted changes (advisory) | {total_adapted} |",
+        f"| Adapted 404s | {total_adapted_deleted} |",
         "",
     ]
 
     for owner_repo, report in all_reports.items():
+        adapted_changed = report.get("adapted_changed", [])
+        adapted_deleted = report.get("adapted_deleted", [])
         has_any = (
             report["safe"]
             or report["review"]
             or report["deleted"]
             or report["new_skills"]
+            or adapted_changed
+            or adapted_deleted
         )
         if not has_any:
             continue
@@ -611,6 +820,20 @@ def build_issue_body(all_reports: dict) -> str:
                 lines.append(f"- `{name}`")
             lines.append("")
 
+        # Adapted skill changes (advisory)
+        if adapted_changed or adapted_deleted:
+            lines.append("**Adapted Skill Upstream Changes (advisory):**")
+            lines.append(
+                "These adapted skills have upstream body changes. Review manually \u2014 auto-sync is not applied."
+            )
+            for name, section_diff, history_url in adapted_changed:
+                lines.append(
+                    f"- `{name}` \u2014 {section_diff} ([history]({history_url}))"
+                )
+            for name in adapted_deleted:
+                lines.append(f"- `{name}` \u2014 upstream returned 404")
+            lines.append("")
+
     return "\n".join(lines)
 
 
@@ -625,7 +848,12 @@ def create_consolidated_issue(
     """
     # Check if there are any findings at all
     has_findings = any(
-        r["safe"] or r["review"] or r["deleted"] or r["new_skills"]
+        r["safe"]
+        or r["review"]
+        or r["deleted"]
+        or r["new_skills"]
+        or r.get("adapted_changed")
+        or r.get("adapted_deleted")
         for r in all_reports.values()
     )
     if not has_findings:
@@ -642,10 +870,15 @@ def create_consolidated_issue(
     # Check for existing open issue with upstream-sync label
     check_result = subprocess.run(
         [
-            "gh", "issue", "list",
-            "--label", "upstream-sync",
-            "--state", "open",
-            "--json", "number",
+            "gh",
+            "issue",
+            "list",
+            "--label",
+            "upstream-sync",
+            "--state",
+            "open",
+            "--json",
+            "number",
         ],
         capture_output=True,
         text=True,
@@ -662,10 +895,15 @@ def create_consolidated_issue(
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     issue_result = subprocess.run(
         [
-            "gh", "issue", "create",
-            "--title", f"Upstream sync report \u2014 {date_str}",
-            "--body", body,
-            "--label", "upstream-sync",
+            "gh",
+            "issue",
+            "create",
+            "--title",
+            f"Upstream sync report \u2014 {date_str}",
+            "--body",
+            body,
+            "--label",
+            "upstream-sync",
         ],
         capture_output=True,
         text=True,
@@ -843,8 +1081,12 @@ def main() -> None:
     all_reports = {}
     for owner_repo, config in sources.items():
         report = process_repo(
-            owner_repo, config, cache,
-            init=args.init, dry_run=args.dry_run, mode=args.mode,
+            owner_repo,
+            config,
+            cache,
+            init=args.init,
+            dry_run=args.dry_run,
+            mode=args.mode,
         )
         all_reports[owner_repo] = report
 
@@ -866,15 +1108,25 @@ def main() -> None:
     total_review = sum(len(r["review"]) for r in all_reports.values())
     total_deleted = sum(len(r["deleted"]) for r in all_reports.values())
     total_new = sum(len(r["new_skills"]) for r in all_reports.values())
+    total_adapted = sum(len(r.get("adapted_changed", [])) for r in all_reports.values())
+    total_adapted_deleted = sum(
+        len(r.get("adapted_deleted", [])) for r in all_reports.values()
+    )
 
     if args.init:
         total_cached = sum(len(cfg.get("skills", {})) for cfg in sources.values())
-        print(f"Initialized SHA cache for {total_cached} skill(s)")
+        total_adapted_cached = sum(
+            len(cfg.get("adapted_skills", {})) for cfg in sources.values()
+        )
+        print(f"Initialized SHA cache for {total_cached} ported skill(s)")
+        print(f"Initialized SHA cache for {total_adapted_cached} adapted skill(s)")
     else:
         print(f"Safe updates:     {total_safe}")
         print(f"Needs review:     {total_review}")
         print(f"Upstream 404s:    {total_deleted}")
         print(f"New skills found: {total_new}")
+        print(f"Adapted changes:  {total_adapted} (advisory)")
+        print(f"Adapted 404s:     {total_adapted_deleted}")
 
     if total_new > 0:
         print("\nNew upstream skills detected:")
