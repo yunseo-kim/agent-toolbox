@@ -41,6 +41,7 @@ sources:
       - pdf     # Proprietary license
       - pptx    # Proprietary license
       - xlsx    # Proprietary license
+      - brand-guidelines
 
   Shubhamsaboo/awesome-llm-apps:
     ref: main
@@ -65,7 +66,8 @@ sources:
       sprint-planner:       { upstream_dir: sprint-planner }
       strategy-advisor:     { upstream_dir: strategy-advisor }
       visualization-expert: { upstream_dir: visualization-expert }
-    ignored: []
+    ignored:
+      - technical-writer    # Incorporated in docs-writer
 
   n8n-io/n8n:
     ref: master
@@ -78,7 +80,8 @@ sources:
       issue-analysis:  { upstream_dir: linear-issue }       # renamed
       loom-transcript: { upstream_dir: loom-transcript }
       reproduce-bug:   { upstream_dir: reproduce-bug }
-    ignored: []
+    ignored:
+      - n8n-conventions
 
   openclaw/openclaw:
     ref: main
@@ -92,33 +95,52 @@ sources:
       blogwatcher:        { upstream_dir: blogwatcher }
       blucli:             { upstream_dir: blucli }
       eightctl:           { upstream_dir: eightctl }
-      gemini-cli:         { upstream_dir: gemini-cli }
+      gemini-cli:         { upstream_dir: gemini }             # renamed
       gifgrep:            { upstream_dir: gifgrep }
-      github-cli:         { upstream_dir: github }            # renamed
+      github-cli:         { upstream_dir: github }             # renamed
       goplaces:           { upstream_dir: goplaces }
       mcporter:           { upstream_dir: mcporter }
       nano-banana-pro:    { upstream_dir: nano-banana-pro }
       nano-pdf:           { upstream_dir: nano-pdf }
-      notion-api:         { upstream_dir: notion }            # renamed
-      obsidian-vault:     { upstream_dir: obsidian-vault }
+      notion-api:         { upstream_dir: notion }             # renamed
+      obsidian-vault:     { upstream_dir: obsidian }           # renamed
       openai-image-gen:   { upstream_dir: openai-image-gen }
       openai-whisper-api: { upstream_dir: openai-whisper-api }
-      openai-whisper-local: { upstream_dir: openai-whisper-local }
+      openai-whisper-local: { upstream_dir: openai-whisper }   # renamed
       openhue:            { upstream_dir: openhue }
-      oracle-cli:         { upstream_dir: oracle-cli }
+      oracle-cli:         { upstream_dir: oracle }             # renamed
       ordercli:           { upstream_dir: ordercli }
-      sag-tts:            { upstream_dir: sag-tts }
+      sag-tts:            { upstream_dir: sag }                # renamed
       sherpa-onnx-tts:    { upstream_dir: sherpa-onnx-tts }
       songsee:            { upstream_dir: songsee }
       sonoscli:           { upstream_dir: sonoscli }
       spotify-player:     { upstream_dir: spotify-player }
-      summarize-cli:      { upstream_dir: summarize-cli }
-      things-mac-cli:     { upstream_dir: things-mac-cli }
-      tmux-controller:    { upstream_dir: tmux }              # renamed
-      trello-api:         { upstream_dir: trello }            # renamed
+      summarize-cli:      { upstream_dir: summarize }          # renamed
+      things-mac-cli:     { upstream_dir: things-mac }         # renamed
+      tmux-controller:    { upstream_dir: tmux }               # renamed
+      trello-api:         { upstream_dir: trello }             # renamed
       video-frames:       { upstream_dir: video-frames }
-      weather-cli:        { upstream_dir: weather-cli }
-    ignored: []
+      weather-cli:        { upstream_dir: weather }            # renamed
+    ignored:
+      - 1password
+      - bluebubbles
+      - camsnap
+      - canvas
+      - clawhub
+      - coding-agent
+      - discord
+      - gh-issues
+      - gog
+      - healthcheck
+      - himalaya
+      - imsg
+      - peekaboo
+      - session-logs
+      - skill-creator    # skill-creator already ported from anthropics/skills
+      - slack
+      - voice-call
+      - wacli
+      - xurl
 
   vercel/ai:
     ref: main
@@ -127,7 +149,11 @@ sources:
       skill_file: SKILL.md
     skills:
       ai-sdk: { upstream_dir: use-ai-sdk }                   # renamed
-    ignored: []
+    ignored:
+      - add-provider-package
+      - capture-api-response-test-fixture
+      - develop-ai-functions-example
+      - list-npm-package-content
 
   vercel/streamdown:
     ref: main
