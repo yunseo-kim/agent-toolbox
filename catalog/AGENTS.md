@@ -10,95 +10,12 @@ catalog/
 │   ├── taxonomy.yaml         # Controlled vocabulary -- domains + subdomains
 │   ├── presets.yaml           # Curated install bundles (cross-cutting)
 │   └── catalog-index.json     # Auto-generated; do NOT hand-edit
-└── skills/                    # Flat -- one dir per skill, taxonomy via frontmatter
-    ├── academic-researcher/
-    ├── algorithmic-art/
-    │   └── templates/
-    ├── apple-notes/
-    ├── apple-reminders/
-    ├── bear-notes/
-    ├── blogwatcher/
-    ├── blucli/
-    ├── canvas-design/
-    │   └── canvas-fonts/
-    ├── code-reviewer/
-    │   └── references/
-    ├── content-creator/
-    ├── content-design/
-    ├── create-pr/
-    ├── data-analyst/
-    ├── debugger/
-    ├── decision-helper/
-    ├── deep-research/
-    ├── doc-coauthoring/
-    ├── docs-writer/
-    │   └── references/
-    ├── editor/
-    ├── eightctl/
-    ├── email-drafter/
-    ├── fact-checker/
-    ├── frontend-design/
-    ├── fullstack-developer/
-    ├── gemini-cli/
-    ├── gifgrep/
-    ├── github-cli/
-    ├── google-adk-guide/
-    ├── goplaces/
-    ├── internal-comms/
-    │   └── examples/
-    ├── issue-analysis/
-    ├── js-docs-fact-check/
-    ├── js-resource-curator/
-    ├── llm-memory-patterns/
-    ├── loom-transcript/
-    ├── mcp-builder/
-    │   ├── reference/
-    │   └── scripts/
-    ├── mcporter/
-    ├── meeting-notes/
-    ├── nano-banana-pro/
-    ├── nano-pdf/
-    ├── notion-api/
-    ├── obsidian-vault/
-    ├── openai-agents-guide/
-    ├── openai-image-gen/
-    ├── openai-whisper-api/
-    ├── openai-whisper-local/
-    ├── openhue/
-    ├── oracle-cli/
-    ├── ordercli/
-    ├── project-planner/
-    ├── python-expert/
-    ├── rag-patterns/
-    ├── reproduce-bug/
-    ├── sag-tts/
-    ├── seo-content-audit/
-    ├── seo-review/
-    ├── sherpa-onnx-tts/
-    ├── skill-creator/
-    │   ├── references/
-    │   └── scripts/
-    ├── slack-gif-creator/
-    │   └── core/
-    ├── songsee/
-    ├── sonoscli/
-    ├── spotify-player/
-    ├── sprint-planner/
-    ├── strategy-advisor/
-    ├── summarize-cli/
-    ├── theme-factory/
-    │   └── themes/
-    ├── things-mac-cli/
-    ├── tmux-controller/
-    ├── trello-api/
-    ├── video-frames/
-    ├── visualization-expert/
-    ├── weather-cli/
-    ├── web-artifacts-builder/
-    │   └── scripts/
-    └── webapp-testing/
-        ├── examples/
-        └── scripts/
+├── skills/                    # Flat -- one dir per skill, taxonomy via frontmatter
+├── agents/
+├── commands/
+├── hooks/
+├── mcp/
+└── lsp/
 ```
 
 `skills/` is **flat**. No nesting by domain. Classification is metadata-driven via SKILL.md frontmatter.
@@ -191,7 +108,7 @@ frameworks: [nextjs]                    # optional, freeform kebab-case
 | project-planner | business | project-management | Ported (awesome-llm-apps) |
 | python-expert | development | scripting | Ported (awesome-llm-apps) |
 | sag-tts | content-media | media-processing | Ported (openclaw/openclaw) |
-| rag-patterns | data-ai | -- | Adapted (awesome-llm-apps) |
+| rag-patterns | data-ai | -- | Synthesized (awesome-llm-apps, microsoft/graphrag, VectifyAI/PageIndex) |
 | sherpa-onnx-tts | content-media | media-processing | Ported (openclaw/openclaw) |
 | songsee | content-media | media-processing | Ported (openclaw/openclaw) |
 | sonoscli | productivity | -- | Ported (openclaw/openclaw) |
