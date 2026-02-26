@@ -87,10 +87,10 @@ sources:
     skills:
       loom-transcript: { upstream_dir: loom-transcript }
     adapted_skills:
-      content-design:   { upstream_dir: content-design }
-      create-pr:        { upstream_dir: create-pr }
-      issue-analysis:   { upstream_dir: linear-issue }     # renamed
-      reproduce-bug:    { upstream_dir: reproduce-bug }
+      content-design:  { upstream_dir: content-design }
+      create-pr:       { upstream_dir: create-pr }
+      issue-analysis:  { upstream_dir: linear-issue }     # renamed
+      reproduce-bug:   { upstream_dir: reproduce-bug }
     ignored:
       - n8n-conventions
 
@@ -191,9 +191,14 @@ sources:
       skill_file: SKILL.md
     skills: {}
     adapted_skills:
-      ci-triage:              { upstream_dir: pr-status-triage }   # renamed
+      ci-triage:               { upstream_dir: pr-status-triage }   # renamed
       nextjs-cache-components: { upstream_path: .claude-plugin/plugins/cache-components/SKILL.md }
-    ignored: []
+    ignored:
+      - authoring-skills
+      - dce-edge
+      - flags
+      - react-vendoring
+      - runtime-debug
 
   langgenius/dify:
     ref: main
@@ -205,7 +210,8 @@ sources:
       frontend-code-review: { upstream_dir: frontend-code-review }
       frontend-testing:     { upstream_dir: frontend-testing }
       react-refactoring:    { upstream_dir: component-refactoring }  # renamed
-    ignored: []
+    ignored:
+      - orpc-contract-first
 
   leonardomso/33-js-concepts:
     ref: master
@@ -214,10 +220,13 @@ sources:
       skill_file: SKILL.md
     skills: {}
     adapted_skills:
-      js-docs-fact-check: { upstream_dir: fact-check }     # renamed
+      js-docs-fact-check:  { upstream_dir: fact-check }     # renamed
       js-resource-curator: { upstream_dir: resource-curator }  # renamed
-      seo-review:         { upstream_dir: seo-review }
-    ignored: []
+      seo-review:          { upstream_dir: seo-review }
+    ignored:
+      - concept-workflow
+      - test-writer
+      - write-concept
 
   vercel/ai-elements:
     ref: main
