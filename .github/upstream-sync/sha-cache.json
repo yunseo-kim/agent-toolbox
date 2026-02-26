@@ -1,0 +1,721 @@
+{
+  "adapted_skills": {
+    "ai-elements": {
+      "last_checked": "2026-02-26T12:04:45.816456+00:00",
+      "upstream_body_sha256": "a74a348be94ab6c84bf09123a0daa8e2e1d85c8e850776d83f7cb2a497ac4d3f",
+      "upstream_sections": [
+        "# AI Elements",
+        "## Quick Start",
+        "## Prerequisites",
+        "## Installing Components",
+        "## Usage",
+        "## Example",
+        "## Extensibility",
+        "## Customization",
+        "## Troubleshooting",
+        "## Why are my components not styled?",
+        "## I ran the AI Elements CLI but nothing was added to my project",
+        "## Theme switching doesn\u2019t work \u2014 my app stays in light mode",
+        "## The component imports fail with \u201cmodule not found\u201d",
+        "## My AI coding assistant can't access AI Elements components",
+        "## Still stuck?",
+        "## Available Components"
+      ]
+    },
+    "chat-sdk": {
+      "last_checked": "2026-02-26T12:04:46.815771+00:00",
+      "upstream_body_sha256": "040e5ccee7d1e16de3fb027c8a96042efa780bf11967913a47bac104aa2fbf74",
+      "upstream_sections": [
+        "# Chat SDK",
+        "## Critical: Read the bundled docs",
+        "## Quick start",
+        "## Core concepts",
+        "## Event handlers",
+        "## Streaming",
+        "## Cards (JSX)",
+        "## Packages",
+        "## Changesets (Release Flow)",
+        "# \u2192 select affected package(s) (e.g. @chat-adapter/slack, chat)",
+        "# \u2192 choose bump type: patch (fixes), minor (features), major (breaking)",
+        "# \u2192 write a short summary for the CHANGELOG",
+        "## Webhook setup"
+      ]
+    },
+    "ci-triage": {
+      "last_checked": "2026-02-26T12:04:38.076131+00:00",
+      "upstream_body_sha256": "7b102c7c750fa0893707eae1c0dd00f7eeeb6e0c9368464d6741551ca80b4b75",
+      "upstream_sections": [
+        "# PR Status Triage",
+        "## Workflow",
+        "## Quick Commands",
+        "## Detailed References"
+      ]
+    },
+    "content-design": {
+      "last_checked": "2026-02-26T12:04:03.064688+00:00",
+      "upstream_body_sha256": "c85280e78b284eb47909e69cfb2a838f67b89bb0f847df9f3d03476c2f4fa45b",
+      "upstream_sections": [
+        "# n8n content design",
+        "## How to work",
+        "### Modes",
+        "### Where copy lives in n8n",
+        "### i18n key naming convention",
+        "## Content guidelines",
+        "### Language and grammar",
+        "### Tone and voice",
+        "### UI copy patterns",
+        "### Terminology",
+        "### n8n-specific conventions",
+        "### Surfaces not covered by guidelines",
+        "### Common audit patterns",
+        "## Checklist"
+      ]
+    },
+    "create-pr": {
+      "last_checked": "2026-02-26T12:04:04.075571+00:00",
+      "upstream_body_sha256": "6c23054720b8d02e0d762bb4eac15035b0344f0c1a6cbcc594bfbbfe5606bfa6",
+      "upstream_sections": [
+        "# Create Pull Request",
+        "## PR Title Format",
+        "### Types (required)",
+        "### Scopes (optional but recommended)",
+        "### Summary Rules",
+        "## Steps",
+        "## PR Body Guidelines",
+        "### Summary Section",
+        "### Related Links Section",
+        "### Checklist",
+        "## Examples",
+        "### Feature in editor",
+        "### Bug fix in core",
+        "### Node-specific change",
+        "### Breaking change (add exclamation mark before colon)",
+        "### No changelog entry",
+        "### No scope (affects multiple areas)",
+        "## Validation"
+      ]
+    },
+    "frontend-code-review": {
+      "last_checked": "2026-02-26T12:04:39.824374+00:00",
+      "upstream_body_sha256": "3ecd38391b2b10c14172e0b7bc2860d81216fe1392d0c576434a4781d9ce4035",
+      "upstream_sections": [
+        "# Frontend Code Review",
+        "## Intent",
+        "## Checklist",
+        "## Review Process",
+        "## Required output",
+        "### Template A (any findings)",
+        "# Code review",
+        "## 1 <brief description of bug>",
+        "### Suggested fix",
+        "## 1 <brief description of suggestion>",
+        "### Suggested fix",
+        "### Template B (no issues)",
+        "## Code review"
+      ]
+    },
+    "frontend-testing": {
+      "last_checked": "2026-02-26T12:04:40.672880+00:00",
+      "upstream_body_sha256": "6b1c84eaa1cb780ece1c4a99e884b1bdf8c294e5dda46bf8db9283cee5940c0a",
+      "upstream_sections": [
+        "# Dify Frontend Testing Skill",
+        "## When to Apply This Skill",
+        "## Quick Reference",
+        "### Tech Stack",
+        "### Key Commands",
+        "# Run all tests",
+        "# Watch mode",
+        "# Run specific file",
+        "# Generate coverage report",
+        "# Analyze component complexity",
+        "# Review existing test",
+        "### File Naming",
+        "## Test Structure Template",
+        "## Testing Workflow (CRITICAL)",
+        "### \u26a0\ufe0f Incremental Approach Required",
+        "### Complexity-Based Order",
+        "### When to Refactor First",
+        "## Testing Strategy",
+        "### Path-Level Testing (Directory Testing)",
+        "### Integration Testing First",
+        "## Core Principles",
+        "### 1. AAA Pattern (Arrange-Act-Assert)",
+        "### 2. Black-Box Testing",
+        "### 3. Single Behavior Per Test",
+        "### 4. Semantic Naming",
+        "## Required Test Scenarios",
+        "### Always Required (All Components)",
+        "### Conditional (When Present)",
+        "## Coverage Goals (Per File)",
+        "## Detailed Guides",
+        "## Authoritative References",
+        "### Primary Specification (MUST follow)",
+        "### Reference Examples in Codebase",
+        "### Project Configuration"
+      ]
+    },
+    "issue-analysis": {
+      "last_checked": "2026-02-26T12:04:05.080899+00:00",
+      "upstream_body_sha256": "3cc7655582232fdd566250332b531e19f8106256b9795ce7a4df45b8e7db7c8f",
+      "upstream_sections": [
+        "# Linear Issue Analysis",
+        "## Prerequisites",
+        "## Instructions",
+        "### 1. Fetch the Issue and Comments from Linear",
+        "### 2. Analyze Attachments and Media (MANDATORY)",
+        "### 3. Fetch Related Context",
+        "### 4. Review Comments",
+        "### 5. Identify Affected Node (if applicable)",
+        "### 6. Assess Effort/Complexity",
+        "### 7. Present Summary",
+        "## Notes"
+      ]
+    },
+    "js-docs-fact-check": {
+      "last_checked": "2026-02-26T12:04:42.787677+00:00",
+      "upstream_body_sha256": "a90c5818d22f952b33f7886d3a936d290da2d393b8efde1c3f6012cadd8721b6",
+      "upstream_sections": [
+        "# Skill: JavaScript Fact Checker",
+        "## When to Use",
+        "## What We're Protecting Against",
+        "## Fact-Checking Methodology",
+        "### Phase 1: Code Example Verification",
+        "#### Step-by-Step Process",
+        "#### Code Verification Checklist",
+        "#### Common Output Mistakes to Catch",
+        "### Phase 2: MDN Documentation Verification",
+        "#### Step-by-Step Process",
+        "#### MDN Link Patterns",
+        "#### What to Verify Against MDN",
+        "### Phase 3: ECMAScript Specification Compliance",
+        "#### When to Check the Spec",
+        "#### How to Navigate the Spec",
+        "#### Spec Verification Examples",
+        "### Phase 4: External Resource Verification",
+        "#### Step-by-Step Process",
+        "#### External Resource Checklist",
+        "#### Red Flags in External Resources",
+        "### Phase 5: Technical Claims Audit",
+        "#### Claims That Need Verification",
+        "#### Red Flags in Technical Claims",
+        "#### Examples of Claims to Verify",
+        "## Common JavaScript Misconceptions",
+        "### Type System Misconceptions",
+        "### Function Misconceptions",
+        "### Async Misconceptions",
+        "### Object Misconceptions",
+        "### Performance Misconceptions",
+        "## Test Integration",
+        "### Test Commands",
+        "# Run all tests",
+        "# Run tests in watch mode",
+        "# Run tests with coverage",
+        "# Run tests for specific concept",
+        "### Test Directory Structure",
+        "### When Tests Are Missing",
+        "## Verification Resources",
+        "### Primary Sources",
+        "### Project Resources",
+        "## Fact Check Report Template",
+        "# Fact Check Report: [Concept Name]",
+        "## Executive Summary",
+        "## Phase 1: Code Example Verification",
+        "### Code Issues Found",
+        "#### Issue 1: [Title]",
+        "## Phase 2: MDN/Specification Verification",
+        "### MDN Link Status",
+        "### Specification Discrepancies",
+        "## Phase 3: External Resource Verification",
+        "### Broken Links",
+        "### Content Concerns",
+        "### Description Accuracy",
+        "## Phase 4: Technical Claims Audit",
+        "### Claims Needing Revision",
+        "## Phase 5: Test Results",
+        "### Failing Tests",
+        "### Coverage Gaps",
+        "## Issues Summary",
+        "### Critical (Must Fix Before Publishing)",
+        "### Major (Should Fix)",
+        "### Minor (Nice to Have)",
+        "## Recommendations",
+        "## Verification Checklist",
+        "## Sign-off",
+        "## Quick Reference: Verification Commands",
+        "# Run all tests",
+        "# Run specific concept tests",
+        "# Check for broken links (if you have a link checker)",
+        "# Install: npm install -g broken-link-checker",
+        "# Run: blc https://developer.mozilla.org/... -ro",
+        "# Quick JavaScript REPL for testing",
+        "## Summary"
+      ]
+    },
+    "js-resource-curator": {
+      "last_checked": "2026-02-26T12:04:43.859885+00:00",
+      "upstream_body_sha256": "71eee5c7fb5e6e25a9728f48c3321476db8ad2ff4f736de7eb1816549f69125c",
+      "upstream_sections": [
+        "# Skill: Resource Curator for Concept Pages",
+        "## When to Use",
+        "## Resource Curation Methodology",
+        "### Phase 1: Audit Existing Resources",
+        "### Phase 2: Identify Resource Gaps",
+        "### Phase 3: Find New Resources",
+        "### Phase 4: Write Descriptions",
+        "### Phase 5: Format and Organize",
+        "## Trusted Sources",
+        "### Reference Sources (Priority Order)",
+        "### Article Sources (Priority Order)",
+        "### Video Creators (Priority Order)",
+        "### Course Sources",
+        "## Quality Criteria",
+        "### Must Have (Required)",
+        "### Should Have (Preferred)",
+        "### Red Flags (Reject)",
+        "## Publication Date Guidelines",
+        "## Description Writing Guide",
+        "### The Formula",
+        "### Good Examples",
+        "### Bad Examples (Avoid)",
+        "### Words and Phrases to Avoid",
+        "### Words and Phrases That Work",
+        "## Link Audit Process",
+        "### Step 1: Check Each Link",
+        "### Step 2: Content Verification",
+        "### Step 3: Description Review",
+        "### Step 4: Gap Analysis",
+        "## Resource Section Templates",
+        "### Reference Section",
+        "## Reference",
+        "### Articles Section",
+        "## Articles",
+        "### Videos Section",
+        "## Videos",
+        "### Books Section (Optional)",
+        "### Courses Section (Optional)",
+        "## Resource Audit Report Template",
+        "# Resource Audit Report: [Concept Name]",
+        "## Summary",
+        "## Resource Count vs Targets",
+        "## Broken Links (Remove or Replace)",
+        "## Redirects (Update URLs)",
+        "## Outdated Resources (Consider Replacing)",
+        "## Description Improvements Needed",
+        "## Missing Resources (Recommendations)",
+        "## Non-JavaScript Resources (Remove)",
+        "## Action Items",
+        "### High Priority (Do First)",
+        "### Medium Priority",
+        "### Low Priority",
+        "## Verification Checklist",
+        "## Quick Reference",
+        "### Icon Reference",
+        "### Character Guidelines",
+        "### Resource Ordering",
+        "## Quality Checklist",
+        "### Link Verification",
+        "### Content Quality",
+        "### Description Quality",
+        "### Completeness",
+        "## Summary"
+      ]
+    },
+    "react-refactoring": {
+      "last_checked": "2026-02-26T12:04:41.746766+00:00",
+      "upstream_body_sha256": "316d9d1c43248438558a9b5b5e0d1ca7b9eb589bbea592cae153df393e107bc4",
+      "upstream_sections": [
+        "# Dify Component Refactoring Skill",
+        "## Quick Reference",
+        "### Commands (run from `web/`)",
+        "# Generate refactoring prompt",
+        "# Output refactoring analysis as JSON",
+        "# Generate testing prompt (after refactoring)",
+        "# Output testing analysis as JSON",
+        "### Complexity Analysis",
+        "# Analyze component complexity",
+        "# Key metrics to check:",
+        "# - complexity: normalized score 0-100 (target < 50)",
+        "# - maxComplexity: highest single function complexity",
+        "# - lineCount: total lines (target < 300)",
+        "### Complexity Score Interpretation",
+        "## Core Refactoring Patterns",
+        "### Pattern 1: Extract Custom Hooks",
+        "### Pattern 2: Extract Sub-Components",
+        "### Pattern 3: Simplify Conditional Logic",
+        "### Pattern 4: Extract API/Data Logic",
+        "### Pattern 5: Extract Modal/Dialog Management",
+        "### Pattern 6: Extract Form Logic",
+        "## Dify-Specific Refactoring Guidelines",
+        "### 1. Context Provider Extraction",
+        "### 2. Workflow Node Components",
+        "### 3. Configuration Components",
+        "### 4. Tool/Plugin Components",
+        "## Refactoring Workflow",
+        "### Step 1: Generate Refactoring Prompt",
+        "### Step 2: Analyze Details",
+        "### Step 3: Plan",
+        "### Step 4: Execute Incrementally",
+        "### Step 5: Verify",
+        "# Re-run refactor command to verify improvements",
+        "# If complexity < 25 and lines < 200, you'll see:",
+        "# \u2705 COMPONENT IS WELL-STRUCTURED",
+        "# For detailed metrics:",
+        "# Target metrics:",
+        "# - complexity < 50",
+        "# - lineCount < 300",
+        "# - maxComplexity < 30",
+        "## Common Mistakes to Avoid",
+        "### \u274c Over-Engineering",
+        "### \u274c Breaking Existing Patterns",
+        "### \u274c Premature Abstraction",
+        "## References",
+        "### Dify Codebase Examples",
+        "### Related Skills"
+      ]
+    },
+    "reproduce-bug": {
+      "last_checked": "2026-02-26T12:04:05.919321+00:00",
+      "upstream_body_sha256": "2f320a435e4fdb064ae0e71e11a5f1790914edec38f25f4c739b82c738cb396b",
+      "upstream_sections": [
+        "# Bug Reproduction Framework",
+        "## Step 1: Parse Signals",
+        "## Step 2: Route to Test Strategy",
+        "## Step 3: Locate Source Files",
+        "## Step 4: Trace the Code Path",
+        "## Step 5: Form Hypothesis",
+        "## Step 6: Find Test Patterns",
+        "## Step 7: Write Failing Test",
+        "## Step 8: Run and Score",
+        "## Step 9: Iterate or Bail",
+        "## Output: Reproduction Report",
+        "### Root Cause",
+        "### Location",
+        "### Failing Test",
+        "### Fix Hint",
+        "## Important"
+      ]
+    },
+    "seo-review": {
+      "last_checked": "2026-02-26T12:04:44.865607+00:00",
+      "upstream_body_sha256": "b5d5af223b2ee67d9d4da4ba07397f35a8084939a180fc6b1f8aa314c8b8e047",
+      "upstream_sections": [
+        "# Skill: SEO Audit for Concept Pages",
+        "## When to Use",
+        "## Goal",
+        "## SEO Audit Methodology",
+        "### Step 1: Identify Target Keywords",
+        "#### Keyword Cluster Template",
+        "### Step 2: On-Page SEO Audit",
+        "### Step 3: Featured Snippet Optimization",
+        "### Step 4: Internal Linking Audit",
+        "### Step 5: Generate Report",
+        "## Keyword Clusters by Concept",
+        "## Audit Checklists",
+        "### Title Tag Checklist (4 points)",
+        "### Meta Description Checklist (4 points)",
+        "### Keyword Placement Checklist (5 points)",
+        "### Content Structure Checklist (6 points)",
+        "### Featured Snippet Checklist (4 points)",
+        "## What is a Closure in JavaScript?",
+        "### Internal Linking Checklist (4 points)",
+        "### Technical SEO Checklist (3 points)",
+        "# Closures in JavaScript     \u2190 This is your H1 (only one!)",
+        "## What is a Closure?        \u2190 H2 for sections",
+        "### Lexical Scope            \u2190 H3 for subsections",
+        "## How Closures Work         \u2190 Another H2",
+        "## Scoring System",
+        "### Total Points Available: 30",
+        "### Score Interpretation",
+        "## Common SEO Issues and Fixes",
+        "### Title Tag Issues",
+        "### Meta Description Issues",
+        "### Content Structure Issues",
+        "### Featured Snippet Issues",
+        "### Internal Linking Issues",
+        "### Technical SEO Issues",
+        "## SEO Audit Report Template",
+        "# SEO Audit Report: [Concept Name]",
+        "## Score Summary",
+        "## Target Keywords",
+        "## Title Tag Analysis",
+        "## Meta Description Analysis",
+        "## Keyword Placement Analysis",
+        "## Content Structure Analysis",
+        "## Featured Snippet Analysis",
+        "## Internal Linking Analysis",
+        "## Technical SEO Analysis",
+        "## Priority Fixes",
+        "### High Priority (Do First)",
+        "### Medium Priority",
+        "### Low Priority (Nice to Have)",
+        "## Competitive Analysis (Optional)",
+        "## Implementation Checklist",
+        "## Final Recommendation",
+        "## Quick Reference",
+        "### Character Counts",
+        "### Keyword Density",
+        "### Content Length",
+        "## Summary"
+      ]
+    }
+  },
+  "skills": {
+    "academic-researcher": {
+      "last_checked": "2026-02-26T12:03:46.761311+00:00",
+      "upstream_body_sha256": "d1d56ad095c7c1bf90da3add04e6c186a5e2a249e684e337442328abf3899a1e"
+    },
+    "ai-sdk": {
+      "last_checked": "2026-02-26T12:04:35.350034+00:00",
+      "upstream_body_sha256": "4e816d861d834b4597132551f7615c167c4fc3a41ef41bc8d81806ac63abd05c"
+    },
+    "algorithmic-art": {
+      "last_checked": "2026-02-26T12:03:36.531224+00:00",
+      "upstream_body_sha256": "9629c98430c91ee0181bc284d6450bcf58f38c75a44571eaf866888e9badde68"
+    },
+    "apple-notes": {
+      "last_checked": "2026-02-26T12:04:06.772464+00:00",
+      "upstream_body_sha256": "47450223c78f3127f5559988ca49c02e70300c8da9640f4f22a1fa862bd3cb61"
+    },
+    "apple-reminders": {
+      "last_checked": "2026-02-26T12:04:07.701974+00:00",
+      "upstream_body_sha256": "7b25f4c2db8312f7480f3bd749321c9b991d7a70bddf9f3e3cc5e4506a8c7afd"
+    },
+    "bear-notes": {
+      "last_checked": "2026-02-26T12:04:08.628931+00:00",
+      "upstream_body_sha256": "003ac7bc0757fa052ee12acd2c647c16568f00d3a848fcc09dbdcf6b728ea3b7"
+    },
+    "blogwatcher": {
+      "last_checked": "2026-02-26T12:04:09.440859+00:00",
+      "upstream_body_sha256": "a17ed63af90283af1aea17c4711abf3d9197d85e56eabc694c88dfe17daedf57"
+    },
+    "blucli": {
+      "last_checked": "2026-02-26T12:04:10.290680+00:00",
+      "upstream_body_sha256": "ea5a47ab850927c3de2a496b5fbaf2f87484f8807761407b4c45b8e7972abbf3"
+    },
+    "canvas-design": {
+      "last_checked": "2026-02-26T12:03:37.397875+00:00",
+      "upstream_body_sha256": "34d9b3abb0f986d92fc311bfcdb367578cddda9bf6470a5867be476fb7d76c7e"
+    },
+    "code-reviewer": {
+      "last_checked": "2026-02-26T12:03:47.677138+00:00",
+      "upstream_body_sha256": "a7f46905597d813bd6e0364de9a7383faa86ec25e3f79b9af149bb477af73bf3"
+    },
+    "content-creator": {
+      "last_checked": "2026-02-26T12:03:48.441274+00:00",
+      "upstream_body_sha256": "2e987107d31d6885f6315b782185342e86fb5ec7935c73e42b0aed801d6b48a1"
+    },
+    "data-analyst": {
+      "last_checked": "2026-02-26T12:03:49.371909+00:00",
+      "upstream_body_sha256": "3eeb44bab9ce29be9a529e0e6c4c524d7e97fd55ddb2a66c89b765997f4aeaa2"
+    },
+    "debugger": {
+      "last_checked": "2026-02-26T12:03:50.305333+00:00",
+      "upstream_body_sha256": "02cabcaf7a07d83e009822ee88229bfc3becaf9029bd191f3cd0cc2dfa0eb9fe"
+    },
+    "decision-helper": {
+      "last_checked": "2026-02-26T12:03:51.179866+00:00",
+      "upstream_body_sha256": "c7488398a73327bfa640dafc8b7ee47b51db4fe60460b7447f6deba247d5e84c"
+    },
+    "deep-research": {
+      "last_checked": "2026-02-26T12:03:52.052321+00:00",
+      "upstream_body_sha256": "75cf47055a39ffa5f0d71ce841aab8eac7936708e9fe8bf3fffcb653c32ec546"
+    },
+    "doc-coauthoring": {
+      "last_checked": "2026-02-26T12:03:38.384073+00:00",
+      "upstream_body_sha256": "c37b110ac86e414d72d7b46a1b0e521c23109698debb35c45c24fa1f82be1bd7"
+    },
+    "editor": {
+      "last_checked": "2026-02-26T12:03:53.050693+00:00",
+      "upstream_body_sha256": "2fc273e39b4d343890aa9ce19847da7485805bbd1e74089dd422f556554dd758"
+    },
+    "eightctl": {
+      "last_checked": "2026-02-26T12:04:11.139788+00:00",
+      "upstream_body_sha256": "fd8232a107397ccb2f01b74e65b9443601c7b5d067ab4d137890e72b0a083577"
+    },
+    "email-drafter": {
+      "last_checked": "2026-02-26T12:03:54.082106+00:00",
+      "upstream_body_sha256": "7a8c8d1d189119891ae968fa3837372ae6298a87831e74e99fcd78bb37b1874d"
+    },
+    "fact-checker": {
+      "last_checked": "2026-02-26T12:03:54.911632+00:00",
+      "upstream_body_sha256": "ea57e72b50e4b86be5c4581f8724ccd1b54ea7a063845efc1969b1ecb1f93e88"
+    },
+    "flags-sdk": {
+      "last_checked": "2026-02-26T12:04:37.230528+00:00",
+      "upstream_body_sha256": "125d05247428e5a8852b9f92d100cf2dbdca6ab9b9061f1e303d596d01713bc7"
+    },
+    "frontend-design": {
+      "last_checked": "2026-02-26T12:03:39.160735+00:00",
+      "upstream_body_sha256": "ccbb75579edfbbdbedfd70e9416bcabd7f230735990c3f73155791376dd3b4d7"
+    },
+    "fullstack-developer": {
+      "last_checked": "2026-02-26T12:03:55.767076+00:00",
+      "upstream_body_sha256": "4eb5d88129e43a6e6e0910aef2270c76df1b7d9509e1d4a27f57c4a1086810ae"
+    },
+    "gemini-cli": {
+      "last_checked": "2026-02-26T12:04:11.983105+00:00",
+      "upstream_body_sha256": "8fe31f0b228a343c58ea2a47bb9f20a01d4f2003891695903e976fbb0e3dcb24"
+    },
+    "gifgrep": {
+      "last_checked": "2026-02-26T12:04:12.862499+00:00",
+      "upstream_body_sha256": "55bbf67bb14ab608cf5ed46d79d9447e700c3ae940ed6a1ad579db9280446cd4"
+    },
+    "github-cli": {
+      "last_checked": "2026-02-26T12:04:13.753831+00:00",
+      "upstream_body_sha256": "273ff5fb1188edee13f818bf5163d7309491c7ac12dae2979898bd0ad394b8ee"
+    },
+    "goplaces": {
+      "last_checked": "2026-02-26T12:04:14.592569+00:00",
+      "upstream_body_sha256": "59e4092bae64c010e170b1b858be9890d7cc6ae8716d8148ef32f0dafc24e59f"
+    },
+    "internal-comms": {
+      "last_checked": "2026-02-26T12:03:40.005301+00:00",
+      "upstream_body_sha256": "8edcacd8ddd46f8d1e5bacd07d1f678cf1e0490cac97616ef4ce87dab7958b6a"
+    },
+    "loom-transcript": {
+      "last_checked": "2026-02-26T12:04:02.163178+00:00",
+      "upstream_body_sha256": "c136046d350158edd2687767b842f929a8d282371b652cfadd58de8263101168"
+    },
+    "mcp-builder": {
+      "last_checked": "2026-02-26T12:03:41.008360+00:00",
+      "upstream_body_sha256": "f166c687002f5d99349b576cd131fb9df140c9eeedaaef5a1d5c21fd00283510"
+    },
+    "mcporter": {
+      "last_checked": "2026-02-26T12:04:15.519873+00:00",
+      "upstream_body_sha256": "c63a2abf0502e25d887d16737e36d0fc9a2bf3b589686440f6cccb79eafdd5dc"
+    },
+    "meeting-notes": {
+      "last_checked": "2026-02-26T12:03:56.713967+00:00",
+      "upstream_body_sha256": "d5381258298097dc0607cf1cff8c3a211b31a8776f3a4af3b476cf8344190157"
+    },
+    "nano-banana-pro": {
+      "last_checked": "2026-02-26T12:04:16.518499+00:00",
+      "upstream_body_sha256": "23247de9c4f102984f454fd12682d32aa6c823a85a6af803822d28007ef9a1f5"
+    },
+    "nano-pdf": {
+      "last_checked": "2026-02-26T12:04:17.434603+00:00",
+      "upstream_body_sha256": "61140a6e22ae3090cdd7886a8f1474a27a9f5fc4f9cb14bfdeaaa3961ca62c07"
+    },
+    "notion-api": {
+      "last_checked": "2026-02-26T12:04:18.271046+00:00",
+      "upstream_body_sha256": "aabccc85ebaa05f079fbc4fa9ca71f7e15a16c743485782db5567012bf2f9dd6"
+    },
+    "obsidian-vault": {
+      "last_checked": "2026-02-26T12:04:19.153551+00:00",
+      "upstream_body_sha256": "33d5ad143d3ef1d55096a62d70c79f440fbd9f3dafb142a17221a284cbbe0de8"
+    },
+    "openai-image-gen": {
+      "last_checked": "2026-02-26T12:04:20.035733+00:00",
+      "upstream_body_sha256": "4d59bc82e7822c408314da505fef8c5e232fc776fc9524d552641122f39ceb1f"
+    },
+    "openai-whisper-api": {
+      "last_checked": "2026-02-26T12:04:20.855225+00:00",
+      "upstream_body_sha256": "1f5113077faa853693867e15edc814175ca49fc49260f89db24ebfbc2f98fcbc"
+    },
+    "openai-whisper-local": {
+      "last_checked": "2026-02-26T12:04:21.737918+00:00",
+      "upstream_body_sha256": "8907e927affa8e8bcc53b9c152b0a3ace4f2bf4ec2dbac9515ed45cdc699fd4a"
+    },
+    "openhue": {
+      "last_checked": "2026-02-26T12:04:22.567707+00:00",
+      "upstream_body_sha256": "576611a15bf84657c89b3105b593e2264090de5375da0f22a30f22c14ba13b0f"
+    },
+    "oracle-cli": {
+      "last_checked": "2026-02-26T12:04:23.543168+00:00",
+      "upstream_body_sha256": "479e385f6a08f811b97a9519b6efc7f31a6f48c6ae66dcb3bc0f05134bdf0c94"
+    },
+    "ordercli": {
+      "last_checked": "2026-02-26T12:04:24.551467+00:00",
+      "upstream_body_sha256": "dc9a576672194a8a1ef15ec2ca72e3c148454afa480b072bc905f3ed86ca2316"
+    },
+    "project-planner": {
+      "last_checked": "2026-02-26T12:03:57.640246+00:00",
+      "upstream_body_sha256": "61d7062e21315a0a2db1cd3e43f89e95019d0ba0d963d2c7ecf6c5fa3e67d976"
+    },
+    "python-expert": {
+      "last_checked": "2026-02-26T12:03:58.515755+00:00",
+      "upstream_body_sha256": "6a141f691213430f33803c09b284e20f710ecc750aeb772c1abb7455a8448671"
+    },
+    "sag-tts": {
+      "last_checked": "2026-02-26T12:04:25.366416+00:00",
+      "upstream_body_sha256": "dfa493b79ed44057e762e1709003cbc842d146a64b77489f7a5e8aeff8642b5a"
+    },
+    "sherpa-onnx-tts": {
+      "last_checked": "2026-02-26T12:04:26.285533+00:00",
+      "upstream_body_sha256": "26879cc20f462c989f010f7237f7b470f6f08c4eb714584545164dc9faf662a8"
+    },
+    "skill-creator": {
+      "last_checked": "2026-02-26T12:03:42.121000+00:00",
+      "upstream_body_sha256": "6de28fd07c28f7a2fe8ffd4118b028e44622ec2d42903db4e9e80525ab15ab01"
+    },
+    "slack-gif-creator": {
+      "last_checked": "2026-02-26T12:03:43.099862+00:00",
+      "upstream_body_sha256": "c64cd4fe91b7da3338a29a72157018c8555c642ae3a077a2b462c9e3b177b73d"
+    },
+    "songsee": {
+      "last_checked": "2026-02-26T12:04:27.138566+00:00",
+      "upstream_body_sha256": "41bc1447971ece801a3759991e97fc493b681ca1124455d2df9736d999a62a0e"
+    },
+    "sonoscli": {
+      "last_checked": "2026-02-26T12:04:28.048428+00:00",
+      "upstream_body_sha256": "6c5ed166aee95fa446f86fb5cd2b6a38b23541b5ad9ae4cf6bda5702284b4887"
+    },
+    "spotify-player": {
+      "last_checked": "2026-02-26T12:04:28.865012+00:00",
+      "upstream_body_sha256": "729cf2abc58fec53c885cb0442f69a7fe828aa83780faf3c5454f8bd8916e145"
+    },
+    "sprint-planner": {
+      "last_checked": "2026-02-26T12:03:59.426856+00:00",
+      "upstream_body_sha256": "6d07cae764b8d7d70ef9b19d6a5f08a02828ccd8d999e03c0eb346100d2f1912"
+    },
+    "strategy-advisor": {
+      "last_checked": "2026-02-26T12:04:00.413757+00:00",
+      "upstream_body_sha256": "24a98bfc5569ca50cd4efeee23615373e9c165ffc238641b398daf82390863a6"
+    },
+    "streamdown": {
+      "last_checked": "2026-02-26T12:04:36.329733+00:00",
+      "upstream_body_sha256": "64049cd87815219ec66186be7f1b130a0bb5fe3e803853013fa70e2d218ce334"
+    },
+    "summarize-cli": {
+      "last_checked": "2026-02-26T12:04:29.726955+00:00",
+      "upstream_body_sha256": "d0081ccea96950d389b5c68e469ca351586ff9763005113273a9f5a97c25074c"
+    },
+    "theme-factory": {
+      "last_checked": "2026-02-26T12:03:44.012893+00:00",
+      "upstream_body_sha256": "8e8e12cc41a1e566094985d04f7f4b8f7dad93619e4a1d161f915cce19e57926"
+    },
+    "things-mac-cli": {
+      "last_checked": "2026-02-26T12:04:30.682720+00:00",
+      "upstream_body_sha256": "a101ff5b5daa53d0b670637241cd925c63dd61522b6eb4ff673bd31294906aaa"
+    },
+    "tmux-controller": {
+      "last_checked": "2026-02-26T12:04:31.651157+00:00",
+      "upstream_body_sha256": "c2cdad82f3936d82b0de21fee993b0b46c1d21bc83e1299842b1a6287438da8a"
+    },
+    "trello-api": {
+      "last_checked": "2026-02-26T12:04:32.656023+00:00",
+      "upstream_body_sha256": "067412e7026831915c0115e28f781f714c019984d6c50349a4cbc32b59ac279a"
+    },
+    "video-frames": {
+      "last_checked": "2026-02-26T12:04:33.586609+00:00",
+      "upstream_body_sha256": "5de84af73e240c31fd4500f2c7b1ecb64a218288bb07bc18214c0bb701fdf0b2"
+    },
+    "visualization-expert": {
+      "last_checked": "2026-02-26T12:04:01.298566+00:00",
+      "upstream_body_sha256": "e32737f34d368ad56d5f91c716dd3e998a26d6c7d1bb77dd58a9b7a83cae93ac"
+    },
+    "weather-cli": {
+      "last_checked": "2026-02-26T12:04:34.458168+00:00",
+      "upstream_body_sha256": "6ed4946bcebcace10001fad887f3121fe3f7653947d376a1f67906af9b84603b"
+    },
+    "web-artifacts-builder": {
+      "last_checked": "2026-02-26T12:03:44.806939+00:00",
+      "upstream_body_sha256": "2e16a0def85144d0eea83458cad6d18f58287109786c969a7c627f93ac1e59c8"
+    },
+    "webapp-testing": {
+      "last_checked": "2026-02-26T12:03:45.696005+00:00",
+      "upstream_body_sha256": "5910ca5e0392b84631cc7a626e21f92bae6207cb0e990e9d74b59dbd27995dd8"
+    }
+  },
+  "version": 2
+}
