@@ -1,0 +1,1727 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-26T14:53:12.417Z",
+  "items": [
+    {
+      "name": "academic-researcher",
+      "type": "skill",
+      "description": "Academic research assistant for literature reviews, paper analysis, scholarly writing, and citation formatting in APA, MLA, and Chicago styles",
+      "domain": "research",
+      "subdomain": "citation-management",
+      "tags": [
+        "academic",
+        "literature-review",
+        "papers",
+        "apa",
+        "mla"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/academic-researcher"
+    },
+    {
+      "name": "ai-elements",
+      "type": "skill",
+      "description": "Build AI chat interfaces with AI Elements, a component library and custom registry built on shadcn/ui. Use when developers want to (1) add pre-built AI chat components like conversations, messages, prompts, reasoning, code blocks, and tool displays, (2) install AI Elements via CLI or shadcn registry, (3) customize component styles and behavior, (4) integrate with Vercel AI SDK's useChat. Triggers on \"ai-elements\", \"AI chat components\", \"chat UI\", \"message component\", \"prompt input\", \"shadcn ai\", building AI-native interfaces with pre-built composable components.\n",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "ai-elements",
+        "chat-ui",
+        "components",
+        "shadcn",
+        "tailwind",
+        "streaming",
+        "composable"
+      ],
+      "frameworks": [
+        "ai-elements",
+        "nextjs",
+        "react",
+        "ai-sdk"
+      ],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/ai-elements"
+    },
+    {
+      "name": "ai-sdk",
+      "type": "skill",
+      "description": "Answer questions about the Vercel AI SDK and help build AI-powered features. Use when developers ask about AI SDK functions like generateText, streamText, ToolLoopAgent, embed, or tools, want to build AI agents, chatbots, RAG systems, or text generation features, have questions about AI providers (OpenAI, Anthropic, Google, etc.), streaming, tool calling, structured output, or embeddings, or use React hooks like useChat or useCompletion. Triggers on: \"AI SDK\", \"Vercel AI SDK\", \"generateText\", \"streamText\", \"add AI to my app\", \"build an agent\", \"tool calling\", \"structured output\", \"useChat\".\n",
+      "domain": "data-ai",
+      "tags": [
+        "vercel",
+        "ai-sdk",
+        "llm",
+        "openai",
+        "anthropic",
+        "google",
+        "streaming",
+        "agents",
+        "tool-calling",
+        "structured-output",
+        "embeddings",
+        "react",
+        "typescript"
+      ],
+      "frameworks": [
+        "ai-sdk",
+        "react",
+        "nextjs"
+      ],
+      "provenance": "ported",
+      "author": "Nico Albanese <49612682+nicoalbanese@users.noreply.github.com>",
+      "lastUpdated": "12026-02-11",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/ai-sdk"
+    },
+    {
+      "name": "algorithmic-art",
+      "type": "skill",
+      "description": "Create algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use for generative art, flow fields, particle systems, and creative coding.",
+      "domain": "content-media",
+      "subdomain": "generative-art",
+      "tags": [
+        "generative-art",
+        "p5js",
+        "creative-coding",
+        "algorithmic",
+        "interactive"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "ant-andi <andibrae@anthropic.com>",
+      "lastUpdated": "12025-12-01",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/algorithmic-art"
+    },
+    {
+      "name": "apple-notes",
+      "type": "skill",
+      "description": "Manage Apple Notes via the memo CLI on macOS. Create, view, edit, delete, search, move, and export notes from the terminal. Use when managing Apple Notes programmatically.\n",
+      "domain": "productivity",
+      "tags": [
+        "macos",
+        "apple-notes",
+        "cli",
+        "note-taking"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/apple-notes"
+    },
+    {
+      "name": "apple-reminders",
+      "type": "skill",
+      "description": "Manage Apple Reminders via remindctl CLI. List, add, edit, complete, and delete reminders with support for lists, date filters, and JSON/plain output.\n",
+      "domain": "productivity",
+      "tags": [
+        "macos",
+        "apple-reminders",
+        "cli",
+        "task-management"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Blakeshannon <blake@blakeshannon.com>",
+      "lastUpdated": "12026-02-18",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/apple-reminders"
+    },
+    {
+      "name": "bear-notes",
+      "type": "skill",
+      "description": "Create, search, and manage Bear notes via the grizzly CLI on macOS. Use when working with Bear note management from the terminal.\n",
+      "domain": "productivity",
+      "tags": [
+        "macos",
+        "bear",
+        "cli",
+        "note-taking"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/bear-notes"
+    },
+    {
+      "name": "blogwatcher",
+      "type": "skill",
+      "description": "Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI. Track new articles, mark as read, and manage blog subscriptions.\n",
+      "domain": "productivity",
+      "tags": [
+        "rss",
+        "atom",
+        "blog",
+        "feed-reader",
+        "monitoring",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/blogwatcher"
+    },
+    {
+      "name": "blucli",
+      "type": "skill",
+      "description": "Control Bluesound/NAD players via the BluOS CLI. Discovery, playback, grouping, and volume management from the terminal.\n",
+      "domain": "productivity",
+      "tags": [
+        "bluos",
+        "audio",
+        "smart-speaker",
+        "iot",
+        "media-playback",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/blucli"
+    },
+    {
+      "name": "canvas-design",
+      "type": "skill",
+      "description": "Create beautiful visual art in .png and .pdf documents using design philosophy. Use when creating posters, art pieces, designs, or other static visual content.",
+      "domain": "content-media",
+      "subdomain": "generative-art",
+      "tags": [
+        "design",
+        "visual-art",
+        "pdf",
+        "png",
+        "typography",
+        "creative-design"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "ant-andi <andibrae@anthropic.com>",
+      "lastUpdated": "12025-12-01",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/canvas-design"
+    },
+    {
+      "name": "chat-sdk",
+      "type": "skill",
+      "description": "Build multi-platform chat bots with Chat SDK (`chat` npm package). Use when developers want to (1) Build a Slack, Teams, Google Chat, Discord, GitHub, or Linear bot, (2) Use the Chat SDK to handle mentions, messages, reactions, slash commands, cards, modals, or streaming, (3) Set up webhook handlers for chat platforms, (4) Send interactive cards or stream AI responses to chat platforms. Triggers on \"chat sdk\", \"chat bot\", \"slack bot\", \"teams bot\", \"discord bot\", \"@chat-adapter\", building bots that work across multiple chat platforms.\n",
+      "domain": "development",
+      "subdomain": "backend",
+      "tags": [
+        "chat-sdk",
+        "bots",
+        "slack",
+        "discord",
+        "teams",
+        "google-chat",
+        "github",
+        "linear",
+        "webhooks",
+        "streaming",
+        "jsx",
+        "cards"
+      ],
+      "frameworks": [
+        "chat-sdk"
+      ],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/chat-sdk"
+    },
+    {
+      "name": "ci-triage",
+      "type": "skill",
+      "description": "Triage CI failures and PR review comments with structured methodology. Use when investigating failing CI jobs, flaky tests, or analyzing PR review feedback. Covers blocker-first prioritization, failure categorization, local reproduction discipline, and parallel log analysis.",
+      "domain": "devops",
+      "subdomain": "ci-cd",
+      "tags": [
+        "ci",
+        "testing",
+        "debugging",
+        "github-actions",
+        "pr-review",
+        "triage"
+      ],
+      "frameworks": [],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/ci-triage"
+    },
+    {
+      "name": "code-reviewer",
+      "type": "skill",
+      "description": "Thorough code review with focus on security vulnerabilities, performance issues, and best practices using prioritized rule-based analysis",
+      "domain": "devops",
+      "subdomain": "code-review",
+      "tags": [
+        "security",
+        "performance",
+        "best-practices",
+        "pull-request"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/code-reviewer"
+    },
+    {
+      "name": "content-creator",
+      "type": "skill",
+      "description": "Creates engaging content for blogs, social media, and marketing materials with audience focus and platform-specific optimization",
+      "domain": "content-media",
+      "subdomain": "content-design",
+      "tags": [
+        "blog",
+        "social-media",
+        "content-marketing",
+        "seo"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/content-creator"
+    },
+    {
+      "name": "content-design",
+      "type": "skill",
+      "description": "Product content designer for UI copy. Use when writing, reviewing, or auditing user-facing text: button labels, error messages, tooltips, empty states, modal copy, placeholder text, confirmation dialogs, onboarding flows, or i18n strings.\n",
+      "domain": "content-media",
+      "subdomain": "content-design",
+      "tags": [
+        "ux-writing",
+        "content-design",
+        "ui-copy",
+        "microcopy",
+        "i18n"
+      ],
+      "frameworks": [],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-26",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/content-design"
+    },
+    {
+      "name": "create-pr",
+      "type": "skill",
+      "description": "Create GitHub pull requests with Conventional Commits-formatted titles and structured PR bodies. Use when creating PRs, submitting changes for review, or when the user says /pr or asks to create a pull request.\n",
+      "domain": "devops",
+      "subdomain": "git",
+      "tags": [
+        "github",
+        "pull-request",
+        "conventional-commits",
+        "gh-cli"
+      ],
+      "frameworks": [],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-26",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/create-pr"
+    },
+    {
+      "name": "data-analyst",
+      "type": "skill",
+      "description": "SQL, pandas, and statistical analysis expertise for data exploration, cleaning, transformation, and insight generation",
+      "domain": "data-ai",
+      "tags": [
+        "sql",
+        "pandas",
+        "statistics",
+        "data-analysis",
+        "data-cleaning"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/data-analyst"
+    },
+    {
+      "name": "debugger",
+      "type": "skill",
+      "description": "Systematic debugging and root cause analysis for identifying and fixing software issues using binary search, bisect, and structured hypothesis testing",
+      "domain": "devops",
+      "subdomain": "testing",
+      "tags": [
+        "debugging",
+        "root-cause-analysis",
+        "troubleshooting",
+        "git-bisect"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/debugger"
+    },
+    {
+      "name": "decision-helper",
+      "type": "skill",
+      "description": "Structured decision-making frameworks for evaluating options, weighing trade-offs, and making informed choices using proven methodologies",
+      "domain": "productivity",
+      "tags": [
+        "decision-making",
+        "analysis",
+        "frameworks",
+        "tradeoffs"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/decision-helper"
+    },
+    {
+      "name": "deep-research",
+      "type": "skill",
+      "description": "Comprehensive research assistant that synthesizes information from multiple sources with proper citations and source evaluation",
+      "domain": "research",
+      "tags": [
+        "research",
+        "synthesis",
+        "citations",
+        "multi-source"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/deep-research"
+    },
+    {
+      "name": "doc-coauthoring",
+      "type": "skill",
+      "description": "Guide users through a structured workflow for co-authoring documentation, proposals, technical specs, and decision docs. Use when writing docs, creating proposals, drafting specs, or collaborative documentation tasks.",
+      "domain": "documentation",
+      "subdomain": "technical-docs",
+      "tags": [
+        "co-authoring",
+        "documentation-workflow",
+        "proposals",
+        "specs",
+        "collaborative-writing"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Keith Lazuka <klazuka@anthropic.com>",
+      "lastUpdated": "12025-12-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/doc-coauthoring"
+    },
+    {
+      "name": "docs-writer",
+      "type": "skill",
+      "description": "Unified documentation workflow for writing, reviewing, and updating technical docs across repositories. Use when users ask to write or edit docs, review doc quality, map code changes to doc impact, scaffold new documentation, update README/API guides, or improve docs in `/docs` and `*.md`/`*.mdx` files. Supports self-contained profile-based behavior for generic docs, Next.js docs, and Angular docs.\n",
+      "domain": "documentation",
+      "subdomain": "technical-docs",
+      "tags": [
+        "docs",
+        "markdown",
+        "mdx",
+        "technical-writing",
+        "documentation-workflow"
+      ],
+      "frameworks": [],
+      "provenance": "synthesized",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/docs-writer"
+    },
+    {
+      "name": "editor",
+      "type": "skill",
+      "description": "Professional editing and proofreading for clarity, grammar, style, and readability improvements across all document types",
+      "domain": "content-media",
+      "subdomain": "content-design",
+      "tags": [
+        "editing",
+        "proofreading",
+        "style-guide",
+        "tone"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/editor"
+    },
+    {
+      "name": "eightctl",
+      "type": "skill",
+      "description": "Control Eight Sleep pods via CLI. Check status, set temperature, manage alarms, and configure sleep schedules.\n",
+      "domain": "productivity",
+      "tags": [
+        "eight-sleep",
+        "iot",
+        "smart-home",
+        "sleep",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/eightctl"
+    },
+    {
+      "name": "email-drafter",
+      "type": "skill",
+      "description": "Professional email composition for business communication including meeting requests, follow-ups, and sensitive correspondence",
+      "domain": "business",
+      "subdomain": "communications",
+      "tags": [
+        "email",
+        "professional-writing",
+        "correspondence",
+        "business"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/email-drafter"
+    },
+    {
+      "name": "fact-checker",
+      "type": "skill",
+      "description": "Systematic fact verification and misinformation identification using evidence-based analysis with confidence ratings and source evaluation",
+      "domain": "research",
+      "tags": [
+        "verification",
+        "fact-checking",
+        "credibility",
+        "source-evaluation"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/fact-checker"
+    },
+    {
+      "name": "flags-sdk",
+      "type": "skill",
+      "description": "Comprehensive guide for implementing feature flags and A/B tests using the Flags SDK (the `flags` npm package). Use when: (1) Creating or declaring feature flags with `flag()`, (2) Setting up feature flag providers/adapters (Vercel, Statsig, LaunchDarkly, PostHog, GrowthBook, Hypertune, Edge Config, OpenFeature, Flagsmith, Reflag, Split, Optimizely, or custom adapters), (3) Implementing precompute patterns for static pages with feature flags, (4) Setting up evaluation context with `identify` and `dedupe`, (5) Integrating the Flags Explorer / Vercel Toolbar, (6) Working with feature flags in Next.js (App Router, Pages Router, Middleware) or SvelteKit, (7) Writing custom adapters, (8) Encrypting/decrypting flag values for the toolbar, (9) Any task involving the `flags`, `flags/next`, `flags/sveltekit`, `flags/react`, or `@flags-sdk/*` packages. Triggers on: feature flags, A/B testing, experimentation, flags SDK, flag adapters, precompute flags, Flags Explorer, feature gates, flag overrides.\n",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "feature-flags",
+        "a-b-testing",
+        "experimentation",
+        "flags-explorer",
+        "precompute",
+        "vercel"
+      ],
+      "frameworks": [
+        "flags-sdk",
+        "nextjs",
+        "sveltekit"
+      ],
+      "provenance": "ported",
+      "author": "Hayden Bleasel <hello@haydenbleasel.com>",
+      "lastUpdated": "12026-02-24",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/flags-sdk"
+    },
+    {
+      "name": "frontend-code-review",
+      "type": "skill",
+      "description": "Review frontend code (React, TypeScript, CSS) for code quality, performance, and best practices. Supports pending-change reviews and focused file reviews with urgency-based findings and structured output templates.\n",
+      "domain": "devops",
+      "subdomain": "code-review",
+      "tags": [
+        "frontend",
+        "react",
+        "typescript",
+        "code-quality",
+        "performance",
+        "tailwind"
+      ],
+      "frameworks": [
+        "react",
+        "nextjs"
+      ],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/frontend-code-review"
+    },
+    {
+      "name": "frontend-design",
+      "type": "skill",
+      "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use when building web components, pages, applications, posters, or when styling and beautifying any web UI.",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "ui-design",
+        "frontend",
+        "css",
+        "react",
+        "html",
+        "web-design",
+        "creative"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Keith Lazuka <klazuka@anthropic.com>",
+      "lastUpdated": "12025-12-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/frontend-design"
+    },
+    {
+      "name": "frontend-testing",
+      "type": "skill",
+      "description": "Generate comprehensive Vitest and React Testing Library tests for frontend components, hooks, and utilities. Covers test structure, incremental workflow, async patterns, mocking strategies, and coverage goals. Use when writing or reviewing frontend tests, improving coverage, or setting up testing infrastructure for React projects.\n",
+      "domain": "devops",
+      "subdomain": "testing",
+      "tags": [
+        "vitest",
+        "react-testing-library",
+        "unit-testing",
+        "integration-testing",
+        "frontend",
+        "mocking"
+      ],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vitest"
+      ],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/frontend-testing"
+    },
+    {
+      "name": "fullstack-developer",
+      "type": "skill",
+      "description": "Modern web development expertise covering React, Node.js, TypeScript, databases, and full-stack architecture patterns",
+      "domain": "development",
+      "subdomain": "full-stack",
+      "tags": [
+        "react",
+        "nodejs",
+        "typescript",
+        "api",
+        "database"
+      ],
+      "frameworks": [
+        "nextjs",
+        "express",
+        "prisma"
+      ],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/fullstack-developer"
+    },
+    {
+      "name": "gemini-cli",
+      "type": "skill",
+      "description": "Use Gemini CLI for one-shot Q&A, summaries, and generation tasks. Supports model selection, JSON output, and extension management.\n",
+      "domain": "data-ai",
+      "tags": [
+        "google",
+        "gemini",
+        "ai",
+        "cli",
+        "llm"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/gemini-cli"
+    },
+    {
+      "name": "gifgrep",
+      "type": "skill",
+      "description": "Search GIF providers (Tenor/Giphy) with CLI/TUI, download results, and extract stills or contact sheets for review and sharing.\n",
+      "domain": "content-media",
+      "subdomain": "media-processing",
+      "tags": [
+        "gif",
+        "search",
+        "image",
+        "tenor",
+        "giphy",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/gifgrep"
+    },
+    {
+      "name": "github-cli",
+      "type": "skill",
+      "description": "GitHub operations via the gh CLI. Manage issues, PRs, CI runs, code review, and API queries. Use for checking PR status, creating issues, viewing workflow logs, and querying repository data.\n",
+      "domain": "devops",
+      "subdomain": "git",
+      "tags": [
+        "github",
+        "cli",
+        "issues",
+        "pull-request",
+        "ci"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "DylanWoodAkers <dylan@lec.com>",
+      "lastUpdated": "12026-02-18",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/github-cli"
+    },
+    {
+      "name": "google-adk-guide",
+      "type": "skill",
+      "description": "Guide to building AI agents with Google Agent Development Kit covering agent creation, tool integration, memory, callbacks, plugins, and multi-agent orchestration",
+      "domain": "data-ai",
+      "tags": [
+        "google-adk",
+        "agents",
+        "multi-agent",
+        "tool-use",
+        "gemini"
+      ],
+      "frameworks": [
+        "google-adk"
+      ],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/google-adk-guide"
+    },
+    {
+      "name": "goplaces",
+      "type": "skill",
+      "description": "Query Google Places API (New) via the goplaces CLI. Text search, place details, resolve locations, and read reviews with human-friendly or JSON output.\n",
+      "domain": "research",
+      "tags": [
+        "google-places",
+        "maps",
+        "location",
+        "search",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/goplaces"
+    },
+    {
+      "name": "internal-comms",
+      "type": "skill",
+      "description": "Write internal communications including status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, and project updates.",
+      "domain": "business",
+      "subdomain": "communications",
+      "tags": [
+        "communications",
+        "status-reports",
+        "newsletters",
+        "faq",
+        "corporate"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "ant-andi <andibrae@anthropic.com>",
+      "lastUpdated": "12025-12-01",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/internal-comms"
+    },
+    {
+      "name": "issue-analysis",
+      "type": "skill",
+      "description": "Fetch and analyze an issue from a project tracker with all related context. Gathers attachments, media, linked resources, and provides effort estimates. Use when starting work on a ticket, triaging issues, or gathering comprehensive context about a bug report or feature request.\n",
+      "domain": "business",
+      "subdomain": "project-management",
+      "tags": [
+        "issue-tracking",
+        "triage",
+        "effort-estimation",
+        "context-gathering"
+      ],
+      "frameworks": [],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-26",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/issue-analysis"
+    },
+    {
+      "name": "js-docs-fact-check",
+      "type": "skill",
+      "description": "Verify technical accuracy of JavaScript documentation by checking code examples, MDN/ECMAScript compliance, and common misconceptions. Use before publishing, after major edits, or during periodic accuracy audits.\n",
+      "domain": "documentation",
+      "subdomain": "technical-docs",
+      "tags": [
+        "fact-checking",
+        "accuracy",
+        "verification",
+        "javascript",
+        "documentation",
+        "quality"
+      ],
+      "frameworks": [],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/js-docs-fact-check"
+    },
+    {
+      "name": "js-resource-curator",
+      "type": "skill",
+      "description": "Find, evaluate, and maintain high-quality external resources for JavaScript documentation, including trusted source lists, link auditing, and publication date guidelines for ES features. Use when adding resources, refreshing pages, or running link audits.\n",
+      "domain": "documentation",
+      "subdomain": "technical-docs",
+      "tags": [
+        "resources",
+        "links",
+        "curation",
+        "javascript",
+        "documentation",
+        "audit"
+      ],
+      "frameworks": [],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/js-resource-curator"
+    },
+    {
+      "name": "llm-memory-patterns",
+      "type": "skill",
+      "description": "Implementation patterns for LLM memory systems covering conversation buffers, persistent vector memory, bidirectional storage, local-private memory, and agentic memory",
+      "domain": "data-ai",
+      "tags": [
+        "memory",
+        "conversation-history",
+        "vector-memory",
+        "mem0",
+        "qdrant",
+        "personalization"
+      ],
+      "frameworks": [],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/llm-memory-patterns"
+    },
+    {
+      "name": "loom-transcript",
+      "type": "skill",
+      "description": "Fetch and display the full transcript from a Loom video URL using Loom's public GraphQL API.",
+      "domain": "productivity",
+      "tags": [
+        "loom",
+        "transcript",
+        "video",
+        "graphql"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Eugene <eugene@n8n.io>",
+      "lastUpdated": "12026-02-18",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/loom-transcript"
+    },
+    {
+      "name": "mcp-builder",
+      "type": "skill",
+      "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+      "domain": "development",
+      "subdomain": "developer-tooling",
+      "tags": [
+        "mcp",
+        "model-context-protocol",
+        "api-integration",
+        "typescript",
+        "python"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "ant-andi <andibrae@anthropic.com>",
+      "lastUpdated": "12025-12-01",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/mcp-builder"
+    },
+    {
+      "name": "mcporter",
+      "type": "skill",
+      "description": "List, configure, authenticate, and call MCP servers and tools directly via the mcporter CLI. Supports HTTP and stdio transports, ad-hoc servers, config management, and CLI/TypeScript code generation.\n",
+      "domain": "development",
+      "subdomain": "developer-tooling",
+      "tags": [
+        "mcp",
+        "cli",
+        "tool-calling",
+        "server",
+        "codegen"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/mcporter"
+    },
+    {
+      "name": "meeting-notes",
+      "type": "skill",
+      "description": "Structured meeting summaries with action items, decisions, key discussion points, and follow-up tracking",
+      "domain": "productivity",
+      "tags": [
+        "meetings",
+        "notes",
+        "action-items",
+        "summaries",
+        "minutes"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/meeting-notes"
+    },
+    {
+      "name": "nano-banana-pro",
+      "type": "skill",
+      "description": "Generate images using the Banana.dev inference API. Lightweight image generation with Python script and configurable prompts.\n",
+      "domain": "content-media",
+      "subdomain": "generative-art",
+      "tags": [
+        "image-generation",
+        "ai",
+        "banana-dev",
+        "python"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/nano-banana-pro"
+    },
+    {
+      "name": "nano-pdf",
+      "type": "skill",
+      "description": "Lightweight PDF processing from the command line. Use when working with PDF files for extraction, conversion, or manipulation.\n",
+      "domain": "productivity",
+      "tags": [
+        "pdf",
+        "document",
+        "processing",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/nano-pdf"
+    },
+    {
+      "name": "nextjs-cache-components",
+      "type": "skill",
+      "description": "Expert guidance for Next.js Cache Components and Partial Prerendering (PPR). Proactively activates in projects with cacheComponents enabled, providing patterns for 'use cache' directive, cacheLife(), cacheTag(), cache invalidation, and parameter permutation rendering.\n",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "nextjs",
+        "react",
+        "caching",
+        "ppr",
+        "partial-prerendering",
+        "server-components",
+        "use-cache"
+      ],
+      "frameworks": [
+        "nextjs",
+        "react"
+      ],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/nextjs-cache-components"
+    },
+    {
+      "name": "notion-api",
+      "type": "skill",
+      "description": "Interact with the Notion API for creating and managing pages, databases, and blocks. Use when automating Notion workflows via REST API calls.\n",
+      "domain": "productivity",
+      "tags": [
+        "notion",
+        "api",
+        "database",
+        "pages",
+        "project-management"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/notion-api"
+    },
+    {
+      "name": "obsidian-vault",
+      "type": "skill",
+      "description": "Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli. Search, create, move, rename, and manage notes.\n",
+      "domain": "productivity",
+      "tags": [
+        "obsidian",
+        "markdown",
+        "knowledge-base",
+        "note-taking",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/obsidian-vault"
+    },
+    {
+      "name": "openai-agents-guide",
+      "type": "skill",
+      "description": "Guide to building AI agents with the OpenAI Agents SDK covering agent creation, tool use, context management, guardrails, handoffs, multi-agent orchestration, and tracing",
+      "domain": "data-ai",
+      "tags": [
+        "openai",
+        "agents-sdk",
+        "multi-agent",
+        "guardrails",
+        "handoffs",
+        "tracing"
+      ],
+      "frameworks": [
+        "openai-agents-sdk"
+      ],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/openai-agents-guide"
+    },
+    {
+      "name": "openai-image-gen",
+      "type": "skill",
+      "description": "Batch-generate images via OpenAI Images API using GPT Image models or DALL-E. Includes random prompt sampler and HTML gallery output.\n",
+      "domain": "content-media",
+      "subdomain": "generative-art",
+      "tags": [
+        "openai",
+        "dall-e",
+        "gpt-image",
+        "image-generation",
+        "ai"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/openai-image-gen"
+    },
+    {
+      "name": "openai-whisper-api",
+      "type": "skill",
+      "description": "Transcribe audio files via OpenAI Audio Transcriptions API (Whisper). Supports multiple formats with language detection and custom prompts.\n",
+      "domain": "content-media",
+      "subdomain": "media-processing",
+      "tags": [
+        "openai",
+        "whisper",
+        "transcription",
+        "speech-to-text",
+        "api"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/openai-whisper-api"
+    },
+    {
+      "name": "openai-whisper-local",
+      "type": "skill",
+      "description": "Local speech-to-text transcription with the Whisper CLI. No API key required -- runs entirely offline with configurable model sizes.\n",
+      "domain": "content-media",
+      "subdomain": "media-processing",
+      "tags": [
+        "whisper",
+        "transcription",
+        "speech-to-text",
+        "local",
+        "offline"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/openai-whisper-local"
+    },
+    {
+      "name": "openhue",
+      "type": "skill",
+      "description": "Control Philips Hue lights and scenes via the OpenHue CLI. Turn on/off, adjust brightness, set colors, and activate scenes.\n",
+      "domain": "productivity",
+      "tags": [
+        "philips-hue",
+        "iot",
+        "smart-lighting",
+        "smart-home",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Blakeshannon <blake@blakeshannon.com>",
+      "lastUpdated": "12026-02-18",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/openhue"
+    },
+    {
+      "name": "oracle-cli",
+      "type": "skill",
+      "description": "Bundle prompts and files into one-shot AI consultations via the oracle CLI. Supports browser and API engines, session management, and multiple model providers for code review and architecture analysis.\n",
+      "domain": "data-ai",
+      "tags": [
+        "ai",
+        "code-review",
+        "consultation",
+        "llm",
+        "oracle-cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/oracle-cli"
+    },
+    {
+      "name": "ordercli",
+      "type": "skill",
+      "description": "Check past food delivery orders and track active order status via the ordercli CLI. Supports Foodora with history, reorder, and session management.\n",
+      "domain": "productivity",
+      "tags": [
+        "food-delivery",
+        "foodora",
+        "order-tracking",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/ordercli"
+    },
+    {
+      "name": "project-planner",
+      "type": "skill",
+      "description": "Breaks down complex projects into actionable tasks with timelines, dependencies, milestones, and resource allocation",
+      "domain": "business",
+      "subdomain": "project-management",
+      "tags": [
+        "planning",
+        "wbs",
+        "milestones",
+        "estimation",
+        "dependencies"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/project-planner"
+    },
+    {
+      "name": "python-expert",
+      "type": "skill",
+      "description": "Senior Python developer expertise for writing clean, efficient, and well-documented code with type hints and PEP 8 compliance",
+      "domain": "development",
+      "subdomain": "scripting",
+      "tags": [
+        "python",
+        "clean-code",
+        "type-hints",
+        "best-practices"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/python-expert"
+    },
+    {
+      "name": "rag-patterns",
+      "type": "skill",
+      "description": "Implementation patterns for Retrieval-Augmented Generation covering basic chains, corrective RAG, hybrid search, knowledge graphs with community detection, agentic RAG, multimodal retrieval, and reasoning-based vectorless RAG",
+      "domain": "data-ai",
+      "tags": [
+        "rag",
+        "retrieval-augmented-generation",
+        "vector-search",
+        "embeddings",
+        "langchain",
+        "llamaindex",
+        "graphrag",
+        "knowledge-graph",
+        "pageindex",
+        "reasoning-rag",
+        "vectorless-rag",
+        "community-detection"
+      ],
+      "frameworks": [],
+      "provenance": "synthesized",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/rag-patterns"
+    },
+    {
+      "name": "react-refactoring",
+      "type": "skill",
+      "description": "Refactor high-complexity React components using proven patterns for hook extraction, component splitting, conditional simplification, and API/data layer separation. Use when components exceed 300 lines, have deep nesting, mix business logic with UI, or manage too many state variables. Avoid for simple or well-structured components.\n",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "react",
+        "refactoring",
+        "hooks",
+        "components",
+        "code-splitting",
+        "complexity-reduction"
+      ],
+      "frameworks": [
+        "react",
+        "nextjs"
+      ],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/react-refactoring"
+    },
+    {
+      "name": "reproduce-bug",
+      "type": "skill",
+      "description": "Systematically reproduce a bug from a ticket or report with a failing regression test, using a structured hypothesis-driven methodology.",
+      "domain": "devops",
+      "subdomain": "testing",
+      "tags": [
+        "debugging",
+        "bug-reproduction",
+        "regression-test",
+        "tdd"
+      ],
+      "frameworks": [],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-26",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/reproduce-bug"
+    },
+    {
+      "name": "sag-tts",
+      "type": "skill",
+      "description": "ElevenLabs text-to-speech with mac-style say UX via the sag CLI. Supports multiple voices, models, audio tags, and pronunciation control.\n",
+      "domain": "content-media",
+      "subdomain": "media-processing",
+      "tags": [
+        "elevenlabs",
+        "tts",
+        "text-to-speech",
+        "audio",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/sag-tts"
+    },
+    {
+      "name": "seo-review",
+      "type": "skill",
+      "description": "Perform a focused SEO audit on documentation and content pages to maximize search visibility, featured snippet optimization, and ranking potential. Use when publishing new pages, optimizing underperforming content, or running periodic content audits.\n",
+      "domain": "documentation",
+      "subdomain": "technical-docs",
+      "tags": [
+        "seo",
+        "search",
+        "content-optimization",
+        "documentation",
+        "audit"
+      ],
+      "frameworks": [],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/seo-review"
+    },
+    {
+      "name": "sherpa-onnx-tts",
+      "type": "skill",
+      "description": "Local text-to-speech via sherpa-onnx. Fully offline, no cloud dependency, supports multiple voice models across platforms.\n",
+      "domain": "content-media",
+      "subdomain": "media-processing",
+      "tags": [
+        "tts",
+        "text-to-speech",
+        "local",
+        "offline",
+        "onnx"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Peter Steinberger <steipete@gmail.com>",
+      "lastUpdated": "12026-02-16",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/sherpa-onnx-tts"
+    },
+    {
+      "name": "skill-creator",
+      "type": "skill",
+      "description": "Guide for creating effective skills that extend AI assistant capabilities with specialized knowledge, workflows, and tool integrations. Use when creating or updating skills.",
+      "domain": "development",
+      "subdomain": "developer-tooling",
+      "tags": [
+        "skill-authoring",
+        "plugin-development",
+        "agent-tools"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Kenshiro Nakagawa <kenshiro@anthropic.com>",
+      "lastUpdated": "12026-02-25",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/skill-creator"
+    },
+    {
+      "name": "slack-gif-creator",
+      "type": "skill",
+      "description": "Create animated GIFs optimized for Slack with validation tools and animation utilities. Use when users request animated GIFs for Slack.",
+      "domain": "content-media",
+      "subdomain": "media-processing",
+      "tags": [
+        "gif",
+        "slack",
+        "animation",
+        "pillow",
+        "creative"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "ant-andi <andibrae@anthropic.com>",
+      "lastUpdated": "12025-12-01",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/slack-gif-creator"
+    },
+    {
+      "name": "songsee",
+      "type": "skill",
+      "description": "Generate spectrograms and feature-panel visualizations from audio files. Supports multiple visualization types and time slicing.\n",
+      "domain": "content-media",
+      "subdomain": "media-processing",
+      "tags": [
+        "audio",
+        "spectrogram",
+        "visualization",
+        "analysis",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/songsee"
+    },
+    {
+      "name": "sonoscli",
+      "type": "skill",
+      "description": "Control Sonos speakers from the terminal. Discover, play, pause, adjust volume, manage groups, and search Spotify via SMAPI.\n",
+      "domain": "productivity",
+      "tags": [
+        "sonos",
+        "audio",
+        "smart-speaker",
+        "iot",
+        "media-playback",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Harold Hunt <huntharo@gmail.com>",
+      "lastUpdated": "12026-02-21",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/sonoscli"
+    },
+    {
+      "name": "spotify-player",
+      "type": "skill",
+      "description": "Terminal Spotify playback and search via spogo (preferred) or spotify_player CLI. Search tracks, control playback, manage devices, and browse playlists.\n",
+      "domain": "content-media",
+      "subdomain": "media-processing",
+      "tags": [
+        "spotify",
+        "music",
+        "playback",
+        "search",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/spotify-player"
+    },
+    {
+      "name": "sprint-planner",
+      "type": "skill",
+      "description": "Agile sprint planning with story estimation, capacity planning, velocity tracking, and sprint goal setting",
+      "domain": "business",
+      "subdomain": "project-management",
+      "tags": [
+        "agile",
+        "scrum",
+        "sprint",
+        "story-points",
+        "estimation"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/sprint-planner"
+    },
+    {
+      "name": "strategy-advisor",
+      "type": "skill",
+      "description": "High-level strategic thinking and business decision guidance for planning, competitive analysis, and direction-setting",
+      "domain": "business",
+      "subdomain": "business-apps",
+      "tags": [
+        "strategy",
+        "decision-making",
+        "business-analysis",
+        "swot"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/strategy-advisor"
+    },
+    {
+      "name": "streamdown",
+      "type": "skill",
+      "description": "Implement, configure, and customize Streamdown — a streaming-optimized React Markdown renderer with syntax highlighting, Mermaid diagrams, math rendering, and CJK support. Use when working with Streamdown setup, configuration, plugins, styling, security, or integration with AI streaming (e.g., Vercel AI SDK). Triggers on: (1) Installing or setting up Streamdown, (2) Configuring plugins (code, mermaid, math, cjk), (3) Styling or theming Streamdown output, (4) Integrating with AI chat/streaming, (5) Configuring security, link safety, or custom HTML tags, (6) Using carets, static mode, or custom components, (7) Troubleshooting Tailwind, Shiki, or Vite issues.",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "markdown",
+        "streaming",
+        "ai",
+        "react",
+        "tailwind",
+        "shiki",
+        "mermaid",
+        "katex",
+        "cjk"
+      ],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "streamdown"
+      ],
+      "provenance": "ported",
+      "author": "Hayden Bleasel <hello@haydenbleasel.com>",
+      "lastUpdated": "12026-02-18",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/streamdown"
+    },
+    {
+      "name": "summarize-cli",
+      "type": "skill",
+      "description": "Summarize or extract text and transcripts from URLs, podcasts, and local files. Supports YouTube transcript extraction, multiple AI providers, and configurable output length.\n",
+      "domain": "productivity",
+      "tags": [
+        "summarization",
+        "transcription",
+        "url",
+        "youtube",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/summarize-cli"
+    },
+    {
+      "name": "theme-factory",
+      "type": "skill",
+      "description": "Toolkit for styling artifacts with pre-set or custom themes including colors and fonts. Use when applying consistent professional styling to slides, docs, reports, or HTML landing pages.",
+      "domain": "content-media",
+      "subdomain": "content-design",
+      "tags": [
+        "themes",
+        "styling",
+        "color-palette",
+        "typography",
+        "presentation"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "ant-andi <andibrae@anthropic.com>",
+      "lastUpdated": "12025-12-01",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/theme-factory"
+    },
+    {
+      "name": "things-mac-cli",
+      "type": "skill",
+      "description": "Manage Things 3 via the things CLI on macOS. Add, update, search, and list todos and projects via URL scheme and local database reads.\n",
+      "domain": "productivity",
+      "tags": [
+        "macos",
+        "things",
+        "task-management",
+        "gtd",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/things-mac-cli"
+    },
+    {
+      "name": "tmux-controller",
+      "type": "skill",
+      "description": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output. Essential for managing long-running terminal processes.\n",
+      "domain": "development",
+      "subdomain": "developer-tooling",
+      "tags": [
+        "tmux",
+        "terminal",
+        "session",
+        "automation",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Blakeshannon <blake@blakeshannon.com>",
+      "lastUpdated": "12026-02-18",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/tmux-controller"
+    },
+    {
+      "name": "trello-api",
+      "type": "skill",
+      "description": "Manage Trello boards, lists, and cards via the Trello REST API. Create, move, archive cards and add comments using curl.\n",
+      "domain": "productivity",
+      "tags": [
+        "trello",
+        "kanban",
+        "board",
+        "api",
+        "project-management"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/trello-api"
+    },
+    {
+      "name": "ux-designer",
+      "type": "skill",
+      "description": "Expert UX design assistance for user research, wireframing, prototyping, and design strategy. Covers user interviews, personas, accessibility (WCAG), information architecture, interaction design, microcopy, visual hierarchy, and design systems.",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "ux",
+        "user-research",
+        "wireframing",
+        "prototyping",
+        "accessibility",
+        "information-architecture",
+        "design-systems",
+        "personas"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-26",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/ux-designer"
+    },
+    {
+      "name": "video-frames",
+      "type": "skill",
+      "description": "Extract frames or short clips from videos using ffmpeg. Quick thumbnails and frame extraction at specific timestamps.\n",
+      "domain": "content-media",
+      "subdomain": "media-processing",
+      "tags": [
+        "ffmpeg",
+        "video",
+        "frames",
+        "extraction",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
+      "lastUpdated": "12026-01-31",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/video-frames"
+    },
+    {
+      "name": "visualization-expert",
+      "type": "skill",
+      "description": "Chart selection and data visualization guidance for effective data communication using matplotlib, plotly, and dashboard design",
+      "domain": "data-ai",
+      "tags": [
+        "charts",
+        "dashboards",
+        "data-visualization",
+        "matplotlib",
+        "plotly"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Shubhamsaboo <shubhamsaboo111@gmail.com>",
+      "lastUpdated": "12026-02-04",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/visualization-expert"
+    },
+    {
+      "name": "weather-cli",
+      "type": "skill",
+      "description": "Get current weather conditions and forecasts for any location via wttr.in. Supports multiple output formats including JSON, one-liners, and PNG images. No API key needed.\n",
+      "domain": "research",
+      "tags": [
+        "weather",
+        "forecast",
+        "wttr",
+        "cli"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "DylanWoodAkers <dylan@lec.com>",
+      "lastUpdated": "12026-02-18",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/weather-cli"
+    },
+    {
+      "name": "web-artifacts-builder",
+      "type": "skill",
+      "description": "Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui. Use for complex interactive artifacts requiring state management, routing, or component libraries.",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "react",
+        "tailwind",
+        "shadcn",
+        "artifacts",
+        "html-bundling"
+      ],
+      "frameworks": [
+        "react",
+        "tailwind",
+        "shadcn-ui"
+      ],
+      "provenance": "ported",
+      "author": "ant-andi <andibrae@anthropic.com>",
+      "lastUpdated": "12025-12-01",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/web-artifacts-builder"
+    },
+    {
+      "name": "webapp-testing",
+      "type": "skill",
+      "description": "Test local web applications using Playwright with server lifecycle management, browser automation, and visual verification. Use for frontend testing, debugging UI, capturing screenshots, and viewing browser logs.",
+      "domain": "devops",
+      "subdomain": "testing",
+      "tags": [
+        "playwright",
+        "browser-testing",
+        "e2e",
+        "web-testing",
+        "automation"
+      ],
+      "frameworks": [
+        "playwright"
+      ],
+      "provenance": "ported",
+      "author": "ant-andi <andibrae@anthropic.com>",
+      "lastUpdated": "12025-12-01",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/webapp-testing"
+    }
+  ]
+}
