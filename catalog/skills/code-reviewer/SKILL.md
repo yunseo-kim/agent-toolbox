@@ -28,28 +28,29 @@ Use this skill when:
 
 ## How to Use This Skill
 
-This skill contains **detailed rules** in the `references/` directory, organized by category and priority.
+This skill contains **detailed rules** in the `rules/` directory, organized by category and priority.
 
 ### Quick Start
 
-1. **Reference specific rules** from `references/` directory for deep dives
-2. **Follow priority order**: Security → Performance → Correctness → Maintainability
+1. **Review [AGENTS.md](AGENTS.md)** for a complete compilation of all rules with examples
+2. **Reference specific rules** from `rules/` directory for deep dives
+3. **Follow priority order**: Security → Performance → Correctness → Maintainability
 
 ### Available Rules
 
 **Security (CRITICAL)**
-- [SQL Injection Prevention](references/security-sql-injection.md)
-- [XSS Prevention](references/security-xss-prevention.md)
+- [SQL Injection Prevention](rules/security-sql-injection.md)
+- [XSS Prevention](rules/security-xss-prevention.md)
 
 **Performance (HIGH)**
-- [Avoid N+1 Query Problem](references/performance-n-plus-one.md)
+- [Avoid N+1 Query Problem](rules/performance-n-plus-one.md)
 
 **Correctness (HIGH)**
-- [Proper Error Handling](references/correctness-error-handling.md)
+- [Proper Error Handling](rules/correctness-error-handling.md)
 
 **Maintainability (MEDIUM)**
-- [Use Meaningful Variable Names](references/maintainability-naming.md)
-- [Add Type Hints](references/maintainability-type-hints.md)
+- [Use Meaningful Variable Names](rules/maintainability-naming.md)
+- [Add Type Hints](rules/maintainability-type-hints.md)
 
 ## Review Process
 

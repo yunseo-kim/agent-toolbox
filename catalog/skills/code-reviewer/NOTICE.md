@@ -9,15 +9,15 @@ This adapted version is governed by the
 
 ## Modifications
 
-This skill was adapted from the original `awesome_agent_skills/code-reviewer/`
-for use in the awesome-agent-toolbox catalog. Changes include:
+This skill was ported from the original `awesome_agent_skills/code-reviewer/`
+for use in the awesome-agent-toolbox catalog. Changes are limited to:
 
 - Replaced agentskills.io frontmatter (license, metadata.author, metadata.version)
   with catalog frontmatter (domain, subdomain, tags, frameworks)
 - Truncated description to single-line format (≤1024 chars)
-- Renamed `rules/` directory to `references/` per catalog conventions
-- Updated all internal links from `rules/` to `references/`
-- Removed internal `AGENTS.md` compiled rules reference (catalog anti-pattern)
+- Added this NOTICE.md for attribution
+
+Body content, directory structure, and all rule files are unmodified from upstream.
 
 ## Upstream License
 

@@ -68,7 +68,7 @@ except FileNotFoundError:
 ### Provide Context in Error Messages
 ```python
 # ✅ Clear, actionable error messages
-def  get_user(user_id: int) -> User:
+def get_user(user_id: int) -> User:
     try:
         response = requests.get(f"{API_URL}/users/{user_id}", timeout=5)
         response.raise_for_status()
