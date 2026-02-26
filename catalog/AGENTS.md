@@ -71,7 +71,7 @@ For detailed classification criteria distinguishing ported from adapted, see `..
 
 ```
 # Format: skill-name | domain/subdomain | provenance (source)
-# 114 skills across 10 domains
+# 118 skills across 10 domains
 
 # productivity
 apple-notes | productivity | ported (openclaw/openclaw)
@@ -95,6 +95,24 @@ trello-api | productivity | ported (openclaw/openclaw)
 
 # development
 ai-elements | development/frontend | adapted (vercel/ai-elements)
+chat-sdk | development/backend | adapted (vercel/chat)
+composition-patterns | development/frontend | ported (vercel-labs/agent-skills)
+flags-sdk | development/frontend | ported (vercel/flags)
+frontend-design | development/frontend | ported (anthropics/skills)
+fullstack-developer | development/full-stack | ported (awesome-llm-apps)
+mcp-builder | development/developer-tooling | ported (anthropics/skills)
+mcporter | development/developer-tooling | ported (openclaw/openclaw)
+nextjs-cache-components | development/frontend | adapted (vercel/next.js)
+python-expert | development/scripting | ported (awesome-llm-apps)
+react-best-practices | development/frontend | ported (vercel-labs/agent-skills)
+react-refactoring | development/frontend | adapted (langgenius/dify)
+skill-creator | development/developer-tooling | ported (anthropics/skills)
+streamdown | development/frontend | ported (vercel/streamdown)
+tmux-controller | development/developer-tooling | ported (openclaw/openclaw)
+ux-designer | development/frontend | ported (awesome-llm-apps)
+web-artifacts-builder | development/frontend | ported (anthropics/skills)
+web-design-guidelines | development/frontend | ported (vercel-labs/agent-skills)
+react-native-skills | development/mobile | ported (vercel-labs/agent-skills)
 chat-sdk | development/backend | adapted (vercel/chat)
 flags-sdk | development/frontend | ported (vercel/flags)
 frontend-design | development/frontend | ported (anthropics/skills)

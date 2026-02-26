@@ -15,9 +15,9 @@ describe("index builder", () => {
     skills = result.skills;
   });
 
-  test("builds index with 114 entries", () => {
+  test("builds index with 118 entries", () => {
     const index = buildCatalogIndex(skills);
-    expect(index.items).toHaveLength(114);
+    expect(index.items).toHaveLength(118);
   });
 
   test("index has version 1", () => {
@@ -61,6 +61,6 @@ describe("index builder", () => {
   test("index validates against CatalogIndex schema", () => {
     const index = buildCatalogIndex(skills);
     const parsed = CatalogIndex.parse(index);
-    expect(parsed.items).toHaveLength(114);
+    expect(parsed.items).toHaveLength(118);
   });
 });

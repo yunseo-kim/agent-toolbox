@@ -167,6 +167,18 @@ sources:
       - develop-ai-functions-example
       - list-npm-package-content
 
+  vercel-labs/agent-skills:
+    ref: main
+    discover:
+      root: skills/
+      skill_file: SKILL.md
+    skills:
+      react-best-practices:   { upstream_dir: react-best-practices }
+      composition-patterns:   { upstream_dir: composition-patterns }
+      react-native-skills:    { upstream_dir: react-native-skills }
+      web-design-guidelines:  { upstream_dir: web-design-guidelines }
+    ignored:
+      - claude.ai/vercel-deploy-claimable  # claude.ai-specific deployment tool
   vercel/streamdown:
     ref: main
     discover:

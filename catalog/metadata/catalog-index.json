@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-26T19:15:08.018Z",
+  "generatedAt": "2026-02-26T19:33:47.176Z",
   "items": [
     {
       "name": "ab-test-setup",
@@ -419,6 +419,28 @@
       "lastUpdated": "12026-02-19",
       "license": "Sustainable Use License 1.0",
       "path": "skills/competitor-alternatives"
+    },
+    {
+      "name": "composition-patterns",
+      "type": "skill",
+      "description": "React composition patterns that scale. Use when refactoring components with boolean prop proliferation, building flexible component libraries, or designing reusable APIs. Covers compound components, state lifting, context interfaces, and React 19 API changes.\n",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "react",
+        "composition",
+        "compound-components",
+        "context",
+        "design-patterns"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "provenance": "ported",
+      "author": "Fernando Rojo",
+      "lastUpdated": "12026-01-28",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/composition-patterns"
     },
     {
       "name": "content-creator",
@@ -1699,6 +1721,57 @@
       "path": "skills/rag-patterns"
     },
     {
+      "name": "react-best-practices",
+      "type": "skill",
+      "description": "React and Next.js performance optimization guidelines from Vercel Engineering. Contains 57 rules across 8 categories prioritized by impact. Use when writing, reviewing, or refactoring React/Next.js code for performance — components, data fetching, bundle optimization, re-renders, and server-side patterns.\n",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "react",
+        "nextjs",
+        "performance",
+        "optimization",
+        "ssr",
+        "bundle-size",
+        "waterfalls",
+        "re-renders"
+      ],
+      "frameworks": [
+        "react",
+        "nextjs"
+      ],
+      "provenance": "ported",
+      "author": "Fernando Rojo",
+      "lastUpdated": "12026-01-26",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/react-best-practices"
+    },
+    {
+      "name": "react-native-skills",
+      "type": "skill",
+      "description": "React Native and Expo best practices for building performant mobile apps. Contains 35+ rules across 14 categories covering list performance, animations, navigation, UI patterns, and platform-specific optimizations. Use when building React Native components, optimizing lists, implementing animations, or working with native modules.\n",
+      "domain": "development",
+      "subdomain": "mobile",
+      "tags": [
+        "react-native",
+        "expo",
+        "mobile",
+        "performance",
+        "animations",
+        "reanimated",
+        "flashlist"
+      ],
+      "frameworks": [
+        "react-native",
+        "expo"
+      ],
+      "provenance": "ported",
+      "author": "Fernando Rojo",
+      "lastUpdated": "12026-01-27",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/react-native-skills"
+    },
+    {
       "name": "react-refactoring",
       "type": "skill",
       "description": "Refactor high-complexity React components using proven patterns for hook extraction, component splitting, conditional simplification, and API/data layer separation. Use when components exceed 300 lines, have deep nesting, mix business logic with UI, or manage too many state variables. Avoid for simple or well-structured components.\n",
@@ -2287,6 +2360,29 @@
       "lastUpdated": "12025-12-01",
       "license": "Sustainable Use License 1.0",
       "path": "skills/web-artifacts-builder"
+    },
+    {
+      "name": "web-design-guidelines",
+      "type": "skill",
+      "description": "Review UI code for Web Interface Guidelines compliance. Audits code against 100+ rules covering accessibility, performance, UX, forms, animation, typography, images, navigation, dark mode, touch interactions, and i18n. Use when asked to review UI, check accessibility, audit design, or review UX.\n",
+      "domain": "development",
+      "subdomain": "frontend",
+      "tags": [
+        "accessibility",
+        "ux",
+        "web-design",
+        "audit",
+        "a11y",
+        "performance",
+        "dark-mode",
+        "i18n"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Thomas Mustier",
+      "lastUpdated": "12026-01-16",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/web-design-guidelines"
     },
     {
       "name": "webapp-testing",
