@@ -248,3 +248,17 @@ sources:
     adapted_skills:
       chat-sdk: { upstream_dir: chat }                     # renamed
     ignored: []
+
+  pytorch/executorch:
+    ref: main
+    discover:
+      root: .claude/skills/
+      skill_file: SKILL.md
+    skills: {}
+    adapted_skills:
+      torch-export: { upstream_dir: export }              # renamed
+    ignored:
+      - building
+      - cortex-m
+      - profile
+      - setup

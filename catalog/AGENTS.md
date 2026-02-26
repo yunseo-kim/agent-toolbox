@@ -137,6 +137,7 @@ llm-memory-patterns | data-ai | adapted (awesome-llm-apps)
 openai-agents-guide | data-ai | adapted (awesome-llm-apps)
 oracle-cli | data-ai | ported (openclaw/openclaw)
 rag-patterns | data-ai | synthesized (awesome-llm-apps, microsoft/graphrag, VectifyAI/PageIndex)
+torch-export | data-ai | adapted (pytorch/executorch)
 visualization-expert | data-ai | ported (awesome-llm-apps)
 
 # research

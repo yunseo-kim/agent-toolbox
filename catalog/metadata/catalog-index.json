@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-26T15:57:19.760Z",
+  "generatedAt": "2026-02-26T18:55:29.764Z",
   "items": [
     {
       "name": "academic-researcher",
@@ -1577,6 +1577,27 @@
       "lastUpdated": "12026-02-18",
       "license": "Sustainable Use License 1.0",
       "path": "skills/tmux-controller"
+    },
+    {
+      "name": "torch-export",
+      "type": "skill",
+      "description": "Export PyTorch models with torch.export -- dynamic shapes, symbolic tracing, control flow operators, debugging export failures, and making untraceable code traceable",
+      "domain": "data-ai",
+      "tags": [
+        "pytorch",
+        "torch-export",
+        "model-export",
+        "deep-learning",
+        "torchscript-replacement"
+      ],
+      "frameworks": [
+        "pytorch"
+      ],
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-27",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/torch-export"
     },
     {
       "name": "trello-api",
