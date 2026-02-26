@@ -3,10 +3,9 @@
 import { resolve } from "node:path";
 import { install } from "../install/installer.js";
 import { TargetTool } from "../schemas/common.js";
+import { green, red, resolveRootDir, yellow } from "./utils.js";
 
-const rootDir = resolve(import.meta.dir, "../..");
-
-function parseArgs(argv: string[]): Record<string, string | string[]> {
+export function parseArgs(argv: string[]): Record<string, string | string[]> {
   const args: Record<string, string | string[]> = {};
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -38,43 +37,43 @@ function parseArgs(argv: string[]): Record<string, string | string[]> {
   return args;
 }
 
-const args = parseArgs(process.argv.slice(2));
+export async function runInstall(rootDir: string, argv: string[]): Promise<void> {
+  const args = parseArgs(argv);
 
-if (!args.target || args.target === "true") {
-  console.error("Usage: bun run install:target --target <tool> [options]");
-  console.error("");
-  console.error("Options:");
-  console.error("  --target <tool>       Required. claude-code, opencode, cursor, codex, gemini");
-  console.error("  --domain <domain>     Filter by domain");
-  console.error("  --subdomain <sub>     Filter by subdomain");
-  console.error("  --framework <fw>      Filter by framework");
-  console.error("  --tag <tag>           Filter by tag");
-  console.error("  --preset <name>       Install preset bundle");
-  console.error("  --skill <name>        Install specific skill(s) (repeatable)");
-  console.error("  --dry-run             Preview without installing");
-  console.error("  --interactive         Interactive selection (future)");
-  process.exit(1);
-}
+  if (!args.target || args.target === "true") {
+    console.error("Usage: awesome-agent-toolbox install --target <tool> [options]");
+    console.error("");
+    console.error("Options:");
+    console.error("  --target <tool>       Required. claude-code, opencode, cursor, codex, gemini");
+    console.error("  --domain <domain>     Filter by domain");
+    console.error("  --subdomain <sub>     Filter by subdomain");
+    console.error("  --framework <fw>      Filter by framework");
+    console.error("  --tag <tag>           Filter by tag");
+    console.error("  --preset <name>       Install preset bundle");
+    console.error("  --skill <name>        Install specific skill(s) (repeatable)");
+    console.error("  --dry-run             Preview without installing");
+    console.error("  --interactive         Interactive selection (future)");
+    process.exit(1);
+  }
 
-const targetParse = TargetTool.safeParse(args.target);
-if (!targetParse.success) {
-  console.error(`Invalid target: ${args.target}. Valid: claude-code, opencode, cursor, codex, gemini`);
-  process.exit(1);
-}
+  const targetParse = TargetTool.safeParse(args.target);
+  if (!targetParse.success) {
+    console.error(`Invalid target: ${args.target}. Valid: claude-code, opencode, cursor, codex, gemini`);
+    process.exit(1);
+  }
 
-const filters = {
-  target: targetParse.data,
-  domain: typeof args.domain === "string" && args.domain !== "true" ? args.domain : undefined,
-  subdomain: typeof args.subdomain === "string" && args.subdomain !== "true" ? args.subdomain : undefined,
-  framework: typeof args.framework === "string" && args.framework !== "true" ? args.framework : undefined,
-  tag: typeof args.tag === "string" && args.tag !== "true" ? args.tag : undefined,
-  preset: typeof args.preset === "string" && args.preset !== "true" ? args.preset : undefined,
-  skill: Array.isArray(args.skill) ? args.skill : undefined,
-  dryRun: args["dry-run"] === "true",
-  interactive: args.interactive === "true",
-} as const;
+  const filters = {
+    target: targetParse.data,
+    domain: typeof args.domain === "string" && args.domain !== "true" ? args.domain : undefined,
+    subdomain: typeof args.subdomain === "string" && args.subdomain !== "true" ? args.subdomain : undefined,
+    framework: typeof args.framework === "string" && args.framework !== "true" ? args.framework : undefined,
+    tag: typeof args.tag === "string" && args.tag !== "true" ? args.tag : undefined,
+    preset: typeof args.preset === "string" && args.preset !== "true" ? args.preset : undefined,
+    skill: Array.isArray(args.skill) ? args.skill : undefined,
+    dryRun: args["dry-run"] === "true",
+    interactive: args.interactive === "true",
+  } as const;
 
-try {
   const result = await install(rootDir, {
     target: filters.target,
     domain: filters.domain,
@@ -93,16 +92,21 @@ try {
   console.log(`Matched: ${result.filterResult.matched.length}/${result.filterResult.total} skills`);
 
   if (result.dryRun) {
-    console.log("\n\x1b[33m[DRY RUN]\x1b[0m Would install these skills:");
+    console.log(`\n${yellow("[DRY RUN]")} Would install these skills:`);
     for (const skill of result.filterResult.matched) {
       console.log(`  - ${skill.frontmatter.name} (${skill.frontmatter.metadata.domain})`);
     }
   } else if (result.generatorResult) {
-    console.log(`\n\x1b[32m✓\x1b[0m Installed ${result.generatorResult.skillCount} skills for ${result.generatorResult.target}`);
+    console.log(`\n${green("✓")} Installed ${result.generatorResult.skillCount} skills for ${result.generatorResult.target}`);
     console.log(`  Output: ${result.generatorResult.outputDir}`);
   }
-} catch (error) {
-  const message = error instanceof Error ? error.message : String(error);
-  console.error(`\x1b[31mError:\x1b[0m ${message}`);
-  process.exit(1);
+}
+
+if (import.meta.main) {
+  const rootDir = resolveRootDir(import.meta.dir);
+  runInstall(rootDir, process.argv.slice(2)).catch((error) => {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`${red("Error:")} ${message}`);
+    process.exit(1);
+  });
 }

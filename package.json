@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Cross-tool distribution system for agent skills, plugins, and MCP servers",
+  "bin": {
+    "awesome-agent-toolbox": "src/cli/main.ts"
+  },
   "scripts": {
     "validate": "bun run src/cli/validate.ts",
     "build:index": "bun run src/cli/build-index.ts",
@@ -11,8 +14,9 @@
     "build:cursor": "bun run src/cli/build-target.ts -- --target cursor",
     "build:codex": "bun run src/cli/build-target.ts -- --target codex",
     "build:gemini": "bun run src/cli/build-target.ts -- --target gemini",
-    "build:all": "bun run build:claude-code && bun run build:opencode && bun run build:cursor && bun run build:codex && bun run build:gemini",
+    "build:all": "bun run src/cli/build-target.ts -- --target all",
     "install:target": "bun run src/cli/install.ts",
+    "start": "bun run src/cli/main.ts",
     "test": "bun test",
     "test:unit": "bun test tests/unit/",
     "test:integration": "bun test tests/integration/",

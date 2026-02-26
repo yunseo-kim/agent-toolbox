@@ -3,23 +3,7 @@
 import { basename, dirname, resolve } from "node:path";
 import { scanSkills } from "../catalog/scanner.js";
 import { validateCatalog } from "../catalog/validator.js";
-
-const COLOR_RESET = "\x1b[0m";
-const COLOR_GREEN = "\x1b[32m";
-const COLOR_RED = "\x1b[31m";
-const COLOR_YELLOW = "\x1b[33m";
-
-function green(text: string): string {
-  return `${COLOR_GREEN}${text}${COLOR_RESET}`;
-}
-
-function red(text: string): string {
-  return `${COLOR_RED}${text}${COLOR_RESET}`;
-}
-
-function yellow(text: string): string {
-  return `${COLOR_YELLOW}${text}${COLOR_RESET}`;
-}
+import { green, red, resolveRootDir, yellow } from "./utils.js";
 
 function skillKeyFromPath(path: string): string {
   if (path.endsWith("SKILL.md")) {
@@ -29,8 +13,7 @@ function skillKeyFromPath(path: string): string {
   return basename(path);
 }
 
-async function main(): Promise<void> {
-  const rootDir = resolve(import.meta.dir, "../..");
+export async function runValidate(rootDir: string): Promise<void> {
   const catalogDir = resolve(rootDir, "catalog");
   const taxonomyPath = resolve(catalogDir, "metadata/taxonomy.yaml");
 
@@ -88,8 +71,11 @@ async function main(): Promise<void> {
   process.exit(result.valid ? 0 : 1);
 }
 
-main().catch((error) => {
-  const reason = error instanceof Error ? error.message : String(error);
-  console.error(`${red("✗")} ${reason}`);
-  process.exit(1);
-});
+if (import.meta.main) {
+  const rootDir = resolveRootDir(import.meta.dir);
+  runValidate(rootDir).catch((error) => {
+    const reason = error instanceof Error ? error.message : String(error);
+    console.error(`${red("✗")} ${reason}`);
+    process.exit(1);
+  });
+}
