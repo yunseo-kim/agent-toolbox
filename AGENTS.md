@@ -21,45 +21,7 @@ This repository is a cross-tool distribution system for agent skills, plugins, a
 
 ## TARGET ARCHITECTURE
 
-```
-awesome-agent-toolbox/
-├── catalog/                          # Neutral source-of-truth
-│   ├── skills/                       # Flat — one dir per skill, taxonomy via frontmatter
-│   ├── agents/
-│   ├── commands/
-│   ├── hooks/
-│   ├── mcp/
-│   ├── lsp/
-│   └── metadata/                     # Taxonomy, presets, and generated index
-│       ├── taxonomy.yaml             # Controlled vocabulary (domains + subdomains)
-│       ├── presets.yaml              # Curated install bundles
-│       ├── upstream-sources.yaml     # Ported/adapted skill upstream mappings
-│       └── catalog-index.json        # Auto-generated aggregated metadata
-├── src/                              # Bun-first TS toolchain
-│   ├── catalog/                      # Skill scanning, validation, index building
-│   ├── cli/                          # install/build/validate entrypoints
-│   ├── generators/                   # claude-code / opencode / cursor / codex / gemini
-│   ├── install/                      # Selective install engine + filter composition
-│   ├── mappers/                      # Tool/event/model mapping layers
-│   └── schemas/                      # Zod schemas for catalog + targets + install
-├── templates/                        # Target-specific render templates (scaffolded)
-├── dist/
-│   ├── targets/                      # Runtime artifacts per tool
-│   │   ├── claude-code/
-│   │   ├── opencode/
-│   │   ├── cursor/
-│   │   ├── codex/
-│   │   └── gemini/
-│   └── marketplace/                  # Catalog artifacts (Claude-specific, scaffolded)
-├── tests/
-│   ├── unit/                         # Schema, taxonomy, frontmatter, scanner, filter
-│   ├── integration/                  # Generator and install pipeline tests
-│   └── matrix/                       # Cross-target verification (planned)
-├── .github/
-│   ├── workflows/                    # CI pipeline + upstream sync automation
-│   └── upstream-sync/                # Sync script + SHA cache
-└── .agents/skills/                   # Dev tooling only (not project content)
-```
+> See [`README.md`](README.md) for the full directory tree and architecture overview.
 
 ## WHERE TO LOOK
 
@@ -95,20 +57,8 @@ awesome-agent-toolbox/
 
 ## CATALOG TAXONOMY
 
-### Taxonomy Model
-
-Catalog items are categorized using metadata in SKILL.md frontmatter (under the `metadata` field per the [Agent Skills specification](https://agentskills.io/specification.md)), not directory structure. The `catalog/skills/` directory remains flat (one dir per skill).
-
-- **Domain** (`metadata.domain`, required, controlled vocabulary): Primary grouping — `productivity`, `development`, `devops`, `documentation`, `databases`, `blockchain`, `data-ai`, `research`, `business`, `content-media`.
-- **Subdomain** (`metadata.subdomain`, optional, controlled vocabulary): Secondary grouping within domain — `git`, `ci-cd`, `frontend`, `technical-docs`, `testing`, `security`, `education`, etc.
-- **Tags** (`metadata.tags`, optional, freeform): Comma-separated searchable keywords for discovery — `github`, `yaml`, `react`, etc.
-- **Frameworks** (`metadata.frameworks`, optional, freeform): Comma-separated framework/tool associations — `nextjs`, `angular`, `django`, etc.
-- **Author** (`metadata.author`, required for catalog items): Attribution. Format: `"Name <email>"`. Use modifier's identity when body content was modified beyond frontmatter/NOTICE.md additions; use upstream author when body content is unmodified from source.
-- **Last Updated** (`metadata.lastUpdated`, required for catalog items): Last modification date in Holocene Era format `YYYYY-MM-DD` (Gregorian year + 10000). Use last commit date when body content was modified; use upstream last update date when body content is unmodified.
-- **Provenance** (`metadata.provenance`, required for catalog items): Origin classification. Controlled vocabulary: `ported` (copied with minimal changes), `adapted` (significant modifications), `synthesized` (combined from multiple sources), `original` (created in this project).
-- **Provenance guide**: For detailed classification criteria and decision flowchart, see `docs/CLASSIFICATION.md`.
-
-The controlled vocabulary is defined in `catalog/metadata/taxonomy.yaml`. Adding new domains or subdomains requires updating this file.
+> Taxonomy model, domain listing, provenance types, and selective install composition are documented in [`catalog/README.md`](catalog/README.md).
+> The controlled vocabulary is defined in `catalog/metadata/taxonomy.yaml`.
 
 ### SKILL.md Frontmatter Schema
 
@@ -131,19 +81,6 @@ metadata:
 ### Install Presets
 
 Presets are curated bundles of catalog items for common use cases, defined in `catalog/metadata/presets.yaml`. Each preset has a name, description, and list of item names. Presets are cross-cutting — they reference items from any domain.
-
-### Selective Install Composition
-
-| Flags | Behavior |
-|-------|----------|
-| `--target` only | All items (backward-compatible default) |
-| `--target --domain D` | Items where `domain == D` |
-| `--target --domain D --subdomain S` | Items where `domain == D && subdomain == S` |
-| `--target --framework F` | Items where `F in frameworks` |
-| `--target --preset P` | Items listed in preset P |
-| `--target --skill N` | Specific item(s) by name |
-| `--target --tag T` | Items where `T in tags` |
-| Multiple filters | AND composition |
 
 ## TOOL ADAPTER RULES
 
@@ -199,7 +136,8 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 
 ## README LISTING POLICY
 
-README.md skill tables use the following column structure and provenance rules.
+> Skill tables with domain grouping, provenance column, and references live in [`catalog/README.md`](catalog/README.md).
+> The rules below govern how skill entries are formatted in those tables.
 
 ### Column Schema
 
@@ -209,11 +147,10 @@ README.md skill tables use the following column structure and provenance rules.
 | **Source** | Original upstream repository or repositories the skill derives from |
 | **Stars** | GitHub stars badge(s) for the source repository |
 | **Upstream License** | Upstream license badge for the source, linked to license or notice file |
+| **Provenance** | Ported / Adapted / Synthesized / External |
 | **Description** | One-line summary of what the skill does |
 
 ### Provenance Types
-
-Skills fall into four provenance categories. Each has distinct listing rules:
 
 | Type | Definition | Name link | Source column | Stars | License |
 |------|-----------|-----------|--------------|-------|---------|

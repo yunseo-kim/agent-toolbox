@@ -66,92 +66,113 @@ For detailed classification criteria distinguishing ported from adapted, see `..
 
 ## CURRENT SKILLS
 
-| Skill | Domain | Subdomain | Provenance |
-|-------|--------|-----------|------------|
-| algorithmic-art | content-media | generative-art | Ported (anthropics/skills) |
-| academic-researcher | research | citation-management | Ported (awesome-llm-apps) |
-| ai-sdk | data-ai | -- | Ported (vercel/ai) |
-| ai-elements | development | frontend | Adapted (vercel/ai-elements) |
-| chat-sdk | development | backend | Adapted (vercel/chat) |
-| canvas-design | content-media | generative-art | Ported (anthropics/skills) |
-| ci-triage | devops | ci-cd | Adapted (vercel/next.js) |
-| content-design | content-media | content-design | Adapted (n8n) |
-| create-pr | devops | git | Adapted (n8n) |
-| code-reviewer | devops | code-review | Ported (awesome-llm-apps) |
-| content-creator | content-media | content-design | Ported (awesome-llm-apps) |
-| doc-coauthoring | documentation | technical-docs | Ported (anthropics/skills) |
-| docs-writer | documentation | technical-docs | Synthesized (next.js, angular, gemini-cli, awesome-llm-apps) |
-| data-analyst | data-ai | -- | Ported (awesome-llm-apps) |
-| debugger | devops | testing | Ported (awesome-llm-apps) |
-| decision-helper | productivity | -- | Ported (awesome-llm-apps) |
-| deep-research | research | -- | Ported (awesome-llm-apps) |
-| frontend-design | development | frontend | Ported (anthropics/skills) |
-| flags-sdk | development | frontend | Ported (vercel/flags) |
-| editor | content-media | content-design | Ported (awesome-llm-apps) |
-| email-drafter | business | communications | Ported (awesome-llm-apps) |
-| fact-checker | research | -- | Ported (awesome-llm-apps) |
-| fullstack-developer | development | full-stack | Ported (awesome-llm-apps) |
-| internal-comms | business | communications | Ported (anthropics/skills) |
-| issue-analysis | business | project-management | Adapted (n8n) |
-| loom-transcript | productivity | -- | Ported (n8n) |
-| mcp-builder | development | developer-tooling | Ported (anthropics/skills) |
-| reproduce-bug | devops | testing | Adapted (n8n) |
-| skill-creator | development | developer-tooling | Ported (anthropics/skills) |
-| slack-gif-creator | content-media | media-processing | Ported (anthropics/skills) |
-| theme-factory | content-media | content-design | Ported (anthropics/skills) |
-| web-artifacts-builder | development | frontend | Ported (anthropics/skills) |
-| webapp-testing | devops | testing | Ported (anthropics/skills) |
-| apple-notes | productivity | -- | Ported (openclaw/openclaw) |
-| apple-reminders | productivity | -- | Ported (openclaw/openclaw) |
-| bear-notes | productivity | -- | Ported (openclaw/openclaw) |
-| blogwatcher | productivity | -- | Ported (openclaw/openclaw) |
-| blucli | productivity | -- | Ported (openclaw/openclaw) |
-| eightctl | productivity | -- | Ported (openclaw/openclaw) |
-| gemini-cli | data-ai | -- | Ported (openclaw/openclaw) |
-| google-adk-guide | data-ai | -- | Adapted (awesome-llm-apps) |
-| gifgrep | content-media | media-processing | Ported (openclaw/openclaw) |
-| github-cli | devops | git | Ported (openclaw/openclaw) |
-| goplaces | research | -- | Ported (openclaw/openclaw) |
-| llm-memory-patterns | data-ai | -- | Adapted (awesome-llm-apps) |
-| mcporter | development | developer-tooling | Ported (openclaw/openclaw) |
-| meeting-notes | productivity | -- | Ported (awesome-llm-apps) |
-| nano-banana-pro | content-media | generative-art | Ported (openclaw/openclaw) |
-| nano-pdf | productivity | -- | Ported (openclaw/openclaw) |
-| nextjs-cache-components | development | frontend | Adapted (vercel/next.js) |
-| notion-api | productivity | -- | Ported (openclaw/openclaw) |
-| obsidian-vault | productivity | -- | Ported (openclaw/openclaw) |
-| openai-image-gen | content-media | generative-art | Ported (openclaw/openclaw) |
-| openai-whisper-api | content-media | media-processing | Ported (openclaw/openclaw) |
-| openai-whisper-local | content-media | media-processing | Ported (openclaw/openclaw) |
-| openhue | productivity | -- | Ported (openclaw/openclaw) |
-| oracle-cli | data-ai | -- | Ported (openclaw/openclaw) |
-| openai-agents-guide | data-ai | -- | Adapted (awesome-llm-apps) |
-| ordercli | productivity | -- | Ported (openclaw/openclaw) |
-| project-planner | business | project-management | Ported (awesome-llm-apps) |
-| python-expert | development | scripting | Ported (awesome-llm-apps) |
-| sag-tts | content-media | media-processing | Ported (openclaw/openclaw) |
-| rag-patterns | data-ai | -- | Synthesized (awesome-llm-apps, microsoft/graphrag, VectifyAI/PageIndex) |
-| sherpa-onnx-tts | content-media | media-processing | Ported (openclaw/openclaw) |
-| songsee | content-media | media-processing | Ported (openclaw/openclaw) |
-| sonoscli | productivity | -- | Ported (openclaw/openclaw) |
-| spotify-player | content-media | media-processing | Ported (openclaw/openclaw) |
-| sprint-planner | business | project-management | Ported (awesome-llm-apps) |
-| streamdown | development | frontend | Ported (vercel/streamdown) |
-| strategy-advisor | business | business-apps | Ported (awesome-llm-apps) |
-| summarize-cli | productivity | -- | Ported (openclaw/openclaw) |
-| things-mac-cli | productivity | -- | Ported (openclaw/openclaw) |
-| tmux-controller | development | developer-tooling | Ported (openclaw/openclaw) |
-| trello-api | productivity | -- | Ported (openclaw/openclaw) |
-| video-frames | content-media | media-processing | Ported (openclaw/openclaw) |
-| visualization-expert | data-ai | -- | Ported (awesome-llm-apps) |
-| ux-designer | development | frontend | Ported (awesome-llm-apps) |
-| weather-cli | research | -- | Ported (openclaw/openclaw) |
-| frontend-code-review | devops | code-review | Adapted (langgenius/dify) |
-| frontend-testing | devops | testing | Adapted (langgenius/dify) |
-| react-refactoring | development | frontend | Adapted (langgenius/dify) |
-| js-docs-fact-check | documentation | technical-docs | Adapted (leonardomso/33-js-concepts) |
-| js-resource-curator | documentation | technical-docs | Adapted (leonardomso/33-js-concepts) |
-| seo-review | documentation | technical-docs | Adapted (leonardomso/33-js-concepts) |
+> Human-readable skill tables with badges live in [`catalog/README.md`](README.md).
+> This section uses a compact format optimized for agent parsing.
+
+```
+# Format: skill-name | domain/subdomain | provenance (source)
+# 85 skills across 10 domains
+
+# productivity
+apple-notes | productivity | ported (openclaw/openclaw)
+apple-reminders | productivity | ported (openclaw/openclaw)
+bear-notes | productivity | ported (openclaw/openclaw)
+blogwatcher | productivity | ported (openclaw/openclaw)
+blucli | productivity | ported (openclaw/openclaw)
+decision-helper | productivity | ported (awesome-llm-apps)
+eightctl | productivity | ported (openclaw/openclaw)
+loom-transcript | productivity | ported (n8n)
+meeting-notes | productivity | ported (awesome-llm-apps)
+nano-pdf | productivity | ported (openclaw/openclaw)
+notion-api | productivity | ported (openclaw/openclaw)
+obsidian-vault | productivity | ported (openclaw/openclaw)
+openhue | productivity | ported (openclaw/openclaw)
+ordercli | productivity | ported (openclaw/openclaw)
+sonoscli | productivity | ported (openclaw/openclaw)
+summarize-cli | productivity | ported (openclaw/openclaw)
+things-mac-cli | productivity | ported (openclaw/openclaw)
+trello-api | productivity | ported (openclaw/openclaw)
+
+# development
+ai-elements | development/frontend | adapted (vercel/ai-elements)
+chat-sdk | development/backend | adapted (vercel/chat)
+flags-sdk | development/frontend | ported (vercel/flags)
+frontend-design | development/frontend | ported (anthropics/skills)
+fullstack-developer | development/full-stack | ported (awesome-llm-apps)
+mcp-builder | development/developer-tooling | ported (anthropics/skills)
+mcporter | development/developer-tooling | ported (openclaw/openclaw)
+nextjs-cache-components | development/frontend | adapted (vercel/next.js)
+python-expert | development/scripting | ported (awesome-llm-apps)
+react-refactoring | development/frontend | adapted (langgenius/dify)
+skill-creator | development/developer-tooling | ported (anthropics/skills)
+streamdown | development/frontend | ported (vercel/streamdown)
+tmux-controller | development/developer-tooling | ported (openclaw/openclaw)
+ux-designer | development/frontend | ported (awesome-llm-apps)
+web-artifacts-builder | development/frontend | ported (anthropics/skills)
+
+# devops
+ci-triage | devops/ci-cd | adapted (vercel/next.js)
+code-reviewer | devops/code-review | ported (awesome-llm-apps)
+create-pr | devops/git | adapted (n8n)
+debugger | devops/testing | ported (awesome-llm-apps)
+frontend-code-review | devops/code-review | adapted (langgenius/dify)
+frontend-testing | devops/testing | adapted (langgenius/dify)
+github-cli | devops/git | ported (openclaw/openclaw)
+reproduce-bug | devops/testing | adapted (n8n)
+webapp-testing | devops/testing | ported (anthropics/skills)
+
+# documentation
+doc-coauthoring | documentation/technical-docs | ported (anthropics/skills)
+docs-writer | documentation/technical-docs | synthesized (next.js, angular, gemini-cli, awesome-llm-apps)
+js-docs-fact-check | documentation/technical-docs | adapted (leonardomso/33-js-concepts)
+js-resource-curator | documentation/technical-docs | adapted (leonardomso/33-js-concepts)
+seo-review | documentation/technical-docs | adapted (leonardomso/33-js-concepts)
+
+# data-ai
+ai-sdk | data-ai | ported (vercel/ai)
+data-analyst | data-ai | ported (awesome-llm-apps)
+gemini-cli | data-ai | ported (openclaw/openclaw)
+google-adk-guide | data-ai | adapted (awesome-llm-apps)
+llm-memory-patterns | data-ai | adapted (awesome-llm-apps)
+openai-agents-guide | data-ai | adapted (awesome-llm-apps)
+oracle-cli | data-ai | ported (openclaw/openclaw)
+rag-patterns | data-ai | synthesized (awesome-llm-apps, microsoft/graphrag, VectifyAI/PageIndex)
+visualization-expert | data-ai | ported (awesome-llm-apps)
+
+# research
+academic-researcher | research/citation-management | ported (awesome-llm-apps)
+deep-research | research | ported (awesome-llm-apps)
+fact-checker | research | ported (awesome-llm-apps)
+goplaces | research | ported (openclaw/openclaw)
+weather-cli | research | ported (openclaw/openclaw)
+
+# business
+email-drafter | business/communications | ported (awesome-llm-apps)
+internal-comms | business/communications | ported (anthropics/skills)
+issue-analysis | business/project-management | adapted (n8n)
+project-planner | business/project-management | ported (awesome-llm-apps)
+sprint-planner | business/project-management | ported (awesome-llm-apps)
+strategy-advisor | business/business-apps | ported (awesome-llm-apps)
+
+# content-media
+algorithmic-art | content-media/generative-art | ported (anthropics/skills)
+canvas-design | content-media/generative-art | ported (anthropics/skills)
+content-creator | content-media/content-design | ported (awesome-llm-apps)
+content-design | content-media/content-design | adapted (n8n)
+editor | content-media/content-design | ported (awesome-llm-apps)
+gifgrep | content-media/media-processing | ported (openclaw/openclaw)
+nano-banana-pro | content-media/generative-art | ported (openclaw/openclaw)
+openai-image-gen | content-media/generative-art | ported (openclaw/openclaw)
+openai-whisper-api | content-media/media-processing | ported (openclaw/openclaw)
+openai-whisper-local | content-media/media-processing | ported (openclaw/openclaw)
+sag-tts | content-media/media-processing | ported (openclaw/openclaw)
+sherpa-onnx-tts | content-media/media-processing | ported (openclaw/openclaw)
+slack-gif-creator | content-media/media-processing | ported (anthropics/skills)
+songsee | content-media/media-processing | ported (openclaw/openclaw)
+spotify-player | content-media/media-processing | ported (openclaw/openclaw)
+theme-factory | content-media/content-design | ported (anthropics/skills)
+video-frames | content-media/media-processing | ported (openclaw/openclaw)
+```
 
 ## LICENSING RULES
 
@@ -168,7 +189,7 @@ For detailed classification criteria distinguishing ported from adapted, see `..
 | Define install bundles | `metadata/presets.yaml` |
 | Check generated index | `metadata/catalog-index.json` (auto-generated) |
 | Skill authoring conventions | `../.agents/skills/skill-creator/SKILL.md` |
-| README listing rules | Root `AGENTS.md` > README LISTING POLICY |
+| README listing rules | `README.md` (catalog) or root `AGENTS.md` > README LISTING POLICY |
 | Upstream sync config | `metadata/upstream-sources.yaml` |
 | Upstream sync SHA cache | `../.github/upstream-sync/sha-cache.json` (auto-managed) |
 
