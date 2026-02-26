@@ -76,6 +76,7 @@ sources:
       sprint-planner:       { upstream_dir: sprint-planner }
       strategy-advisor:     { upstream_dir: strategy-advisor }
       visualization-expert: { upstream_dir: visualization-expert }
+      ux-designer:          { upstream_dir: ux-designer }
     ignored:
       - technical-writer    # Incorporated in docs-writer
 
