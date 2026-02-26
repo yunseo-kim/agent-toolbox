@@ -1,25 +1,25 @@
 # PROJECT KNOWLEDGE BASE
 
-**Last Updated:** 12026-02-26
-**Commit:** ce23691
+**Last Updated:** 12026-02-27
+**Commit:** 26f2366
 **Branch:** main
 
 ## OVERVIEW
 
-This repository started as a curated skills collection and is evolving into a cross-tool distribution project targeting **OpenCode, Claude Code, Gemini CLI, and Cursor**. The architecture direction remains: **neutral catalog as source-of-truth + generated tool targets + installer-driven deployment**.
+This repository is a cross-tool distribution system for agent skills, plugins, and MCP servers — targeting **Claude Code, OpenCode, Gemini CLI, Cursor, and Codex**. Architecture: **neutral catalog as source-of-truth + generated tool targets + installer-driven deployment**.
 
 ## CURRENT STATE
 
 - `.agents/skills/`, `.agent/skills/`, `.claude/skills/`, `.cursor/skills/`, `.windsurf/skills/` are **development tooling only** — skills used by contributors while working on this repo (e.g. `git-master`, `create-pr`, `skill-creator`, `mcp-builder`). They are **not** project content or distribution artifacts.
-- Planned architecture directories (`src/`, `templates/`, `dist/`, `tests/`) are not yet materialized. The build toolchain (Bun-first TS) and CI/CD (GitHub Actions) are planned but not implemented.
+- Build toolchain (`src/`), CI/CD (`.github/workflows/`), tests (`tests/`), and generated artifacts (`dist/targets/`) are **implemented and operational**. Templates (`templates/`) and marketplace (`dist/marketplace/`) are scaffolded but not yet populated.
 - Catalog items use **domain/framework-based taxonomy** for selective installation. Taxonomy is defined in `catalog/metadata/taxonomy.yaml`; categories live in SKILL.md frontmatter (`domain`, `subdomain`, `tags`, `frameworks` fields).
 
 ## TARGETS
 
-- **Primary target set**: `opencode`, `claude`, `gemini`, `cursor`
-- **Planned/generated targets**: `dist/targets/opencode`, `dist/targets/claude`, `dist/targets/gemini`, `dist/targets/cursor`
+- **Primary target set**: `claude-code`, `opencode`, `cursor`, `codex`, `gemini`
+- **Generated targets**: `dist/targets/claude-code`, `dist/targets/opencode`, `dist/targets/cursor`, `dist/targets/codex`, `dist/targets/gemini`
 
-## TARGET ARCHITECTURE (IN PROGRESS)
+## TARGET ARCHITECTURE
 
 ```
 awesome-agent-toolbox/
@@ -33,25 +33,31 @@ awesome-agent-toolbox/
 │   └── metadata/                     # Taxonomy, presets, and generated index
 │       ├── taxonomy.yaml             # Controlled vocabulary (domains + subdomains)
 │       ├── presets.yaml              # Curated install bundles
+│       ├── upstream-sources.yaml     # Ported/adapted skill upstream mappings
 │       └── catalog-index.json        # Auto-generated aggregated metadata
 ├── src/                              # Bun-first TS toolchain
+│   ├── catalog/                      # Skill scanning, validation, index building
 │   ├── cli/                          # install/build/validate entrypoints
-│   ├── generators/                   # emit_gemini / emit_opencode / emit_claude / emit_cursor
-│   ├── mappers/                      # tool/event/model mapping layers
-│   └── schemas/                      # catalog + generated artifact schemas
-├── templates/                        # Target-specific render templates
+│   ├── generators/                   # claude-code / opencode / cursor / codex / gemini
+│   ├── install/                      # Selective install engine + filter composition
+│   ├── mappers/                      # Tool/event/model mapping layers
+│   └── schemas/                      # Zod schemas for catalog + targets + install
+├── templates/                        # Target-specific render templates (scaffolded)
 ├── dist/
 │   ├── targets/                      # Runtime artifacts per tool
+│   │   ├── claude-code/
 │   │   ├── opencode/
-│   │   ├── claude/
-│   │   ├── gemini/
-│   │   └── cursor/
-│   └── marketplace/                  # Catalog artifacts (Claude-specific)
-│       └── claude/
+│   │   ├── cursor/
+│   │   ├── codex/
+│   │   └── gemini/
+│   └── marketplace/                  # Catalog artifacts (Claude-specific, scaffolded)
 ├── tests/
-│   ├── unit/
-│   ├── integration/
-│   └── matrix/                       # Cross-target verification matrix
+│   ├── unit/                         # Schema, taxonomy, frontmatter, scanner, filter
+│   ├── integration/                  # Generator and install pipeline tests
+│   └── matrix/                       # Cross-target verification (planned)
+├── .github/
+│   ├── workflows/                    # CI pipeline + upstream sync automation
+│   └── upstream-sync/                # Sync script + SHA cache
 └── .agents/skills/                   # Dev tooling only (not project content)
 ```
 
@@ -66,17 +72,22 @@ awesome-agent-toolbox/
 | Root architecture decisions | `AGENTS.md` | This file is authoritative |
 | Dev tooling conventions | `.agents/skills/AGENTS.md` | Skill inventory, symlink structure, dev scripts |
 | Catalog conventions | `catalog/AGENTS.md` | Distributable content rules, frontmatter, licensing |
+| TypeScript toolchain | `src/AGENTS.md` | Module architecture, schemas, generators, CLI |
+| Test conventions | `tests/AGENTS.md` | Test structure, Bun test patterns, coverage |
+| CI/CD automation | `.github/AGENTS.md` | Pipeline jobs, drift detection, upstream sync |
 | Active skill source tree | `.agents/skills/` | Dev tooling source; symlinked to `.agent/`, `.claude/`, `.cursor/`, `.windsurf/` |
 | Catalog taxonomy | `catalog/metadata/taxonomy.yaml` | Controlled vocabulary for domains/subdomains |
 | Install presets | `catalog/metadata/presets.yaml` | Curated skill bundles for common use cases |
 | Catalog index | `catalog/metadata/catalog-index.json` | Auto-generated; do not hand-edit |
+| Upstream sync config | `catalog/metadata/upstream-sources.yaml` | Ported/adapted skill mappings |
+| Provenance guide | `docs/CLASSIFICATION.md` | Ported vs adapted decision criteria |
 
 > **Note:** The `.agents/skills/` paths above are **development tools** for contributors, not project content.
 > They will remain as dev tooling even after `catalog/` is populated with distributable content.
 
 ## DISTRIBUTION MODEL
 
-- **Source-of-truth**: only `catalog/` (`.agents/skills/` is dev tooling, not content).
+- **Single Source of Truth**: only `catalog/` (`.agents/skills/` is dev tooling, not content).
 - **Generated artifacts**: only `dist/targets/*` and `dist/marketplace/*`; avoid manual edits.
 - **Bun first**: build/test/release tooling uses Bun runtime and Bun scripts.
 - **npm compatibility**: publish CLI binaries and package artifacts so users can install via `npm`/`npx` as fallback.
@@ -137,9 +148,10 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 ## TOOL ADAPTER RULES
 
 - **Gemini CLI**: emit extension contract centered on `gemini-extension.json`, with optional `commands/*.toml`, `GEMINI.md`, `skills/`, `hooks/hooks.json`, `mcpServers`, and `settings` fields.
-- **OpenCode**: emit `.opencode/` config/plugin artifacts; support runtime bootstrap injection for tool-mapping guidance when needed.
 - **Claude Code**: emit `.claude`/plugin-compatible artifacts (skills/plugins) and optional marketplace catalog separately.
+- **OpenCode**: emit `skills/` directories with SKILL.md files matching OpenCode's skill discovery conventions.
 - **Cursor**: emit `.cursor`-compatible artifacts where parity exists; document non-parity (especially hooks/commands semantics).
+- **Codex**: emit skill directories matching Codex's expected layout for agent skill discovery.
 - **OS-specific install branching**: installer must handle symlink/junction differences explicitly (Windows cmd/PowerShell/Git Bash vs POSIX).
 
 ## RUNTIME MAPPING POLICY
@@ -244,9 +256,7 @@ python3 .agents/skills/skill-creator/scripts/quick_validate.py <path/to/skill-fo
 python3 .agents/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder> [output-dir]
 ```
 
-> These commands use dev-tooling scripts from `.agents/skills/`. Once `catalog/` exists, paths will shift to `catalog/` equivalents.
-
-## COMMANDS (TARGET - BUN FIRST, PLANNED)
+## COMMANDS (BUN TOOLCHAIN)
 
 ```bash
 # Validate neutral catalog and schemas
@@ -256,33 +266,30 @@ bun run validate
 bun run build:index
 
 # Generate tool artifacts
-bun run build:gemini
-bun run build:claude
+bun run build:claude-code
 bun run build:opencode
 bun run build:cursor
+bun run build:codex
+bun run build:gemini
 bun run build:all
 
-# Install to target environment (all items)
-bun run install --target gemini
-bun run install --target claude
-bun run install --target opencode
-bun run install --target cursor
+# Install to target environment
+bun run install:target -- --target claude-code
+bun run install:target -- --target opencode --domain devops
+bun run install:target -- --target gemini --domain devops --subdomain ci-cd
+bun run install:target -- --target cursor --preset devops-essentials
+bun run install:target -- --target claude-code --skill git-master --skill docs-writer
+bun run install:target -- --target gemini --tag yaml
+bun run install:target -- --target codex --framework nextjs
+bun run install:target -- --target gemini --domain devops --dry-run
 
-# Install with selective filters
-bun run install --target claude --domain devops
-bun run install --target gemini --domain devops --subdomain ci-cd
-bun run install --target opencode --framework nextjs
-bun run install --target cursor --preset devops-essentials
-bun run install --target claude --skill git-master --skill docs-writer
-bun run install --target gemini --tag yaml
+# Run tests
+bun test                    # All tests
+bun test tests/unit/        # Unit only
+bun test tests/integration/ # Integration only
+bun run typecheck           # TypeScript type checking
 
-# Interactive mode
-bun run install --target claude --interactive
-
-# Dry run (preview without installing)
-bun run install --target gemini --domain devops --dry-run
-
-# npm fallback
+# npm CLI fallback
 npx awesome-agent-toolbox install --target gemini --domain devops
 ```
 
