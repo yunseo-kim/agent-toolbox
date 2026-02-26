@@ -1,7 +1,26 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-26T18:55:29.764Z",
+  "generatedAt": "2026-02-26T19:15:08.018Z",
   "items": [
+    {
+      "name": "ab-test-setup",
+      "type": "skill",
+      "description": "Plan, design, and implement A/B tests and experiments with proper sample sizing, statistical significance, and hypothesis frameworks",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "a-b-testing",
+        "experiments",
+        "statistical-significance",
+        "cro"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/ab-test-setup"
+    },
     {
       "name": "academic-researcher",
       "type": "skill",
@@ -21,6 +40,25 @@
       "lastUpdated": "12026-02-04",
       "license": "Sustainable Use License 1.0",
       "path": "skills/academic-researcher"
+    },
+    {
+      "name": "ad-creative",
+      "type": "skill",
+      "description": "Generate, iterate, and scale ad creative for Google, Meta, LinkedIn, and TikTok with headlines, descriptions, and platform-specific specs",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "ad-creative",
+        "ad-copy",
+        "headlines",
+        "creative-testing"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/ad-creative"
     },
     {
       "name": "ai-elements",
@@ -81,6 +119,26 @@
       "path": "skills/ai-sdk"
     },
     {
+      "name": "ai-seo",
+      "type": "skill",
+      "description": "Optimize content for AI search engines, get cited by LLMs, and appear in AI-generated answers using AEO, GEO, and LLMO strategies",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "seo",
+        "ai-search",
+        "llm-optimization",
+        "aeo",
+        "geo"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/ai-seo"
+    },
+    {
       "name": "algorithmic-art",
       "type": "skill",
       "description": "Create algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use for generative art, flow fields, particle systems, and creative coding.",
@@ -99,6 +157,26 @@
       "lastUpdated": "12025-12-01",
       "license": "Sustainable Use License 1.0",
       "path": "skills/algorithmic-art"
+    },
+    {
+      "name": "analytics-tracking",
+      "type": "skill",
+      "description": "Set up, improve, or audit analytics tracking with GA4, GTM, event naming conventions, and conversion measurement",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "analytics",
+        "ga4",
+        "gtm",
+        "event-tracking",
+        "measurement"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/analytics-tracking"
     },
     {
       "name": "apple-notes",
@@ -245,6 +323,26 @@
       "path": "skills/chat-sdk"
     },
     {
+      "name": "churn-prevention",
+      "type": "skill",
+      "description": "Reduce churn with cancellation flows, save offers, dunning sequences, and failed payment recovery strategies",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "churn",
+        "retention",
+        "cancel-flow",
+        "dunning",
+        "payment-recovery"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/churn-prevention"
+    },
+    {
       "name": "ci-triage",
       "type": "skill",
       "description": "Triage CI failures and PR review comments with structured methodology. Use when investigating failing CI jobs, flaky tests, or analyzing PR review feedback. Covers blocker-first prioritization, failure categorization, local reproduction discipline, and parallel log analysis.",
@@ -285,6 +383,44 @@
       "path": "skills/code-reviewer"
     },
     {
+      "name": "cold-email",
+      "type": "skill",
+      "description": "Write B2B cold emails and follow-up sequences that get replies with personalization, subject lines, and multi-touch frameworks",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "cold-email",
+        "outreach",
+        "sales-development",
+        "prospecting"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/cold-email"
+    },
+    {
+      "name": "competitor-alternatives",
+      "type": "skill",
+      "description": "Create competitor comparison and alternative pages for SEO and sales enablement with differentiated positioning",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "seo",
+        "competitor-analysis",
+        "comparison-pages",
+        "sales-enablement"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/competitor-alternatives"
+    },
+    {
       "name": "content-creator",
       "type": "skill",
       "description": "Creates engaging content for blogs, social media, and marketing materials with audience focus and platform-specific optimization",
@@ -322,6 +458,64 @@
       "lastUpdated": "12026-02-26",
       "license": "Sustainable Use License 1.0",
       "path": "skills/content-design"
+    },
+    {
+      "name": "content-strategy",
+      "type": "skill",
+      "description": "Plan content strategy, decide what to create, and build topic clusters with pillar pages and distribution plans",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "content-strategy",
+        "content-planning",
+        "editorial",
+        "topics"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/content-strategy"
+    },
+    {
+      "name": "copy-editing",
+      "type": "skill",
+      "description": "Edit, review, and improve existing marketing copy for clarity, conciseness, and plain English readability",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "copy-editing",
+        "proofreading",
+        "clarity",
+        "plain-english"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/copy-editing"
+    },
+    {
+      "name": "copywriting",
+      "type": "skill",
+      "description": "Write, rewrite, or improve marketing copy for homepages, landing pages, pricing pages, feature pages, and product pages",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "copywriting",
+        "marketing-copy",
+        "landing-page",
+        "headlines",
+        "cta"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/copywriting"
     },
     {
       "name": "create-pr",
@@ -514,6 +708,25 @@
       "path": "skills/email-drafter"
     },
     {
+      "name": "email-sequence",
+      "type": "skill",
+      "description": "Create or optimize email sequences, drip campaigns, and automated lifecycle email flows with templates and copy guidelines",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "email-marketing",
+        "drip-campaign",
+        "automation",
+        "lifecycle"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/email-sequence"
+    },
+    {
       "name": "fact-checker",
       "type": "skill",
       "description": "Systematic fact verification and misinformation identification using evidence-based analysis with confidence ratings and source evaluation",
@@ -555,6 +768,44 @@
       "lastUpdated": "12026-02-24",
       "license": "Sustainable Use License 1.0",
       "path": "skills/flags-sdk"
+    },
+    {
+      "name": "form-cro",
+      "type": "skill",
+      "description": "Optimize lead capture forms, contact forms, and survey forms for higher completion rates and better data quality",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "cro",
+        "conversion-optimization",
+        "forms",
+        "lead-capture"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/form-cro"
+    },
+    {
+      "name": "free-tool-strategy",
+      "type": "skill",
+      "description": "Plan, evaluate, or build free tools for marketing purposes including lead generation, SEO value, and brand awareness",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "free-tools",
+        "lead-generation",
+        "seo",
+        "calculators"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/free-tool-strategy"
     },
     {
       "name": "frontend-code-review",
@@ -833,6 +1084,25 @@
       "path": "skills/js-resource-curator"
     },
     {
+      "name": "launch-strategy",
+      "type": "skill",
+      "description": "Plan product launches, feature announcements, and release strategies with timelines, channels, and momentum tactics",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "product-launch",
+        "go-to-market",
+        "announcements",
+        "release"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/launch-strategy"
+    },
+    {
       "name": "llm-memory-patterns",
       "type": "skill",
       "description": "Implementation patterns for LLM memory systems covering conversation buffers, persistent vector memory, bidirectional storage, local-private memory, and agentic memory",
@@ -869,6 +1139,44 @@
       "lastUpdated": "12026-02-18",
       "license": "Sustainable Use License 1.0",
       "path": "skills/loom-transcript"
+    },
+    {
+      "name": "marketing-ideas",
+      "type": "skill",
+      "description": "Generate marketing ideas, inspiration, and strategies for SaaS and software products across 140+ proven tactics",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "marketing-ideas",
+        "saas-marketing",
+        "growth",
+        "brainstorming"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/marketing-ideas"
+    },
+    {
+      "name": "marketing-psychology",
+      "type": "skill",
+      "description": "Apply psychological principles, mental models, and behavioral science to marketing for more persuasive campaigns",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "psychology",
+        "behavioral-science",
+        "persuasion",
+        "mental-models"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/marketing-psychology"
     },
     {
       "name": "mcp-builder",
@@ -1030,6 +1338,25 @@
       "path": "skills/obsidian-vault"
     },
     {
+      "name": "onboarding-cro",
+      "type": "skill",
+      "description": "Optimize post-signup onboarding, user activation, first-run experience, and time-to-value for better retention",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "cro",
+        "conversion-optimization",
+        "onboarding",
+        "activation"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/onboarding-cro"
+    },
+    {
       "name": "openai-agents-guide",
       "type": "skill",
       "description": "Guide to building AI agents with the OpenAI Agents SDK covering agent creation, tool use, context management, guardrails, handoffs, multi-agent orchestration, and tracing",
@@ -1168,6 +1495,145 @@
       "path": "skills/ordercli"
     },
     {
+      "name": "page-cro",
+      "type": "skill",
+      "description": "Optimize conversions on any marketing page including homepage, landing pages, pricing pages, and feature pages",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "cro",
+        "conversion-optimization",
+        "landing-page",
+        "homepage"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/page-cro"
+    },
+    {
+      "name": "paid-ads",
+      "type": "skill",
+      "description": "Plan and optimize paid advertising campaigns on Google Ads, Meta, LinkedIn, Twitter/X, and TikTok platforms",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "paid-ads",
+        "google-ads",
+        "meta-ads",
+        "linkedin-ads",
+        "ppc"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/paid-ads"
+    },
+    {
+      "name": "paywall-upgrade-cro",
+      "type": "skill",
+      "description": "Create or optimize in-app paywalls, upgrade screens, upsell modals, and feature gates for higher conversion",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "cro",
+        "conversion-optimization",
+        "paywall",
+        "upsell",
+        "upgrade"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/paywall-upgrade-cro"
+    },
+    {
+      "name": "popup-cro",
+      "type": "skill",
+      "description": "Create or optimize popups, modals, overlays, slide-ins, and banners for conversion with timing and targeting rules",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "cro",
+        "conversion-optimization",
+        "popups",
+        "modals",
+        "overlays"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/popup-cro"
+    },
+    {
+      "name": "pricing-strategy",
+      "type": "skill",
+      "description": "Make pricing decisions, design packaging and tiers, and develop monetization strategy with research methods",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "pricing",
+        "packaging",
+        "monetization",
+        "tiers",
+        "willingness-to-pay"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/pricing-strategy"
+    },
+    {
+      "name": "product-marketing-context",
+      "type": "skill",
+      "description": "Create and maintain a product marketing context document with positioning, personas, and messaging that other skills reference",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "positioning",
+        "messaging",
+        "product-marketing",
+        "context",
+        "personas"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/product-marketing-context"
+    },
+    {
+      "name": "programmatic-seo",
+      "type": "skill",
+      "description": "Create SEO-driven pages at scale using templates and data with programmatic page generation and internal linking",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "seo",
+        "programmatic",
+        "scaled-content",
+        "templates",
+        "data-driven"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/programmatic-seo"
+    },
+    {
       "name": "project-planner",
       "type": "skill",
       "description": "Breaks down complex projects into actionable tasks with timelines, dependencies, milestones, and resource allocation",
@@ -1257,6 +1723,26 @@
       "path": "skills/react-refactoring"
     },
     {
+      "name": "referral-program",
+      "type": "skill",
+      "description": "Create, optimize, or analyze referral programs, affiliate programs, and word-of-mouth strategies for growth",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "referral",
+        "affiliate",
+        "word-of-mouth",
+        "viral",
+        "growth"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/referral-program"
+    },
+    {
       "name": "reproduce-bug",
       "type": "skill",
       "description": "Systematically reproduce a bug from a ticket or report with a failing regression test, using a structured hypothesis-driven methodology.",
@@ -1294,6 +1780,46 @@
       "lastUpdated": "12026-01-31",
       "license": "Sustainable Use License 1.0",
       "path": "skills/sag-tts"
+    },
+    {
+      "name": "schema-markup",
+      "type": "skill",
+      "description": "Add, fix, or optimize schema markup and structured data with JSON-LD for rich results in search",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "seo",
+        "structured-data",
+        "schema",
+        "rich-results",
+        "json-ld"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/schema-markup"
+    },
+    {
+      "name": "seo-audit",
+      "type": "skill",
+      "description": "Audit, review, and diagnose SEO issues covering technical SEO, on-page optimization, content quality, and authority",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "seo",
+        "technical-seo",
+        "audit",
+        "search",
+        "indexation"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/seo-audit"
     },
     {
       "name": "seo-review",
@@ -1336,6 +1862,26 @@
       "path": "skills/sherpa-onnx-tts"
     },
     {
+      "name": "signup-flow-cro",
+      "type": "skill",
+      "description": "Optimize signup, registration, account creation, and trial activation flows for higher conversion rates",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "cro",
+        "conversion-optimization",
+        "signup",
+        "registration",
+        "trial"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/signup-flow-cro"
+    },
+    {
       "name": "skill-creator",
       "type": "skill",
       "description": "Guide for creating effective skills that extend AI assistant capabilities with specialized knowledge, workflows, and tool integrations. Use when creating or updating skills.",
@@ -1372,6 +1918,26 @@
       "lastUpdated": "12025-12-01",
       "license": "Sustainable Use License 1.0",
       "path": "skills/slack-gif-creator"
+    },
+    {
+      "name": "social-content",
+      "type": "skill",
+      "description": "Create, schedule, and optimize social media content for LinkedIn, Twitter/X, Instagram, and other platforms",
+      "domain": "business",
+      "subdomain": "sales-marketing",
+      "tags": [
+        "social-media",
+        "linkedin",
+        "twitter",
+        "instagram",
+        "content-calendar"
+      ],
+      "frameworks": [],
+      "provenance": "ported",
+      "author": "Corey Haines",
+      "lastUpdated": "12026-02-19",
+      "license": "Sustainable Use License 1.0",
+      "path": "skills/social-content"
     },
     {
       "name": "songsee",

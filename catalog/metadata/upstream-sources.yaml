@@ -262,3 +262,40 @@ sources:
       - cortex-m
       - profile
       - setup
+
+  coreyhaines31/marketingskills:
+    ref: main
+    discover:
+      root: skills/
+      skill_file: SKILL.md
+    skills:
+      ab-test-setup:            { upstream_dir: ab-test-setup }
+      ad-creative:              { upstream_dir: ad-creative }
+      ai-seo:                   { upstream_dir: ai-seo }
+      analytics-tracking:       { upstream_dir: analytics-tracking }
+      churn-prevention:         { upstream_dir: churn-prevention }
+      cold-email:               { upstream_dir: cold-email }
+      competitor-alternatives:  { upstream_dir: competitor-alternatives }
+      content-strategy:         { upstream_dir: content-strategy }
+      copy-editing:             { upstream_dir: copy-editing }
+      copywriting:              { upstream_dir: copywriting }
+      email-sequence:           { upstream_dir: email-sequence }
+      form-cro:                 { upstream_dir: form-cro }
+      free-tool-strategy:       { upstream_dir: free-tool-strategy }
+      launch-strategy:          { upstream_dir: launch-strategy }
+      marketing-ideas:          { upstream_dir: marketing-ideas }
+      marketing-psychology:     { upstream_dir: marketing-psychology }
+      onboarding-cro:           { upstream_dir: onboarding-cro }
+      page-cro:                 { upstream_dir: page-cro }
+      paid-ads:                 { upstream_dir: paid-ads }
+      paywall-upgrade-cro:      { upstream_dir: paywall-upgrade-cro }
+      popup-cro:                { upstream_dir: popup-cro }
+      pricing-strategy:         { upstream_dir: pricing-strategy }
+      product-marketing-context: { upstream_dir: product-marketing-context }
+      programmatic-seo:         { upstream_dir: programmatic-seo }
+      referral-program:         { upstream_dir: referral-program }
+      schema-markup:            { upstream_dir: schema-markup }
+      seo-audit:                { upstream_dir: seo-audit }
+      signup-flow-cro:          { upstream_dir: signup-flow-cro }
+      social-content:           { upstream_dir: social-content }
+    ignored: []

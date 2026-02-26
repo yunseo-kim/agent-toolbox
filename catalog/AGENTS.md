@@ -71,7 +71,7 @@ For detailed classification criteria distinguishing ported from adapted, see `..
 
 ```
 # Format: skill-name | domain/subdomain | provenance (source)
-# 85 skills across 10 domains
+# 114 skills across 10 domains
 
 # productivity
 apple-notes | productivity | ported (openclaw/openclaw)
@@ -154,6 +154,35 @@ issue-analysis | business/project-management | adapted (n8n)
 project-planner | business/project-management | ported (awesome-llm-apps)
 sprint-planner | business/project-management | ported (awesome-llm-apps)
 strategy-advisor | business/business-apps | ported (awesome-llm-apps)
+ab-test-setup | business/sales-marketing | ported (coreyhaines31/marketingskills)
+ad-creative | business/sales-marketing | ported (coreyhaines31/marketingskills)
+ai-seo | business/sales-marketing | ported (coreyhaines31/marketingskills)
+analytics-tracking | business/sales-marketing | ported (coreyhaines31/marketingskills)
+churn-prevention | business/sales-marketing | ported (coreyhaines31/marketingskills)
+cold-email | business/sales-marketing | ported (coreyhaines31/marketingskills)
+competitor-alternatives | business/sales-marketing | ported (coreyhaines31/marketingskills)
+content-strategy | business/sales-marketing | ported (coreyhaines31/marketingskills)
+copy-editing | business/sales-marketing | ported (coreyhaines31/marketingskills)
+copywriting | business/sales-marketing | ported (coreyhaines31/marketingskills)
+email-sequence | business/sales-marketing | ported (coreyhaines31/marketingskills)
+form-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
+free-tool-strategy | business/sales-marketing | ported (coreyhaines31/marketingskills)
+launch-strategy | business/sales-marketing | ported (coreyhaines31/marketingskills)
+marketing-ideas | business/sales-marketing | ported (coreyhaines31/marketingskills)
+marketing-psychology | business/sales-marketing | ported (coreyhaines31/marketingskills)
+onboarding-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
+page-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
+paid-ads | business/sales-marketing | ported (coreyhaines31/marketingskills)
+paywall-upgrade-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
+popup-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
+pricing-strategy | business/sales-marketing | ported (coreyhaines31/marketingskills)
+product-marketing-context | business/sales-marketing | ported (coreyhaines31/marketingskills)
+programmatic-seo | business/sales-marketing | ported (coreyhaines31/marketingskills)
+referral-program | business/sales-marketing | ported (coreyhaines31/marketingskills)
+schema-markup | business/sales-marketing | ported (coreyhaines31/marketingskills)
+seo-audit | business/sales-marketing | ported (coreyhaines31/marketingskills)
+signup-flow-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
+social-content | business/sales-marketing | ported (coreyhaines31/marketingskills)
 
 # content-media
 algorithmic-art | content-media/generative-art | ported (anthropics/skills)

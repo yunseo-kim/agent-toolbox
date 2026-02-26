@@ -104,7 +104,7 @@ bun test                   # Run all tests
 
 **[View all skills by domain →](catalog/README.md)**
 
-The catalog currently contains **85+ skills** across 10 domains, curated from leading open-source projects and adapted for cross-tool compatibility.
+The catalog currently contains **114 skills** across 10 domains, curated from leading open-source projects and adapted for cross-tool compatibility.
 
 ## Supported Targets
 
