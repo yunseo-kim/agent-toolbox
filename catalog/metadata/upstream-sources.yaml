@@ -192,7 +192,7 @@ sources:
     skills: {}
     adapted_skills:
       ci-triage:               { upstream_dir: pr-status-triage }   # renamed
-      nextjs-cache-components: { upstream_path: .claude-plugin/plugins/cache-components/SKILL.md }
+      nextjs-cache-components: { upstream_path: .claude-plugin/plugins/cache-components/skills/cache-components/SKILL.md }
     ignored:
       - authoring-skills
       - dce-edge
