@@ -64,30 +64,29 @@ awesome-agent-toolbox/
 
 ```bash
 # Install all skills for a target
-bun run install:target -- --target claude-code
+bunx awesome-agent-toolbox install --target claude-code
 
 # Filter by domain
-bun run install:target -- --target gemini --domain devops
+bunx awesome-agent-toolbox install --target gemini --domain devops
 
 # Filter by subdomain
-bun run install:target -- --target gemini --domain devops --subdomain ci-cd
+bunx awesome-agent-toolbox install --target gemini --domain devops --subdomain ci-cd
 
 # Use a curated preset
-bun run install:target -- --target cursor --preset devops-essentials
+bunx awesome-agent-toolbox install --target cursor --preset devops-essentials
 
 # Install specific skills
-bun run install:target -- --target claude-code --skill git-master --skill docs-writer
+bunx awesome-agent-toolbox install --target claude-code --skill git-master --skill docs-writer
 
 # Filter by framework or tag
-bun run install:target -- --target codex --framework nextjs
-bun run install:target -- --target gemini --tag yaml
+bunx awesome-agent-toolbox install --target codex --framework nextjs
+bunx awesome-agent-toolbox install --target gemini --tag yaml
 
 # Preview what would be installed
-bun run install:target -- --target gemini --domain devops --dry-run
-
-# npm fallback
-npx awesome-agent-toolbox install --target gemini --domain devops
+bunx awesome-agent-toolbox install --target gemini --domain devops --dry-run
 ```
+
+> **npm users:** Replace `bunx` with `npx`.
 
 All filters compose with AND logic. Default (no filters) installs everything.
 
