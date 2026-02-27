@@ -108,13 +108,13 @@ jobs:
       - name: Check for drift
         run: |
           # Save committed version (strip volatile generatedAt timestamp)
-          jq 'del(.generatedAt)' catalog/metadata/catalog-index.json > /tmp/committed.json
+          jq 'del(.generatedAt)' catalog/metadata/skill-index.json > /tmp/committed.json
           # Rebuild the index
           bun run build:index
           # Save rebuilt version (strip volatile generatedAt timestamp)
-          jq 'del(.generatedAt)' catalog/metadata/catalog-index.json > /tmp/rebuilt.json
+          jq 'del(.generatedAt)' catalog/metadata/skill-index.json > /tmp/rebuilt.json
           # Compare content only (ignoring timestamp)
           if ! diff --unified /tmp/committed.json /tmp/rebuilt.json; then
-            echo "::error::catalog-index.json is out of date. Run 'bun run build:index' and commit."
+            echo "::error::skill-index.json is out of date. Run 'bun run build:index' and commit."
             exit 1
           fi

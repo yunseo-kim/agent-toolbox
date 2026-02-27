@@ -1,41 +1,53 @@
 import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
-import { encode } from "@toon-format/toon";
-import { CatalogIndex, type CatalogIndex as CatalogIndexType, type ParsedSkill } from "../schemas/catalog.js";
+import { DELIMITERS, encode } from "@toon-format/toon";
+import { SkillIndex, type SkillIndex as SkillIndexType, type ParsedSkill } from "../schemas/catalog.js";
 
-export function buildCatalogIndex(skills: ParsedSkill[]): CatalogIndexType {
-  const items = skills
+export function buildSkillIndex(skills: ParsedSkill[]): SkillIndexType {
+  const skillEntries = skills
     .map((skill) => ({
       name: skill.frontmatter.name,
-      type: "skill" as const,
       description: skill.frontmatter.description,
       domain: skill.frontmatter.metadata.domain,
       subdomain: skill.frontmatter.metadata.subdomain,
-      tags: skill.frontmatter.metadata.tags ?? [],
-      frameworks: skill.frontmatter.metadata.frameworks ?? [],
       provenance: skill.frontmatter.metadata.provenance,
       author: skill.frontmatter.metadata.author,
       lastUpdated: skill.frontmatter.metadata.lastUpdated,
       license: skill.frontmatter.license,
-      path: `skills/${skill.dirName}`,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  return CatalogIndex.parse({
-    version: 1,
+  const tags: Record<string, string[]> = {};
+  const frameworks: Record<string, string[]> = {};
+
+  for (const skill of skills) {
+    const skillTags = skill.frontmatter.metadata.tags;
+    if (skillTags && skillTags.length > 0) {
+      tags[skill.frontmatter.name] = skillTags;
+    }
+    const skillFrameworks = skill.frontmatter.metadata.frameworks;
+    if (skillFrameworks && skillFrameworks.length > 0) {
+      frameworks[skill.frontmatter.name] = skillFrameworks;
+    }
+  }
+
+  return SkillIndex.parse({
+    version: 2,
     generatedAt: new Date().toISOString(),
-    items,
+    skills: skillEntries,
+    tags,
+    frameworks,
   });
 }
 
-export async function writeCatalogIndex(index: CatalogIndexType, outputPath: string): Promise<void> {
+export async function writeSkillIndex(index: SkillIndexType, outputPath: string): Promise<void> {
   await mkdir(dirname(outputPath), { recursive: true });
   const json = `${JSON.stringify(index, null, 2)}\n`;
   await Bun.write(outputPath, json);
 }
 
-export async function writeCatalogIndexToon(index: CatalogIndexType, outputPath: string): Promise<void> {
+export async function writeSkillIndexToon(index: SkillIndexType, outputPath: string): Promise<void> {
   await mkdir(dirname(outputPath), { recursive: true });
-  const toon = encode(index);
+  const toon = encode(index, { delimiter: DELIMITERS.tab });
   await Bun.write(outputPath, toon);
 }

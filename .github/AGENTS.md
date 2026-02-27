@@ -29,9 +29,9 @@ validate ──→ test ──→ build
 | **validate** | `bun run typecheck` → `bun run validate` | Type errors; invalid frontmatter; domain/subdomain not in taxonomy |
 | **test** | `bun test` (all unit + integration) | Any test assertion fails |
 | **build** | `bun run build:index` → `bun run build:all` → verify 5 target dirs | Missing target directories; build errors |
-| **drift-check** | Rebuild index → compare (excluding `generatedAt` timestamp) | `catalog-index.json` is out of date |
+| **drift-check** | Rebuild index → compare (excluding `generatedAt` timestamp) | `skill-index.json` is out of date |
 
-**Drift detection**: Strips volatile `generatedAt` timestamp from both committed and rebuilt `catalog-index.json`, then diffs content. Fails if any structural difference found. Fix: `bun run build:index && git add catalog/metadata/catalog-index.json`.
+**Drift detection**: Strips volatile `generatedAt` timestamp from both committed and rebuilt `skill-index.json`, then diffs content. Fails if any structural difference found. Fix: `bun run build:index && git add catalog/metadata/skill-index.json`.
 
 ## UPSTREAM SYNC (`upstream-sync.yml`)
 

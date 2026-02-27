@@ -138,27 +138,25 @@ export type McpServerFrontmatter = z.infer<typeof McpServerFrontmatter>;
 
 export const CatalogItemType = z.enum(["skill", "agent", "command", "hook", "mcp"]);
 
-export const CatalogIndexEntry = z.object({
+export const SkillIndexEntry = z.object({
   name: z.string(),
-  type: CatalogItemType,
   description: z.string(),
   domain: z.string(),
   subdomain: z.string().optional(),
-  tags: z.array(z.string()).default([]),
-  frameworks: z.array(z.string()).default([]),
   provenance: Provenance,
   author: z.string(),
   lastUpdated: z.string(),
   license: z.string(),
-  path: z.string(),
 });
 
-export type CatalogIndexEntry = z.infer<typeof CatalogIndexEntry>;
+export type SkillIndexEntry = z.infer<typeof SkillIndexEntry>;
 
-export const CatalogIndex = z.object({
-  version: z.literal(1),
+export const SkillIndex = z.object({
+  version: z.literal(2),
   generatedAt: z.string(),
-  items: z.array(CatalogIndexEntry),
+  skills: z.array(SkillIndexEntry),
+  tags: z.record(z.string(), z.array(z.string())).default({}),
+  frameworks: z.record(z.string(), z.array(z.string())).default({}),
 });
 
-export type CatalogIndex = z.infer<typeof CatalogIndex>;
+export type SkillIndex = z.infer<typeof SkillIndex>;

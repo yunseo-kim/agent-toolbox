@@ -28,7 +28,7 @@ USAGE
 COMMANDS
   install       Install skills to a target tool
   build         Build target artifacts
-  build-index   Generate catalog-index.json
+  build-index   Generate skill-index.json and skill-index.toon
   validate      Validate catalog against taxonomy
 
 OPTIONS

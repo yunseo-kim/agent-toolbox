@@ -1,0 +1,259 @@
+version: 2
+generatedAt: "2026-02-27T17:59:31.334Z"
+skills[118	]{name	description	domain	subdomain	provenance	author	lastUpdated	license}:
+  ab-test-setup	Plan, design, and implement A/B tests and experiments with proper sample sizing, statistical significance, and hypothesis frameworks	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  academic-researcher	Academic research assistant for literature reviews, paper analysis, scholarly writing, and citation formatting in APA, MLA, and Chicago styles	research	citation-management	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  ad-creative	Generate, iterate, and scale ad creative for Google, Meta, LinkedIn, and TikTok with headlines, descriptions, and platform-specific specs	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  ai-elements	"Build AI chat interfaces with AI Elements, a component library and custom registry built on shadcn/ui. Use when developers want to (1) add pre-built AI chat components like conversations, messages, prompts, reasoning, code blocks, and tool displays, (2) install AI Elements via CLI or shadcn registry, (3) customize component styles and behavior, (4) integrate with Vercel AI SDK's useChat. Triggers on \"ai-elements\", \"AI chat components\", \"chat UI\", \"message component\", \"prompt input\", \"shadcn ai\", building AI-native interfaces with pre-built composable components.\n"	development	frontend	ported	Hayden Bleasel <hello@haydenbleasel.com>	12026-02-25	Sustainable Use License 1.0
+  ai-sdk	"Answer questions about the Vercel AI SDK and help build AI-powered features. Use when developers ask about AI SDK functions like generateText, streamText, ToolLoopAgent, embed, or tools, want to build AI agents, chatbots, RAG systems, or text generation features, have questions about AI providers (OpenAI, Anthropic, Google, etc.), streaming, tool calling, structured output, or embeddings, or use React hooks like useChat or useCompletion. Triggers on: \"AI SDK\", \"Vercel AI SDK\", \"generateText\", \"streamText\", \"add AI to my app\", \"build an agent\", \"tool calling\", \"structured output\", \"useChat\".\n"	data-ai	null	ported	Nico Albanese <49612682+nicoalbanese@users.noreply.github.com>	12026-02-11	Sustainable Use License 1.0
+  ai-seo	Optimize content for AI search engines, get cited by LLMs, and appear in AI-generated answers using AEO, GEO, and LLMO strategies	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  algorithmic-art	Create algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use for generative art, flow fields, particle systems, and creative coding.	content-media	generative-art	adapted	Yunseo Kim <dev@yunseo.kim>	12025-12-01	Sustainable Use License 1.0
+  analytics-tracking	Set up, improve, or audit analytics tracking with GA4, GTM, event naming conventions, and conversion measurement	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  apple-notes	"Manage Apple Notes via the memo CLI on macOS. Create, view, edit, delete, search, move, and export notes from the terminal. Use when managing Apple Notes programmatically.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  apple-reminders	"Manage Apple Reminders via remindctl CLI. List, add, edit, complete, and delete reminders with support for lists, date filters, and JSON/plain output.\n"	productivity	null	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-18	Sustainable Use License 1.0
+  bear-notes	"Create, search, and manage Bear notes via the grizzly CLI on macOS. Use when working with Bear note management from the terminal.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  blogwatcher	"Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI. Track new articles, mark as read, and manage blog subscriptions.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  blucli	"Control Bluesound/NAD players via the BluOS CLI. Discovery, playback, grouping, and volume management from the terminal.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  canvas-design	Create beautiful visual art in .png and .pdf documents using design philosophy. Use when creating posters, art pieces, designs, or other static visual content.	content-media	generative-art	adapted	Yunseo Kim <dev@yunseo.kim>	12025-12-01	Sustainable Use License 1.0
+  chat-sdk	"Build multi-platform chat bots with Chat SDK (`chat` npm package). Use when developers want to (1) Build a Slack, Teams, Google Chat, Discord, GitHub, or Linear bot, (2) Use the Chat SDK to handle mentions, messages, reactions, slash commands, cards, modals, or streaming, (3) Set up webhook handlers for chat platforms, (4) Send interactive cards or stream AI responses to chat platforms. Triggers on \"chat sdk\", \"chat bot\", \"slack bot\", \"teams bot\", \"discord bot\", \"@chat-adapter\", building bots that work across multiple chat platforms.\n"	development	backend	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  churn-prevention	Reduce churn with cancellation flows, save offers, dunning sequences, and failed payment recovery strategies	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  ci-triage	Triage CI failures and PR review comments with structured methodology. Use when investigating failing CI jobs, flaky tests, or analyzing PR review feedback. Covers blocker-first prioritization, failure categorization, local reproduction discipline, and parallel log analysis.	devops	ci-cd	synthesized	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  code-reviewer	Thorough code review with focus on security vulnerabilities, performance issues, and best practices using prioritized rule-based analysis	devops	code-review	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  cold-email	Write B2B cold emails and follow-up sequences that get replies with personalization, subject lines, and multi-touch frameworks	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  competitor-alternatives	Create competitor comparison and alternative pages for SEO and sales enablement with differentiated positioning	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  composition-patterns	"React composition patterns that scale. Use when refactoring components with boolean prop proliferation, building flexible component libraries, or designing reusable APIs. Covers compound components, state lifting, context interfaces, and React 19 API changes.\n"	development	frontend	ported	Fernando Rojo	12026-01-28	Sustainable Use License 1.0
+  content-creator	Creates engaging content for blogs, social media, and marketing materials with audience focus and platform-specific optimization	content-media	content-design	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  content-design	"Product content designer for UI copy. Use when writing, reviewing, or auditing user-facing text: button labels, error messages, tooltips, empty states, modal copy, placeholder text, confirmation dialogs, onboarding flows, or i18n strings.\n"	content-media	content-design	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-26	Sustainable Use License 1.0
+  content-strategy	Plan content strategy, decide what to create, and build topic clusters with pillar pages and distribution plans	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  copy-editing	Edit, review, and improve existing marketing copy for clarity, conciseness, and plain English readability	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  copywriting	Write, rewrite, or improve marketing copy for homepages, landing pages, pricing pages, feature pages, and product pages	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  create-pr	"Create GitHub pull requests with Conventional Commits-formatted titles and structured PR bodies. Use when creating PRs, submitting changes for review, or when the user says /pr or asks to create a pull request.\n"	devops	git	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-26	Sustainable Use License 1.0
+  data-analyst	SQL, pandas, and statistical analysis expertise for data exploration, cleaning, transformation, and insight generation	data-ai	null	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  debugger	Systematic debugging and root cause analysis for identifying and fixing software issues using binary search, bisect, and structured hypothesis testing	devops	testing	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  decision-helper	Structured decision-making frameworks for evaluating options, weighing trade-offs, and making informed choices using proven methodologies	productivity	null	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  deep-research	Comprehensive research assistant that synthesizes information from multiple sources with proper citations and source evaluation	research	null	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  doc-coauthoring	Guide users through a structured workflow for co-authoring documentation, proposals, technical specs, and decision docs. Use when writing docs, creating proposals, drafting specs, or collaborative documentation tasks.	documentation	technical-docs	adapted	Yunseo Kim <dev@yunseo.kim>	12025-12-04	Sustainable Use License 1.0
+  docs-writer	"Unified documentation workflow for writing, reviewing, and updating technical docs across repositories. Use when users ask to write or edit docs, review doc quality, map code changes to doc impact, scaffold new documentation, update README/API guides, or improve docs in `/docs` and `*.md`/`*.mdx` files. Supports self-contained profile-based behavior for generic docs, Next.js docs, and Angular docs.\n"	documentation	technical-docs	synthesized	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  editor	Professional editing and proofreading for clarity, grammar, style, and readability improvements across all document types	content-media	content-design	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  eightctl	"Control Eight Sleep pods via CLI. Check status, set temperature, manage alarms, and configure sleep schedules.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  email-drafter	Professional email composition for business communication including meeting requests, follow-ups, and sensitive correspondence	business	communications	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  email-sequence	Create or optimize email sequences, drip campaigns, and automated lifecycle email flows with templates and copy guidelines	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  fact-checker	Systematic fact verification and misinformation identification using evidence-based analysis with confidence ratings and source evaluation	research	null	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  flags-sdk	"Comprehensive guide for implementing feature flags and A/B tests using the Flags SDK (the `flags` npm package). Use when: (1) Creating or declaring feature flags with `flag()`, (2) Setting up feature flag providers/adapters (Vercel, Statsig, LaunchDarkly, PostHog, GrowthBook, Hypertune, Edge Config, OpenFeature, Flagsmith, Reflag, Split, Optimizely, or custom adapters), (3) Implementing precompute patterns for static pages with feature flags, (4) Setting up evaluation context with `identify` and `dedupe`, (5) Integrating the Flags Explorer / Vercel Toolbar, (6) Working with feature flags in Next.js (App Router, Pages Router, Middleware) or SvelteKit, (7) Writing custom adapters, (8) Encrypting/decrypting flag values for the toolbar, (9) Any task involving the `flags`, `flags/next`, `flags/sveltekit`, `flags/react`, or `@flags-sdk/*` packages. Triggers on: feature flags, A/B testing, experimentation, flags SDK, flag adapters, precompute flags, Flags Explorer, feature gates, flag overrides.\n"	development	frontend	ported	Hayden Bleasel <hello@haydenbleasel.com>	12026-02-24	Sustainable Use License 1.0
+  form-cro	Optimize lead capture forms, contact forms, and survey forms for higher completion rates and better data quality	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  free-tool-strategy	Plan, evaluate, or build free tools for marketing purposes including lead generation, SEO value, and brand awareness	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  frontend-code-review	"Review frontend code (React, TypeScript, CSS) for code quality, performance, and best practices. Supports pending-change reviews and focused file reviews with urgency-based findings and structured output templates.\n"	devops	code-review	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  frontend-design	Create distinctive, production-grade frontend interfaces with high design quality. Use when building web components, pages, applications, posters, or when styling and beautifying any web UI.	development	frontend	adapted	Yunseo Kim <dev@yunseo.kim>	12025-12-04	Sustainable Use License 1.0
+  frontend-testing	"Generate comprehensive Vitest and React Testing Library tests for frontend components, hooks, and utilities. Covers test structure, incremental workflow, async patterns, mocking strategies, and coverage goals. Use when writing or reviewing frontend tests, improving coverage, or setting up testing infrastructure for React projects.\n"	devops	testing	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  fullstack-developer	Modern web development expertise covering React, Node.js, TypeScript, databases, and full-stack architecture patterns	development	full-stack	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  gemini-cli	"Use Gemini CLI for one-shot Q&A, summaries, and generation tasks. Supports model selection, JSON output, and extension management.\n"	data-ai	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  gifgrep	"Search GIF providers (Tenor/Giphy) with CLI/TUI, download results, and extract stills or contact sheets for review and sharing.\n"	content-media	media-processing	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  github-cli	"GitHub operations via the gh CLI. Manage issues, PRs, CI runs, code review, and API queries. Use for checking PR status, creating issues, viewing workflow logs, and querying repository data.\n"	devops	git	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-18	Sustainable Use License 1.0
+  google-adk-guide	Guide to building AI agents with Google Agent Development Kit covering agent creation, tool integration, memory, callbacks, plugins, and multi-agent orchestration	data-ai	null	synthesized	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  goplaces	"Query Google Places API (New) via the goplaces CLI. Text search, place details, resolve locations, and read reviews with human-friendly or JSON output.\n"	research	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  internal-comms	Write internal communications including status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, and project updates.	business	communications	ported	ant-andi <andibrae@anthropic.com>	12025-12-01	Sustainable Use License 1.0
+  issue-analysis	"Fetch and analyze an issue from a project tracker with all related context. Gathers attachments, media, linked resources, and provides effort estimates. Use when starting work on a ticket, triaging issues, or gathering comprehensive context about a bug report or feature request.\n"	business	project-management	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-26	Sustainable Use License 1.0
+  js-docs-fact-check	"Verify technical accuracy of JavaScript documentation by checking code examples, MDN/ECMAScript compliance, and common misconceptions. Use before publishing, after major edits, or during periodic accuracy audits.\n"	documentation	technical-docs	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  js-resource-curator	"Find, evaluate, and maintain high-quality external resources for JavaScript documentation, including trusted source lists, link auditing, and publication date guidelines for ES features. Use when adding resources, refreshing pages, or running link audits.\n"	documentation	technical-docs	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  launch-strategy	Plan product launches, feature announcements, and release strategies with timelines, channels, and momentum tactics	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  llm-memory-patterns	Implementation patterns for LLM memory systems covering conversation buffers, persistent vector memory, bidirectional storage, local-private memory, and agentic memory	data-ai	null	synthesized	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  loom-transcript	Fetch and display the full transcript from a Loom video URL using Loom's public GraphQL API.	productivity	null	ported	Eugene <eugene@n8n.io>	12026-02-18	Sustainable Use License 1.0
+  marketing-ideas	Generate marketing ideas, inspiration, and strategies for SaaS and software products across 140+ proven tactics	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  marketing-psychology	Apply psychological principles, mental models, and behavioral science to marketing for more persuasive campaigns	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  mcp-builder	Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).	development	developer-tooling	ported	ant-andi <andibrae@anthropic.com>	12025-12-01	Sustainable Use License 1.0
+  mcporter	"List, configure, authenticate, and call MCP servers and tools directly via the mcporter CLI. Supports HTTP and stdio transports, ad-hoc servers, config management, and CLI/TypeScript code generation.\n"	development	developer-tooling	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  meeting-notes	Structured meeting summaries with action items, decisions, key discussion points, and follow-up tracking	productivity	null	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  nano-banana-pro	"Generate images using the Banana.dev inference API. Lightweight image generation with Python script and configurable prompts.\n"	content-media	generative-art	adapted	Yunseo Kim <dev@yunseo.kim>	12026-01-31	Sustainable Use License 1.0
+  nano-pdf	"Lightweight PDF processing from the command line. Use when working with PDF files for extraction, conversion, or manipulation.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  nextjs-cache-components	"Expert guidance for Next.js Cache Components and Partial Prerendering (PPR). Proactively activates in projects with cacheComponents enabled, providing patterns for 'use cache' directive, cacheLife(), cacheTag(), cache invalidation, and parameter permutation rendering.\n"	development	frontend	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  notion-api	"Interact with the Notion API for creating and managing pages, databases, and blocks. Use when automating Notion workflows via REST API calls.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  obsidian-vault	"Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli. Search, create, move, rename, and manage notes.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  onboarding-cro	Optimize post-signup onboarding, user activation, first-run experience, and time-to-value for better retention	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  openai-agents-guide	Guide to building AI agents with the OpenAI Agents SDK covering agent creation, tool use, context management, guardrails, handoffs, multi-agent orchestration, and tracing	data-ai	null	synthesized	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  openai-image-gen	"Batch-generate images via OpenAI Images API using GPT Image models or DALL-E. Includes random prompt sampler and HTML gallery output.\n"	content-media	generative-art	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  openai-whisper-api	"Transcribe audio files via OpenAI Audio Transcriptions API (Whisper). Supports multiple formats with language detection and custom prompts.\n"	content-media	media-processing	adapted	Yunseo Kim <dev@yunseo.kim>	12026-01-31	Sustainable Use License 1.0
+  openai-whisper-local	"Local speech-to-text transcription with the Whisper CLI. No API key required -- runs entirely offline with configurable model sizes.\n"	content-media	media-processing	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  openhue	"Control Philips Hue lights and scenes via the OpenHue CLI. Turn on/off, adjust brightness, set colors, and activate scenes.\n"	productivity	null	ported	Blakeshannon <blake@blakeshannon.com>	12026-02-18	Sustainable Use License 1.0
+  oracle-cli	"Bundle prompts and files into one-shot AI consultations via the oracle CLI. Supports browser and API engines, session management, and multiple model providers for code review and architecture analysis.\n"	data-ai	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  ordercli	"Check past food delivery orders and track active order status via the ordercli CLI. Supports Foodora with history, reorder, and session management.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  page-cro	Optimize conversions on any marketing page including homepage, landing pages, pricing pages, and feature pages	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  paid-ads	Plan and optimize paid advertising campaigns on Google Ads, Meta, LinkedIn, Twitter/X, and TikTok platforms	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  paywall-upgrade-cro	Create or optimize in-app paywalls, upgrade screens, upsell modals, and feature gates for higher conversion	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  popup-cro	Create or optimize popups, modals, overlays, slide-ins, and banners for conversion with timing and targeting rules	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  pricing-strategy	Make pricing decisions, design packaging and tiers, and develop monetization strategy with research methods	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  product-marketing-context	Create and maintain a product marketing context document with positioning, personas, and messaging that other skills reference	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  programmatic-seo	Create SEO-driven pages at scale using templates and data with programmatic page generation and internal linking	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  project-planner	Breaks down complex projects into actionable tasks with timelines, dependencies, milestones, and resource allocation	business	project-management	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  python-expert	Senior Python developer expertise for writing clean, efficient, and well-documented code with type hints and PEP 8 compliance	development	scripting	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  rag-patterns	Implementation patterns for Retrieval-Augmented Generation covering basic chains, corrective RAG, hybrid search, knowledge graphs with community detection, agentic RAG, multimodal retrieval, and reasoning-based vectorless RAG	data-ai	null	synthesized	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  react-best-practices	"React and Next.js performance optimization guidelines from Vercel Engineering. Contains 57 rules across 8 categories prioritized by impact. Use when writing, reviewing, or refactoring React/Next.js code for performance — components, data fetching, bundle optimization, re-renders, and server-side patterns.\n"	development	frontend	ported	Fernando Rojo	12026-01-26	Sustainable Use License 1.0
+  react-native-skills	"React Native and Expo best practices for building performant mobile apps. Contains 35+ rules across 14 categories covering list performance, animations, navigation, UI patterns, and platform-specific optimizations. Use when building React Native components, optimizing lists, implementing animations, or working with native modules.\n"	development	mobile	ported	Fernando Rojo	12026-01-27	Sustainable Use License 1.0
+  react-refactoring	"Refactor high-complexity React components using proven patterns for hook extraction, component splitting, conditional simplification, and API/data layer separation. Use when components exceed 300 lines, have deep nesting, mix business logic with UI, or manage too many state variables. Avoid for simple or well-structured components.\n"	development	frontend	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  referral-program	Create, optimize, or analyze referral programs, affiliate programs, and word-of-mouth strategies for growth	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  reproduce-bug	Systematically reproduce a bug from a ticket or report with a failing regression test, using a structured hypothesis-driven methodology.	devops	testing	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-26	Sustainable Use License 1.0
+  sag-tts	"ElevenLabs text-to-speech with mac-style say UX via the sag CLI. Supports multiple voices, models, audio tags, and pronunciation control.\n"	content-media	media-processing	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  schema-markup	Add, fix, or optimize schema markup and structured data with JSON-LD for rich results in search	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  seo-audit	Audit, review, and diagnose SEO issues covering technical SEO, on-page optimization, content quality, and authority	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  seo-review	"Perform a focused SEO audit on documentation and content pages to maximize search visibility, featured snippet optimization, and ranking potential. Use when publishing new pages, optimizing underperforming content, or running periodic content audits.\n"	documentation	technical-docs	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  sherpa-onnx-tts	"Local text-to-speech via sherpa-onnx. Fully offline, no cloud dependency, supports multiple voice models across platforms.\n"	content-media	media-processing	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-16	Sustainable Use License 1.0
+  signup-flow-cro	Optimize signup, registration, account creation, and trial activation flows for higher conversion rates	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  skill-creator	Guide for creating effective skills that extend AI assistant capabilities with specialized knowledge, workflows, and tool integrations. Use when creating or updating skills.	development	developer-tooling	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
+  slack-gif-creator	Create animated GIFs optimized for Slack with validation tools and animation utilities. Use when users request animated GIFs for Slack.	content-media	media-processing	ported	ant-andi <andibrae@anthropic.com>	12025-12-01	Sustainable Use License 1.0
+  social-content	Create, schedule, and optimize social media content for LinkedIn, Twitter/X, Instagram, and other platforms	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
+  songsee	"Generate spectrograms and feature-panel visualizations from audio files. Supports multiple visualization types and time slicing.\n"	content-media	media-processing	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  sonoscli	"Control Sonos speakers from the terminal. Discover, play, pause, adjust volume, manage groups, and search Spotify via SMAPI.\n"	productivity	null	ported	Harold Hunt <huntharo@gmail.com>	12026-02-21	Sustainable Use License 1.0
+  spotify-player	"Terminal Spotify playback and search via spogo (preferred) or spotify_player CLI. Search tracks, control playback, manage devices, and browse playlists.\n"	content-media	media-processing	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  sprint-planner	Agile sprint planning with story estimation, capacity planning, velocity tracking, and sprint goal setting	business	project-management	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  strategy-advisor	High-level strategic thinking and business decision guidance for planning, competitive analysis, and direction-setting	business	business-apps	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  streamdown	"Implement, configure, and customize Streamdown — a streaming-optimized React Markdown renderer with syntax highlighting, Mermaid diagrams, math rendering, and CJK support. Use when working with Streamdown setup, configuration, plugins, styling, security, or integration with AI streaming (e.g., Vercel AI SDK). Triggers on: (1) Installing or setting up Streamdown, (2) Configuring plugins (code, mermaid, math, cjk), (3) Styling or theming Streamdown output, (4) Integrating with AI chat/streaming, (5) Configuring security, link safety, or custom HTML tags, (6) Using carets, static mode, or custom components, (7) Troubleshooting Tailwind, Shiki, or Vite issues."	development	frontend	ported	Hayden Bleasel <hello@haydenbleasel.com>	12026-02-18	Sustainable Use License 1.0
+  summarize-cli	"Summarize or extract text and transcripts from URLs, podcasts, and local files. Supports YouTube transcript extraction, multiple AI providers, and configurable output length.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
+  theme-factory	Toolkit for styling artifacts with pre-set or custom themes including colors and fonts. Use when applying consistent professional styling to slides, docs, reports, or HTML landing pages.	content-media	content-design	ported	ant-andi <andibrae@anthropic.com>	12025-12-01	Sustainable Use License 1.0
+  things-mac-cli	"Manage Things 3 via the things CLI on macOS. Add, update, search, and list todos and projects via URL scheme and local database reads.\n"	productivity	null	adapted	Yunseo Kim <dev@yunseo.kim>	12026-01-31	Sustainable Use License 1.0
+  tmux-controller	"Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output. Essential for managing long-running terminal processes.\n"	development	developer-tooling	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-18	Sustainable Use License 1.0
+  torch-export	Export PyTorch models with torch.export -- dynamic shapes, symbolic tracing, control flow operators, debugging export failures, and making untraceable code traceable	data-ai	null	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-27	Sustainable Use License 1.0
+  trello-api	"Manage Trello boards, lists, and cards via the Trello REST API. Create, move, archive cards and add comments using curl.\n"	productivity	null	adapted	Yunseo Kim <dev@yunseo.kim>	12026-01-31	Sustainable Use License 1.0
+  ux-designer	Expert UX design assistance for user research, wireframing, prototyping, and design strategy. Covers user interviews, personas, accessibility (WCAG), information architecture, interaction design, microcopy, visual hierarchy, and design systems.	development	frontend	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-26	Sustainable Use License 1.0
+  video-frames	"Extract frames or short clips from videos using ffmpeg. Quick thumbnails and frame extraction at specific timestamps.\n"	content-media	media-processing	adapted	Yunseo Kim <dev@yunseo.kim>	12026-01-31	Sustainable Use License 1.0
+  visualization-expert	Chart selection and data visualization guidance for effective data communication using matplotlib, plotly, and dashboard design	data-ai	null	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
+  weather-cli	"Get current weather conditions and forecasts for any location via wttr.in. Supports multiple output formats including JSON, one-liners, and PNG images. No API key needed.\n"	research	null	ported	DylanWoodAkers <dylan@lec.com>	12026-02-18	Sustainable Use License 1.0
+  web-artifacts-builder	Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui. Use for complex interactive artifacts requiring state management, routing, or component libraries.	development	frontend	adapted	Yunseo Kim <dev@yunseo.kim>	12025-12-01	Sustainable Use License 1.0
+  web-design-guidelines	"Review UI code for Web Interface Guidelines compliance. Audits code against 100+ rules covering accessibility, performance, UX, forms, animation, typography, images, navigation, dark mode, touch interactions, and i18n. Use when asked to review UI, check accessibility, audit design, or review UX.\n"	development	frontend	ported	Thomas Mustier	12026-01-16	Sustainable Use License 1.0
+  webapp-testing	Test local web applications using Playwright with server lifecycle management, browser automation, and visual verification. Use for frontend testing, debugging UI, capturing screenshots, and viewing browser logs.	devops	testing	ported	ant-andi <andibrae@anthropic.com>	12025-12-01	Sustainable Use License 1.0
+tags:
+  "ab-test-setup"[4	]: a-b-testing	experiments	statistical-significance	cro
+  "academic-researcher"[5	]: academic	literature-review	papers	apa	mla
+  "ad-creative"[4	]: ad-creative	ad-copy	headlines	creative-testing
+  "ai-elements"[7	]: ai-elements	chat-ui	components	shadcn	tailwind	streaming	composable
+  "ai-sdk"[13	]: vercel	ai-sdk	llm	openai	anthropic	google	streaming	agents	tool-calling	structured-output	embeddings	react	typescript
+  "ai-seo"[5	]: seo	ai-search	llm-optimization	aeo	geo
+  "algorithmic-art"[5	]: generative-art	p5js	creative-coding	algorithmic	interactive
+  "analytics-tracking"[5	]: analytics	ga4	gtm	event-tracking	measurement
+  "apple-notes"[4	]: macos	apple-notes	cli	note-taking
+  "apple-reminders"[4	]: macos	apple-reminders	cli	task-management
+  "bear-notes"[4	]: macos	bear	cli	note-taking
+  blogwatcher[6	]: rss	atom	blog	feed-reader	monitoring	cli
+  blucli[6	]: bluos	audio	smart-speaker	iot	media-playback	cli
+  "canvas-design"[6	]: design	visual-art	pdf	png	typography	creative-design
+  "chat-sdk"[12	]: chat-sdk	bots	slack	discord	teams	google-chat	github	linear	webhooks	streaming	jsx	cards
+  "churn-prevention"[5	]: churn	retention	cancel-flow	dunning	payment-recovery
+  "ci-triage"[6	]: ci	testing	debugging	github-actions	pr-review	triage
+  "code-reviewer"[4	]: security	performance	best-practices	pull-request
+  "cold-email"[4	]: cold-email	outreach	sales-development	prospecting
+  "competitor-alternatives"[4	]: seo	competitor-analysis	comparison-pages	sales-enablement
+  "composition-patterns"[5	]: react	composition	compound-components	context	design-patterns
+  "content-creator"[4	]: blog	social-media	content-marketing	seo
+  "content-design"[5	]: ux-writing	content-design	ui-copy	microcopy	i18n
+  "content-strategy"[4	]: content-strategy	content-planning	editorial	topics
+  "copy-editing"[4	]: copy-editing	proofreading	clarity	plain-english
+  copywriting[5	]: copywriting	marketing-copy	landing-page	headlines	cta
+  "create-pr"[4	]: github	pull-request	conventional-commits	gh-cli
+  "data-analyst"[5	]: sql	pandas	statistics	data-analysis	data-cleaning
+  debugger[4	]: debugging	root-cause-analysis	troubleshooting	git-bisect
+  "decision-helper"[4	]: decision-making	analysis	frameworks	tradeoffs
+  "deep-research"[4	]: research	synthesis	citations	multi-source
+  "doc-coauthoring"[5	]: co-authoring	documentation-workflow	proposals	specs	collaborative-writing
+  "docs-writer"[5	]: docs	markdown	mdx	technical-writing	documentation-workflow
+  editor[4	]: editing	proofreading	style-guide	tone
+  eightctl[5	]: eight-sleep	iot	smart-home	sleep	cli
+  "email-drafter"[4	]: email	professional-writing	correspondence	business
+  "email-sequence"[4	]: email-marketing	drip-campaign	automation	lifecycle
+  "fact-checker"[4	]: verification	fact-checking	credibility	source-evaluation
+  "flags-sdk"[6	]: feature-flags	a-b-testing	experimentation	flags-explorer	precompute	vercel
+  "form-cro"[4	]: cro	conversion-optimization	forms	lead-capture
+  "free-tool-strategy"[4	]: free-tools	lead-generation	seo	calculators
+  "frontend-code-review"[6	]: frontend	react	typescript	code-quality	performance	tailwind
+  "frontend-design"[7	]: ui-design	frontend	css	react	html	web-design	creative
+  "frontend-testing"[6	]: vitest	react-testing-library	unit-testing	integration-testing	frontend	mocking
+  "fullstack-developer"[5	]: react	nodejs	typescript	api	database
+  "gemini-cli"[5	]: google	gemini	ai	cli	llm
+  gifgrep[6	]: gif	search	image	tenor	giphy	cli
+  "github-cli"[5	]: github	cli	issues	pull-request	ci
+  "google-adk-guide"[5	]: google-adk	agents	multi-agent	tool-use	gemini
+  goplaces[5	]: google-places	maps	location	search	cli
+  "internal-comms"[5	]: communications	status-reports	newsletters	faq	corporate
+  "issue-analysis"[4	]: issue-tracking	triage	effort-estimation	context-gathering
+  "js-docs-fact-check"[6	]: fact-checking	accuracy	verification	javascript	documentation	quality
+  "js-resource-curator"[6	]: resources	links	curation	javascript	documentation	audit
+  "launch-strategy"[4	]: product-launch	go-to-market	announcements	release
+  "llm-memory-patterns"[6	]: memory	conversation-history	vector-memory	mem0	qdrant	personalization
+  "loom-transcript"[4	]: loom	transcript	video	graphql
+  "marketing-ideas"[4	]: marketing-ideas	saas-marketing	growth	brainstorming
+  "marketing-psychology"[4	]: psychology	behavioral-science	persuasion	mental-models
+  "mcp-builder"[5	]: mcp	model-context-protocol	api-integration	typescript	python
+  mcporter[5	]: mcp	cli	tool-calling	server	codegen
+  "meeting-notes"[5	]: meetings	notes	action-items	summaries	minutes
+  "nano-banana-pro"[4	]: image-generation	ai	banana-dev	python
+  "nano-pdf"[4	]: pdf	document	processing	cli
+  "nextjs-cache-components"[7	]: nextjs	react	caching	ppr	partial-prerendering	server-components	use-cache
+  "notion-api"[5	]: notion	api	database	pages	project-management
+  "obsidian-vault"[5	]: obsidian	markdown	knowledge-base	note-taking	cli
+  "onboarding-cro"[4	]: cro	conversion-optimization	onboarding	activation
+  "openai-agents-guide"[6	]: openai	agents-sdk	multi-agent	guardrails	handoffs	tracing
+  "openai-image-gen"[5	]: openai	dall-e	gpt-image	image-generation	ai
+  "openai-whisper-api"[5	]: openai	whisper	transcription	speech-to-text	api
+  "openai-whisper-local"[5	]: whisper	transcription	speech-to-text	local	offline
+  openhue[5	]: philips-hue	iot	smart-lighting	smart-home	cli
+  "oracle-cli"[5	]: ai	code-review	consultation	llm	oracle-cli
+  ordercli[4	]: food-delivery	foodora	order-tracking	cli
+  "page-cro"[4	]: cro	conversion-optimization	landing-page	homepage
+  "paid-ads"[5	]: paid-ads	google-ads	meta-ads	linkedin-ads	ppc
+  "paywall-upgrade-cro"[5	]: cro	conversion-optimization	paywall	upsell	upgrade
+  "popup-cro"[5	]: cro	conversion-optimization	popups	modals	overlays
+  "pricing-strategy"[5	]: pricing	packaging	monetization	tiers	willingness-to-pay
+  "product-marketing-context"[5	]: positioning	messaging	product-marketing	context	personas
+  "programmatic-seo"[5	]: seo	programmatic	scaled-content	templates	data-driven
+  "project-planner"[5	]: planning	wbs	milestones	estimation	dependencies
+  "python-expert"[4	]: python	clean-code	type-hints	best-practices
+  "rag-patterns"[12	]: rag	retrieval-augmented-generation	vector-search	embeddings	langchain	llamaindex	graphrag	knowledge-graph	pageindex	reasoning-rag	vectorless-rag	community-detection
+  "react-best-practices"[8	]: react	nextjs	performance	optimization	ssr	bundle-size	waterfalls	re-renders
+  "react-native-skills"[7	]: react-native	expo	mobile	performance	animations	reanimated	flashlist
+  "react-refactoring"[6	]: react	refactoring	hooks	components	code-splitting	complexity-reduction
+  "referral-program"[5	]: referral	affiliate	word-of-mouth	viral	growth
+  "reproduce-bug"[4	]: debugging	bug-reproduction	regression-test	tdd
+  "sag-tts"[5	]: elevenlabs	tts	text-to-speech	audio	cli
+  "schema-markup"[5	]: seo	structured-data	schema	rich-results	json-ld
+  "seo-audit"[5	]: seo	technical-seo	audit	search	indexation
+  "seo-review"[5	]: seo	search	content-optimization	documentation	audit
+  "sherpa-onnx-tts"[5	]: tts	text-to-speech	local	offline	onnx
+  "signup-flow-cro"[5	]: cro	conversion-optimization	signup	registration	trial
+  "skill-creator"[3	]: skill-authoring	plugin-development	agent-tools
+  "slack-gif-creator"[5	]: gif	slack	animation	pillow	creative
+  "social-content"[5	]: social-media	linkedin	twitter	instagram	content-calendar
+  songsee[5	]: audio	spectrogram	visualization	analysis	cli
+  sonoscli[6	]: sonos	audio	smart-speaker	iot	media-playback	cli
+  "spotify-player"[5	]: spotify	music	playback	search	cli
+  "sprint-planner"[5	]: agile	scrum	sprint	story-points	estimation
+  "strategy-advisor"[4	]: strategy	decision-making	business-analysis	swot
+  streamdown[9	]: markdown	streaming	ai	react	tailwind	shiki	mermaid	katex	cjk
+  "summarize-cli"[5	]: summarization	transcription	url	youtube	cli
+  "theme-factory"[5	]: themes	styling	color-palette	typography	presentation
+  "things-mac-cli"[5	]: macos	things	task-management	gtd	cli
+  "tmux-controller"[5	]: tmux	terminal	session	automation	cli
+  "torch-export"[5	]: pytorch	torch-export	model-export	deep-learning	torchscript-replacement
+  "trello-api"[5	]: trello	kanban	board	api	project-management
+  "ux-designer"[8	]: ux	user-research	wireframing	prototyping	accessibility	information-architecture	design-systems	personas
+  "video-frames"[5	]: ffmpeg	video	frames	extraction	cli
+  "visualization-expert"[5	]: charts	dashboards	data-visualization	matplotlib	plotly
+  "weather-cli"[4	]: weather	forecast	wttr	cli
+  "web-artifacts-builder"[5	]: react	tailwind	shadcn	artifacts	html-bundling
+  "web-design-guidelines"[8	]: accessibility	ux	web-design	audit	a11y	performance	dark-mode	i18n
+  "webapp-testing"[5	]: playwright	browser-testing	e2e	web-testing	automation
+frameworks:
+  "ai-elements"[4	]: ai-elements	nextjs	react	ai-sdk
+  "ai-sdk"[3	]: ai-sdk	react	nextjs
+  "chat-sdk"[1	]: chat-sdk
+  "composition-patterns"[1	]: react
+  "flags-sdk"[3	]: flags-sdk	nextjs	sveltekit
+  "frontend-code-review"[2	]: react	nextjs
+  "frontend-testing"[3	]: react	nextjs	vitest
+  "fullstack-developer"[3	]: nextjs	express	prisma
+  "google-adk-guide"[1	]: google-adk
+  "nextjs-cache-components"[2	]: nextjs	react
+  "openai-agents-guide"[1	]: openai-agents-sdk
+  "react-best-practices"[2	]: react	nextjs
+  "react-native-skills"[2	]: react-native	expo
+  "react-refactoring"[2	]: react	nextjs
+  streamdown[3	]: react	nextjs	streamdown
+  "torch-export"[1	]: pytorch
+  "web-artifacts-builder"[3	]: react	tailwind	shadcn-ui
+  "webapp-testing"[1	]: playwright
