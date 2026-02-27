@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-02-27T18:56:52.882Z",
+  "generatedAt": "2026-02-27T19:19:03.481Z",
   "skills": [
     {
       "name": "ab-test-setup",
@@ -416,9 +416,9 @@
       "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use when building web components, pages, applications, posters, or when styling and beautifying any web UI.",
       "domain": "development",
       "subdomain": "frontend",
-      "provenance": "ported",
-      "author": "Keith Lazuka <klazuka@anthropic.com>",
-      "lastUpdated": "12025-12-04",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-28",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -1049,9 +1049,9 @@
       "name": "things-mac-cli",
       "description": "Manage Things 3 via the things CLI on macOS. Add, update, search, and list todos and projects via URL scheme and local database reads.\n",
       "domain": "productivity",
-      "provenance": "ported",
-      "author": "cpojer <christoph.pojer@gmail.com>",
-      "lastUpdated": "12026-01-31",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-28",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -1077,9 +1077,9 @@
       "name": "trello-api",
       "description": "Manage Trello boards, lists, and cards via the Trello REST API. Create, move, archive cards and add comments using curl.\n",
       "domain": "productivity",
-      "provenance": "ported",
-      "author": "cpojer <christoph.pojer@gmail.com>",
-      "lastUpdated": "12026-01-31",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-28",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -1125,9 +1125,9 @@
       "description": "Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui. Use for complex interactive artifacts requiring state management, routing, or component libraries.",
       "domain": "development",
       "subdomain": "frontend",
-      "provenance": "ported",
-      "author": "ant-andi <andibrae@anthropic.com>",
-      "lastUpdated": "12025-12-01",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-02-28",
       "license": "Sustainable Use License 1.0"
     },
     {

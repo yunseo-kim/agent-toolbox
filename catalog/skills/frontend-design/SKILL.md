@@ -7,9 +7,9 @@ metadata:
   domain: development
   subdomain: frontend
   tags: "ui-design, frontend, css, react, html, web-design, creative"
-  author: "Keith Lazuka <klazuka@anthropic.com>"
-  lastUpdated: "12025-12-04"
-  provenance: ported
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-28"
+  provenance: adapted
 ---
 
 This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.
@@ -47,4 +47,4 @@ Interpret creatively and make unexpected choices that feel genuinely designed fo
 
 **IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
 
-Remember: Claude is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
+Remember: Extraordinary creative work is achievable. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.

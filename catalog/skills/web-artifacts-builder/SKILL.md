@@ -8,14 +8,14 @@ metadata:
   subdomain: frontend
   tags: "react, tailwind, shadcn, artifacts, html-bundling"
   frameworks: "react, tailwind, shadcn-ui"
-  author: "ant-andi <andibrae@anthropic.com>"
-  lastUpdated: "12025-12-01"
-  provenance: ported
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-02-28"
+  provenance: adapted
 ---
 
 # Web Artifacts Builder
 
-To build powerful frontend claude.ai artifacts, follow these steps:
+To build powerful frontend interactive artifacts, follow these steps:
 1. Initialize the frontend repo using `scripts/init-artifact.sh`
 2. Develop your artifact by editing the generated code
 3. Bundle all code into a single HTML file using `scripts/bundle-artifact.sh`
@@ -58,7 +58,7 @@ To bundle the React app into a single HTML artifact:
 bash scripts/bundle-artifact.sh
 ```
 
-This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS, and dependencies inlined. This file can be directly shared in Claude conversations as an artifact.
+This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS, and dependencies inlined. This file can be directly shared in conversations as an artifact.
 
 **Requirements**: Your project must have an `index.html` in the root directory.
 
