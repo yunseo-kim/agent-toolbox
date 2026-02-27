@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-02-27T17:59:31.334Z",
+  "generatedAt": "2026-02-27T18:56:52.882Z",
   "skills": [
     {
       "name": "ab-test-setup",
@@ -416,8 +416,8 @@
       "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use when building web components, pages, applications, posters, or when styling and beautifying any web UI.",
       "domain": "development",
       "subdomain": "frontend",
-      "provenance": "adapted",
-      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "provenance": "ported",
+      "author": "Keith Lazuka <klazuka@anthropic.com>",
       "lastUpdated": "12025-12-04",
       "license": "Sustainable Use License 1.0"
     },
@@ -1049,8 +1049,8 @@
       "name": "things-mac-cli",
       "description": "Manage Things 3 via the things CLI on macOS. Add, update, search, and list todos and projects via URL scheme and local database reads.\n",
       "domain": "productivity",
-      "provenance": "adapted",
-      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
       "lastUpdated": "12026-01-31",
       "license": "Sustainable Use License 1.0"
     },
@@ -1077,8 +1077,8 @@
       "name": "trello-api",
       "description": "Manage Trello boards, lists, and cards via the Trello REST API. Create, move, archive cards and add comments using curl.\n",
       "domain": "productivity",
-      "provenance": "adapted",
-      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
       "lastUpdated": "12026-01-31",
       "license": "Sustainable Use License 1.0"
     },
@@ -1097,8 +1097,8 @@
       "description": "Extract frames or short clips from videos using ffmpeg. Quick thumbnails and frame extraction at specific timestamps.\n",
       "domain": "content-media",
       "subdomain": "media-processing",
-      "provenance": "adapted",
-      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "provenance": "ported",
+      "author": "cpojer <christoph.pojer@gmail.com>",
       "lastUpdated": "12026-01-31",
       "license": "Sustainable Use License 1.0"
     },
@@ -1125,8 +1125,8 @@
       "description": "Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui. Use for complex interactive artifacts requiring state management, routing, or component libraries.",
       "domain": "development",
       "subdomain": "frontend",
-      "provenance": "adapted",
-      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "provenance": "ported",
+      "author": "ant-andi <andibrae@anthropic.com>",
       "lastUpdated": "12025-12-01",
       "license": "Sustainable Use License 1.0"
     },
