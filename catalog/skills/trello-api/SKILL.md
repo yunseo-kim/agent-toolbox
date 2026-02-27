@@ -8,14 +8,14 @@ license: Sustainable Use License 1.0
 metadata:
   domain: productivity
   tags: "trello, kanban, board, api, project-management"
-  author: "Yunseo Kim <dev@yunseo.kim>"
+  author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
-  provenance: adapted
+  provenance: ported
 ---
 
 # Trello Skill
 
-Manage Trello boards, lists, and cards directly from the AI assistant.
+Manage Trello boards, lists, and cards directly from OpenClaw.
 
 ## Setup
 

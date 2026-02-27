@@ -40,13 +40,13 @@ sources:
       slack-gif-creator:    { upstream_dir: slack-gif-creator }
       theme-factory:        { upstream_dir: theme-factory }
       webapp-testing:       { upstream_dir: webapp-testing }
+      frontend-design:      { upstream_dir: frontend-design }
+      web-artifacts-builder: { upstream_dir: web-artifacts-builder }
     adapted_skills:
       algorithmic-art:      { upstream_dir: algorithmic-art }
       canvas-design:        { upstream_dir: canvas-design }
       doc-coauthoring:      { upstream_dir: doc-coauthoring }
-      frontend-design:      { upstream_dir: frontend-design }
       skill-creator:        { upstream_dir: skill-creator }
-      web-artifacts-builder: { upstream_dir: web-artifacts-builder }
     ignored:
       - docx    # Proprietary license
       - pdf     # Proprietary license
@@ -126,16 +126,16 @@ sources:
       spotify-player:     { upstream_dir: spotify-player }
       summarize-cli:      { upstream_dir: summarize }          # renamed
       weather-cli:        { upstream_dir: weather }            # renamed
+      things-mac-cli:     { upstream_dir: things-mac }         # renamed
+      trello-api:         { upstream_dir: trello }             # renamed
+      video-frames:       { upstream_dir: video-frames }
     adapted_skills:
       apple-reminders:    { upstream_dir: apple-reminders }
       github-cli:         { upstream_dir: github }             # renamed
       nano-banana-pro:    { upstream_dir: nano-banana-pro }
       openai-whisper-api: { upstream_dir: openai-whisper-api }
       sherpa-onnx-tts:    { upstream_dir: sherpa-onnx-tts }
-      things-mac-cli:     { upstream_dir: things-mac }         # renamed
       tmux-controller:    { upstream_dir: tmux }               # renamed
-      trello-api:         { upstream_dir: trello }             # renamed
-      video-frames:       { upstream_dir: video-frames }
     ignored:
       - 1password
       - bluebubbles

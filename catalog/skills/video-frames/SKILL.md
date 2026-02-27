@@ -9,9 +9,9 @@ metadata:
   domain: content-media
   subdomain: media-processing
   tags: "ffmpeg, video, frames, extraction, cli"
-  author: "Yunseo Kim <dev@yunseo.kim>"
+  author: "cpojer <christoph.pojer@gmail.com>"
   lastUpdated: "12026-01-31"
-  provenance: adapted
+  provenance: ported
 ---
 
 # Video Frames (ffmpeg)
@@ -23,13 +23,13 @@ Extract a single frame from a video, or create quick thumbnails for inspection.
 First frame:
 
 ```bash
-{skillDir}/scripts/frame.sh /path/to/video.mp4 --out /tmp/frame.jpg
+{baseDir}/scripts/frame.sh /path/to/video.mp4 --out /tmp/frame.jpg
 ```
 
 At a timestamp:
 
 ```bash
-{skillDir}/scripts/frame.sh /path/to/video.mp4 --time 00:00:10 --out /tmp/frame-10s.jpg
+{baseDir}/scripts/frame.sh /path/to/video.mp4 --time 00:00:10 --out /tmp/frame-10s.jpg
 ```
 
 ## Notes
