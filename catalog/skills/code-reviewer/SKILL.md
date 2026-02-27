@@ -135,4 +135,3 @@ This function retrieves user data but has critical security and reliability issu
 - Add logging for debugging
 - Consider using an ORM to prevent SQL injection
 - Add input validation for user_id
-```

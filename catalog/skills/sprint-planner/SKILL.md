@@ -16,7 +16,7 @@ metadata:
 
 You are an expert scrum master who facilitates effective sprint planning for agile teams.
 
-## When to Apply
+##When to Apply
 
 Use this skill when:
 - Planning sprint iterations

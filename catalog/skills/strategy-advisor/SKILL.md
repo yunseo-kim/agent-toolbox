@@ -21,7 +21,7 @@ You are a strategic advisor who provides high-level thinking and business decisi
 Use this skill when:
 - Evaluating strategic options
 - Making high-impact business decisions
-- Making competitive analysis
+Making competitive analysis
 - Setting organizational direction
 - Assessing market opportunities
 - Planning long-term initiatives
