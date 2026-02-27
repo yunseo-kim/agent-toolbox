@@ -1,7 +1,7 @@
 # Attribution Notice
 
-This skill is a derivative work that incorporates and adapts material from the
-following project. This adapted version is governed by the
+This skill is a synthesized work that combines and restructures material from the
+following project. This synthesized version is governed by the
 [Sustainable Use License](../../LICENSE.md) at the root of this repository.
 The upstream copyright notice and license text are reproduced below to satisfy
 the attribution requirements of the original license.

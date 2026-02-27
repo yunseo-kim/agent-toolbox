@@ -9,7 +9,7 @@ metadata:
   tags: "ci, testing, debugging, github-actions, pr-review, triage"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
-  provenance: adapted
+  provenance: synthesized
 ---
 
 # CI Triage

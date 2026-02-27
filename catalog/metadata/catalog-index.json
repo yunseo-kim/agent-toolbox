@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-26T19:33:47.176Z",
+  "generatedAt": "2026-02-27T12:35:36.144Z",
   "items": [
     {
       "name": "ab-test-setup",
@@ -357,7 +357,7 @@
         "triage"
       ],
       "frameworks": [],
-      "provenance": "adapted",
+      "provenance": "synthesized",
       "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-02-25",
       "license": "Sustainable Use License 1.0",
@@ -999,7 +999,7 @@
       "frameworks": [
         "google-adk"
       ],
-      "provenance": "adapted",
+      "provenance": "synthesized",
       "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-02-25",
       "license": "Sustainable Use License 1.0",
@@ -1138,7 +1138,7 @@
         "personalization"
       ],
       "frameworks": [],
-      "provenance": "adapted",
+      "provenance": "synthesized",
       "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-02-25",
       "license": "Sustainable Use License 1.0",
@@ -1394,7 +1394,7 @@
       "frameworks": [
         "openai-agents-sdk"
       ],
-      "provenance": "adapted",
+      "provenance": "synthesized",
       "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-02-25",
       "license": "Sustainable Use License 1.0",

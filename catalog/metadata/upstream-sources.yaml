@@ -77,6 +77,7 @@ sources:
       strategy-advisor:     { upstream_dir: strategy-advisor }
       visualization-expert: { upstream_dir: visualization-expert }
       ux-designer:          { upstream_dir: ux-designer }
+    adapted_skills: {}
     ignored:
       - technical-writer    # Incorporated in docs-writer
 
@@ -204,7 +205,6 @@ sources:
       skill_file: SKILL.md
     skills: {}
     adapted_skills:
-      ci-triage:               { upstream_dir: pr-status-triage }   # renamed
       nextjs-cache-components: { upstream_path: .claude-plugin/plugins/cache-components/skills/cache-components/SKILL.md }
     ignored:
       - authoring-skills

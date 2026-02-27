@@ -9,7 +9,7 @@ metadata:
   frameworks: "openai-agents-sdk"
   author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
-  provenance: adapted
+  provenance: synthesized
 ---
 
 # OpenAI Agents SDK Guide

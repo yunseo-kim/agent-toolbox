@@ -4,12 +4,12 @@ This skill incorporates material derived from
 [leonardomso/33-js-concepts](https://github.com/leonardomso/33-js-concepts),
 originally released under the
 [MIT License](https://github.com/leonardomso/33-js-concepts/blob/master/LICENSE).
-This adapted version is governed by the
+This version includes modifications and is governed by the
 [Sustainable Use License](../../LICENSE.md).
 
 ## Modifications
 
-This file has been adapted from the original `.opencode/skill/resource-curator/SKILL.md`
+This skill has been adapted from the original `.opencode/skill/resource-curator/SKILL.md`
 in the leonardomso/33-js-concepts repository for use in the awesome-agent-toolbox
 catalog as `js-resource-curator`. Changes include:
 
