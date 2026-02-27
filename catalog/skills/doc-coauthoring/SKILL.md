@@ -7,9 +7,9 @@ metadata:
   domain: documentation
   subdomain: technical-docs
   tags: "co-authoring, documentation-workflow, proposals, specs, collaborative-writing"
-  author: "Keith Lazuka <klazuka@anthropic.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12025-12-04"
-  provenance: ported
+  provenance: adapted
 ---
 
 # Doc Co-Authoring Workflow

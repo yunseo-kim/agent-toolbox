@@ -63,7 +63,7 @@ When Peter asks for a "voice" reply (e.g., "crazy scientist voice", "explain in 
 
 ```bash
 # Generate audio file
-sag -v the assistant -o /tmp/voice-reply.mp3 "Your message here"
+sag -v Clawd -o /tmp/voice-reply.mp3 "Your message here"
 
 # Then include in reply:
 # MEDIA:/tmp/voice-reply.mp3
@@ -75,4 +75,4 @@ Voice character tips:
 - Calm: Use `[whispers]` or slower pacing
 - Dramatic: Use `[sings]` or `[shouts]` sparingly
 
-Default voice for the assistant: `lj2rcrvANS3gaWWnczSX` (or just `-v the assistant`)
+Default voice for Clawd: `lj2rcrvANS3gaWWnczSX` (or just `-v Clawd`)

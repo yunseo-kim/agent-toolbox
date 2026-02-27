@@ -69,8 +69,8 @@ curl -s 'https://www.loom.com/graphql' \
 Replace `<VIDEO_ID>` with the actual video ID extracted in step 1.
 
 The response contains:
-- `source_url` -- JSON transcript URL
-- `captions_source_url` -- VTT (WebVTT) captions URL
+- `source_url` — JSON transcript URL
+- `captions_source_url` — VTT (WebVTT) captions URL
 
 ### 4. Download and Parse the Transcript
 
@@ -107,6 +107,6 @@ Format and present the full transcript to the user:
 
 ## Notes
 
-- No authentication or cookies are required -- Loom's transcript API is publicly accessible.
+- No authentication or cookies are required — Loom's transcript API is publicly accessible.
 - Only English transcripts are available through this API.
 - Transcripts are auto-generated and may contain minor errors.

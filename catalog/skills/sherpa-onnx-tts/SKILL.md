@@ -9,9 +9,9 @@ metadata:
   domain: content-media
   subdomain: media-processing
   tags: "tts, text-to-speech, local, offline, onnx"
-  author: "Peter Steinberger <steipete@gmail.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-16"
-  provenance: ported
+  provenance: adapted
 ---
 
 # sherpa-onnx-tts

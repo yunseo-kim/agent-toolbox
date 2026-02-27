@@ -14,9 +14,6 @@ in the openclaw/openclaw repository for use in the awesome-agent-toolbox
 catalog. Changes include:
 
 - Added catalog frontmatter metadata (domain, subdomain, tags)
-- Removed platform-specific metadata and install configuration
-- Generalized platform-specific references to be tool-agnostic
-- Adapted descriptions and instructions for generic AI assistant use
 
 ## Upstream License
 

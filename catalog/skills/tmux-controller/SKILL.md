@@ -10,9 +10,9 @@ metadata:
   domain: development
   subdomain: developer-tooling
   tags: "tmux, terminal, session, automation, cli"
-  author: "Blakeshannon <blake@blakeshannon.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-18"
-  provenance: ported
+  provenance: adapted
 ---
 
 # tmux Session Control

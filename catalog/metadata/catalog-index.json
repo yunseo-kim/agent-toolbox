@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-27T12:35:36.144Z",
+  "generatedAt": "2026-02-27T16:49:12.379Z",
   "items": [
     {
       "name": "ab-test-setup",
@@ -81,8 +81,8 @@
         "react",
         "ai-sdk"
       ],
-      "provenance": "adapted",
-      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "provenance": "ported",
+      "author": "Hayden Bleasel <hello@haydenbleasel.com>",
       "lastUpdated": "12026-02-25",
       "license": "Sustainable Use License 1.0",
       "path": "skills/ai-elements"
@@ -152,8 +152,8 @@
         "interactive"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "ant-andi <andibrae@anthropic.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12025-12-01",
       "license": "Sustainable Use License 1.0",
       "path": "skills/algorithmic-art"
@@ -208,8 +208,8 @@
         "task-management"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "Blakeshannon <blake@blakeshannon.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-02-18",
       "license": "Sustainable Use License 1.0",
       "path": "skills/apple-reminders"
@@ -287,8 +287,8 @@
         "creative-design"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "ant-andi <andibrae@anthropic.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12025-12-01",
       "license": "Sustainable Use License 1.0",
       "path": "skills/canvas-design"
@@ -646,8 +646,8 @@
         "collaborative-writing"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "Keith Lazuka <klazuka@anthropic.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12025-12-04",
       "license": "Sustainable Use License 1.0",
       "path": "skills/doc-coauthoring"
@@ -869,8 +869,8 @@
         "creative"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "Keith Lazuka <klazuka@anthropic.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12025-12-04",
       "license": "Sustainable Use License 1.0",
       "path": "skills/frontend-design"
@@ -978,8 +978,8 @@
         "ci"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "DylanWoodAkers <dylan@lec.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-02-18",
       "license": "Sustainable Use License 1.0",
       "path": "skills/github-cli"
@@ -1272,8 +1272,8 @@
         "python"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "cpojer <christoph.pojer@gmail.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-01-31",
       "license": "Sustainable Use License 1.0",
       "path": "skills/nano-banana-pro"
@@ -1434,8 +1434,8 @@
         "api"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "cpojer <christoph.pojer@gmail.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-01-31",
       "license": "Sustainable Use License 1.0",
       "path": "skills/openai-whisper-api"
@@ -1928,8 +1928,8 @@
         "onnx"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "Peter Steinberger <steipete@gmail.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-02-16",
       "license": "Sustainable Use License 1.0",
       "path": "skills/sherpa-onnx-tts"
@@ -1966,8 +1966,8 @@
         "agent-tools"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "Kenshiro Nakagawa <kenshiro@anthropic.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-02-25",
       "license": "Sustainable Use License 1.0",
       "path": "skills/skill-creator"
@@ -2191,8 +2191,8 @@
         "cli"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "cpojer <christoph.pojer@gmail.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-01-31",
       "license": "Sustainable Use License 1.0",
       "path": "skills/things-mac-cli"
@@ -2211,8 +2211,8 @@
         "cli"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "Blakeshannon <blake@blakeshannon.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-02-18",
       "license": "Sustainable Use License 1.0",
       "path": "skills/tmux-controller"
@@ -2251,8 +2251,8 @@
         "project-management"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "cpojer <christoph.pojer@gmail.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-01-31",
       "license": "Sustainable Use License 1.0",
       "path": "skills/trello-api"
@@ -2294,8 +2294,8 @@
         "cli"
       ],
       "frameworks": [],
-      "provenance": "ported",
-      "author": "cpojer <christoph.pojer@gmail.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12026-01-31",
       "license": "Sustainable Use License 1.0",
       "path": "skills/video-frames"
@@ -2355,8 +2355,8 @@
         "tailwind",
         "shadcn-ui"
       ],
-      "provenance": "ported",
-      "author": "ant-andi <andibrae@anthropic.com>",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
       "lastUpdated": "12025-12-01",
       "license": "Sustainable Use License 1.0",
       "path": "skills/web-artifacts-builder"

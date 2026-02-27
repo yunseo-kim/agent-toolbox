@@ -7,9 +7,9 @@ metadata:
   domain: content-media
   subdomain: generative-art
   tags: "generative-art, p5js, creative-coding, algorithmic, interactive"
-  author: "ant-andi <andibrae@anthropic.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12025-12-01"
-  provenance: ported
+  provenance: adapted
 ---
 
 Algorithmic philosophies are computational aesthetic movements that are then expressed through code. Output .md files (philosophy), .html files (interactive viewer), and .js files (generative algorithms).

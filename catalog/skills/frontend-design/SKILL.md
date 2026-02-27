@@ -7,9 +7,9 @@ metadata:
   domain: development
   subdomain: frontend
   tags: "ui-design, frontend, css, react, html, web-design, creative"
-  author: "Keith Lazuka <klazuka@anthropic.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12025-12-04"
-  provenance: ported
+  provenance: adapted
 ---
 
 This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.

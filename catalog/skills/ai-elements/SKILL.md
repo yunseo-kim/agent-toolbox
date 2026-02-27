@@ -14,9 +14,9 @@ metadata:
   subdomain: frontend
   tags: "ai-elements, chat-ui, components, shadcn, tailwind, streaming, composable"
   frameworks: "ai-elements, nextjs, react, ai-sdk"
-  author: "Yunseo Kim <dev@yunseo.kim>"
+  author: "Hayden Bleasel <hello@haydenbleasel.com>"
   lastUpdated: "12026-02-25"
-  provenance: adapted
+  provenance: ported
 ---
 
 # AI Elements

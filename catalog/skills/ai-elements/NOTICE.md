@@ -1,25 +1,22 @@
 # Attribution Notice
 
-This skill is a derivative work that incorporates and adapts material from the
-following project. This adapted version is governed by the
+This skill incorporates material derived from
+[vercel/ai-elements](https://github.com/vercel/ai-elements),
+originally released under the
+[Apache License, Version 2.0](https://github.com/vercel/ai-elements/blob/main/LICENSE).
+This ported version is governed by the
 [Sustainable Use License](../../LICENSE.md) at the root of this repository.
 The upstream copyright notice and license text are reproduced below to satisfy
 the attribution requirements of the original license.
 
-## NOTICE of Modification
+## Modifications
 
-**Portions of the work listed below have been modified, adapted, and
-restructured by Yunseo Kim on 12026-02-25 to create this AI Elements
-skill. Modified files carry changes in structure, wording,
-and scope compared to the originals.**
+This file has been ported from the original `skills/ai-elements/SKILL.md`
+in the vercel/ai-elements repository for use in the awesome-agent-toolbox
+catalog. Changes include:
 
-Specifically:
-
-- Adapted SKILL.md frontmatter to catalog schema (added `metadata.domain`, `metadata.subdomain`, `metadata.tags`, `metadata.frameworks`)
-- Generalized description from project-internal ("creating new components in packages/elements/src") to end-user-facing
-- Preserved all 48 reference files documenting individual components
-- Preserved all 80 script examples in scripts/ directory
-- Retained all core content: installation, usage, customization, troubleshooting, and component documentation
+- Added catalog frontmatter metadata (domain, subdomain, tags, frameworks)
+- Added this NOTICE.md for attribution
 
 ---
 

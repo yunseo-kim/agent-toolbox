@@ -7,9 +7,9 @@ metadata:
   domain: development
   subdomain: developer-tooling
   tags: "skill-authoring, plugin-development, agent-tools"
-  author: "Kenshiro Nakagawa <kenshiro@anthropic.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-25"
-  provenance: ported
+  provenance: adapted
 ---
 
 # Skill Creator

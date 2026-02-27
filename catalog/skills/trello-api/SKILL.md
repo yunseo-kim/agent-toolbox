@@ -8,9 +8,9 @@ license: Sustainable Use License 1.0
 metadata:
   domain: productivity
   tags: "trello, kanban, board, api, project-management"
-  author: "cpojer <christoph.pojer@gmail.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-01-31"
-  provenance: ported
+  provenance: adapted
 ---
 
 # Trello Skill

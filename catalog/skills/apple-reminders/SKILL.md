@@ -9,9 +9,9 @@ license: Sustainable Use License 1.0
 metadata:
   domain: productivity
   tags: "macos, apple-reminders, cli, task-management"
-  author: "Blakeshannon <blake@blakeshannon.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-02-18"
-  provenance: ported
+  provenance: adapted
 ---
 
 # Apple Reminders CLI (remindctl)

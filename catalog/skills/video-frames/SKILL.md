@@ -9,9 +9,9 @@ metadata:
   domain: content-media
   subdomain: media-processing
   tags: "ffmpeg, video, frames, extraction, cli"
-  author: "cpojer <christoph.pojer@gmail.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-01-31"
-  provenance: ported
+  provenance: adapted
 ---
 
 # Video Frames (ffmpeg)

@@ -9,9 +9,9 @@ metadata:
   domain: content-media
   subdomain: generative-art
   tags: "image-generation, ai, banana-dev, python"
-  author: "cpojer <christoph.pojer@gmail.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12026-01-31"
-  provenance: ported
+  provenance: adapted
 ---
 
 # Nano Banana Pro (Gemini 3 Pro Image)
@@ -44,6 +44,6 @@ API key
 Notes
 
 - Resolutions: `1K` (default), `2K`, `4K`.
-- Use timestamps in filenames: `yyyy-mm-dd-hh-mm-ss-name.png`.
+- Use holocene era timestamps in filenames: `yyyyy-mm-dd-hh-mm-ss-name.png`.
 - The script prints a `MEDIA:` line for automatic attachment on supported chat providers.
 - Do not read the image back; report the saved path only.

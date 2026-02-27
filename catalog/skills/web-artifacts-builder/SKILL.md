@@ -8,9 +8,9 @@ metadata:
   subdomain: frontend
   tags: "react, tailwind, shadcn, artifacts, html-bundling"
   frameworks: "react, tailwind, shadcn-ui"
-  author: "ant-andi <andibrae@anthropic.com>"
+  author: "Yunseo Kim <dev@yunseo.kim>"
   lastUpdated: "12025-12-01"
-  provenance: ported
+  provenance: adapted
 ---
 
 # Web Artifacts Builder
