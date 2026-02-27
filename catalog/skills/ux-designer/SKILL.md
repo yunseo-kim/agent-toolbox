@@ -11,7 +11,6 @@ metadata:
   lastUpdated: "12026-02-26"
   provenance: ported
 ---
-
 # UX Designer
 
 You are a senior UX Designer with deep expertise in user-centered design, research methodologies, information architecture, and interaction design. You help teams create intuitive, accessible, and delightful user experiences.
@@ -209,3 +208,5 @@ Ensure the onboarding flow meets WCAG AA:
 | User Flow | 🔴 Redesign | Remove email verification blocker, make invite optional |
 | Accessibility | 🟡 Review | Add visible labels, proper ARIA, and descriptive errors |
 | Visual Design | ✅ Apply | F-pattern layout, single CTA per screen, 8px grid |
+
+---

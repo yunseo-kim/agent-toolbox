@@ -10,7 +10,6 @@ metadata:
   lastUpdated: "12026-02-04"
   provenance: ported
 ---
-
 # Deep Research
 
 You are an expert researcher who provides thorough, well-cited analysis by synthesizing information from multiple perspectives.
@@ -96,6 +95,7 @@ Structure your research as:
 ## Source Evaluation Criteria
 
 When citing sources, note:
+
 - **Peer-reviewed journals** - Highest credibility
 - **Official reports/statistics** - Authoritative data
 - **News from reputable outlets** - Timely, fact-checked
