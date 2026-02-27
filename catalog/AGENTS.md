@@ -9,7 +9,8 @@ catalog/
 ├── metadata/
 │   ├── taxonomy.yaml         # Controlled vocabulary -- domains + subdomains
 │   ├── presets.yaml           # Curated install bundles (cross-cutting)
-│   └── catalog-index.json     # Auto-generated; do NOT hand-edit
+│   ├── catalog-index.json     # Auto-generated; do NOT hand-edit
+│   └── catalog-index.toon     # Auto-generated TOON version; do NOT hand-edit
 ├── skills/                    # Flat -- one dir per skill, taxonomy via frontmatter
 ├── agents/
 ├── commands/
@@ -67,146 +68,12 @@ For detailed classification criteria distinguishing ported from adapted, see `..
 ## CURRENT SKILLS
 
 > Human-readable skill tables with badges live in [`catalog/README.md`](README.md).
-> This section uses a compact format optimized for agent parsing.
-
-```
-# Format: skill-name | domain/subdomain | provenance (source)
-# 118 skills across 10 domains
-
-# productivity
-apple-notes | productivity | ported (openclaw/openclaw)
-apple-reminders | productivity | adapted (openclaw/openclaw)
-bear-notes | productivity | ported (openclaw/openclaw)
-blogwatcher | productivity | ported (openclaw/openclaw)
-blucli | productivity | ported (openclaw/openclaw)
-decision-helper | productivity | ported (awesome-llm-apps)
-eightctl | productivity | ported (openclaw/openclaw)
-loom-transcript | productivity | ported (n8n)
-meeting-notes | productivity | ported (awesome-llm-apps)
-nano-pdf | productivity | ported (openclaw/openclaw)
-notion-api | productivity | ported (openclaw/openclaw)
-obsidian-vault | productivity | ported (openclaw/openclaw)
-openhue | productivity | ported (openclaw/openclaw)
-ordercli | productivity | ported (openclaw/openclaw)
-sonoscli | productivity | ported (openclaw/openclaw)
-summarize-cli | productivity | ported (openclaw/openclaw)
-things-mac-cli | productivity | adapted (openclaw/openclaw)
-trello-api | productivity | adapted (openclaw/openclaw)
-
-# development
-ai-elements | development/frontend | ported (vercel/ai-elements)
-chat-sdk | development/backend | adapted (vercel/chat)
-composition-patterns | development/frontend | ported (vercel-labs/agent-skills)
-flags-sdk | development/frontend | ported (vercel/flags)
-frontend-design | development/frontend | adapted (anthropics/skills)
-fullstack-developer | development/full-stack | ported (awesome-llm-apps)
-mcp-builder | development/developer-tooling | ported (anthropics/skills)
-mcporter | development/developer-tooling | ported (openclaw/openclaw)
-nextjs-cache-components | development/frontend | adapted (vercel/next.js)
-python-expert | development/scripting | ported (awesome-llm-apps)
-react-best-practices | development/frontend | ported (vercel-labs/agent-skills)
-react-refactoring | development/frontend | adapted (langgenius/dify)
-skill-creator | development/developer-tooling | adapted (anthropics/skills)
-streamdown | development/frontend | ported (vercel/streamdown)
-tmux-controller | development/developer-tooling | adapted (openclaw/openclaw)
-ux-designer | development/frontend | ported (awesome-llm-apps)
-web-artifacts-builder | development/frontend | adapted (anthropics/skills)
-web-design-guidelines | development/frontend | ported (vercel-labs/agent-skills)
-react-native-skills | development/mobile | ported (vercel-labs/agent-skills)
-
-# devops
-ci-triage | devops/ci-cd | synthesized (vercel/next.js)
-code-reviewer | devops/code-review | ported (awesome-llm-apps)
-create-pr | devops/git | adapted (n8n)
-debugger | devops/testing | ported (awesome-llm-apps)
-frontend-code-review | devops/code-review | adapted (langgenius/dify)
-frontend-testing | devops/testing | adapted (langgenius/dify)
-github-cli | devops/git | adapted (openclaw/openclaw)
-reproduce-bug | devops/testing | adapted (n8n)
-webapp-testing | devops/testing | ported (anthropics/skills)
-
-# documentation
-doc-coauthoring | documentation/technical-docs | adapted (anthropics/skills)
-docs-writer | documentation/technical-docs | synthesized (next.js, angular, gemini-cli, awesome-llm-apps)
-js-docs-fact-check | documentation/technical-docs | adapted (leonardomso/33-js-concepts)
-js-resource-curator | documentation/technical-docs | adapted (leonardomso/33-js-concepts)
-seo-review | documentation/technical-docs | adapted (leonardomso/33-js-concepts)
-
-# data-ai
-ai-sdk | data-ai | ported (vercel/ai)
-data-analyst | data-ai | ported (awesome-llm-apps)
-gemini-cli | data-ai | ported (openclaw/openclaw)
-google-adk-guide | data-ai | synthesized (awesome-llm-apps)
-llm-memory-patterns | data-ai | synthesized (awesome-llm-apps)
-openai-agents-guide | data-ai | synthesized (awesome-llm-apps)
-oracle-cli | data-ai | ported (openclaw/openclaw)
-rag-patterns | data-ai | synthesized (awesome-llm-apps, microsoft/graphrag, VectifyAI/PageIndex)
-torch-export | data-ai | adapted (pytorch/executorch)
-visualization-expert | data-ai | ported (awesome-llm-apps)
-
-# research
-academic-researcher | research/citation-management | ported (awesome-llm-apps)
-deep-research | research | ported (awesome-llm-apps)
-fact-checker | research | ported (awesome-llm-apps)
-goplaces | research | ported (openclaw/openclaw)
-weather-cli | research | ported (openclaw/openclaw)
-
-# business
-email-drafter | business/communications | ported (awesome-llm-apps)
-internal-comms | business/communications | ported (anthropics/skills)
-issue-analysis | business/project-management | adapted (n8n)
-project-planner | business/project-management | ported (awesome-llm-apps)
-sprint-planner | business/project-management | ported (awesome-llm-apps)
-strategy-advisor | business/business-apps | ported (awesome-llm-apps)
-ab-test-setup | business/sales-marketing | ported (coreyhaines31/marketingskills)
-ad-creative | business/sales-marketing | ported (coreyhaines31/marketingskills)
-ai-seo | business/sales-marketing | ported (coreyhaines31/marketingskills)
-analytics-tracking | business/sales-marketing | ported (coreyhaines31/marketingskills)
-churn-prevention | business/sales-marketing | ported (coreyhaines31/marketingskills)
-cold-email | business/sales-marketing | ported (coreyhaines31/marketingskills)
-competitor-alternatives | business/sales-marketing | ported (coreyhaines31/marketingskills)
-content-strategy | business/sales-marketing | ported (coreyhaines31/marketingskills)
-copy-editing | business/sales-marketing | ported (coreyhaines31/marketingskills)
-copywriting | business/sales-marketing | ported (coreyhaines31/marketingskills)
-email-sequence | business/sales-marketing | ported (coreyhaines31/marketingskills)
-form-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
-free-tool-strategy | business/sales-marketing | ported (coreyhaines31/marketingskills)
-launch-strategy | business/sales-marketing | ported (coreyhaines31/marketingskills)
-marketing-ideas | business/sales-marketing | ported (coreyhaines31/marketingskills)
-marketing-psychology | business/sales-marketing | ported (coreyhaines31/marketingskills)
-onboarding-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
-page-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
-paid-ads | business/sales-marketing | ported (coreyhaines31/marketingskills)
-paywall-upgrade-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
-popup-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
-pricing-strategy | business/sales-marketing | ported (coreyhaines31/marketingskills)
-product-marketing-context | business/sales-marketing | ported (coreyhaines31/marketingskills)
-programmatic-seo | business/sales-marketing | ported (coreyhaines31/marketingskills)
-referral-program | business/sales-marketing | ported (coreyhaines31/marketingskills)
-schema-markup | business/sales-marketing | ported (coreyhaines31/marketingskills)
-seo-audit | business/sales-marketing | ported (coreyhaines31/marketingskills)
-signup-flow-cro | business/sales-marketing | ported (coreyhaines31/marketingskills)
-social-content | business/sales-marketing | ported (coreyhaines31/marketingskills)
-
-# content-media
-algorithmic-art | content-media/generative-art | adapted (anthropics/skills)
-canvas-design | content-media/generative-art | adapted (anthropics/skills)
-content-creator | content-media/content-design | ported (awesome-llm-apps)
-content-design | content-media/content-design | adapted (n8n)
-editor | content-media/content-design | ported (awesome-llm-apps)
-gifgrep | content-media/media-processing | ported (openclaw/openclaw)
-nano-banana-pro | content-media/generative-art | adapted (openclaw/openclaw)
-openai-image-gen | content-media/generative-art | ported (openclaw/openclaw)
-openai-whisper-api | content-media/media-processing | adapted (openclaw/openclaw)
-openai-whisper-local | content-media/media-processing | ported (openclaw/openclaw)
-sag-tts | content-media/media-processing | ported (openclaw/openclaw)
-sherpa-onnx-tts | content-media/media-processing | adapted (openclaw/openclaw)
-slack-gif-creator | content-media/media-processing | ported (anthropics/skills)
-songsee | content-media/media-processing | ported (openclaw/openclaw)
-spotify-player | content-media/media-processing | ported (openclaw/openclaw)
-theme-factory | content-media/content-design | ported (anthropics/skills)
-video-frames | content-media/media-processing | adapted (openclaw/openclaw)
-```
+> For agent-parseable skill metadata, refer to the auto-generated index files:
+>
+> - **`metadata/catalog-index.toon`** — Token-optimized format for LLM consumption (compact, tabular)
+> - **`metadata/catalog-index.json`** — Standard JSON for programmatic use
+>
+> Both are generated by `bun run build:index`. Do **not** hand-edit.
 
 ## LICENSING RULES
 
@@ -221,7 +88,7 @@ video-frames | content-media/media-processing | adapted (openclaw/openclaw)
 |------|----------|
 | Add/validate domain/subdomain | `metadata/taxonomy.yaml` |
 | Define install bundles | `metadata/presets.yaml` |
-| Check generated index | `metadata/catalog-index.json` (auto-generated) |
+| Check generated index | `metadata/catalog-index.json` and `metadata/catalog-index.toon` (auto-generated) |
 | Skill authoring conventions | `../.agents/skills/skill-creator/SKILL.md` |
 | README listing rules | `README.md` (catalog) or root `AGENTS.md` > README LISTING POLICY |
 | Upstream sync config | `metadata/upstream-sources.yaml` |
@@ -231,7 +98,7 @@ video-frames | content-media/media-processing | adapted (openclaw/openclaw)
 
 - Do not nest skills in domain subdirectories. Taxonomy is frontmatter-driven.
 - Do not use freeform domain/subdomain values. Validate against `taxonomy.yaml`.
-- Do not hand-edit `catalog-index.json`. It is auto-generated by `bun run build:index`.
+- Do not hand-edit `catalog-index.json` or `catalog-index.toon`. Both are auto-generated by `bun run build:index`.
 - Do not define presets inside individual SKILL.md files. Presets live in `presets.yaml`.
 - Do not omit NOTICE.md. Every catalog skill requires explicit attribution.
 - Do not add auxiliary docs (README.md, CHANGELOG.md) inside skill directories — except when retaining upstream files in ported skills.

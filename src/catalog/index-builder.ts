@@ -1,5 +1,6 @@
 import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
+import { encode } from "@toon-format/toon";
 import { CatalogIndex, type CatalogIndex as CatalogIndexType, type ParsedSkill } from "../schemas/catalog.js";
 
 export function buildCatalogIndex(skills: ParsedSkill[]): CatalogIndexType {
@@ -31,4 +32,10 @@ export async function writeCatalogIndex(index: CatalogIndexType, outputPath: str
   await mkdir(dirname(outputPath), { recursive: true });
   const json = `${JSON.stringify(index, null, 2)}\n`;
   await Bun.write(outputPath, json);
+}
+
+export async function writeCatalogIndexToon(index: CatalogIndexType, outputPath: string): Promise<void> {
+  await mkdir(dirname(outputPath), { recursive: true });
+  const toon = encode(index);
+  await Bun.write(outputPath, toon);
 }

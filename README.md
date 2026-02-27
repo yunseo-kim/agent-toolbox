@@ -29,7 +29,8 @@ awesome-agent-toolbox/
 │       ├── taxonomy.yaml             # Controlled vocabulary (domains + subdomains)
 │       ├── presets.yaml              # Curated install bundles
 │       ├── upstream-sources.yaml     # Ported/adapted skill upstream mappings
-│       └── catalog-index.json        # Auto-generated aggregated metadata
+│       ├── catalog-index.json        # Auto-generated aggregated metadata
+│       └── catalog-index.toon        # Auto-generated TOON format for LLM consumption
 ├── src/                              # Bun-first TS toolchain
 │   ├── catalog/                      # Skill scanning, validation, index building
 │   ├── cli/                          # install/build/validate entrypoints

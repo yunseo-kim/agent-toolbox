@@ -1,9 +1,12 @@
 import { beforeAll, describe, expect, test } from "bun:test";
-import { buildCatalogIndex } from "../../src/catalog/index-builder.js";
+import { buildCatalogIndex, writeCatalogIndexToon } from "../../src/catalog/index-builder.js";
 import { scanSkills } from "../../src/catalog/scanner.js";
 import { CatalogIndex } from "../../src/schemas/catalog.js";
 import type { ParsedSkill } from "../../src/schemas/catalog.js";
 import { resolve } from "node:path";
+import { encode, decode } from "@toon-format/toon";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 const catalogDir = resolve(import.meta.dir, "../../catalog");
 
@@ -63,4 +66,54 @@ describe("index builder", () => {
     const parsed = CatalogIndex.parse(index);
     expect(parsed.items).toHaveLength(118);
   });
+
+describe("TOON index generation", () => {
+  let skills: ParsedSkill[] = [];
+
+  beforeAll(async () => {
+    const result = await scanSkills(catalogDir);
+    skills = result.skills;
+  });
+
+  test("TOON encode produces valid output", () => {
+    const index = buildCatalogIndex(skills);
+    const toon = encode(index);
+    expect(toon.length).toBeGreaterThan(0);
+    expect(toon).toContain("version: 1");
+    expect(toon).toContain("items[");
+  });
+
+  test("TOON roundtrip preserves all items", () => {
+    const index = buildCatalogIndex(skills);
+    const toon = encode(index);
+    const decoded = decode(toon) as typeof index;
+    expect(decoded.version).toBe(1);
+    expect(decoded.items).toHaveLength(118);
+  });
+
+  test("TOON roundtrip preserves item fields", () => {
+    const index = buildCatalogIndex(skills);
+    const toon = encode(index);
+    const decoded = decode(toon) as typeof index;
+    const first = decoded.items[0];
+    const original = index.items[0];
+    expect(first.name).toBe(original.name);
+    expect(first.type).toBe(original.type);
+    expect(first.domain).toBe(original.domain);
+    expect(first.provenance).toBe(original.provenance);
+    expect(first.author).toBe(original.author);
+    expect(first.path).toBe(original.path);
+  });
+
+  test("writeCatalogIndexToon creates file", async () => {
+    const index = buildCatalogIndex(skills);
+    const outPath = join(tmpdir(), `catalog-index-test-${Date.now()}.toon`);
+    await writeCatalogIndexToon(index, outPath);
+    const content = await Bun.file(outPath).text();
+    expect(content.length).toBeGreaterThan(0);
+    expect(content).toContain("version: 1");
+    // cleanup
+    await Bun.write(outPath, "");
+  });
+});
 });
