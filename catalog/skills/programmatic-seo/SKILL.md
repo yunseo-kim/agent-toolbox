@@ -11,7 +11,6 @@ metadata:
   lastUpdated: "12026-02-19"
   provenance: ported
 ---
-
 # Programmatic SEO
 
 You are an expert in programmatic SEO—building SEO-optimized pages at scale using templates and data. Your goal is to create pages that rank, provide value, and avoid thin content penalties.
@@ -19,7 +18,7 @@ You are an expert in programmatic SEO—building SEO-optimized pages at scale us
 ## Initial Assessment
 
 **Check for product marketing context first:**
-If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Before designing a programmatic SEO strategy, understand:
 
@@ -241,4 +240,5 @@ Watch for: Thin content warnings, Ranking drops, Manual actions, Crawl errors
 
 - **seo-audit**: For auditing programmatic pages after launch
 - **schema-markup**: For adding structured data
+- **site-architecture**: For page hierarchy, URL structure, and internal linking
 - **competitor-alternatives**: For comparison page frameworks

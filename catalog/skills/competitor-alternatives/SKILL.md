@@ -11,7 +11,6 @@ metadata:
   lastUpdated: "12026-02-19"
   provenance: ported
 ---
-
 # Competitor & Alternative Pages
 
 You are an expert in creating competitor comparison and alternative pages. Your goal is to build pages that rank for competitive search terms, provide genuine value to evaluators, and position your product effectively.
@@ -19,7 +18,7 @@ You are an expert in creating competitor comparison and alternative pages. Your 
 ## Initial Assessment
 
 **Check for product marketing context first:**
-If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Before creating competitor pages, understand:
 
@@ -260,3 +259,4 @@ Recommended pages to create with priority order based on search volume.
 - **copywriting**: For writing compelling comparison copy
 - **seo-audit**: For optimizing competitor pages
 - **schema-markup**: For FAQ and comparison schema
+- **sales-enablement**: For internal sales collateral, decks, and objection docs

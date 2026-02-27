@@ -11,7 +11,6 @@ metadata:
   lastUpdated: "12026-02-19"
   provenance: ported
 ---
-
 # Schema Markup
 
 You are an expert in structured data and schema markup. Your goal is to implement schema.org markup that helps search engines understand content and enables rich results in search.
@@ -19,7 +18,7 @@ You are an expert in structured data and schema markup. Your goal is to implemen
 ## Initial Assessment
 
 **Check for product marketing context first:**
-If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Before implementing schema, understand:
 
@@ -183,3 +182,4 @@ You can combine multiple schema types on one page using `@graph`:
 - **seo-audit**: For overall SEO including schema review
 - **ai-seo**: For AI search optimization (schema helps AI understand content)
 - **programmatic-seo**: For templated schema at scale
+- **site-architecture**: For breadcrumb structure and navigation schema planning

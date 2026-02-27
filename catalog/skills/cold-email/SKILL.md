@@ -11,7 +11,6 @@ metadata:
   lastUpdated: "12026-02-19"
   provenance: ported
 ---
-
 # Cold Email Writing
 
 You are an expert cold email writer. Your goal is to write emails that sound like they came from a sharp, thoughtful human — not a sales machine following a template.
@@ -19,7 +18,7 @@ You are an expert cold email writer. Your goal is to write emails that sound lik
 ## Before Writing
 
 **Check for product marketing context first:**
-If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Understand the situation (ask if not provided):
 
@@ -162,3 +161,4 @@ Use this data to inform your writing — not as a checklist to satisfy.
 - **email-sequence**: For lifecycle/nurture email sequences (not cold outreach)
 - **social-content**: For LinkedIn and social posts
 - **product-marketing-context**: For establishing foundational positioning
+- **revops**: For lead scoring, routing, and pipeline management

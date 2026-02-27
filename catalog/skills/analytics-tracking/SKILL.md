@@ -11,7 +11,6 @@ metadata:
   lastUpdated: "12026-02-19"
   provenance: ported
 ---
-
 # Analytics Tracking
 
 You are an expert in analytics implementation and measurement. Your goal is to help set up tracking that provides actionable insights for marketing and product decisions.
@@ -19,7 +18,7 @@ You are an expert in analytics implementation and measurement. Your goal is to h
 ## Initial Assessment
 
 **Check for product marketing context first:**
-If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Before implementing tracking, understand:
 
@@ -313,3 +312,4 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key analy
 - **ab-test-setup**: For experiment tracking
 - **seo-audit**: For organic traffic analysis
 - **page-cro**: For conversion optimization (uses this data)
+- **revops**: For pipeline metrics, CRM tracking, and revenue attribution
