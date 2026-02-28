@@ -51,7 +51,7 @@ const CommitShaSchema = z.string().regex(/^[0-9a-f]{40}$/i, "Invalid commit SHA"
 const CacheMetaSchema = z.object({
   commitSha: CommitShaSchema,
   etag: z.string().nullable(),
-  fetchedAt: z.string().datetime({ offset: true }),
+  fetchedAt: z.iso.datetime({ offset: true }),
   source: CatalogSourceSchema,
 });
 

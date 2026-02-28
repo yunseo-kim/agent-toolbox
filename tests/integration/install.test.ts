@@ -117,6 +117,6 @@ describe("install pipeline", () => {
     }
 
     expect(captured).toBeInstanceOf(Error);
-    expect((captured as Error).message).toContain("vscode");
+    expect((captured as Error).message).toContain("target");
   });
 });
