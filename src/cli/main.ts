@@ -48,6 +48,8 @@ INSTALL OPTIONS
   --skill <name>    Specific skill(s), repeatable
   --dry-run         Preview without installing
   --interactive     Interactive selection (future)
+  --refresh           Force re-download catalog from remote
+  --offline           Use cached catalog only, no network
 
 EXAMPLES
   ${NAME} install --target opencode --domain devops

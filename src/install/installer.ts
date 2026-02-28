@@ -1,12 +1,13 @@
 import { join } from "node:path";
 import { scanSkills } from "../catalog/scanner.js";
+import { resolveCatalogDir } from "../catalog/provider.js";
 import { ClaudeCodeGenerator } from "../generators/claude-code/generator.js";
 import { CodexGenerator } from "../generators/codex/generator.js";
 import { CursorGenerator } from "../generators/cursor/generator.js";
 import { GeminiGenerator } from "../generators/gemini/generator.js";
 import { OpenCodeGenerator } from "../generators/opencode/generator.js";
 import type { GeneratorResult, TargetGenerator } from "../generators/types.js";
-import type { InstallFilters } from "../schemas/install.js";
+import { InstallFilters, type InstallFiltersInput } from "../schemas/install.js";
 import { filterSkills, type FilterResult } from "./filter.js";
 import { loadPresets, resolvePreset } from "./presets.js";
 
@@ -24,8 +25,14 @@ const generatorMap: Record<string, () => TargetGenerator> = {
   gemini: () => new GeminiGenerator(),
 };
 
-export async function install(rootDir: string, filters: InstallFilters): Promise<InstallResult> {
-  const catalogDir = join(rootDir, "catalog");
+export async function install(rootDir: string, rawFilters: InstallFiltersInput): Promise<InstallResult> {
+  const filters = InstallFilters.parse(rawFilters);
+  const catalogDir = await resolveCatalogDir({
+    rootDir,
+    remote: undefined,
+    refresh: filters.refresh,
+    offline: filters.offline,
+  });
   const presetsPath = join(catalogDir, "metadata", "presets.yaml");
 
   const { skills, errors } = await scanSkills(catalogDir);

@@ -1,5 +1,5 @@
 import type { ParsedSkill } from "../schemas/catalog.js";
-import type { InstallFilters } from "../schemas/install.js";
+import { InstallFilters, type InstallFiltersInput } from "../schemas/install.js";
 
 export interface FilterResult {
   /** Skills that passed all filters */
@@ -15,7 +15,8 @@ export interface FilterResult {
  * Multiple filters compose with AND logic.
  * No filters = all skills.
  */
-export function filterSkills(skills: ParsedSkill[], filters: InstallFilters): FilterResult {
+export function filterSkills(skills: ParsedSkill[], rawFilters: InstallFiltersInput): FilterResult {
+  const filters = InstallFilters.parse(rawFilters);
   let matched = [...skills];
   const appliedFilters: string[] = [];
   const total = skills.length;

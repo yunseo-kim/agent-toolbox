@@ -53,6 +53,8 @@ export async function runInstall(rootDir: string, argv: string[]): Promise<void>
     console.error("  --skill <name>        Install specific skill(s) (repeatable)");
     console.error("  --dry-run             Preview without installing");
     console.error("  --interactive         Interactive selection (future)");
+    console.error("  --refresh             Force re-download catalog from remote");
+    console.error("  --offline             Use cached catalog only, no network");
     process.exit(1);
   }
 
@@ -72,6 +74,8 @@ export async function runInstall(rootDir: string, argv: string[]): Promise<void>
     skill: Array.isArray(args.skill) ? args.skill : undefined,
     dryRun: args["dry-run"] === "true",
     interactive: args.interactive === "true",
+    refresh: args.refresh === "true",
+    offline: args.offline === "true",
   } as const;
 
   const result = await install(rootDir, {
@@ -84,6 +88,8 @@ export async function runInstall(rootDir: string, argv: string[]): Promise<void>
     skill: filters.skill,
     dryRun: filters.dryRun as boolean,
     interactive: filters.interactive as boolean,
+    refresh: filters.refresh as boolean,
+    offline: filters.offline as boolean,
   });
 
   if (result.filterResult.appliedFilters.length > 0) {

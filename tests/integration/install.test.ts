@@ -117,6 +117,6 @@ describe("install pipeline", () => {
     }
 
     expect(captured).toBeInstanceOf(Error);
-    expect((captured as Error).message).toContain("Generator for 'vscode' not yet implemented");
+    expect((captured as Error).message).toContain("vscode");
   });
 });
