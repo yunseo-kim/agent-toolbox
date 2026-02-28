@@ -225,11 +225,20 @@ class TestListSkillFiles(unittest.TestCase):
         )
 
     def test_excludes_local_only_files(self):
-        tree = make_tree(**{"skills/demo/NOTICE.md": "n1", "skills/demo/SKILL.md": "s1"})
+        tree = make_tree(**{
+            "skills/demo/NOTICE.md": "n1",
+            "skills/demo/LICENSE": "l1",
+            "skills/demo/LICENSE.md": "l2",
+            "skills/demo/LICENSE.txt": "l3",
+            "skills/demo/SKILL.md": "s1",
+        })
 
         result = sync.list_skill_files(tree, "skills/demo/")
 
         self.assertNotIn("NOTICE.md", result)
+        self.assertNotIn("LICENSE", result)
+        self.assertNotIn("LICENSE.md", result)
+        self.assertNotIn("LICENSE.txt", result)
         self.assertIn("SKILL.md", result)
 
     def test_skill_md_included(self):

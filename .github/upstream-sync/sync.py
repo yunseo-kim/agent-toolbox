@@ -29,7 +29,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 CONFIG_PATH = REPO_ROOT / "catalog" / "metadata" / "upstream-sources.yaml"
 CACHE_PATH = Path(__file__).resolve().parent / "sha-cache.json"
 CATALOG_SKILLS = REPO_ROOT / "catalog" / "skills"
-LOCAL_ONLY_FILES = {"NOTICE.md"}
+LOCAL_ONLY_FILES = {"NOTICE.md", "LICENSE", "LICENSE.md", "LICENSE.txt"}
 
 BINARY_EXTENSIONS = {
     ".png",
