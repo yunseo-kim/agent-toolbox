@@ -28,6 +28,7 @@ Adding/removing a skill in `.agents/skills/` requires updating all symlinked dir
 | **docs-writer** | Workflow | -- | CORE-CHECKLIST.md, PROFILE-*.md, TEMPLATES.md | Profile-based documentation workflow |
 | **create-pr** | Workflow | -- | -- | Conventional Commits PR creation |
 | **github-triage** | Workflow | gh_fetch.py | -- | GitHub issue/PR triage |
+| **catalog-porter** | Workflow | -- | catalog-conventions.md, notice-templates.md, upstream-sources.md, readme-listing.md | Upstream skill analysis, classification, and porting |
 | **docs-changelog** | Workflow | -- | highlights_examples.md, index/latest/preview_template.md | Changelog generation |
 | **doc-coauthoring** | Workflow | -- | -- | Collaborative drafting |
 | **find-skills** | Utility | -- | -- | Skill discovery helper |

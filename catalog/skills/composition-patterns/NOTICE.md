@@ -1,31 +1,23 @@
 # Attribution Notice
 
-This skill is a derivative work that incorporates and adapts material from the
-following project. This adapted version is governed by the
-[Sustainable Use License](../../LICENSE.md) at the root of this repository.
-The upstream copyright notice and license text are reproduced below to satisfy
-the attribution requirements of the original license.
+This skill incorporates material derived from
+[vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills),
+originally released under the
+[MIT License](https://github.com/vercel-labs/agent-skills).
+This adapted version is governed by the
+[Sustainable Use License](../../LICENSE.md).
 
-## NOTICE of Modification
+## Modifications
 
-**Portions of the work listed below have been modified and adapted
-to create this catalog skill. Modified files carry changes in structure
-and metadata compared to the originals.**
-
-Specifically:
+This skill was ported from the original `skills/composition-patterns/` in the
+vercel-labs/agent-skills repository for use in the awesome-agent-toolbox
+catalog. Changes include:
 
 - Replaced upstream SKILL.md frontmatter with catalog-compatible schema (added `metadata.domain`, `metadata.subdomain`, `metadata.tags`, `metadata.frameworks`, `metadata.provenance`, `metadata.lastUpdated`)
 - Removed upstream-specific frontmatter fields (`metadata.version`)
 - Preserved all body content, rule files, AGENTS.md, README.md, and metadata.json unchanged
 
----
-
-## vercel-labs/agent-skills -- composition-patterns skill
-
-Source: <https://github.com/vercel-labs/agent-skills>
-Skill path: `skills/composition-patterns/`
-
-### Upstream Copyright and License
+## Upstream License
 
 MIT License
 
@@ -48,3 +40,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+For the full upstream license text, see:
+https://github.com/vercel-labs/agent-skills

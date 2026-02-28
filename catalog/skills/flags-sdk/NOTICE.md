@@ -1,32 +1,23 @@
 # Attribution Notice
 
-This skill is a derivative work that incorporates and adapts material from the
-following project. This adapted version is governed by the
-[Sustainable Use License](../../LICENSE.md) at the root of this repository.
-The upstream copyright notice and license text are reproduced below to satisfy
-the attribution requirements of the original license.
+This skill incorporates material derived from
+[vercel/flags](https://github.com/vercel/flags),
+originally released under the
+[MIT License](https://github.com/vercel/flags/blob/main/LICENSE.md).
+This adapted version is governed by the
+[Sustainable Use License](../../LICENSE.md).
 
-## NOTICE of Modification
+## Modifications
 
-**Portions of the work listed below have been modified, adapted, and
-restructured by Yunseo Kim on 12026-02-25 to create this Flags SDK
-skill. Modified files carry changes in structure, wording,
-and scope compared to the originals.**
-
-Specifically:
+This skill was ported from the original `skills/flags-sdk/` in the
+vercel/flags repository for use in the awesome-agent-toolbox
+catalog. Changes include:
 
 - Adapted SKILL.md frontmatter to catalog schema (added `metadata.domain`, `metadata.subdomain`, `metadata.tags`, `metadata.frameworks`)
 - Preserved all reference files: nextjs.md, sveltekit.md, providers.md, api.md
 - Retained all core content: flag declaration, precompute patterns, custom adapters, encryption functions, React components
 
----
-
-## vercel/flags -- flags-sdk skill
-
-Source: <https://github.com/vercel/flags>
-Skill path: `skills/flags-sdk/`
-
-### Upstream Copyright and License
+## Upstream License
 
 The MIT License (MIT)
 
@@ -49,3 +40,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+For the full upstream license text, see:
+https://github.com/vercel/flags/blob/main/LICENSE.md
