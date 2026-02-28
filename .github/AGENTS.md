@@ -8,7 +8,7 @@ GitHub Actions workflows for validation, testing, building, drift detection, and
 .github/
 ├── workflows/
 │   ├── ci.yml                  # Main CI pipeline (push/PR to main)
-│   └── upstream-sync.yml       # Weekly upstream skill sync
+│   └── upstream-sync.yml       # Daily upstream skill sync
 └── upstream-sync/
     ├── sync.py                 # Python 3.10+ stdlib-only full-directory sync script (~1200 lines)
     └── sha-cache.json          # Auto-managed cache v3 (SHA256 + tree SHAs + file hashes)
@@ -35,7 +35,7 @@ validate ──→ test ──→ build
 
 ## UPSTREAM SYNC (`upstream-sync.yml`)
 
-Scheduled: **Monday 06:00 UTC** + manual dispatch.
+Scheduled: **Daily 06:00 UTC** + manual dispatch.
 
 **Manual dispatch options:**
 - `repo_filter`: Sync specific upstream repo only
