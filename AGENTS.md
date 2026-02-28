@@ -117,6 +117,8 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 - **Selective install tests**: verify filter composition (domain, subdomain, framework, tag, preset, skill) produces correct item sets.
 - **Provenance tests**: validate all SKILL.md `metadata.provenance` values are valid (`ported`, `adapted`, `synthesized`, `original`) and consistent with `catalog/metadata/upstream-sources.yaml` mappings.
 - **Upstream sync tests**: verify upstream-sources.yaml skill entries map to existing catalog skill directories.
+- **Full-directory sync tests**: validate per-file sync, cache v3 migration, tree SHA optimization.
+- **Binary file handling tests**: validate binary detection and non-text fetch path.
 
 ## CONVENTIONS
 
@@ -133,6 +135,8 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 - **Provenance field**: Required for catalog items. Valid values: `ported`, `adapted`, `synthesized`, `original`. Ported skills listed in `catalog/metadata/upstream-sources.yaml` `skills` section are eligible for automated upstream sync. Adapted skills listed in `adapted_skills` section are monitored for upstream changes (advisory only, never auto-applied).
 - `catalog/metadata/upstream-sources.yaml` maps ported skills (in `skills`) and adapted skills (in `adapted_skills`) to their upstream repos and paths. Ported skills get automated body sync and new-skill detection. Adapted skills get advisory-only change monitoring with section-heading diffs. The `adapted_skills` section supports both `upstream_dir` (standard path under `discover.root`) and `upstream_path` (explicit full path from repo root for non-standard locations).
 - **Ported skill body integrity**: For ported skills (`provenance: ported`), preserve the upstream directory structure and file organization as-is. Do not rename directories (e.g., `rules/` → `references/`) or remove upstream files (e.g., `AGENTS.md`) solely for catalog cosmetic conventions. Unnecessary body modifications forfeit automated upstream sync eligibility — the supply chain maintenance cost outweighs the aesthetic benefit. Only modify body content when functionally necessary (e.g., stripping project-specific conventions). Changes limited to frontmatter and NOTICE.md additions do not affect ported status.
+- **Cache v3 schema**: Tracks `file_hashes` and `tree_shas` for per-file change detection in ported skill syncs. Auto-migrated from v2 on first run.
+- **Full-directory sync for ported skills**: Syncs all files in skill directory (not just SKILL.md body), with per-file safe/review classification and LOCAL_ONLY_FILES exclusion (NOTICE.md never synced from upstream).
 
 ## README LISTING POLICY
 

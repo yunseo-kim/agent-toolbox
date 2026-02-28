@@ -10,8 +10,8 @@ GitHub Actions workflows for validation, testing, building, drift detection, and
 │   ├── ci.yml                  # Main CI pipeline (push/PR to main)
 │   └── upstream-sync.yml       # Weekly upstream skill sync
 └── upstream-sync/
-    ├── sync.py                 # Python 3.10+ stdlib-only sync script (~1200 lines)
-    └── sha-cache.json          # Auto-managed SHA256 cache (prevents re-flagging)
+    ├── sync.py                 # Python 3.10+ stdlib-only full-directory sync script (~1200 lines)
+    └── sha-cache.json          # Auto-managed cache v3 (SHA256 + tree SHAs + file hashes)
 ```
 
 ## CI PIPELINE (`ci.yml`)
@@ -46,17 +46,30 @@ Scheduled: **Monday 06:00 UTC** + manual dispatch.
 
 Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 
+**Full-directory sync for ported skills:**
+- Syncs all files in skill directory (not just SKILL.md body)
+- Tree SHA1 optimization: short-circuits unchanged directories without fetching content
+- Per-file safe/review classification: detects local modifications per file
+- LOCAL_ONLY_FILES exclusion: NOTICE.md never synced from upstream
+- Binary file handling: separate fetch path, no text corruption
+- Cache v3 schema: tracks `file_hashes` and `tree_shas` for efficient change detection
+- File-level reporting in PRs and issues
+
 **Behavior by provenance:**
 
 | Provenance | In `upstream-sources.yaml` | Action |
 |------------|---------------------------|--------|
-| **Ported** | `skills` section | Auto-detect changes → create PR with updated body (preserves local frontmatter) |
+| **Ported** | `skills` section | Auto-detect changes to SKILL.md body AND all files in skill directory → create PR with updates (preserves local frontmatter, preserves NOTICE.md). Per-file safe/review classification |
 | **Adapted** | `adapted_skills` section | Advisory only → report section-heading diffs in consolidated issue |
 | **Synthesized/Original** | Not tracked | Ignored |
 
 **Safety mechanisms:**
+- Tree SHA1 short-circuit: skips unchanged files without fetching content
+- Per-file classification: local modifications detected per file
+- LOCAL_ONLY_FILES exclusion: NOTICE.md never synced from upstream
+- Binary file handling: separate fetch path prevents text corruption
 - SHA256 cache (`.github/upstream-sync/sha-cache.json`) prevents re-flagging identical upstream state
-- Ported skills with local body modifications are flagged as "review needed" instead of auto-applied
+- Ported skills with local file modifications are flagged as "review needed" instead of auto-applied
 - Adapted skills are NEVER auto-modified — advisory diffs only
 - New upstream skills are detected and reported with links
 
