@@ -8,6 +8,7 @@ GitHub Actions workflows for validation, testing, building, drift detection, and
 .github/
 ├── workflows/
 │   ├── ci.yml                  # Main CI pipeline (push/PR to main)
+│   ├── release.yml             # Tag-triggered npm publish pipeline
 │   └── upstream-sync.yml       # Daily upstream skill sync
 └── upstream-sync/
     ├── sync.py                 # Python 3.10+ stdlib-only full-directory sync script (~1200 lines)
@@ -33,6 +34,29 @@ validate ──→ test ──→ build
 
 **Drift detection**: Strips volatile `generatedAt` timestamp from both committed and rebuilt `skill-index.json`, then diffs content. Fails if any structural difference found. Fix: `bun run build:index && git add catalog/metadata/skill-index.json`.
 
+## RELEASE PIPELINE (`release.yml`)
+
+Triggers: push of tags matching `v[0-9]+.*`.
+
+```
+tag push (v*) --> validate --> test --> build --> release notes --> GitHub Release --> npm publish
+```
+
+| Step | Command | Fails When |
+|------|---------|------------|
+| **typecheck** | `bun run typecheck` | Type errors |
+| **validate** | `bun run validate` | Invalid frontmatter or taxonomy |
+| **test** | `bun test` | Any test assertion fails |
+| **build** | `bun run build:index` + `bun run build:all` | Missing targets or build errors |
+| **release notes** | `orhun/git-cliff-action@v4` | git-cliff config error |
+| **GitHub Release** | `softprops/action-gh-release@v2` | Permission error |
+| **npm publish** | `bunx npm publish --provenance --access public` | Missing NPM_TOKEN or publish conflict |
+
+**Release is initiated locally** via `bun run release` (bumpp) which bumps version, generates CHANGELOG.md, commits, tags, and pushes. The tag push triggers this workflow.
+
+**Changelog scope**: Only CLI/toolchain commits appear. Catalog-scoped commits (`catalog`, `sync` scopes) are filtered out by `cliff.toml` configuration.
+
+**Required secrets**: `NPM_TOKEN` -- npm access token with publish permission.
 ## UPSTREAM SYNC (`upstream-sync.yml`)
 
 Scheduled: **Daily 06:00 UTC** + manual dispatch.
@@ -82,6 +106,10 @@ Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 | Configure upstream sync | `catalog/metadata/upstream-sources.yaml` |
 | Debug sync script | `.github/upstream-sync/sync.py` |
 | Reset sync cache | Delete `.github/upstream-sync/sha-cache.json` and re-run with `--init` |
+| Create a release | Run `bun run release` locally -- bumpp handles version, changelog, tag, push |
+| Debug release workflow | `.github/workflows/release.yml` |
+| Configure changelog scope | `cliff.toml` -- commit_parsers with skip rules |
+| Configure version bump | `bump.config.ts` -- bumpp + git-cliff integration |
 
 ## ANTI-PATTERNS
 

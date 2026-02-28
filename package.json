@@ -21,7 +21,9 @@
     "test:unit": "bun test tests/unit/",
     "test:integration": "bun test tests/integration/",
     "test:matrix": "bun test tests/matrix/",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp",
+    "changelog": "git cliff -o CHANGELOG.md"
   },
   "dependencies": {
     "@toon-format/toon": "^2.1.0",
@@ -30,6 +32,19 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "bumpp": "^10.4.0",
     "typescript": "^5.7"
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "src/",
+    "catalog/",
+    "templates/",
+    "LICENSE.md",
+    "README.md",
+    "CHANGELOG.md"
+  ]
 }
