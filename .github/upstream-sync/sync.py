@@ -14,6 +14,7 @@ Requirements: Python 3.10+ stdlib only. Runs on GitHub Actions with `gh` CLI.
 from __future__ import annotations
 
 import argparse
+import base64
 import difflib
 import hashlib
 import json
@@ -28,6 +29,33 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 CONFIG_PATH = REPO_ROOT / "catalog" / "metadata" / "upstream-sources.yaml"
 CACHE_PATH = Path(__file__).resolve().parent / "sha-cache.json"
 CATALOG_SKILLS = REPO_ROOT / "catalog" / "skills"
+LOCAL_ONLY_FILES = {"NOTICE.md"}
+
+BINARY_EXTENSIONS = {
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".ico",
+    ".bmp",
+    ".webp",
+    ".woff",
+    ".woff2",
+    ".ttf",
+    ".otf",
+    ".eot",
+    ".pdf",
+    ".zip",
+    ".tar",
+    ".gz",
+    ".bz2",
+    ".7z",
+    ".pyc",
+    ".pyo",
+    ".so",
+    ".dll",
+    ".dylib",
+}
 
 # ---------------------------------------------------------------------------
 # Minimal YAML parser (handles only the upstream-sources.yaml schema)
@@ -204,14 +232,22 @@ def parse_upstream_sources(path: Path) -> dict:
 def load_cache() -> dict:
     if CACHE_PATH.exists():
         data = json.loads(CACHE_PATH.read_text())
-        if data.get("version") == 2:
+        if data.get("version") == 3:
             return data
         if data.get("version") == 1:
             # Migrate v1 -> v2: add adapted_skills
             data["version"] = 2
             data.setdefault("adapted_skills", {})
+        if data.get("version") == 2:
+            for entry in data.get("skills", {}).values():
+                entry.setdefault("file_hashes", {})
+                entry.setdefault("tree_shas", {})
+            for entry in data.get("adapted_skills", {}).values():
+                entry.setdefault("file_hashes", {})
+                entry.setdefault("tree_shas", {})
+            data["version"] = 3
             return data
-    return {"version": 2, "skills": {}, "adapted_skills": {}}
+    return {"version": 3, "skills": {}, "adapted_skills": {}}
 
 
 def save_cache(cache: dict) -> None:
@@ -226,6 +262,10 @@ def save_cache(cache: dict) -> None:
 
 def sha256(content: str) -> str:
     return hashlib.sha256(content.encode()).hexdigest()
+
+
+def sha256_bytes(content: bytes) -> str:
+    return hashlib.sha256(content).hexdigest()
 
 
 def split_frontmatter(text: str) -> tuple[str, str]:
@@ -389,16 +429,81 @@ def fetch_last_commit_date(owner_repo: str, ref: str, path: str) -> str | None:
     return date_str if date_str else None
 
 
-def fetch_repo_tree(owner_repo: str, ref: str) -> list[str]:
-    """Fetch all file paths from the repo tree."""
+def fetch_repo_tree(owner_repo: str, ref: str) -> dict[str, str]:
+    """Fetch all blob paths and tree SHAs from the repo tree."""
     endpoint = f"repos/{owner_repo}/git/trees/{ref}?recursive=1"
-    result = gh_api(endpoint, jq=".tree[].path")
+    result = gh_api(
+        endpoint,
+        jq='.tree[] | select(.type == "blob") | "\\(.path)\\t\\(.sha)"',
+    )
     if result.returncode != 0:
         print(
             f"::error::Failed to fetch tree for {owner_repo}: {result.stderr.strip()}"
         )
-        return []
-    return [p for p in result.stdout.strip().splitlines() if p]
+        return {}
+    files: dict[str, str] = {}
+    for line in result.stdout.strip().splitlines():
+        if not line:
+            continue
+        path, sep, tree_sha = line.partition("\t")
+        if not sep or not path or not tree_sha:
+            continue
+        files[path] = tree_sha
+    return files
+
+
+def list_skill_files(tree: dict[str, str], prefix: str) -> dict[str, str]:
+    """Return {relative_path: sha1} for files under prefix, excluding local-only files."""
+    files: dict[str, str] = {}
+    for path, tree_sha in tree.items():
+        if not path.startswith(prefix):
+            continue
+        rel_path = path[len(prefix) :]
+        if not rel_path:
+            continue
+        if os.path.basename(rel_path) in LOCAL_ONLY_FILES:
+            continue
+        files[rel_path] = tree_sha
+    return files
+
+
+def is_binary_file(path: str) -> bool:
+    """Check if file has a binary extension."""
+    return Path(path).suffix.lower() in BINARY_EXTENSIONS
+
+
+def fetch_raw_binary(owner_repo: str, ref: str, path: str) -> bytes | None:
+    """Fetch binary file content from GitHub via JSON contents API + base64.
+
+    Uses the default JSON response (which base64-encodes content) instead of
+    the raw accept header, because ``gh`` CLI's Go text/transform layer
+    corrupts genuine binary payloads with 'transform: short source buffer'.
+    """
+    endpoint = "repos/{}/contents/{}?ref={}".format(owner_repo, path, ref)
+    cmd = ["gh", "api", endpoint, "--jq", ".content"]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+    if result.returncode != 0:
+        stderr = result.stderr
+        if "404" in stderr or "Not Found" in stderr:
+            return None
+        print(
+            "::warning::gh api failed for {}/{}: {}".format(
+                owner_repo, path, stderr.strip()
+            )
+        )
+        return None
+    raw_b64 = result.stdout.strip()
+    if not raw_b64:
+        return None
+    try:
+        return base64.b64decode(raw_b64)
+    except Exception as exc:
+        print(
+            "::warning::base64 decode failed for {}/{}: {}".format(
+                owner_repo, path, exc
+            )
+        )
+        return None
 
 
 # ---------------------------------------------------------------------------
@@ -420,6 +525,160 @@ def git(*args: str, check: bool = True) -> subprocess.CompletedProcess:
 # ---------------------------------------------------------------------------
 # Core sync logic
 # ---------------------------------------------------------------------------
+
+
+def sync_skill_files(
+    owner_repo: str,
+    ref: str,
+    tree: dict[str, str],
+    root: str,
+    upstream_dir: str,
+    skill_file: str,
+    catalog_name: str,
+    cached_entry: dict,
+    *,
+    init: bool = False,
+    dry_run: bool = False,
+    upstream_path: str | None = None,
+) -> tuple[str, dict]:
+    """Sync non-SKILL.md files for a skill and return classification + changes."""
+    if upstream_path:
+        if "/" in upstream_path:
+            prefix = upstream_path.rsplit("/", 1)[0] + "/"
+        else:
+            prefix = ""
+    else:
+        prefix = "{}{}{}".format(root, upstream_dir, "/")
+
+    upstream_files = list_skill_files(tree, prefix)
+    upstream_files.pop(skill_file, None)
+
+    file_changes = {
+        "skill_md_changed": False,
+        "files_added": [],
+        "files_modified": [],
+        "files_deleted": [],
+    }
+
+    cached_hashes = dict(cached_entry.get("file_hashes") or {})
+    cached_tree_shas = dict(cached_entry.get("tree_shas") or {})
+    next_hashes: dict[str, str] = {}
+    next_tree_shas: dict[str, str] = {}
+
+    has_safe = False
+    has_review = False
+    local_root = CATALOG_SKILLS / catalog_name
+
+    for rel_path in sorted(upstream_files.keys()):
+        tree_sha = upstream_files[rel_path]
+        next_tree_shas[rel_path] = tree_sha
+        if cached_tree_shas.get(rel_path) == tree_sha and rel_path in cached_hashes:
+            next_hashes[rel_path] = cached_hashes[rel_path]
+            continue
+
+        full_upstream_path = prefix + rel_path
+        if is_binary_file(rel_path):
+            upstream_bytes = fetch_raw_binary(owner_repo, ref, full_upstream_path)
+            if upstream_bytes is None:
+                continue
+            upstream_hash = sha256_bytes(upstream_bytes)
+            write_payload_text: str | None = None
+            write_payload_bytes: bytes | None = upstream_bytes
+        else:
+            upstream_text = fetch_raw_file(owner_repo, ref, full_upstream_path)
+            if upstream_text is None:
+                continue
+            upstream_hash = sha256(upstream_text)
+            write_payload_text = upstream_text
+            write_payload_bytes = None
+
+        next_hashes[rel_path] = upstream_hash
+        old_hash = cached_hashes.get(rel_path)
+
+        if init:
+            continue
+
+        local_path = local_root / rel_path
+        if old_hash is None:
+            if local_path.exists():
+                if is_binary_file(rel_path):
+                    local_hash = sha256_bytes(local_path.read_bytes())
+                else:
+                    local_hash = sha256(local_path.read_text())
+                if local_hash == upstream_hash:
+                    continue
+                has_review = True
+                file_changes["files_modified"].append(rel_path)
+            else:
+                has_safe = True
+                file_changes["files_added"].append(rel_path)
+                if not dry_run:
+                    local_path.parent.mkdir(parents=True, exist_ok=True)
+                    if write_payload_bytes is not None:
+                        local_path.write_bytes(write_payload_bytes)
+                    else:
+                        local_path.write_text(write_payload_text or "")
+            continue
+
+        if old_hash == upstream_hash:
+            continue
+
+        local_hash: str | None = None
+        if local_path.exists():
+            if is_binary_file(rel_path):
+                local_hash = sha256_bytes(local_path.read_bytes())
+            else:
+                local_hash = sha256(local_path.read_text())
+
+        if local_hash == old_hash:
+            has_safe = True
+            file_changes["files_modified"].append(rel_path)
+            if not dry_run:
+                local_path.parent.mkdir(parents=True, exist_ok=True)
+                if write_payload_bytes is not None:
+                    local_path.write_bytes(write_payload_bytes)
+                else:
+                    local_path.write_text(write_payload_text or "")
+        else:
+            has_review = True
+            file_changes["files_modified"].append(rel_path)
+
+    for rel_path in sorted(cached_hashes.keys()):
+        if os.path.basename(rel_path) in LOCAL_ONLY_FILES:
+            continue
+        if rel_path == skill_file:
+            continue
+        if rel_path in upstream_files:
+            continue
+        if init:
+            continue
+
+        old_hash = cached_hashes[rel_path]
+        local_path = local_root / rel_path
+        local_hash: str | None = None
+        if local_path.exists():
+            if is_binary_file(rel_path):
+                local_hash = sha256_bytes(local_path.read_bytes())
+            else:
+                local_hash = sha256(local_path.read_text())
+
+        if local_hash == old_hash:
+            has_safe = True
+            file_changes["files_deleted"].append(rel_path)
+            if not dry_run and local_path.exists():
+                os.remove(local_path)
+        else:
+            has_review = True
+            file_changes["files_deleted"].append(rel_path)
+
+    cached_entry["file_hashes"] = next_hashes
+    cached_entry["tree_shas"] = next_tree_shas
+
+    if has_review:
+        return "review", file_changes
+    if has_safe:
+        return "safe", file_changes
+    return "unchanged", file_changes
 
 
 def process_repo(
@@ -449,14 +708,16 @@ def process_repo(
     ignored = config.get("ignored", [])
 
     report = {
-        "safe": [],  # (catalog_name, new_date)
-        "review": [],  # (catalog_name, new_date)
-        "deleted": [],  # catalog_name
-        "new_skills": [],  # (upstream_dir, skill_url)
-        "errors": [],  # message
-        "adapted_changed": [],  # (catalog_name, section_diff, history_url)
-        "adapted_deleted": [],  # catalog_name
+        "safe": [],
+        "review": [],
+        "deleted": [],
+        "new_skills": [],
+        "errors": [],
+        "adapted_changed": [],
+        "adapted_deleted": [],
     }
+
+    repo_tree = fetch_repo_tree(owner_repo, ref)
 
     print(
         f"::group::Processing {owner_repo} (ref={ref}, {len(skills)} ported, {len(adapted_skills_cfg)} adapted)"
@@ -468,6 +729,7 @@ def process_repo(
         root = discover.get("root", "")
         skill_file = discover.get("skill_file", "SKILL.md")
         upstream_path = f"{root}{upstream_dir}/{skill_file}"
+        now = datetime.now(timezone.utc).isoformat()
 
         print(f"  Checking {catalog_name} <- {upstream_path}")
 
@@ -485,72 +747,97 @@ def process_repo(
         # Check cache
         cached = cache.get("skills", {}).get(catalog_name, {})
         cached_hash = cached.get("upstream_body_sha256")
+        cached_entry = {
+            "upstream_body_sha256": cached_hash,
+            "last_checked": now,
+            "file_hashes": dict(cached.get("file_hashes") or {}),
+            "tree_shas": dict(cached.get("tree_shas") or {}),
+        }
+
+        file_classification, file_changes = sync_skill_files(
+            owner_repo,
+            ref,
+            repo_tree,
+            root,
+            upstream_dir,
+            skill_file,
+            catalog_name,
+            cached_entry,
+            init=init,
+            dry_run=dry_run,
+        )
 
         if init:
-            # Bootstrap: store hash, don't flag changes
-            cache.setdefault("skills", {})[catalog_name] = {
-                "upstream_body_sha256": upstream_hash,
-                "last_checked": datetime.now(timezone.utc).isoformat(),
-            }
+            cached_entry["upstream_body_sha256"] = upstream_hash
+            cached_entry["last_checked"] = now
+            cache.setdefault("skills", {})[catalog_name] = cached_entry
             print(f"    [init] Cached hash for {catalog_name}")
             continue
 
-        if cached_hash == upstream_hash:
-            # No change — refresh last_checked
-            cache.setdefault("skills", {})[catalog_name] = {
-                "upstream_body_sha256": upstream_hash,
-                "last_checked": datetime.now(timezone.utc).isoformat(),
-            }
-            continue
+        body_changed = cached_hash != upstream_hash
+        classification = "unchanged"
+        holocene_date = "unknown"
 
-        # Change detected!
-        print(f"    Change detected for {catalog_name}")
+        if body_changed:
+            print(f"    Change detected for {catalog_name}")
+            local_path = CATALOG_SKILLS / catalog_name / "SKILL.md"
+            if not local_path.exists():
+                msg = f"Local SKILL.md missing for {catalog_name}"
+                print(f"::error::{msg}")
+                report["errors"].append(msg)
+                cached_entry["upstream_body_sha256"] = upstream_hash
+                cached_entry["last_checked"] = now
+                cache.setdefault("skills", {})[catalog_name] = cached_entry
+                continue
 
-        # Read local file
-        local_path = CATALOG_SKILLS / catalog_name / "SKILL.md"
-        if not local_path.exists():
-            msg = f"Local SKILL.md missing for {catalog_name}"
-            print(f"::error::{msg}")
-            report["errors"].append(msg)
-            continue
+            local_raw = local_path.read_text()
+            local_fm, local_body = split_frontmatter(local_raw)
+            local_body_hash = sha256(local_body)
 
-        local_raw = local_path.read_text()
-        local_fm, local_body = split_frontmatter(local_raw)
-        local_body_hash = sha256(local_body)
+            if cached_hash is not None and local_body_hash == cached_hash:
+                classification = "safe"
+            else:
+                classification = "review"
 
-        # Classify: safe (local matches cache) vs needs-review (local was modified)
-        if cached_hash is not None and local_body_hash == cached_hash:
-            classification = "safe"
+            commit_date = fetch_last_commit_date(owner_repo, ref, upstream_path)
+            if commit_date:
+                holocene_date = to_holocene_date(commit_date)
+                new_fm = update_last_updated(local_fm, holocene_date)
+            else:
+                new_fm = local_fm
+
+            if classification == "safe" and not dry_run:
+                local_path.write_text(new_fm + upstream_body)
+
+        if file_classification == "review" or classification == "review":
+            overall = "review"
+        elif file_classification == "safe" or classification == "safe":
+            overall = "safe"
         else:
-            classification = "review"
+            overall = "unchanged"
 
-        # Get upstream last commit date for lastUpdated
-        commit_date = fetch_last_commit_date(owner_repo, ref, upstream_path)
-        if commit_date:
-            holocene_date = to_holocene_date(commit_date)
-            new_fm = update_last_updated(local_fm, holocene_date)
-        else:
-            holocene_date = "unknown"
-            new_fm = local_fm
+        file_changes["skill_md_changed"] = bool(body_changed)
+        cached_entry["upstream_body_sha256"] = upstream_hash
+        cached_entry["last_checked"] = now
+        cache.setdefault("skills", {})[catalog_name] = cached_entry
 
-        if classification == "safe":
-            # Safe: apply upstream body, preserving local frontmatter
-            if not dry_run:
-                new_content = new_fm + upstream_body
-                local_path.write_text(new_content)
-            cache.setdefault("skills", {})[catalog_name] = {
-                "upstream_body_sha256": upstream_hash,
-                "last_checked": datetime.now(timezone.utc).isoformat(),
-            }
-            report["safe"].append((catalog_name, holocene_date))
+        if overall == "safe":
+            report["safe"].append(
+                {
+                    "name": catalog_name,
+                    "date": holocene_date,
+                    "file_changes": file_changes,
+                }
+            )
             print(f"    [safe] Updated {catalog_name} (lastUpdated: {holocene_date})")
-        else:
-            # Review: do NOT modify local file, report for manual review
-            cache.setdefault("skills", {})[catalog_name] = {
-                "upstream_body_sha256": upstream_hash,
-                "last_checked": datetime.now(timezone.utc).isoformat(),
-            }
-            report["review"].append((catalog_name, holocene_date))
+        elif overall == "review":
+            report["review"].append(
+                {
+                    "name": catalog_name,
+                    "date": holocene_date,
+                    "file_changes": file_changes,
+                }
+            )
             print(
                 f"    [review] Change requires review for {catalog_name} (lastUpdated: {holocene_date})"
             )
@@ -559,6 +846,7 @@ def process_repo(
     for catalog_name, skill_cfg in adapted_skills_cfg.items():
         root = discover.get("root", "")
         skill_file = discover.get("skill_file", "SKILL.md")
+        now = datetime.now(timezone.utc).isoformat()
 
         # Determine upstream path
         if "upstream_path" in skill_cfg:
@@ -586,42 +874,62 @@ def process_repo(
         # Check cache
         cached = cache.get("adapted_skills", {}).get(catalog_name, {})
         cached_hash = cached.get("upstream_body_sha256")
+        cached_entry = {
+            "upstream_body_sha256": cached_hash,
+            "upstream_sections": cached.get("upstream_sections", []),
+            "last_checked": now,
+            "file_hashes": dict(cached.get("file_hashes") or {}),
+            "tree_shas": dict(cached.get("tree_shas") or {}),
+        }
+
+        monitor_upstream_path = skill_cfg.get("upstream_path")
+        monitor_upstream_dir = skill_cfg.get("upstream_dir", catalog_name)
+        file_classification, file_changes = sync_skill_files(
+            owner_repo,
+            ref,
+            repo_tree,
+            root,
+            monitor_upstream_dir,
+            skill_file,
+            catalog_name,
+            cached_entry,
+            init=init,
+            dry_run=True,
+            upstream_path=monitor_upstream_path,
+        )
 
         if init:
-            # Bootstrap: store hash and sections, don't flag changes
-            cache.setdefault("adapted_skills", {})[catalog_name] = {
-                "upstream_body_sha256": upstream_hash,
-                "upstream_sections": new_headings,
-                "last_checked": datetime.now(timezone.utc).isoformat(),
-            }
+            cached_entry["upstream_body_sha256"] = upstream_hash
+            cached_entry["upstream_sections"] = new_headings
+            cached_entry["last_checked"] = now
+            cache.setdefault("adapted_skills", {})[catalog_name] = cached_entry
             print(f"    [init] Cached adapted hash for {catalog_name}")
             continue
 
-        if cached_hash == upstream_hash:
-            # No change — refresh last_checked
-            cache.setdefault("adapted_skills", {})[catalog_name] = {
-                "upstream_body_sha256": upstream_hash,
-                "upstream_sections": new_headings,
-                "last_checked": datetime.now(timezone.utc).isoformat(),
-            }
-            continue
+        body_changed = cached_hash != upstream_hash
+        if body_changed or file_classification != "unchanged":
+            old_headings = cached.get("upstream_sections", [])
+            section_diff = diff_section_headings(old_headings, new_headings)
+            history_url = (
+                f"https://github.com/{owner_repo}/commits/{ref}/{upstream_path}"
+            )
+            file_changes["skill_md_changed"] = bool(body_changed)
+            report["adapted_changed"].append(
+                {
+                    "name": catalog_name,
+                    "section_diff": section_diff,
+                    "url": history_url,
+                    "file_changes": file_changes,
+                }
+            )
+            print(
+                f"    [advisory] Upstream change in adapted skill {catalog_name}: {section_diff}"
+            )
 
-        # Change detected — advisory only, NEVER write to local files
-        old_headings = cached.get("upstream_sections", [])
-        section_diff = diff_section_headings(old_headings, new_headings)
-        history_url = f"https://github.com/{owner_repo}/commits/{ref}/{upstream_path}"
-
-        report["adapted_changed"].append((catalog_name, section_diff, history_url))
-        print(
-            f"    [advisory] Upstream change in adapted skill {catalog_name}: {section_diff}"
-        )
-
-        # Update cache so the same change isn't re-flagged
-        cache.setdefault("adapted_skills", {})[catalog_name] = {
-            "upstream_body_sha256": upstream_hash,
-            "upstream_sections": new_headings,
-            "last_checked": datetime.now(timezone.utc).isoformat(),
-        }
+        cached_entry["upstream_body_sha256"] = upstream_hash
+        cached_entry["upstream_sections"] = new_headings
+        cached_entry["last_checked"] = now
+        cache.setdefault("adapted_skills", {})[catalog_name] = cached_entry
 
     # --- Discover new upstream skills ---
     if discover and not init:
@@ -629,14 +937,13 @@ def process_repo(
         skill_file = discover.get("skill_file", "SKILL.md")
 
         print(f"  Discovering new skills in {root}...")
-        tree_paths = fetch_repo_tree(owner_repo, ref)
 
         # Find skill dirs: paths matching {root}<dir>/{skill_file}
         pattern = re.compile(
             re.escape(root) + r"([^/]+)/" + re.escape(skill_file) + "$"
         )
         found_dirs = set()
-        for p in tree_paths:
+        for p in repo_tree.keys():
             m = pattern.match(p)
             if m:
                 found_dirs.add(m.group(1))
@@ -664,11 +971,14 @@ def process_repo(
 
         if new_dirs:
             report["new_skills"] = [
-                (d, f"https://github.com/{owner_repo}/tree/{ref}/{root}{d}")
+                {
+                    "dir": d,
+                    "url": f"https://github.com/{owner_repo}/tree/{ref}/{root}{d}",
+                }
                 for d in sorted(new_dirs)
             ]
-            for d, url in report["new_skills"]:
-                print(f"    [new] {url}")
+            for item in report["new_skills"]:
+                print("    [new] {}".format(item["url"]))
     print("::endgroup::")
     return report
 
@@ -685,8 +995,31 @@ def build_pr_body(owner_repo: str, report: dict) -> str:
         "### Updated Skills",
         "",
     ]
-    for name, date in report["safe"]:
+    for item in report["safe"]:
+        name = item["name"]
+        date = item["date"]
+        changes = item.get("file_changes", {})
         lines.append(f"- `{name}` (lastUpdated: {date})")
+        if changes.get("skill_md_changed"):
+            lines.append("  - Modified: `SKILL.md` body")
+        if changes.get("files_modified"):
+            lines.append(
+                "  - Modified: {}".format(
+                    ", ".join("`{}`".format(p) for p in changes["files_modified"])
+                )
+            )
+        if changes.get("files_added"):
+            lines.append(
+                "  - Added: {}".format(
+                    ", ".join("`{}`".format(p) for p in changes["files_added"])
+                )
+            )
+        if changes.get("files_deleted"):
+            lines.append(
+                "  - Deleted: {}".format(
+                    ", ".join("`{}`".format(p) for p in changes["files_deleted"])
+                )
+            )
     lines.append("")
 
     return "\n".join(lines)
@@ -758,15 +1091,42 @@ def build_issue_body(all_reports: dict) -> str:
             lines.append(
                 "**Needs Review** (local body modifications exist \u2014 upstream body NOT auto-applied):"
             )
-            for name, date in report["review"]:
+            for item in report["review"]:
+                name = item["name"]
+                date = item["date"]
+                changes = item.get("file_changes", {})
                 lines.append(f"- `{name}` (lastUpdated: {date})")
+                if changes.get("skill_md_changed"):
+                    lines.append("  - SKILL.md body changed")
+                if changes.get("files_modified"):
+                    lines.append(
+                        "  - Modified: {} (local modifications detected)".format(
+                            ", ".join(
+                                "`{}`".format(p) for p in changes["files_modified"]
+                            )
+                        )
+                    )
+                if changes.get("files_added"):
+                    lines.append(
+                        "  - Added: {}".format(
+                            ", ".join("`{}`".format(p) for p in changes["files_added"])
+                        )
+                    )
+                if changes.get("files_deleted"):
+                    lines.append(
+                        "  - Deleted: {}".format(
+                            ", ".join(
+                                "`{}`".format(p) for p in changes["files_deleted"]
+                            )
+                        )
+                    )
             lines.append("")
 
         # New upstream skills (with links)
         if report["new_skills"]:
             lines.append("**New Upstream Skills Detected:**")
-            for dir_name, url in report["new_skills"]:
-                lines.append(f"- [`{dir_name}`]({url})")
+            for item in report["new_skills"]:
+                lines.append("- [`{}`]({})".format(item["dir"], item["url"]))
             lines.append("")
 
         # Upstream deletions
@@ -785,10 +1145,38 @@ def build_issue_body(all_reports: dict) -> str:
                 "These adapted skills have upstream body changes. Review manually \u2014 auto-sync is not applied."
             )
             lines.append("")
-            for name, section_diff, history_url in adapted_changed:
+            for item in adapted_changed:
+                name = item["name"]
+                section_diff = item["section_diff"]
+                history_url = item["url"]
+                changes = item.get("file_changes", {})
                 lines.append(
                     f"- `{name}` \u2014 {section_diff} ([history]({history_url}))"
                 )
+                if changes.get("skill_md_changed"):
+                    lines.append("  - SKILL.md body changed")
+                if changes.get("files_modified"):
+                    lines.append(
+                        "  - Modified: {}".format(
+                            ", ".join(
+                                "`{}`".format(p) for p in changes["files_modified"]
+                            )
+                        )
+                    )
+                if changes.get("files_added"):
+                    lines.append(
+                        "  - Added: {}".format(
+                            ", ".join("`{}`".format(p) for p in changes["files_added"])
+                        )
+                    )
+                if changes.get("files_deleted"):
+                    lines.append(
+                        "  - Deleted: {}".format(
+                            ", ".join(
+                                "`{}`".format(p) for p in changes["files_deleted"]
+                            )
+                        )
+                    )
             for name in adapted_deleted:
                 lines.append(f"- `{name}` \u2014 upstream returned 404")
             lines.append("")
@@ -907,10 +1295,20 @@ def create_pr_for_repo(
         return
 
     # Stage changed skill files (safe items only)
-    changed_skills = [name for name, _ in report["safe"]]
-    for name in changed_skills:
-        skill_path = f"catalog/skills/{name}/SKILL.md"
-        git("add", skill_path)
+    for item in report["safe"]:
+        name = item["name"]
+        changes = item.get("file_changes", {})
+        skill_root = f"catalog/skills/{name}"
+
+        if changes.get("skill_md_changed"):
+            git("add", f"{skill_root}/SKILL.md")
+
+        for rel_path in changes.get("files_added", []):
+            git("add", f"{skill_root}/{rel_path}")
+        for rel_path in changes.get("files_modified", []):
+            git("add", f"{skill_root}/{rel_path}")
+        for rel_path in changes.get("files_deleted", []):
+            git("rm", f"{skill_root}/{rel_path}", check=False)
 
     # Stage updated cache
     cache_rel = str(CACHE_PATH.relative_to(REPO_ROOT))
@@ -976,20 +1374,61 @@ def create_pr_for_repo(
 # ---------------------------------------------------------------------------
 
 
-def _print_skill_diff(
+def _print_file_diff(
     owner_repo: str,
     ref: str,
     upstream_path: str,
+    local_path: Path,
+    rel_path: str,
+    provenance: str,
+) -> None:
+    """Print unified diff for one non-SKILL.md file."""
+    upstream_raw = fetch_raw_file(owner_repo, ref, upstream_path)
+    if upstream_raw is None:
+        print(
+            f"  Upstream not found for `{rel_path}`: {owner_repo}/{upstream_path} (404)"
+        )
+        return
+
+    try:
+        local_text = local_path.read_text()
+    except UnicodeDecodeError:
+        print(f"  Binary file (diff skipped): `{rel_path}`")
+        return
+
+    local_lines = local_text.splitlines(keepends=True)
+    upstream_lines = upstream_raw.splitlines(keepends=True)
+    diff = list(
+        difflib.unified_diff(
+            local_lines,
+            upstream_lines,
+            fromfile=f"{local_path} (local)",
+            tofile=f"{upstream_path} ({owner_repo}@{ref})",
+        )
+    )
+    if not diff:
+        return
+
+    print(f"  File diff: `{rel_path}`")
+    for line in diff:
+        print(line, end="")
+
+
+def _print_skill_diff(
+    owner_repo: str,
+    ref: str,
+    tree: dict[str, str],
+    upstream_path: str,
     catalog_name: str,
     provenance: str,
+    skill_file: str,
 ) -> None:
     """Fetch upstream and print unified diff for one skill."""
     header = f"=== {catalog_name} ({provenance}) \u2014 {owner_repo} ==="
 
-    # Read local file
     local_path = CATALOG_SKILLS / catalog_name / "SKILL.md"
+    print(header)
     if not local_path.exists():
-        print(header)
         print(f"  Local file not found: {local_path}")
         print()
         return
@@ -997,36 +1436,68 @@ def _print_skill_diff(
     local_raw = local_path.read_text()
     _, local_body = split_frontmatter(local_raw)
 
-    # Fetch upstream
     upstream_raw = fetch_raw_file(owner_repo, ref, upstream_path)
     if upstream_raw is None:
-        print(header)
         print(f"  Upstream not found: {owner_repo}/{upstream_path} (404)")
         print()
         return
 
     _, upstream_body = split_frontmatter(upstream_raw)
-
-    # Compare
     if sha256(local_body) == sha256(upstream_body):
-        print(header)
-        print("  No changes")
-        print()
-        return
+        print("  SKILL.md body unchanged")
+    else:
+        local_lines = local_body.splitlines(keepends=True)
+        upstream_lines = upstream_body.splitlines(keepends=True)
+        diff = difflib.unified_diff(
+            local_lines,
+            upstream_lines,
+            fromfile=f"catalog/skills/{catalog_name}/SKILL.md (local body)",
+            tofile=f"{upstream_path} ({owner_repo}@{ref})",
+        )
+        for line in diff:
+            print(line, end="")
 
-    # Generate and print diff
-    local_lines = local_body.splitlines(keepends=True)
-    upstream_lines = upstream_body.splitlines(keepends=True)
-    diff = difflib.unified_diff(
-        local_lines,
-        upstream_lines,
-        fromfile=f"catalog/skills/{catalog_name}/SKILL.md (local body)",
-        tofile=f"{upstream_path} ({owner_repo}@{ref})",
-    )
+    prefix = upstream_path.rsplit("/", 1)[0] + "/"
+    upstream_files = list_skill_files(tree, prefix)
+    upstream_files.pop(skill_file, None)
 
-    print(header)
-    for line in diff:
-        print(line, end="")
+    local_root = CATALOG_SKILLS / catalog_name
+    for rel_path in sorted(upstream_files.keys()):
+        local_file = local_root / rel_path
+        upstream_file_path = prefix + rel_path
+        if is_binary_file(rel_path):
+            if not local_file.exists():
+                print(f"  New upstream file: `{rel_path}` (binary)")
+            else:
+                print(f"  Binary file (diff skipped): `{rel_path}`")
+            continue
+        if not local_file.exists():
+            print(f"  New upstream file: `{rel_path}`")
+            continue
+        _print_file_diff(
+            owner_repo,
+            ref,
+            upstream_file_path,
+            local_file,
+            rel_path,
+            provenance,
+        )
+
+    local_files: set[str] = set()
+    if local_root.exists():
+        for path in local_root.rglob("*"):
+            if not path.is_file():
+                continue
+            rel_path = str(path.relative_to(local_root))
+            if rel_path == "SKILL.md":
+                continue
+            if os.path.basename(rel_path) in LOCAL_ONLY_FILES:
+                continue
+            local_files.add(rel_path)
+
+    for rel_path in sorted(local_files - set(upstream_files.keys())):
+        print(f"  Deleted upstream: `{rel_path}`")
+
     print()
 
 
@@ -1046,6 +1517,7 @@ def diff_skills(
         discover = config.get("discover", {})
         skills = config.get("skills", {})
         adapted_skills_cfg = config.get("adapted_skills", {})
+        tree = fetch_repo_tree(owner_repo, ref)
 
         # Process ported skills
         for catalog_name, skill_cfg in skills.items():
@@ -1057,7 +1529,15 @@ def diff_skills(
             skill_file = discover.get("skill_file", "SKILL.md")
             upstream_path = f"{root}{upstream_dir}/{skill_file}"
 
-            _print_skill_diff(owner_repo, ref, upstream_path, catalog_name, "ported")
+            _print_skill_diff(
+                owner_repo,
+                ref,
+                tree,
+                upstream_path,
+                catalog_name,
+                "ported",
+                skill_file,
+            )
             found_any = True
 
         # Process adapted skills
@@ -1074,7 +1554,15 @@ def diff_skills(
                 upstream_dir = skill_cfg.get("upstream_dir", catalog_name)
                 upstream_path = f"{root}{upstream_dir}/{skill_file}"
 
-            _print_skill_diff(owner_repo, ref, upstream_path, catalog_name, "adapted")
+            _print_skill_diff(
+                owner_repo,
+                ref,
+                tree,
+                upstream_path,
+                catalog_name,
+                "adapted",
+                skill_file,
+            )
             found_any = True
 
     if not found_any:
@@ -1186,6 +1674,25 @@ def main() -> None:
     total_adapted_deleted = sum(
         len(r.get("adapted_deleted", [])) for r in all_reports.values()
     )
+    all_items = []
+    for repo_report in all_reports.values():
+        all_items.extend(repo_report.get("safe", []))
+        all_items.extend(repo_report.get("review", []))
+        all_items.extend(repo_report.get("adapted_changed", []))
+    total_skill_md_changed = sum(
+        1 if item.get("file_changes", {}).get("skill_md_changed") else 0
+        for item in all_items
+    )
+    total_files_added = sum(
+        len(item.get("file_changes", {}).get("files_added", [])) for item in all_items
+    )
+    total_files_modified = sum(
+        len(item.get("file_changes", {}).get("files_modified", []))
+        for item in all_items
+    )
+    total_files_deleted = sum(
+        len(item.get("file_changes", {}).get("files_deleted", [])) for item in all_items
+    )
 
     if args.init:
         total_cached = sum(len(cfg.get("skills", {})) for cfg in sources.values())
@@ -1201,12 +1708,16 @@ def main() -> None:
         print(f"New skills found:  {total_new}")
         print(f"Adapted changes:   {total_adapted} (advisory)")
         print(f"Adapted 404s:      {total_adapted_deleted}")
+        print(f"SKILL.md changed:  {total_skill_md_changed}")
+        print(f"Files added:       {total_files_added}")
+        print(f"Files modified:    {total_files_modified}")
+        print(f"Files deleted:     {total_files_deleted}")
 
     if total_new > 0:
         print("\nNew upstream skills detected:")
         for repo, report in all_reports.items():
-            for d, url in report.get("new_skills", []):
-                print(f"  {repo}: {d} -> {url}")
+            for item in report.get("new_skills", []):
+                print("  {}: {} -> {}".format(repo, item["dir"], item["url"]))
 
     print("::endgroup::")
 
