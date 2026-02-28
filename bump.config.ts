@@ -4,8 +4,8 @@ import { defineConfig } from "bumpp";
 export default defineConfig({
   all: true,
   commit: "chore(release): v%s",
-  tag: "v%s",
-  push: true,
+  tag: false,
+  push: false,
   execute({ state: { newVersion } }) {
     execSync(`git cliff --tag v${newVersion} -o CHANGELOG.md`, {
       stdio: "inherit",

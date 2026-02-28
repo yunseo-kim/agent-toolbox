@@ -5,7 +5,7 @@ All notable changes to the awesome-agent-toolbox CLI will be documented in this 
 """
 body = """
 {%- if version %}
-## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="1%Y-%m-%d") }}
 {%- else %}
 ## [Unreleased]
 {%- endif %}
@@ -19,6 +19,7 @@ body = """
 {% endfor %}
 """
 trim = true
+postprocessors = []
 
 [git]
 conventional_commits = true

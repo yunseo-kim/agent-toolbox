@@ -22,7 +22,8 @@
     "test:integration": "bun test tests/integration/",
     "test:matrix": "bun test tests/matrix/",
     "typecheck": "tsc --noEmit",
-    "release": "bumpp",
+    "release": "bun run scripts/release.ts",
+    "tag": "bun run scripts/tag.ts",
     "changelog": "git cliff -o CHANGELOG.md"
   },
   "dependencies": {
