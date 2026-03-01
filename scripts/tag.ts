@@ -3,15 +3,24 @@
 /**
  * Create a GPG-signed annotated git tag with a standardized message.
  *
+ * When no custom description is provided, the tag body is auto-generated
+ * from git-cliff (changelog since the previous tag). This makes
+ * `git show v{version}` a self-contained release note.
+ *
  * Usage:
- *   bun run tag                              # Tag current package.json version
- *   bun run tag v0.2.0                       # Tag explicit version
- *   bun run tag v0.2.0 "hotfix: auth timeout" # Tag with custom description
+ *   bun run tag                              # Tag current package.json version (auto-changelog)
+ *   bun run tag v0.2.0                       # Tag explicit version (auto-changelog)
+ *   bun run tag v0.2.0 "hotfix: auth timeout" # Tag with custom description (no changelog)
  *   bun run tag --push                       # Tag + push to remote
  *   bun run tag v0.2.0 --push                # Tag explicit version + push
  *
- * Default message template:
+ * Default message template (with git-cliff):
  *   Release v{version}
+ *
+ *   ### Features
+ *   - feat description
+ *   ### Bug Fixes
+ *   - fix description
  *
  * With custom description:
  *   Release v{version}
@@ -23,8 +32,12 @@ import { execSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-function run(cmd: string): string {
-  return execSync(cmd, { encoding: "utf8" }).trim();
+function run(cmd: string, opts?: { stdio?: "inherit" | "pipe" }): string {
+  const result = execSync(cmd, {
+    encoding: "utf8",
+    stdio: opts?.stdio ?? "pipe",
+  });
+  return typeof result === "string" ? result.trim() : "";
 }
 
 function getPackageVersion(): string {
@@ -61,6 +74,16 @@ const tag = `v${version}`;
 const lines = [`Release ${tag}`];
 if (descriptionArg) {
   lines.push("", descriptionArg);
+} else {
+  // Auto-generate changelog body from git-cliff
+  try {
+    const changelog = run(`git cliff --tag ${tag} --unreleased --strip all`);
+    if (changelog) {
+      lines.push("", changelog);
+    }
+  } catch {
+    // git-cliff not available or no unreleased commits — proceed without body
+  }
 }
 const message = lines.join("\n");
 

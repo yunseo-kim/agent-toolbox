@@ -1,6 +1,7 @@
 {
   "name": "awesome-agent-toolbox",
   "version": "0.1.0",
+  "author": "Yunseo Kim <dev@yunseo.kim> (https://www.yunseo.kim)",
   "type": "module",
   "description": "Cross-tool distribution system for agent skills, plugins, and MCP servers",
   "bin": {
@@ -29,7 +30,7 @@
   "dependencies": {
     "@toon-format/toon": "^2.1.0",
     "yaml": "^2.8.2",
-    "zod": "^3.24"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -42,8 +43,6 @@
   },
   "files": [
     "src/",
-    "catalog/",
-    "templates/",
     "LICENSE.md",
     "README.md",
     "CHANGELOG.md"

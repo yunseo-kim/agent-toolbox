@@ -1,6 +1,6 @@
 # Release Strategy
 
-**Last Updated:** 12026-02-28
+**Last Updated:** 12026-03-01
 **Status:** Canonical Reference
 
 ## Overview
@@ -37,10 +37,10 @@ Semantic Versioning (Semver) applies EXCLUSIVELY to the CLI/TUI tool and its cor
 
 ## Release Workflow
 
-Releases are triggered manually by maintainers to ensure quality control.
+Releases use a two-phase PR-based process, compatible with branch protection rules.
 
-1. **Trigger:** Run bunx bumpp to update package.json version and create a git tag.
-2. **Tag:** The tag triggers the release.yml GitHub Actions workflow.
+1. **Phase 1 — Version bump PR:** Run `bun run release` to create a release branch with the version bump, changelog update, and a PR to main. CI must pass before merge.
+2. **Phase 2 — Tag + publish:** After the PR is merged, run `git checkout main && git pull && bun run tag --push` to create a GPG-signed annotated tag on the merged HEAD. The tag push triggers the `release.yml` GitHub Actions workflow.
 3. **Build:** CI validates the catalog, runs all tests, and builds the TypeScript source.
 4. **Publish:** The workflow publishes the package to the npm registry under the awesome-agent-toolbox name.
 5. **Release Notes:** GitHub release notes are generated automatically from the squash-merged commit history.
@@ -71,11 +71,42 @@ Automated upstream synchronization keeps the catalog current with its sources.
 
 ## Branch Protection
 
-To scale from solo to team development, the main branch is protected:
+The main branch is protected by two GitHub Repository Rulesets with strict enforcement. No bypass actors are configured — all rules apply to everyone, including repository admins.
 
-- **Required Checks:** All CI tests (unit, integration, matrix) and bun run validate must pass.
-- **PR Rules:** At least one approved review is required for non-catalog changes.
-- **Sign-off:** Commits must be signed to verify identity.
+### CI Gate (`main-ci-gate`)
+
+All changes to main must go through a pull request:
+
+- **Pull Request Required:** Direct pushes to main are blocked. Every change must be submitted as a PR.
+- **Required Approvals:** 0 — no review approvals are required (solo maintainer workflow).
+- **Required Status Checks:** All four CI jobs must pass before merge:
+  - `Validate Catalog` — typecheck + catalog validation
+  - `Test Suite` — all unit and integration tests
+  - `Build All Targets` — catalog index + all target generators
+  - `Catalog Index Drift Detection` — index freshness verification
+- **Strict Up-to-Date:** Not required — PRs can merge without rebasing on latest main.
+
+### Safety Invariants (`main-safety`)
+
+These rules are absolute and cannot be bypassed:
+
+- **Force Push:** Blocked — main's history cannot be rewritten.
+- **Deletion:** Blocked — main cannot be deleted.
+- **Linear History:** Required — enforces squash merge workflow.
+- **Signed Commits:** Required — all commits on main must be GPG-signed.
+
+### Upstream Sync PRs
+
+Automated upstream sync PRs created by `github-actions[bot]` are subject to the same CI gate. They must pass all four status checks before merging. Sync PRs are merged manually after CI passes.
+
+### Scaling to Team Development
+
+When the project grows beyond solo maintainer:
+
+1. Add `required_approving_review_count: 1` to the `main-ci-gate` ruleset.
+2. Optionally add repository admin as a bypass actor in `main-ci-gate` for emergency fixes.
+3. Enable auto-merge for upstream-sync PRs to reduce maintenance burden.
+4. Consider enabling strict up-to-date policy to prevent merge conflicts.
 
 ## 1.0 Graduation Criteria
 
@@ -99,7 +130,7 @@ The CHANGELOG.md file only tracks changes to the CLI/TUI and toolchain.
 
 The published npm package is optimized for runtime execution.
 
-- **Included:** src/ (transpiled), templates/, LICENSE.md, README.md.
+- **Included:** src/, LICENSE.md, README.md, CHANGELOG.md.
 - **Excluded:** catalog/ (fetched at runtime), tests/, .github/, development scripts.
 
 ## Migration Phases
