@@ -1,0 +1,110 @@
+name: Skill Security Scan
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'catalog/skills/**'
+      - '.agents/skills/**'
+  pull_request:
+    paths:
+      - 'catalog/skills/**'
+      - '.agents/skills/**'
+
+permissions:
+  security-events: write
+  contents: read
+
+jobs:
+  scan:
+    name: Skill Scanner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install skill-scanner
+        run: pip install cisco-ai-skill-scanner
+
+      - name: Scan catalog skills
+        id: scan-catalog
+        continue-on-error: true
+        env:
+          SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
+          SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
+          VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+        run: |
+          skill-scanner scan-all catalog/skills \
+            --policy strict \
+            --use-behavioral \
+            --use-llm \
+            --llm-provider openai \
+            --use-trigger \
+            --use-virustotal \
+            --enable-meta \
+            --format sarif \
+            --output catalog-results.sarif \
+            --recursive \
+            --check-overlap \
+            --lenient \
+            --fail-on-severity high
+
+      - name: Scan dev tooling skills
+        id: scan-dev
+        continue-on-error: true
+        env:
+          SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
+          SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
+          VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+        run: |
+          skill-scanner scan-all .agents/skills \
+            --policy strict \
+            --use-behavioral \
+            --use-llm \
+            --llm-provider openai \
+            --use-trigger \
+            --use-virustotal \
+            --enable-meta \
+            --format sarif \
+            --output dev-results.sarif \
+            --recursive \
+            --check-overlap \
+            --lenient \
+            --fail-on-severity high
+
+      - name: Upload SARIF (catalog)
+        if: always() && hashFiles('catalog-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: catalog-results.sarif
+          category: skill-scanner-catalog
+
+      - name: Upload SARIF (dev tooling)
+        if: always() && hashFiles('dev-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: dev-results.sarif
+          category: skill-scanner-dev
+
+      - name: Check scan results
+        if: always()
+        run: |
+          failed=0
+          if [ "${{ steps.scan-catalog.outcome }}" = "failure" ]; then
+            echo "::error::Catalog skills: security findings at or above HIGH severity"
+            failed=1
+          fi
+          if [ "${{ steps.scan-dev.outcome }}" = "failure" ]; then
+            echo "::error::Dev tooling skills: security findings at or above HIGH severity"
+            failed=1
+          fi
+          if [ "$failed" = "1" ]; then
+            exit 1
+          fi
+          echo "All skill security scans passed"

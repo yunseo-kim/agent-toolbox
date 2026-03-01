@@ -1,6 +1,6 @@
 # CI/CD AND AUTOMATION
 
-GitHub Actions workflows for validation, testing, building, drift detection, and automated upstream sync.
+GitHub Actions workflows for validation, testing, building, drift detection, security scanning, and automated upstream sync.
 
 ## STRUCTURE
 
@@ -9,6 +9,7 @@ GitHub Actions workflows for validation, testing, building, drift detection, and
 ├── workflows/
 │   ├── ci.yml                  # Main CI pipeline (push/PR to main)
 │   ├── release.yml             # Tag-triggered npm publish pipeline
+│   ├── skill-scanner.yml       # Skill security scanning (push/PR to main)
 │   └── upstream-sync.yml       # Daily upstream skill sync
 └── upstream-sync/
     ├── sync.py                 # Python 3.10+ stdlib-only full-directory sync script (~1200 lines)
@@ -57,6 +58,58 @@ tag push (v*) --> validate --> test --> build --> release notes --> GitHub Relea
 **Changelog scope**: Only CLI/toolchain commits appear. Catalog-scoped commits (`catalog`, `sync` scopes) are filtered out by `cliff.toml` configuration.
 
 **Required secrets**: `NPM_TOKEN` -- npm access token with publish permission.
+
+## SKILL SECURITY SCAN (`skill-scanner.yml`)
+
+Triggers: push to `main` or pull requests touching `catalog/skills/**` or `.agents/skills/**`.
+
+Uses [cisco-ai-defense/skill-scanner](https://github.com/cisco-ai-defense/skill-scanner) with **all analyzers enabled** and **strict** policy preset.
+
+```
+checkout → setup python → install skill-scanner → scan catalog skills → scan dev tooling skills → upload SARIF → check results
+```
+
+### Analyzers Enabled
+
+| Analyzer | Flag | Detection Method | Requires API Key |
+|----------|------|------------------|-----------------|
+| **Static** | *(default)* | YAML + YARA pattern matching | No |
+| **Bytecode** | *(default)* | Python .pyc integrity verification | No |
+| **Pipeline** | *(default)* | Shell command taint analysis | No |
+| **Behavioral** | `--use-behavioral` | AST dataflow source→sink analysis | No |
+| **LLM** | `--use-llm` | Semantic analysis via OpenAI gpt-4o | `SKILL_SCANNER_LLM_API_KEY` |
+| **Meta** | `--enable-meta` | False positive filtering + correlation | `SKILL_SCANNER_LLM_API_KEY` |
+| **Trigger** | `--use-trigger` | Vague description specificity checks | No |
+| **VirusTotal** | `--use-virustotal` | Hash-based binary malware scanning | `VIRUSTOTAL_API_KEY` |
+| **AI Defense** | *(disabled)* | Cisco cloud-based AI analysis | `AI_DEFENSE_API_KEY` |
+
+### Scan Targets
+
+| Target | Path | SARIF Category |
+|--------|------|----------------|
+| Catalog skills | `catalog/skills` | `skill-scanner-catalog` |
+| Dev tooling skills | `.agents/skills` | `skill-scanner-dev` |
+
+Both scans use `--lenient` to tolerate metadata quirks in ported skills while applying strict security analysis. Findings appear as inline annotations on PRs via GitHub Code Scanning (SARIF upload).
+
+### Required Secrets
+
+| Secret | Maps to env var | Required for |
+|--------|----------------|--------------|
+| `SKILL_SCANNER_LLM_API_KEY` | `SKILL_SCANNER_LLM_API_KEY` | LLM analyzer, Meta analyzer |
+| `VIRUSTOTAL_API_KEY` | `VIRUSTOTAL_API_KEY` | VirusTotal binary scanner |
+
+### Pre-commit Hook
+
+The project also includes a `.pre-commit-config.yaml` for local skill scanning before every commit. Install with:
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+The pre-commit hook uses the same analyzers and strict policy. Requires the same API keys set as local environment variables.
+
 ## UPSTREAM SYNC (`upstream-sync.yml`)
 
 Scheduled: **Daily 06:00 UTC** + manual dispatch.
@@ -103,6 +156,9 @@ Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 |------|------|
 | Fix CI failure | `.github/workflows/ci.yml` — check which job failed |
 | Fix drift detection | Rebuild index: `bun run build:index` and commit |
+| Fix skill security scan | `.github/workflows/skill-scanner.yml` — check scan output |
+| Configure scan policy | Edit `--policy` flag in `skill-scanner.yml` or `.pre-commit-config.yaml` |
+| Configure pre-commit hook | `.pre-commit-config.yaml` — adjust args or rev |
 | Configure upstream sync | `catalog/metadata/upstream-sources.yaml` |
 | Debug sync script | `.github/upstream-sync/sync.py` |
 | Reset sync cache | Delete `.github/upstream-sync/sha-cache.json` and re-run with `--init` |
@@ -117,3 +173,6 @@ Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 - Do not skip the drift-check job — it catches stale generated indexes.
 - Do not run upstream sync without `--dry-run` first when debugging.
 - Do not add secrets or tokens to workflow files — use GitHub repository secrets.
+- Do not disable analyzers in the skill-scanner workflow without security review.
+- Do not skip the skill security scan — it catches prompt injection, data exfiltration, and malicious code in skills.
+- Do not commit API keys or tokens in `.pre-commit-config.yaml` — set them as environment variables.
