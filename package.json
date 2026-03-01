@@ -1,9 +1,40 @@
 {
   "name": "awesome-agent-toolbox",
   "version": "0.1.0",
-  "author": "Yunseo Kim <dev@yunseo.kim> (https://www.yunseo.kim)",
+  "description": "Cross-tool registry for agent skills, MCP servers, and hooks with provenance tracking and automated security vetting.",
+  "keywords": [
+    "opencode",
+    "claude-code",
+    "codex",
+    "antigravity",
+    "gemini-cli",
+    "cursor",
+    "windsurf",
+    "github-copilot",
+    "agent-skills",
+    "ai-coding",
+    "llm-tools",
+    "ai-agents",
+    "agentic-engineering",
+    "autonomous-coding",
+    "mcp",
+    "ai-developer-tools",
+    "ai-pair-programming",
+    "vibe-coding",
+    "skill",
+    "skills"
+  ],
+  "homepage": "https://github.com/yunseo-kim/awesome-agent-toolbox#readme",
+  "bugs": {
+    "url": "https://github.com/yunseo-kim/awesome-agent-toolbox/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yunseo-kim/awesome-agent-toolbox.git"
+  },
+  "license": "SUL-1.0",
+  "author": "Yunseo Kim <dev@yunseo.kim> (https://about.yunseo.kim/)",
   "type": "module",
-  "description": "Cross-tool distribution system for agent skills, plugins, and MCP servers",
   "bin": {
     "awesome-agent-toolbox": "src/cli/main.ts"
   },
