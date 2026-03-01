@@ -9,7 +9,7 @@ GitHub Actions workflows for validation, testing, building, drift detection, sec
 ├── workflows/
 │   ├── ci.yml                  # Main CI pipeline (push/PR to main)
 │   ├── release.yml             # Tag-triggered npm publish pipeline
-│   ├── skill-scanner.yml       # Skill security scanning (push/PR to main)
+│   ├── skill-scanner.yml       # Skill security scanning (push/PR + manual dispatch)
 │   └── upstream-sync.yml       # Daily upstream skill sync
 └── upstream-sync/
     ├── sync.py                 # Python 3.10+ stdlib-only full-directory sync script (~1200 lines)
@@ -61,12 +61,29 @@ tag push (v*) --> validate --> test --> build --> release notes --> GitHub Relea
 
 ## SKILL SECURITY SCAN (`skill-scanner.yml`)
 
-Triggers: push to `main` or pull requests touching `catalog/skills/**` or `.agents/skills/**`.
+Triggers: push to `main` or pull requests touching `catalog/skills/**` or `.agents/skills/**`, monthly schedule (1st at 06:00 UTC), plus manual `workflow_dispatch`.
 
 Uses [cisco-ai-defense/skill-scanner](https://github.com/cisco-ai-defense/skill-scanner) with **all analyzers enabled** and **strict** policy preset.
 
+### Scan Modes
+
+| Trigger | Mode | Behavior |
+|---------|------|----------|
+| `schedule` (monthly) | **Full scan + archive** | Runs `scan-all` with verbose output, archives detailed markdown reports to `docs/security-reports/` via PR |
+| `workflow_dispatch` (manual) | **Full scan** | Runs `scan-all` on both `catalog/skills` and `.agents/skills` with `--recursive --check-overlap`; optionally archives reports |
+| `push` / `pull_request` (auto) | **Incremental scan** | Detects changed skill directories via `git diff`, runs individual `scan` per changed skill, merges SARIF outputs |
+
+Incremental scans skip `--recursive` and `--check-overlap` (single-skill scans don't need them). Edge cases (force push, initial push, invalid base SHA) fall back to full scan automatically.
+
+### Manual Dispatch Options
+
+| Input | Type | Default | Description |
+|-------|------|---------|-------------|
+| `verbose` | boolean | `false` | Enable verbose output: adds `--verbose` flag (policy fingerprints, co-occurrence metadata, meta-analyzer false positives in SARIF) and `--format summary` (human-readable summary printed to Actions log) |
+| `archive` | boolean | `false` | Archive scan reports as detailed markdown to `docs/security-reports/` (creates a PR to main) |
+
 ```
-checkout → setup python → install skill-scanner → scan catalog skills → scan dev tooling skills → upload SARIF → check results
+checkout -> setup python -> install skill-scanner -> prepare report dir (archive only) -> detect changed skills (push/PR only) -> scan catalog skills -> scan dev tooling skills -> upload SARIF -> archive reports (schedule/archive only) -> check results
 ```
 
 ### Analyzers Enabled
@@ -91,6 +108,27 @@ checkout → setup python → install skill-scanner → scan catalog skills → 
 | Dev tooling skills | `.agents/skills` | `skill-scanner-dev` |
 
 Both scans use `--lenient` to tolerate metadata quirks in ported skills while applying strict security analysis. Findings appear as inline annotations on PRs via GitHub Code Scanning (SARIF upload).
+
+### Incremental Scan Details
+
+On push/PR triggers, the workflow:
+1. Computes `git diff` between the base SHA and HEAD to identify changed files under `catalog/skills/` and `.agents/skills/`
+2. Extracts unique skill directory names from the changed file paths
+3. Runs `skill-scanner scan <skill-dir>` individually for each changed skill
+4. Merges individual SARIF outputs into a single file per target using `jq`
+5. Uploads the merged SARIF to GitHub Code Scanning
+
+If no skill files changed (e.g., only workflow file changed), the scan steps are skipped entirely.
+
+### Monthly Report Archive
+
+On schedule (1st of each month) and manual dispatch with `archive=true`:
+1. Runs full `scan-all` with `--verbose --format markdown --detailed`
+2. Writes detailed markdown reports to `docs/security-reports/YYYYY-MM-catalog.md` and `docs/security-reports/YYYYY-MM-dev.md`
+3. Creates a PR to `main` with the new reports (branch: `docs/security-report-YYYYY-MM`)
+4. Scheduled runs always enable verbose output for maximum report detail
+
+Reports are linked from [`README.md`](../README.md) and [`SECURITY.md`](../SECURITY.md).
 
 ### Required Secrets
 
@@ -157,6 +195,9 @@ Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 | Fix CI failure | `.github/workflows/ci.yml` — check which job failed |
 | Fix drift detection | Rebuild index: `bun run build:index` and commit |
 | Fix skill security scan | `.github/workflows/skill-scanner.yml` — check scan output |
+| Run full verbose scan manually | Actions tab → Skill Security Scan → Run workflow → check `verbose` |
+| View archived scan reports | `docs/security-reports/` — monthly markdown reports |
+| Archive scan report manually | Actions tab → Skill Security Scan → Run workflow → check `archive` |
 | Configure scan policy | Edit `--policy` flag in `skill-scanner.yml` or `.pre-commit-config.yaml` |
 | Configure pre-commit hook | `.pre-commit-config.yaml` — adjust args or rev |
 | Configure upstream sync | `catalog/metadata/upstream-sources.yaml` |

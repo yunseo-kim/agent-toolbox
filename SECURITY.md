@@ -106,7 +106,7 @@ The daily upstream sync workflow includes the following safety mechanisms:
 
 All catalog skills and development tooling skills are scanned automatically using [Cisco Skill Scanner](https://github.com/cisco-ai-defense/skill-scanner), an open-source multi-engine security scanner purpose-built for AI agent skills.
 
-**CI/CD integration** — A GitHub Actions workflow (`.github/workflows/skill-scanner.yml`) runs on every push to `main` and every pull request that modifies files under `catalog/skills/` or `.agents/skills/`. Results are uploaded as SARIF to GitHub Code Scanning, providing inline annotations on pull requests.
+**CI/CD integration** — A GitHub Actions workflow (`.github/workflows/skill-scanner.yml`) runs on every push to `main` and every pull request that modifies files under `catalog/skills/` or `.agents/skills/`. Push and PR triggers run incremental scans (only changed skills). Results are uploaded as SARIF to GitHub Code Scanning, providing inline annotations on pull requests.
 
 **Pre-commit hook** — A `.pre-commit-config.yaml` provides the same scanning locally before every commit, catching issues before they reach CI.
 
@@ -128,6 +128,8 @@ All catalog skills and development tooling skills are scanned automatically usin
 The workflow fails if any findings at or above **HIGH** severity are detected, blocking the pull request from merging.
 
 **Threat coverage** includes: prompt injection (direct and indirect), data exfiltration, credential theft, command injection, code execution, Unicode steganography, homoglyph attacks, tool poisoning, and capability inflation — mapped to Cisco's [AITech threat taxonomy](https://github.com/cisco-ai-defense/skill-scanner/blob/main/docs/architecture/threat-taxonomy.md).
+
+**Monthly full scan** -- A scheduled workflow runs on the 1st of each month, scanning all catalog and dev tooling skills with verbose output. Results are archived as detailed markdown reports in [`docs/security-reports/`](docs/security-reports/). Full scans can also be triggered manually from the Actions tab with the `archive` option.
 
 ### Release Integrity
 

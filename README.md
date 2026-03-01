@@ -6,6 +6,10 @@
 
 <a href="https://www.buymeacoffee.com/yunseokim" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
+[![CI](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/github-code-scanning/codeql)
+[![Skill Security Scan](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/skill-scanner.yml/badge.svg)](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/skill-scanner.yml)
+
 A trusted, curated cross-tool registry for agent components, with end-to-end provenance and automated security vetting of skills, MCP servers, and hooks — targeting **Claude Code, OpenCode, Codex, Antigravity, Gemini CLI, Cursor, and Windsurf**.
 
 </div>
@@ -131,7 +135,7 @@ Every skill in the catalog is automatically scanned for security threats using [
 - **Meta-analysis** — Second-pass false positive filtering with cross-finding correlation
 - **VirusTotal** — Hash-based binary malware scanning
 
-Results are uploaded as SARIF to GitHub Code Scanning, so findings appear as inline PR annotations. A pre-commit hook provides the same scanning locally before every commit. For full details, see [`SECURITY.md`](SECURITY.md).
+Results are uploaded as SARIF to GitHub Code Scanning, so findings appear as inline PR annotations. A pre-commit hook provides the same scanning locally before every commit. Monthly full-scan reports are archived in [`docs/security-reports/`](docs/security-reports/). For full details, see [`SECURITY.md`](SECURITY.md).
 
 To report a security vulnerability, use [GitHub Security Advisories](https://github.com/yunseo-kim/awesome-agent-toolbox/security/advisories/new) or email [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim).
 
