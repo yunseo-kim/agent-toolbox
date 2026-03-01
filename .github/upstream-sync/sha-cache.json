@@ -1,7 +1,9 @@
 {
   "adapted_skills": {
     "ai-elements": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:45.816456+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "a74a348be94ab6c84bf09123a0daa8e2e1d85c8e850776d83f7cb2a497ac4d3f",
       "upstream_sections": [
         "# AI Elements",
@@ -22,8 +24,243 @@
         "## Available Components"
       ]
     },
+    "algorithmic-art": {
+      "file_hashes": {
+        "templates/generator_template.js": "9ee0f1da52ef8f7bbfde1917123654880890d43f2d388642d71eab6dd78f94c4",
+        "templates/viewer.html": "86c79d7ce97d2599ebe4bd9b97fdeb7295c9d3ed61ceeb513cbe1b2bb5d1ce29"
+      },
+      "last_checked": "2026-03-01T06:56:49.644104+00:00",
+      "tree_shas": {
+        "templates/generator_template.js": "e263fbde985cd4b84b28e6a8eaf07fca3fcd3557",
+        "templates/viewer.html": "630cc1f62df51deac69b3246b2dfeb1e68dae024"
+      },
+      "upstream_body_sha256": "9629c98430c91ee0181bc284d6450bcf58f38c75a44571eaf866888e9badde68",
+      "upstream_sections": [
+        "## ALGORITHMIC PHILOSOPHY CREATION",
+        "### THE CRITICAL UNDERSTANDING",
+        "### HOW TO GENERATE AN ALGORITHMIC PHILOSOPHY",
+        "### PHILOSOPHY EXAMPLES",
+        "### ESSENTIAL PRINCIPLES",
+        "## DEDUCING THE CONCEPTUAL SEED",
+        "## P5.JS IMPLEMENTATION",
+        "### \u26a0\ufe0f STEP 0: READ THE TEMPLATE FIRST \u26a0\ufe0f",
+        "### TECHNICAL REQUIREMENTS",
+        "### CRAFTSMANSHIP REQUIREMENTS",
+        "### OUTPUT FORMAT",
+        "## INTERACTIVE ARTIFACT CREATION",
+        "### CRITICAL: WHAT'S FIXED VS VARIABLE",
+        "### REQUIRED FEATURES",
+        "### USING THE ARTIFACT",
+        "## VARIATIONS & EXPLORATION",
+        "## THE CREATIVE PROCESS",
+        "## RESOURCES"
+      ]
+    },
+    "apple-reminders": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:35.020349+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "7b25f4c2db8312f7480f3bd749321c9b991d7a70bddf9f3e3cc5e4506a8c7afd",
+      "upstream_sections": [
+        "# Apple Reminders CLI (remindctl)",
+        "## When to Use",
+        "## When NOT to Use",
+        "## Setup",
+        "## Common Commands",
+        "### View Reminders",
+        "### Manage Lists",
+        "### Create Reminders",
+        "### Complete/Delete",
+        "### Output Formats",
+        "## Date Formats",
+        "## Example: Clarifying User Intent"
+      ]
+    },
+    "canvas-design": {
+      "file_hashes": {
+        "canvas-fonts/ArsenalSC-OFL.txt": "8ddd61b18ba2c0d0dbe4a691cf5f1a0673f473d02fa0546e67ee88c006aeff6e",
+        "canvas-fonts/ArsenalSC-Regular.ttf": "65e6f89df58f68fd905b3add34a79dd6106aa3b3044df0dad9676fff53d504b9",
+        "canvas-fonts/BigShoulders-Bold.ttf": "b43bcd198b9fdf717dd42aa61a34dba32e01aceaeae659d689afd0ca52c37ea2",
+        "canvas-fonts/BigShoulders-OFL.txt": "fbc746aabf0eb1847dfd92e2efc4596d79fa897d60b8e64062a22f585508fb3f",
+        "canvas-fonts/BigShoulders-Regular.ttf": "18a879fc71978a4447150705caf880a9da3860083c259fd29e6dc03057b6842a",
+        "canvas-fonts/Boldonse-OFL.txt": "45cc82ab4032273c0924025ffcf8f0665a68e1a5955e3f7247e5daf1deeb1326",
+        "canvas-fonts/Boldonse-Regular.ttf": "cc2e540604565c0f90a7d8d46194a2f42fc9c45512cd2e39bf03b50eb68c35a4",
+        "canvas-fonts/BricolageGrotesque-Bold.ttf": "a737b146fe0d77ffe8a86e3cd16700dd431d3b1e420d4fd80e142cd68a1cb50d",
+        "canvas-fonts/BricolageGrotesque-OFL.txt": "0e4f4eb8534bc66a76aca13dd19c1f9731b2008866b29ccff182b764649df9b4",
+        "canvas-fonts/BricolageGrotesque-Regular.ttf": "972a6d098c9867ae131d0ea99e221e63976b11a19d4b931c2c7ace525674e4f6",
+        "canvas-fonts/CrimsonPro-Bold.ttf": "48f191e38355c8db100eb3ce157c20f9302a3b9a37b44a660f77ecfce3986609",
+        "canvas-fonts/CrimsonPro-Italic.ttf": "52318db3526b644e6efa60be0b3ca5a50e40fbe8bd026c261e0aa206f0772267",
+        "canvas-fonts/CrimsonPro-OFL.txt": "35680d14547b6748b6f362a052a46d22764ce5eccf96e18b74f567bb2ee58114",
+        "canvas-fonts/CrimsonPro-Regular.ttf": "48fad08cb1917a7b2f2c6fe5135d6c07743a6663cf7631ec4481108aaf081422",
+        "canvas-fonts/DMMono-OFL.txt": "bfe7842fcb88323e2981e24710c25202677385a8c75fb6a87217b275a0247ae3",
+        "canvas-fonts/DMMono-Regular.ttf": "f98ada968dc3b6b2c08d3f5caaf266977df0bfe0929372b93df5a06cf2ace450",
+        "canvas-fonts/EricaOne-OFL.txt": "e0de629968b52255548d5fafcf30b24ff9edae0eda362380755a75816404d0fa",
+        "canvas-fonts/EricaOne-Regular.ttf": "db1d89e80e33a8a01beaaac7a85df582857d24a43f1e181461aa7ff5d701476a",
+        "canvas-fonts/GeistMono-Bold.ttf": "75c0828d5c1ee44b9ef9f4df577bf41595ec362e2ea3f1e558590c9e92c7949d",
+        "canvas-fonts/GeistMono-OFL.txt": "6a873c900f584109b13ae0aaf81d6e3cf0a68751a216b03f7b6c68d547057bb4",
+        "canvas-fonts/GeistMono-Regular.ttf": "a55c1b51cda4afeab9e471e7947b85a20f7c8831d7e6b1470c1b7fbdc0f0f15e",
+        "canvas-fonts/Gloock-OFL.txt": "c0a3f3125ac491ef3d1f09f401be4834c646562f647e44f2bcbc49f0466c656d",
+        "canvas-fonts/Gloock-Regular.ttf": "e86b4ce66dbd3f1f83eee8db99ec96e0da1128c3f53df0e9b3b7472025dfe960",
+        "canvas-fonts/IBMPlexMono-Bold.ttf": "dbd2a2fb024579438d6400a84e57579bfd2dbe67c306c8fd9fde92a61e4f2eea",
+        "canvas-fonts/IBMPlexMono-OFL.txt": "5294ce778857e1eb02e830b6ab06435537d38f43055327e73d03a2d4d57d5123",
+        "canvas-fonts/IBMPlexMono-Regular.ttf": "ab08018ccd276b79fb2c636bb95b9c543598f9d50505fe92506fcb4dae7810cd",
+        "canvas-fonts/IBMPlexSerif-Bold.ttf": "b8d294e9b5c5a0940f167c3ced0f7ef2e3f57082ca3ff096ef30e86e26c1c159",
+        "canvas-fonts/IBMPlexSerif-BoldItalic.ttf": "da64b75f4284f53e7b5c71fa190a35b8bf3494fe19f1804c81c3a53340bca570",
+        "canvas-fonts/IBMPlexSerif-Italic.ttf": "b11f1048745e715a55c9d837b3f10226ca3d78867b7db7251ddad8f98dcf0f38",
+        "canvas-fonts/IBMPlexSerif-Regular.ttf": "77cd233a2af8dc6b1022faea3bb3b01f3c75af68bcf530cb6aeb15982ff3dbb7",
+        "canvas-fonts/InstrumentSans-Bold.ttf": "444f85bf1c4b0e1ce1ca624f6be54bcd832207714ccaf4ea99ee531341683bdf",
+        "canvas-fonts/InstrumentSans-BoldItalic.ttf": "3762f6cef95d6039489ad5ba5787d4c30f17a1ad01e9ac3c816ed69692722a68",
+        "canvas-fonts/InstrumentSans-Italic.ttf": "78e85858e371b2cb4e18f617c10f0f937c0e12a0887ffee98555b24ed305b3a7",
+        "canvas-fonts/InstrumentSans-OFL.txt": "bf4dc6d13a8cccd4807133c77a1ee9619a16b92cb23322258725ab6731c2f6e5",
+        "canvas-fonts/InstrumentSans-Regular.ttf": "a22cb26e48fd79bcb01bf2fc92d36785474dce36d9c544ab0a8868c2657c4a87",
+        "canvas-fonts/InstrumentSerif-Italic.ttf": "9c86e4d5a47b50224a2463a9eca8535835257c8e85c470c2c6b454b1af6f046e",
+        "canvas-fonts/InstrumentSerif-Regular.ttf": "56ac3be03ac3ba283196b3e77850ab2ffcf56cfb6fd3212c5620109a972f8c99",
+        "canvas-fonts/Italiana-OFL.txt": "8373b11312ace78c4cec2e8f9f6aa9f2330601107dac7bcf899c6f2dbd40c5a5",
+        "canvas-fonts/Italiana-Regular.ttf": "15c4dd6ab8cf4a29ba8826f65edcbe2f6c266c557d34d081f25072dfd5605fd2",
+        "canvas-fonts/JetBrainsMono-Bold.ttf": "a2349098b9e45419e7bf0e2958d6c4937a049dded37387b08be725be4c7615f3",
+        "canvas-fonts/JetBrainsMono-OFL.txt": "a76abf002c49097d146e86740a3105a5d00450b1592e820a1109a8c5680cd697",
+        "canvas-fonts/JetBrainsMono-Regular.ttf": "b6b1ff4ddefe36d7f2a6174e1d001cab374e594519ee9049af028d577b64c5f5",
+        "canvas-fonts/Jura-Light.ttf": "c891a381df056b2c4dfe85841e911bf45da0890fa21a7b2692cbe5ea1f505e1e",
+        "canvas-fonts/Jura-Medium.ttf": "c72965cb732a92872643819fd1734128238583cc36b116313859137a51d3368a",
+        "canvas-fonts/Jura-OFL.txt": "eaf9bdb675f6d87e5feb88199ab3ea581d3bd2082f426e384fa9c394576d7260",
+        "canvas-fonts/LibreBaskerville-OFL.txt": "55959eef5b0c3b2e3c1c7631b8ff0f9447d75de20f29cfa7db5bcfb026763343",
+        "canvas-fonts/LibreBaskerville-Regular.ttf": "2101302538d9e88adb679031c04623e4578b5745e89566284fd2c508d79acae0",
+        "canvas-fonts/Lora-Bold.ttf": "7d74015e950c2fb66519c7295b8155621d22200ae2ca2a4c6b43ce3c490cac87",
+        "canvas-fonts/Lora-BoldItalic.ttf": "152f87e71f5ddb60d5c57ecd9132807c947e65c42977193c9164e7c5a6690081",
+        "canvas-fonts/Lora-Italic.ttf": "be627e595184e8afe521f08da0607eee613f1997d423bc8dadc5798995581377",
+        "canvas-fonts/Lora-OFL.txt": "62e37a82d3f1ef2a70712885fa8b3144b65fd144d8e748d6196b690a354d792c",
+        "canvas-fonts/Lora-Regular.ttf": "7ed00e7c9cdf16ab7e2fd2361fe45d4f0b61263cd60aae398b27b7ee08108827",
+        "canvas-fonts/NationalPark-Bold.ttf": "69ac4c301c4a7233c6e602d12a92c54d7967b575f4449951c45ce773f7acff53",
+        "canvas-fonts/NationalPark-OFL.txt": "81c6c71d83b5b45d7344f96df12bb4a2477a5b092a9144757ee1d0f50f855175",
+        "canvas-fonts/NationalPark-Regular.ttf": "a477338b7e18308d476650dfe31235ef86a883572665e56ffb5fb80f82009b58",
+        "canvas-fonts/NothingYouCouldDo-OFL.txt": "7c2a6970584ddad04919816163746f83b378078015899b18468b40f05e9ce128",
+        "canvas-fonts/NothingYouCouldDo-Regular.ttf": "d866f985896d3280f4fce72db7e17302c24a0c1fdb0699b6b5ed3af14f944d57",
+        "canvas-fonts/Outfit-Bold.ttf": "6654b93d21301ec61887d3cedd6c11d9df1b1dfb63f9cf45ac7995f6e2235ab1",
+        "canvas-fonts/Outfit-OFL.txt": "1945b62cd76da9a3051a1660dde72afaa64ffc2666d30e7a78356d651653ba2f",
+        "canvas-fonts/Outfit-Regular.ttf": "f24945365147c9e783e91d8649959b59be6b00c9ee4ecd2f6b33afbb2dd871fe",
+        "canvas-fonts/PixelifySans-Medium.ttf": "38397504f71c122b03d234ea6f55118e3d5bdbddffd82bedddbd7755d3b3be82",
+        "canvas-fonts/PixelifySans-OFL.txt": "7f54d1d9f1ae1ba9f2722f978145f90324fea34ca3c2304b3a29cfa96ac6037e",
+        "canvas-fonts/PoiretOne-OFL.txt": "2eaf541f7eb8b512e4c757a5212060abf5b6edfef230e9d7640bf736b315c33a",
+        "canvas-fonts/PoiretOne-Regular.ttf": "9cf265b139648b36b6c0afdfeb0bf27f7e66db9a16094bc40f644d8da05bc318",
+        "canvas-fonts/RedHatMono-Bold.ttf": "7ef48353f4be5ddb90f000f6fad48f2b62b3e8c27d9818d8d45ff46c201065e0",
+        "canvas-fonts/RedHatMono-OFL.txt": "435fbfb7e66988b2a06686a4cb966faec733f35d8fe100a1601573c27f3e0bb8",
+        "canvas-fonts/RedHatMono-Regular.ttf": "452fe826871b37539f5212b20c87cf30f82f58dd2741f1c96edd1dcbdc0db6b4",
+        "canvas-fonts/Silkscreen-OFL.txt": "6b849745119bbe85ec01fd080c9cd50234da9f52ac6e48b55d1a424a0c4d7ca9",
+        "canvas-fonts/Silkscreen-Regular.ttf": "49567408600809e25147e9225ac4f37f410e2df45a750696c45027531fb65f1b",
+        "canvas-fonts/SmoochSans-Medium.ttf": "dd76e6e77cce82f827a8654cd906e9ce58f3aaf78adda63c4a7f655b8ecb41f0",
+        "canvas-fonts/SmoochSans-OFL.txt": "74c9c4eb88e891483e1b7bc54780b452cbf4f4df66d4e71881d7569aa2130749",
+        "canvas-fonts/Tektur-Medium.ttf": "52bbe8c9b057b3d2da4eeace31a524b1ea26a1375ae34319cf6900ccc57a4c82",
+        "canvas-fonts/Tektur-OFL.txt": "3f1466cb5438f31782eeb6e895f3a655bc4d090e24263e331f555357d1cb734e",
+        "canvas-fonts/Tektur-Regular.ttf": "162e1b36c4718c5b051b36c971ad7e50d341944f35618f480422ebbe72988f98",
+        "canvas-fonts/WorkSans-Bold.ttf": "240d125fc9f8561363dc1ea3f513501253bd70942f41468f48f0b0cafb0c82e2",
+        "canvas-fonts/WorkSans-BoldItalic.ttf": "a5b2cad813df0aaa7d16621f2e93b5117c25e9bc788bc9a3ad218e9d6348ce34",
+        "canvas-fonts/WorkSans-Italic.ttf": "6b7f7002e0b0c8b261fe878658ef5551e3e59d9f6b609b04efb90dde1e2c1ada",
+        "canvas-fonts/WorkSans-OFL.txt": "ace8c22a3326318b54e67c3691857929634205533f454a70ef5a3473ddb2e2ba",
+        "canvas-fonts/WorkSans-Regular.ttf": "e67985a843df0d3cdee51a3d0f329eb1774a344ad9ff0c9ab923751f1577e2a4",
+        "canvas-fonts/YoungSerif-OFL.txt": "cdcb8039606b40a027a6d24586ec62d5fe29c701343d82a048c829cb28a3dd28",
+        "canvas-fonts/YoungSerif-Regular.ttf": "f8dc08f77abad753a00670af70756a8ace938e5c3f0b770f4f4c2071c4bd8fc6"
+      },
+      "last_checked": "2026-03-01T06:56:50.482569+00:00",
+      "tree_shas": {
+        "canvas-fonts/ArsenalSC-OFL.txt": "1dad6ca6de2b041ef35c0f5009239ede4567e1f4",
+        "canvas-fonts/ArsenalSC-Regular.ttf": "fe5409b22e6b22a0ce80c65bdbb333d7d96e7a6a",
+        "canvas-fonts/BigShoulders-Bold.ttf": "fc5f8fddee4c9e5810b1ab0e518a69acee3d2c50",
+        "canvas-fonts/BigShoulders-OFL.txt": "b220280e780d0b52a1efb259f44f332cfa9dcab4",
+        "canvas-fonts/BigShoulders-Regular.ttf": "de8308ce32f3d6759e491dcdce37f65f538d6ac7",
+        "canvas-fonts/Boldonse-OFL.txt": "1890cb1c226f32e581a9ca30cb06e01f2d251168",
+        "canvas-fonts/Boldonse-Regular.ttf": "43fa30affce39b3649e6e94122fbe17cc5536dd2",
+        "canvas-fonts/BricolageGrotesque-Bold.ttf": "f3b1deda1c594859a1f5197644142f73e2a85868",
+        "canvas-fonts/BricolageGrotesque-OFL.txt": "fc2b2167c3ccc6fa6f41ab38cb5bde9b3b808769",
+        "canvas-fonts/BricolageGrotesque-Regular.ttf": "0674ae3e4fc8c3f7baa53dbb582dd420ea73f224",
+        "canvas-fonts/CrimsonPro-Bold.ttf": "58730fb4c7b999b46537d613ab629b8e465251ad",
+        "canvas-fonts/CrimsonPro-Italic.ttf": "786a1bd66d38006d94a7cb96db1f93a2f439b08e",
+        "canvas-fonts/CrimsonPro-OFL.txt": "f976fdc910257e3de8f4b24475963edb81b6ba46",
+        "canvas-fonts/CrimsonPro-Regular.ttf": "f5666b9beb8fb808ee56e78726a5b754e67d1ae7",
+        "canvas-fonts/DMMono-OFL.txt": "5b17f0c628c0a76ceb057e1b44d0112ab9a63ad2",
+        "canvas-fonts/DMMono-Regular.ttf": "7efe813da72c7b1c0294cae782e88f262ecb75be",
+        "canvas-fonts/EricaOne-OFL.txt": "490d012017f42bee136a3d3cb0d79ef9c3ba4561",
+        "canvas-fonts/EricaOne-Regular.ttf": "8bd91d11773f5b035a9e6b6d1bab2e59b08051e3",
+        "canvas-fonts/GeistMono-Bold.ttf": "736ff7c3b1483081322cacc7c64e0995b52d8af6",
+        "canvas-fonts/GeistMono-OFL.txt": "679a685a2343079632b0dd836fecb7cefbea6f0d",
+        "canvas-fonts/GeistMono-Regular.ttf": "1a30262ab749ea7a56aedd91410d8be3787db548",
+        "canvas-fonts/Gloock-OFL.txt": "363acd33d9e37e60b9941229448244b6a2d22461",
+        "canvas-fonts/Gloock-Regular.ttf": "3e58c4e455cc143e9b02d05fdcb054fac62ed7ab",
+        "canvas-fonts/IBMPlexMono-Bold.ttf": "247979caeb26c286a33cfd33234188d370c1c0ff",
+        "canvas-fonts/IBMPlexMono-OFL.txt": "e423b74780b16934a073769bd147d46479ceb8b2",
+        "canvas-fonts/IBMPlexMono-Regular.ttf": "601ae945ebe1a717ac3ab7ed393288975da83b32",
+        "canvas-fonts/IBMPlexSerif-Bold.ttf": "78f6e500de7faaec05bbbc60ccfc81083440b1c8",
+        "canvas-fonts/IBMPlexSerif-BoldItalic.ttf": "369b89d261b2d6d186e46b49a5b1959d9e95b5d4",
+        "canvas-fonts/IBMPlexSerif-Italic.ttf": "a4d859a77f0e52e36bf699cf55469c31a4664c18",
+        "canvas-fonts/IBMPlexSerif-Regular.ttf": "35f454ceac6b101ea3f9bed9f57a68a61519b401",
+        "canvas-fonts/InstrumentSans-Bold.ttf": "f602dcef23bb96d8d2f5c74c595ecf400c5ec722",
+        "canvas-fonts/InstrumentSans-BoldItalic.ttf": "122b27305b6de88f6946bb171c055bd428124fc3",
+        "canvas-fonts/InstrumentSans-Italic.ttf": "4b98fb8dd753453f6e355a6dd1d4f483961c4017",
+        "canvas-fonts/InstrumentSans-OFL.txt": "4bb99142f612dfaa0053377934b47e466800b20e",
+        "canvas-fonts/InstrumentSans-Regular.ttf": "14c6113cdd3abcfa360f8d27bb42034aa91accc0",
+        "canvas-fonts/InstrumentSerif-Italic.ttf": "8fa958d9baf94bdf86c45d5340dc2ba171e2eb2c",
+        "canvas-fonts/InstrumentSerif-Regular.ttf": "976303184a522174d92bc8d1a82d7960850a94b0",
+        "canvas-fonts/Italiana-OFL.txt": "ba8af215bb486cc7f3f9acfa5df895d5ba2d89ae",
+        "canvas-fonts/Italiana-Regular.ttf": "a9b828c0f308eaf07a172cbf2aae823e0f762210",
+        "canvas-fonts/JetBrainsMono-Bold.ttf": "1926c804b95bcd44835689b0ddf1ac10d0b7a805",
+        "canvas-fonts/JetBrainsMono-OFL.txt": "5ceee0025da23d2cd5fd14b28569708a8db4db2b",
+        "canvas-fonts/JetBrainsMono-Regular.ttf": "436c982ff3209357305892181e61565d1e01d439",
+        "canvas-fonts/Jura-Light.ttf": "dffbb3397409ebc91d53f4c4b29b7988c26a49f6",
+        "canvas-fonts/Jura-Medium.ttf": "4bf91a33951b960e4d579eb2e57cce624e4aec0a",
+        "canvas-fonts/Jura-OFL.txt": "64ad4c67d29fb44d037a400881c3c7a3d227cacf",
+        "canvas-fonts/LibreBaskerville-OFL.txt": "8c531fa56848a48577f9aa3b3e8051f3682e87f4",
+        "canvas-fonts/LibreBaskerville-Regular.ttf": "c1abc2645f623b8ab8d71724df32746b1aa627aa",
+        "canvas-fonts/Lora-Bold.ttf": "edae21eb689cda1c1a7b7b1a69277b3c01112a4c",
+        "canvas-fonts/Lora-BoldItalic.ttf": "12dea8c6f5f3af6c7e066b9c6ae5c8b33741e45e",
+        "canvas-fonts/Lora-Italic.ttf": "e24b69b26b0e14a48fdbb65fd29db51ce1e95aad",
+        "canvas-fonts/Lora-OFL.txt": "4cf1b950d308edaee72401989e45410ea99e76a4",
+        "canvas-fonts/Lora-Regular.ttf": "dc751db00dc171fc19737d9da800d7a583bb2c6d",
+        "canvas-fonts/NationalPark-Bold.ttf": "f4d7c021b6e0edd88bb152d8cee73154efa086c1",
+        "canvas-fonts/NationalPark-OFL.txt": "f4ec3fba915df6e072b72fed691f1032d440544d",
+        "canvas-fonts/NationalPark-Regular.ttf": "e4cbfbf5eb9569b2f0bcfe2f55ea1625123fc14c",
+        "canvas-fonts/NothingYouCouldDo-OFL.txt": "c81eccdee9a75cebdd400cc39ff5a0bb7bd1eaa3",
+        "canvas-fonts/NothingYouCouldDo-Regular.ttf": "b086bced91e7b587e8cbe5d7e13e3363e18bc812",
+        "canvas-fonts/Outfit-Bold.ttf": "f9f2f72afdee8011d61048072576ceee2f95ea60",
+        "canvas-fonts/Outfit-OFL.txt": "fd0cb995c0cadfa28394e7f9b88b7e43c783b453",
+        "canvas-fonts/Outfit-Regular.ttf": "3939ab246e0736f7283a571a458db274088ed7b6",
+        "canvas-fonts/PixelifySans-Medium.ttf": "95cd372534b533c9cb7ce35b782f0623ecb4de00",
+        "canvas-fonts/PixelifySans-OFL.txt": "b02d1b6767c0cd44a3a3afeddef03778f10e6ad2",
+        "canvas-fonts/PoiretOne-OFL.txt": "607bdad3fd41bf7915b74271cd4c67f3319c00e6",
+        "canvas-fonts/PoiretOne-Regular.ttf": "b339511b02ea2c25722c8c975e7018e8efcaa217",
+        "canvas-fonts/RedHatMono-Bold.ttf": "a6e3cf157ad71c0620620c9da48a8c8d0ca26cdf",
+        "canvas-fonts/RedHatMono-OFL.txt": "16cf394bb1bd5100686703ebc4a3772a568e0e6a",
+        "canvas-fonts/RedHatMono-Regular.ttf": "3bf6a698bbb3ab2caefdd2cd0456fc08b35ecf1d",
+        "canvas-fonts/Silkscreen-OFL.txt": "a1fe7d5fbe4182d1071a23f8a8c46b9766eec81c",
+        "canvas-fonts/Silkscreen-Regular.ttf": "8abaa7c500d4555073f9e303ec2e5e343d3b8f3f",
+        "canvas-fonts/SmoochSans-Medium.ttf": "0af9ead07bc2b95a691a63c72d328595b93183a0",
+        "canvas-fonts/SmoochSans-OFL.txt": "4c2f033ac0e041f61d88d255c4bb02ee28b6f3cb",
+        "canvas-fonts/Tektur-Medium.ttf": "34fc797195169923bad8e76181d60ae02019fef0",
+        "canvas-fonts/Tektur-OFL.txt": "2cad55f1b2d239571560773c92801166cb2be635",
+        "canvas-fonts/Tektur-Regular.ttf": "f280fba407441453779b16f7021a286219421486",
+        "canvas-fonts/WorkSans-Bold.ttf": "5c97989292020632435b96e6622c74b1f1c6e5cd",
+        "canvas-fonts/WorkSans-BoldItalic.ttf": "54418b8a6303d1b0cd6b6a206ca3014eba71bc3a",
+        "canvas-fonts/WorkSans-Italic.ttf": "40529b68f7784c96872fa7ed9bfb46d72bf699e2",
+        "canvas-fonts/WorkSans-OFL.txt": "070f3416c4767c3396120b5942627f6d3d5bab10",
+        "canvas-fonts/WorkSans-Regular.ttf": "d24586cc0336949d49a1c2bf3fb3b306c47b431e",
+        "canvas-fonts/YoungSerif-OFL.txt": "f09443cbe4dfca41153edf6f9dd8fd63138a24b3",
+        "canvas-fonts/YoungSerif-Regular.ttf": "f454fbedd4c8b00833d17fffa1f89acb5149b02c"
+      },
+      "upstream_body_sha256": "34d9b3abb0f986d92fc311bfcdb367578cddda9bf6470a5867be476fb7d76c7e",
+      "upstream_sections": [
+        "## DESIGN PHILOSOPHY CREATION",
+        "### THE CRITICAL UNDERSTANDING",
+        "### HOW TO GENERATE A VISUAL PHILOSOPHY",
+        "### PHILOSOPHY EXAMPLES",
+        "### ESSENTIAL PRINCIPLES",
+        "## DEDUCING THE SUBTLE REFERENCE",
+        "## CANVAS CREATION",
+        "## FINAL STEP",
+        "## MULTI-PAGE OPTION"
+      ]
+    },
     "chat-sdk": {
-      "last_checked": "2026-02-26T12:04:46.815771+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:58:55.956983+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "040e5ccee7d1e16de3fb027c8a96042efa780bf11967913a47bac104aa2fbf74",
       "upstream_sections": [
         "# Chat SDK",
@@ -42,7 +279,9 @@
       ]
     },
     "ci-triage": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:38.076131+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "7b102c7c750fa0893707eae1c0dd00f7eeeb6e0c9368464d6741551ca80b4b75",
       "upstream_sections": [
         "# PR Status Triage",
@@ -52,7 +291,9 @@
       ]
     },
     "content-design": {
-      "last_checked": "2026-02-26T12:04:03.064688+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:27.270552+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "c85280e78b284eb47909e69cfb2a838f67b89bb0f847df9f3d03476c2f4fa45b",
       "upstream_sections": [
         "# n8n content design",
@@ -72,7 +313,9 @@
       ]
     },
     "create-pr": {
-      "last_checked": "2026-02-26T12:04:04.075571+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:27.563901+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "6c23054720b8d02e0d762bb4eac15035b0344f0c1a6cbcc594bfbbfe5606bfa6",
       "upstream_sections": [
         "# Create Pull Request",
@@ -95,8 +338,53 @@
         "## Validation"
       ]
     },
+    "doc-coauthoring": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:13.247165+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "c37b110ac86e414d72d7b46a1b0e521c23109698debb35c45c24fa1f82be1bd7",
+      "upstream_sections": [
+        "# Doc Co-Authoring Workflow",
+        "## When to Offer This Workflow",
+        "## Stage 1: Context Gathering",
+        "### Initial Questions",
+        "### Info Dumping",
+        "## Stage 2: Refinement & Structure",
+        "### Step 1: Clarifying Questions",
+        "### Step 2: Brainstorming",
+        "### Step 3: Curation",
+        "### Step 4: Gap Check",
+        "### Step 5: Drafting",
+        "### Step 6: Iterative Refinement",
+        "### Quality Checking",
+        "### Near Completion",
+        "## Stage 3: Reader Testing",
+        "### Testing Approach",
+        "### Step 1: Predict Reader Questions",
+        "### Step 2: Test with Sub-Agent",
+        "### Step 3: Run Additional Checks",
+        "### Step 4: Report and Fix",
+        "### Step 1: Predict Reader Questions",
+        "### Step 2: Setup Testing",
+        "### Step 3: Additional Checks",
+        "### Step 4: Iterate Based on Results",
+        "### Exit Condition (Both Approaches)",
+        "## Final Review",
+        "## Tips for Effective Guidance"
+      ]
+    },
     "frontend-code-review": {
-      "last_checked": "2026-02-26T12:04:39.824374+00:00",
+      "file_hashes": {
+        "references/business-logic.md": "32f6842b52c32ac9b798345fa2eb60d6a8d0f6ccdd10d810cc3da6b8d565a142",
+        "references/code-quality.md": "b67ba50627f957bce3c6f67cd96e186485d48f3c6636267fbad1e0aba8f521fa",
+        "references/performance.md": "e9be425f8c0570e829892e26519597b27d00d35f72364d7c93c4eb8c2573fc82"
+      },
+      "last_checked": "2026-03-01T06:58:21.097361+00:00",
+      "tree_shas": {
+        "references/business-logic.md": "4584f99dfc42be17fa5483792fdd4a0dba9b690b",
+        "references/code-quality.md": "afdd40deb3a2d68890c275b56950e38651baed67",
+        "references/performance.md": "2d60072f5c70d7b8ddb5561d5fa04719a93c282a"
+      },
       "upstream_body_sha256": "3ecd38391b2b10c14172e0b7bc2860d81216fe1392d0c576434a4781d9ce4035",
       "upstream_sections": [
         "# Frontend Code Review",
@@ -114,8 +402,40 @@
         "## Code review"
       ]
     },
+    "frontend-design": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:17.388408+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "ccbb75579edfbbdbedfd70e9416bcabd7f230735990c3f73155791376dd3b4d7",
+      "upstream_sections": [
+        "## Design Thinking",
+        "## Frontend Aesthetics Guidelines"
+      ]
+    },
     "frontend-testing": {
-      "last_checked": "2026-02-26T12:04:40.672880+00:00",
+      "file_hashes": {
+        "assets/component-test.template.tsx": "1db335c26a7b185e0ec9b1b7a72c92a9294946e4f43d47f7d5aa51872c46b7fd",
+        "assets/hook-test.template.ts": "d32d1abdac527249bc67d30f57ee0dcbeed7196e467fbcf8a04f9f6d045efc47",
+        "assets/utility-test.template.ts": "f0717ab38238042e25533a21fef4ffa81ae649c1efe4cbe293a6fa587fe93dd0",
+        "references/async-testing.md": "dca5416d1fa31f136873c7e22f912ba9f61ed6e3c25d730fdaee25b96b56635e",
+        "references/checklist.md": "bab25e42c8e9491a45b783d28bcd9fc107be960e187a7a9be525a07f0295b1f6",
+        "references/common-patterns.md": "654959b7483c96057bd6685748937cb7c1d6b23466cfd4cd6742a6ad58575fe2",
+        "references/domain-components.md": "bfe5c6f7d27340e85a3257a7db7e1fcf698324261552a757c899f9c8aca46da2",
+        "references/mocking.md": "974ed6558699f3123389af3bec5f876c5083218c9ac6254741a2b2be2a7f3b7c",
+        "references/workflow.md": "c8d8b1ab6a4c5e853d59614e7dbe2748a2a6f50779a8a2664a914f21a0fc3ca7"
+      },
+      "last_checked": "2026-03-01T06:58:22.029066+00:00",
+      "tree_shas": {
+        "assets/component-test.template.tsx": "6b7803bd4b43780f96a4cf43690a317c01a94487",
+        "assets/hook-test.template.ts": "99161848a4de508d794882ba2fbc48f8180b6a31",
+        "assets/utility-test.template.ts": "ec13b5f5bdc2bdad3c45c384d5a4cf2dbe0d9fc8",
+        "references/async-testing.md": "ae775a87a9cd8d0dc092201e4c2c932c3baf13fb",
+        "references/checklist.md": "1ff2b27bbb723642b0815a6e197c176ebe455419",
+        "references/common-patterns.md": "6eded5ceba9b96ac370edf90dee598aea0242241",
+        "references/domain-components.md": "5535d28f3d739c2aad33d01b6db51e5d3aa0eae3",
+        "references/mocking.md": "86bd3759871e38f4e2e60b812dcc8a244b57e40d",
+        "references/workflow.md": "bc4ed8285a7d1b15c0a47ed34254c61d6192a015"
+      },
       "upstream_body_sha256": "6b1c84eaa1cb780ece1c4a99e884b1bdf8c294e5dda46bf8db9283cee5940c0a",
       "upstream_sections": [
         "# Dify Frontend Testing Skill",
@@ -154,8 +474,51 @@
         "### Project Configuration"
       ]
     },
+    "github-cli": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:35.311857+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "273ff5fb1188edee13f818bf5163d7309491c7ac12dae2979898bd0ad394b8ee",
+      "upstream_sections": [
+        "# GitHub Skill",
+        "## When to Use",
+        "## When NOT to Use",
+        "## Setup",
+        "# Authenticate (one-time)",
+        "# Verify",
+        "## Common Commands",
+        "### Pull Requests",
+        "# List PRs",
+        "# Check CI status",
+        "# View PR details",
+        "# Create PR",
+        "# Merge PR",
+        "### Issues",
+        "# List issues",
+        "# Create issue",
+        "# Close issue",
+        "### CI/Workflow Runs",
+        "# List recent runs",
+        "# View specific run",
+        "# View failed step logs only",
+        "# Re-run failed jobs",
+        "### API Queries",
+        "# Get PR with specific fields",
+        "# List all labels",
+        "# Get repo stats",
+        "## JSON Output",
+        "## Templates",
+        "### PR Review Summary",
+        "# Get PR overview for review",
+        "### Issue Triage",
+        "# Quick issue triage view",
+        "## Notes"
+      ]
+    },
     "issue-analysis": {
-      "last_checked": "2026-02-26T12:04:05.080899+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:27.825760+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "3cc7655582232fdd566250332b531e19f8106256b9795ce7a4df45b8e7db7c8f",
       "upstream_sections": [
         "# Linear Issue Analysis",
@@ -172,7 +535,9 @@
       ]
     },
     "js-docs-fact-check": {
-      "last_checked": "2026-02-26T12:04:42.787677+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:58:25.750312+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "a90c5818d22f952b33f7886d3a936d290da2d393b8efde1c3f6012cadd8721b6",
       "upstream_sections": [
         "# Skill: JavaScript Fact Checker",
@@ -252,7 +617,9 @@
       ]
     },
     "js-resource-curator": {
-      "last_checked": "2026-02-26T12:04:43.859885+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:58:26.017910+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "71eee5c7fb5e6e25a9728f48c3321476db8ad2ff4f736de7eb1816549f69125c",
       "upstream_sections": [
         "# Skill: Resource Curator for Concept Pages",
@@ -320,8 +687,93 @@
         "## Summary"
       ]
     },
+    "nano-banana-pro": {
+      "file_hashes": {
+        "scripts/generate_image.py": "72aa2820912130d2a6c685eeff1eefdc31f8c1013f2e221002e804f9f8dbc580"
+      },
+      "last_checked": "2026-03-01T06:57:35.554476+00:00",
+      "tree_shas": {
+        "scripts/generate_image.py": "8d60882c4561f26600fd40b839597a91d4026792"
+      },
+      "upstream_body_sha256": "23247de9c4f102984f454fd12682d32aa6c823a85a6af803822d28007ef9a1f5",
+      "upstream_sections": [
+        "# Nano Banana Pro (Gemini 3 Pro Image)"
+      ]
+    },
+    "nextjs-cache-components": {
+      "file_hashes": {
+        "PATTERNS.md": "622c37342353906a42dc8ea05aac0fb419b5b0667849a8b3f128619e5323874a",
+        "REFERENCE.md": "1ef44433fd9d5067c7a1dcd9dfbcd5ef367f84da93d1b7cdf23e5a8ff70a270c",
+        "TROUBLESHOOTING.md": "d5e9daf2cb66c1a9a123ecc1c53ccceed07865a4c43e5e44ab023ff15255b53f"
+      },
+      "last_checked": "2026-03-01T06:58:19.304066+00:00",
+      "tree_shas": {
+        "PATTERNS.md": "dcb5e8fcc26016e981628ba88f058e3e6023b5a7",
+        "REFERENCE.md": "bbf257d9d3ef792b59cdbfdec46792241bacd6b3",
+        "TROUBLESHOOTING.md": "2cd9b5a26bd23451b5c38383d6a1a6c029a857af"
+      },
+      "upstream_body_sha256": "90ead15a2a53403046eb4a660d7a46f535adc9e232c68e1e3c014ed77de8373c",
+      "upstream_sections": [
+        "# Next.js Cache Components",
+        "## Project Detection",
+        "# Check next.config.ts or next.config.js for cacheComponents",
+        "## Philosophy: Code Over Configuration",
+        "## Core Concept",
+        "## Mental Model: The Caching Decision Tree",
+        "## Quick Start",
+        "### Enable Cache Components",
+        "### Basic Usage",
+        "## Core APIs",
+        "### 1. `'use cache'` Directive",
+        "### 2. `cacheLife()` - Control Cache Duration",
+        "### 3. `cacheTag()` - Tag for Invalidation",
+        "### 4. `updateTag()` - Immediate Invalidation",
+        "### 5. `revalidateTag()` - Background Revalidation",
+        "## When to Use Each Pattern",
+        "## Parameter Permutations & Subshells",
+        "### `generateStaticParams` Requirements",
+        "## Cache Key = Arguments",
+        "## Build-Time Feedback",
+        "### Error: Dynamic data outside Suspense",
+        "### Error: Uncached data outside Suspense",
+        "### Error: Request data inside cache",
+        "## Additional Resources",
+        "## Code Generation Guidelines",
+        "## Proactive Application (When Cache Components Enabled)",
+        "### When Writing Data Fetching Components",
+        "### When Writing Server Actions",
+        "### When Composing Pages",
+        "### When Reviewing Code"
+      ]
+    },
+    "openai-whisper-api": {
+      "file_hashes": {
+        "scripts/transcribe.sh": "06d255cdd1a44ea3098ca1d9400529c641da76b4e9389007904f190e681d5688"
+      },
+      "last_checked": "2026-03-01T06:57:36.054447+00:00",
+      "tree_shas": {
+        "scripts/transcribe.sh": "551c7b473e2778afb82c892d85586426a19c3918"
+      },
+      "upstream_body_sha256": "1f5113077faa853693867e15edc814175ca49fc49260f89db24ebfbc2f98fcbc",
+      "upstream_sections": [
+        "# OpenAI Whisper API (curl)",
+        "## Quick start",
+        "## Useful flags",
+        "## API key"
+      ]
+    },
     "react-refactoring": {
-      "last_checked": "2026-02-26T12:04:41.746766+00:00",
+      "file_hashes": {
+        "references/complexity-patterns.md": "22638756219c13706dd0feba6f2ca2b3972a94d7a621a20dc35d222874383e61",
+        "references/component-splitting.md": "8c3339ed01d3ce8599829d6348e03bb9404f64e80bad9be0ffebf0adc0c2bac1",
+        "references/hook-extraction.md": "35748f50e26d9202d59854b852afbe6c303a3d4fdc192d96b486f26f99a2284d"
+      },
+      "last_checked": "2026-03-01T06:58:24.382465+00:00",
+      "tree_shas": {
+        "references/complexity-patterns.md": "5a0a268f382510c7e71e997a18856463c1eede73",
+        "references/component-splitting.md": "78a3389100a8b2e3812f5112e9f833463e7fb558",
+        "references/hook-extraction.md": "a8d75deffd68655e7099416f1d25f4e39e7a991b"
+      },
       "upstream_body_sha256": "316d9d1c43248438558a9b5b5e0d1ca7b9eb589bbea592cae153df393e107bc4",
       "upstream_sections": [
         "# Dify Component Refactoring Skill",
@@ -374,7 +826,9 @@
       ]
     },
     "reproduce-bug": {
-      "last_checked": "2026-02-26T12:04:05.919321+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:28.111477+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "2f320a435e4fdb064ae0e71e11a5f1790914edec38f25f4c739b82c738cb396b",
       "upstream_sections": [
         "# Bug Reproduction Framework",
@@ -396,7 +850,9 @@
       ]
     },
     "seo-review": {
-      "last_checked": "2026-02-26T12:04:44.865607+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:58:26.215814+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "b5d5af223b2ee67d9d4da4ba07397f35a8084939a180fc6b1f8aa314c8b8e047",
       "upstream_sections": [
         "# Skill: SEO Audit for Concept Pages",
@@ -457,265 +913,1604 @@
         "### Content Length",
         "## Summary"
       ]
+    },
+    "sherpa-onnx-tts": {
+      "file_hashes": {
+        "bin/sherpa-onnx-tts": "f99578dc7d10b8d79537022cc48c871da6d67d120fe621e4b2cbe63386c5923d"
+      },
+      "last_checked": "2026-03-01T06:57:36.503815+00:00",
+      "tree_shas": {
+        "bin/sherpa-onnx-tts": "82a7cceaf160e80d75e7f1b8bbdd924c88b05b98"
+      },
+      "upstream_body_sha256": "26879cc20f462c989f010f7237f7b470f6f08c4eb714584545164dc9faf662a8",
+      "upstream_sections": [
+        "# sherpa-onnx-tts",
+        "## Install",
+        "## Usage"
+      ]
+    },
+    "skill-creator": {
+      "file_hashes": {
+        "agents/analyzer.md": "bf68f4cac5a56c673a928c2e6d619586c5b93ea364026ab37547772cb45a663a",
+        "agents/comparator.md": "fe1fc9787c495d864c5d6eada47396478572325fde1b33a96d78bf4b849b7a3e",
+        "agents/grader.md": "57134da0c1a4eea33fbd74a1c9c44aa814f07d6bc64de303edb586f941e5d21a",
+        "assets/eval_review.html": "ce477dcc74dc1c0d1d3352646a79167b5a63634e936b1019160025065974e452",
+        "eval-viewer/generate_review.py": "fc9d1b9243fe5ab6012ebd579bd76d0035de1b79fd3b969de114defab26478fb",
+        "eval-viewer/viewer.html": "a53213426ee1100441d701a3a0d49cda7a842f992d2c36463f4d3cc0258575fa",
+        "references/schemas.md": "8e8876180a8989b406a4d3edddf875b04cdfd5805cc8616686d552b11ce4455f",
+        "scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "scripts/aggregate_benchmark.py": "123ef128ea5ccc01a4b1ac212ef5567f21e9c13d3d240609780beeb3200c49aa",
+        "scripts/generate_report.py": "13df7118a3c50c83c4c3250a606d5f2b20b25a3d44cbc392b3d669ec75281453",
+        "scripts/improve_description.py": "0dc43232db7ac6361775c894f4a1dbac958cb510c51a1230ff9e7fb30a74a7e8",
+        "scripts/package_skill.py": "1a33059b0db1ef73375d46d513e5ea81369d2e8838c970597b0d52ddef8d1c0f",
+        "scripts/quick_validate.py": "67cf5703402013936c8fb75ad6a1afecd8841d45cc5e606b634eb05825fde365",
+        "scripts/run_eval.py": "43e3b8f80dbf69c343967ba77e268fae991d9fa3ed68b32a0ff02532cd48657f",
+        "scripts/run_loop.py": "bafdb8e25c740813c735c54bf0489b9e87146da4cf697265927513c5430112d7",
+        "scripts/utils.py": "3af8ae62c40c73ab712207436a0d9a981e845f25c5a7040229eb189cc8e45bb1"
+      },
+      "last_checked": "2026-03-01T06:57:13.542107+00:00",
+      "tree_shas": {
+        "agents/analyzer.md": "14e41d6068635f4dd3fb878fd1626312395dda63",
+        "agents/comparator.md": "80e00eb45db3ee53a132fc2ba97fd59a7339e563",
+        "agents/grader.md": "558ab05c0a9a8bb062ef4c51823d4d76c3acf7c4",
+        "assets/eval_review.html": "938ff32aed9bffabf723bd5492d720f4736c8e4d",
+        "eval-viewer/generate_review.py": "7fa5978631fed1ed545591dbb2b0eb21ce3f3d08",
+        "eval-viewer/viewer.html": "6d8e96348a02e66c3363d2ff3b3ae58ac11e6382",
+        "references/schemas.md": "b6eeaa2d4a34c1653069585c6c5603da39a5bdbe",
+        "scripts/__init__.py": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "scripts/aggregate_benchmark.py": "3e66e8c105be9bab9f0e9c61f0d1482619401580",
+        "scripts/generate_report.py": "959e30a0014ec165c41a2bb7420b7dfe1416bbac",
+        "scripts/improve_description.py": "a270777b9a18bbe23162ae4c0dcfd399a67b44a1",
+        "scripts/package_skill.py": "f48eac444656ddc41204aac1760a217951ce609e",
+        "scripts/quick_validate.py": "ed8e1dddce77b16af13c6f36b3fe86c4ac7c590c",
+        "scripts/run_eval.py": "e58c70bea39d5b252a1e819f242bbdcdf20e8b87",
+        "scripts/run_loop.py": "36f9b4e0545909696b7275634c92c7885b2c765b",
+        "scripts/utils.py": "51b6a07dd57174197a937034b7eecebd5768ff8a"
+      },
+      "upstream_body_sha256": "6de28fd07c28f7a2fe8ffd4118b028e44622ec2d42903db4e9e80525ab15ab01",
+      "upstream_sections": [
+        "# Skill Creator",
+        "## Communicating with the user",
+        "## Creating a skill",
+        "### Capture Intent",
+        "### Interview and Research",
+        "### Write the SKILL.md",
+        "### Skill Writing Guide",
+        "#### Anatomy of a Skill",
+        "#### Progressive Disclosure",
+        "#### Principle of Lack of Surprise",
+        "#### Writing Patterns",
+        "## Report structure",
+        "# [Title]",
+        "## Executive summary",
+        "## Key findings",
+        "## Recommendations",
+        "## Commit message format",
+        "### Writing Style",
+        "### Test Cases",
+        "## Running and evaluating test cases",
+        "### Step 1: Spawn all runs (with-skill AND baseline) in the same turn",
+        "### Step 2: While runs are in progress, draft assertions",
+        "### Step 3: As runs complete, capture timing data",
+        "### Step 4: Grade, aggregate, and launch the viewer",
+        "### What the user sees in the viewer",
+        "### Step 5: Read the feedback",
+        "## Improving the skill",
+        "### How to think about improvements",
+        "### The iteration loop",
+        "## Advanced: Blind comparison",
+        "## Description Optimization",
+        "### Step 1: Generate trigger eval queries",
+        "### Step 2: Review with user",
+        "### Step 3: Run the optimization loop",
+        "### How skill triggering works",
+        "### Step 4: Apply the result",
+        "### Package and Present (only if `present_files` tool is available)",
+        "## Claude.ai-specific instructions",
+        "## Cowork-Specific Instructions",
+        "## Reference files"
+      ]
+    },
+    "things-mac-cli": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:37.686824+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "a101ff5b5daa53d0b670637241cd925c63dd61522b6eb4ff673bd31294906aaa",
+      "upstream_sections": [
+        "# Things 3 CLI"
+      ]
+    },
+    "tmux-controller": {
+      "file_hashes": {
+        "scripts/find-sessions.sh": "0c3d974930b78a5207b7c9bfae1dd5ee9a18ee6bcb4f04f7b0af97952a726e82",
+        "scripts/wait-for-text.sh": "96bc42702f7353c32233c223d61dd11f2f99033267aeefac838aea8983a67735"
+      },
+      "last_checked": "2026-03-01T06:57:36.977498+00:00",
+      "tree_shas": {
+        "scripts/find-sessions.sh": "8387c16299d52a9a426aedbc921a2bf27fca5611",
+        "scripts/wait-for-text.sh": "56354be835459c7614bfc96b5526e92dc1dbde5d"
+      },
+      "upstream_body_sha256": "c2cdad82f3936d82b0de21fee993b0b46c1d21bc83e1299842b1a6287438da8a",
+      "upstream_sections": [
+        "# tmux Session Control",
+        "## When to Use",
+        "## When NOT to Use",
+        "## Example Sessions",
+        "## Common Commands",
+        "### List Sessions",
+        "### Capture Output",
+        "# Last 20 lines of pane",
+        "# Entire scrollback",
+        "# Specific pane in window",
+        "### Send Keys",
+        "# Send text (doesn't press Enter)",
+        "# Send text + Enter",
+        "# Send special keys",
+        "### Window/Pane Navigation",
+        "# Select window",
+        "# Select pane",
+        "# List windows",
+        "### Session Management",
+        "# Create new session",
+        "# Kill session",
+        "# Rename session",
+        "## Sending Input Safely",
+        "## Claude Code Session Patterns",
+        "### Check if Session Needs Input",
+        "# Look for prompts",
+        "### Approve Claude Code Prompt",
+        "# Send 'y' and Enter",
+        "# Or select numbered option",
+        "### Check All Sessions Status",
+        "### Send Task to Session",
+        "## Notes"
+      ]
+    },
+    "torch-export": {
+      "file_hashes": {
+        "guides/torch-export.md": "2f8bee8995f738839e132304705a37e91454c6c226b5da1c7e099ec908368395"
+      },
+      "last_checked": "2026-03-01T06:58:56.764673+00:00",
+      "tree_shas": {
+        "guides/torch-export.md": "849dc93d011675d410bef8fa55cb2e42771b9bf8"
+      },
+      "upstream_body_sha256": "c29d3dc6436ff2149b1bc4a7005b266709de4e4d4dc8a4451467adf5148a6b83",
+      "upstream_sections": [
+        "# Export",
+        "## Basic pattern",
+        "## Model-specific scripts",
+        "## Debugging",
+        "## Guides"
+      ]
+    },
+    "trello-api": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:37.955425+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "067412e7026831915c0115e28f781f714c019984d6c50349a4cbc32b59ac279a",
+      "upstream_sections": [
+        "# Trello Skill",
+        "## Setup",
+        "## Usage",
+        "### List boards",
+        "### List lists in a board",
+        "### List cards in a list",
+        "### Create a card",
+        "### Move a card to another list",
+        "### Add a comment to a card",
+        "### Archive a card",
+        "## Notes",
+        "## Examples",
+        "# Get all boards",
+        "# Find a specific board by name",
+        "# Get all cards on a board"
+      ]
+    },
+    "web-artifacts-builder": {
+      "file_hashes": {
+        "scripts/bundle-artifact.sh": "abf0e480bf6585b56fab8526a407dfb7dc740812bddd70c636e1e8f3df5f9618",
+        "scripts/init-artifact.sh": "355e5dd4382aaaee91f01f1627eaeab30b2676ffa8d9b3ec328a1ae450ebccaa",
+        "scripts/shadcn-components.tar.gz": "1296f069e825de7933de7e8ac63672495cacce3f88f2dc45554dbcddbcbca60f"
+      },
+      "last_checked": "2026-03-01T06:57:17.651602+00:00",
+      "tree_shas": {
+        "scripts/bundle-artifact.sh": "c13d229e0523623a23f979771ccf99ac149c8bfb",
+        "scripts/init-artifact.sh": "7d1022d88bec529f00ef385e10ed6084601d710b",
+        "scripts/shadcn-components.tar.gz": "cdbe7cdd1e724a7c9840387e17a6a7f26d3477e1"
+      },
+      "upstream_body_sha256": "2e16a0def85144d0eea83458cad6d18f58287109786c969a7c627f93ac1e59c8",
+      "upstream_sections": [
+        "# Web Artifacts Builder",
+        "## Design & Style Guidelines",
+        "## Quick Start",
+        "### Step 1: Initialize Project",
+        "### Step 2: Develop Your Artifact",
+        "### Step 3: Bundle to Single HTML File",
+        "### Step 4: Share Artifact with User",
+        "### Step 5: Testing/Visualizing the Artifact (Optional)",
+        "## Reference"
+      ]
     }
   },
   "skills": {
+    "ab-test-setup": {
+      "file_hashes": {
+        "references/sample-size-guide.md": "96aef9d20c4607662beb924fa31260dee4c0db0c1dd6b607cdb3c4c701f9efd2",
+        "references/test-templates.md": "761a40b9de8d16f18fa7f60b59e77aa749607ac8014af43e0b022f47fa87c812"
+      },
+      "last_checked": "2026-03-01T06:58:57.517320+00:00",
+      "tree_shas": {
+        "references/sample-size-guide.md": "3e35e6c1d6a585cd4220424fe37ad6e8c079341b",
+        "references/test-templates.md": "1c517d889a30dff6d21c71f2ee765e97ed4c56da"
+      },
+      "upstream_body_sha256": "12ce93441986fb33144e64f97da47eaa451836404447395afdf07275880572bb"
+    },
     "academic-researcher": {
-      "last_checked": "2026-02-26T12:03:46.761311+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:18.872946+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "d1d56ad095c7c1bf90da3add04e6c186a5e2a249e684e337442328abf3899a1e"
     },
+    "ad-creative": {
+      "file_hashes": {
+        "references/generative-tools.md": "4f33f5eb65c4b8f11360492de50b504053990c41abba1d480b535976cded389d",
+        "references/platform-specs.md": "de69753161071a8d3e4d244280562810a6c4d6ae2696c5a21940f983abd0aa8e"
+      },
+      "last_checked": "2026-03-01T06:58:58.357374+00:00",
+      "tree_shas": {
+        "references/generative-tools.md": "e22ebcee333ee0d0a74b330be6a3d5269ce4564c",
+        "references/platform-specs.md": "c9a3c4a53465b5b182ded365a47d3103443da6d3"
+      },
+      "upstream_body_sha256": "1bac9630abe55b3bffe357e79eab0179aa58304c0fb5c70e77ccb6ad96e0ef83"
+    },
+    "ai-elements": {
+      "file_hashes": {
+        "references/agent.md": "8de46c28ccc5ebd5fac21d80b92842b001138342225c22aaf7b06bd563f362f3",
+        "references/artifact.md": "e29139db9c32ad75145959f7236ac3bbfb221a02e8ab8d154099894a7b0e39bc",
+        "references/attachments.md": "807014b23a7a9f539e8de0b04e04dd09ff34720a1aa2d65188501ed4ea21d681",
+        "references/audio-player.md": "c153e68d60d9dc995c16cce4a86be20c29e4d04200091f4d530fab916543ac94",
+        "references/canvas.md": "a81e79d1ea06a912237641bbe5941a1bf9f49064d368d15849284e08e8fd9079",
+        "references/chain-of-thought.md": "2f3b911ac35e30fac4b51757b39569355670547e5d062752cac2021b2641421b",
+        "references/checkpoint.md": "765463bacf6d7a06314486598ac7031377c4d6e566a9252115b99c52e986d5aa",
+        "references/code-block.md": "3bc8fb276c7d633dd3f3cfe6741bc29f20ea9057626ab47df32c5c7800afbbdf",
+        "references/commit.md": "88a39198d4ecd38ee3810c6374f5a1063a5dcb9511b16751bd71088e30c727d6",
+        "references/confirmation.md": "1355dcd42e74c6053d352a13ecdf8534243424b09b979a42754ed6cff9a25772",
+        "references/connection.md": "35dc82bf09c58c1a864fc58b36a61ccb46efc9dac291452b545a90f483beca62",
+        "references/context.md": "edacdb850ee629f7f83109dbe2ad1d25bb0d925d8a840a6be92ca75a47ae7367",
+        "references/controls.md": "d0bd92e0cb14efd1e2171c0b241005194a65207e873626c64159b30f8e4f87c9",
+        "references/conversation.md": "63d15161d27d2b87c943160fe5e6621ca7ae4d327a5d71ad1877b7eab1781c68",
+        "references/edge.md": "ab468ad6c3dcf873bb0629ae900bfa98169040ac0e947b2a5cd03e070eb6b47a",
+        "references/environment-variables.md": "071788690b1a35182d5abb43dd164e3b2925d7698d4486b3bce3372a513f8a76",
+        "references/file-tree.md": "0aba8bbe6d2c34790af3be82524ed3d721bea3097410dd0771d73c4482a78e1b",
+        "references/image.md": "9aea7dd6c68e16643130386f6880b8b9ed538fc0277121640b1c7234d8a77e15",
+        "references/inline-citation.md": "c652d69f0bac69c6e7c07884aaefd1e8e737793152833141cf44762d5dcbe049",
+        "references/jsx-preview.md": "c31d05f2b5929faf833a2b0a4290857233d561475ddd29a34ee8eba244daef7e",
+        "references/message.md": "992b1924c229fcd628ea0012d1ff7ba7dc72b8e1b3c4a06487b079b659f24826",
+        "references/mic-selector.md": "3dc56d762357de3b91fa3283ee488e68ae53dea2681fbfe61c71b39cdf021f8e",
+        "references/model-selector.md": "b483b684512abf2dea82e5867f0a575f7124531925c83a9eefe99e12ceaf1e1b",
+        "references/node.md": "5a399f56e4fa53c5e5056e84bfa65f3d172983ec95fd80d1ab9337f82c0db84c",
+        "references/open-in-chat.md": "75aa3c4de5aa7b6e49d5a8234a3dfbb7ec4f8cd8bef1ab322fd0e42c4deb8b8c",
+        "references/package-info.md": "2d19cff156c93bec027afb34fdc21144582faced243b86c629fba8c283be1c59",
+        "references/panel.md": "b5502294a33861fb68f21b77e7b4b0230ffa8cc21ce65b1b7e6b241e1818d73b",
+        "references/persona.md": "67e40206fd239c08d487cbca6da596fa5fa31505edba0d43f379ed344365269e",
+        "references/plan.md": "4f651bbbd55528cdaf52f09bbf12187c73c40dc4efdd13adeb26b5e6d40d8e9b",
+        "references/prompt-input.md": "a92320b5cfc531e6c1b7b7f43972ae5c516d2cd9c0ce1187016c586fcf69683e",
+        "references/queue.md": "a3ad234669d3c6437b1985cd5ed3b730a6fde1ad16fb8f612efa1c03e1bc27ec",
+        "references/reasoning.md": "afacc2520dbae96b2015d2358949a72a9da1531317f63d034662ef2d12fdfc7b",
+        "references/sandbox.md": "e1acf2a182e097578f127e97d8f2a77b7a72951d8bec03cfe67765ca5887bd71",
+        "references/schema-display.md": "50f121d0e21327b12daa3f541ad95f97b1a5ca72207f5f1b12fdfd8bc184ce00",
+        "references/shimmer.md": "9bbf4e1aa2b1cc357645c4abfe5a319ae29fc05e7f13fa34b5e54a5e16967ee2",
+        "references/snippet.md": "d672e32d5476b3b0104b009143f3d0b4360db62d06f13d67a5ac103882269630",
+        "references/sources.md": "f0c2a41158c66cca0cf8a0a273e44bad9b11e25ec31c75bdf590e140399718aa",
+        "references/speech-input.md": "1dadfe4a59ce2b27b1922f40af13f8d847e0abe638ba7fa1a0a061ea9c47a168",
+        "references/stack-trace.md": "7a90b467b8128bae6435e45e3898ffd6bd779b6884313c6b07cb8e8e4fc7529c",
+        "references/suggestion.md": "fc6174f14e123af0a919204cb0fdcf73573e348015b0d1ad2f94f6fb87f37b9a",
+        "references/task.md": "cd1589d64dfa12553b9fd376969aebb91d02c57c036fb808e239c982d9ad7f23",
+        "references/terminal.md": "6ce21837bc369e785242211cab38025eed5a7043b15e7379f05e5fe94c13ce9c",
+        "references/test-results.md": "baed0c4137553638cd11c6355bca06a426c42ddefdd05fc44bd784a83b5d6e11",
+        "references/tool.md": "4ae349c84b2cdbdf6e136457a6ea0783dca4e20f918e4159568d4ce559818c2e",
+        "references/toolbar.md": "30e4352c411dc8391a17ad7b014108a0b5c98b5d063f79e845dcda6301375848",
+        "references/transcription.md": "0621911f7b0bd7e1dff106389dd257e4460e462a2f84f15a2d4c8b607d939b90",
+        "references/voice-selector.md": "b2269f9690d976e0f166be38551d86f317c86df4a0ed7a550e0bb68c71183c81",
+        "references/web-preview.md": "95d7cf511b3f8c0151a6b6c00b4ceebcbd1d2dc58928a404beb95158745588fa",
+        "scripts/agent.tsx": "e36d23a848a44a12313ad7f088656620502a38d6db122e9f365e66ca9e11d807",
+        "scripts/artifact.tsx": "bc34d822ce48c94a6bfbd5221931db0c6312a2068852ec38d3d6ec189630f6ab",
+        "scripts/attachments-inline.tsx": "105497bd01b357320e93e31b6dcde996a22416d46c1354cdbdb31dbbc28278ec",
+        "scripts/attachments-list.tsx": "2513a333704b87b9ac81bb26099a89b1be89727dd1ac8805fdb4599f6e66934a",
+        "scripts/attachments.tsx": "a71b1b097636cda4ab1dcaa44d70aea05facf6a028545ad20a9576982e85b521",
+        "scripts/audio-player-remote.tsx": "59040a9e79898a8de0fe88813bca035d7f2abed684465826f4bc322d4c52a2bb",
+        "scripts/audio-player.tsx": "a37c583075ef20e16c50fdf57ff98f601fe434b01b82a120c0f97212f76eca7f",
+        "scripts/chain-of-thought.tsx": "d9149b88f4d30a499bcf2e88d5608111e43d0b6e15d70cac577d48617f6feb90",
+        "scripts/checkpoint.tsx": "c7a6eec6bd09b7e854eeec2726b2a04998dcb749ea531d2401471d8c35a2b254",
+        "scripts/code-block-dark.tsx": "6f3b11047fa9d2cab32fe650c3067f2f37a40d5e8cac101fa2fc6699283b836a",
+        "scripts/code-block.tsx": "a513a845a1bc4b5439e515ad452ae866a36b47503f975917a8a899894804a6f8",
+        "scripts/commit.tsx": "4efda612212b526704286c7771478628365b1c58fb3a54a5ad46400c83b092a4",
+        "scripts/confirmation-accepted.tsx": "3e8ec0eafd61e92ccdd78e6c645c863d2df87f7f1f7c069c2428e2aad6377e70",
+        "scripts/confirmation-rejected.tsx": "46a85175e83767a788f4148b6c9ae222bf232a5cbd922972d9b4a589aa098734",
+        "scripts/confirmation-request.tsx": "d3c74a6d4ea699d33054d7e56d6d8ff71678b329c83cba832ea97f6a5aa44df2",
+        "scripts/confirmation.tsx": "e6c3305727959f1d90e0e88ad9b5d4ccd4eba23bf93a65eae2bb67e71bc562de",
+        "scripts/context.tsx": "c6e8c87e38a44c5d794f31c60e3a52381f215018fb85b80e55a45dd10502ad1f",
+        "scripts/conversation.tsx": "8bcb200c95ab09e7c63de63a31d66b6251fcf6a03ffb730a3c191b2afa7d71cc",
+        "scripts/environment-variables.tsx": "9213279afb9e41658a344dd87079071d49ea78136ba7d5cdf6f4c2d38b636781",
+        "scripts/file-tree-basic.tsx": "9fd221b3986079f0612ffe774ad34f194e3d25d74de9580925673b7c345d7656",
+        "scripts/file-tree-expanded.tsx": "1f6d23373f9f3a6b6e768cd611b9cc4ca07e30ca013f9881b25ba991ef2f7141",
+        "scripts/file-tree-selection.tsx": "933209ec0e895b3059b3d91cb4dbf531625b5a9143f1a6fcb98c176510709d06",
+        "scripts/file-tree.tsx": "24f3616388f92da7476d3784b2f03ffbe7e45844f836de11bfb1d7aafe30af30",
+        "scripts/image.tsx": "ad20593bd14c3027e11822843ddbd9a19ccc8e7bb8cd8c0a82cfc8ed1786a8b4",
+        "scripts/inline-citation.tsx": "06ac4d2650228d976065b76b25b3d9b4ce6504d5f9702199879da54987d6276a",
+        "scripts/jsx-preview.tsx": "7e2abd317b5f2a9f74828edefe039e1d6cff8c60b48cd9377f25e2a2c775ee9f",
+        "scripts/message.tsx": "0493016d96ea193f489a7927f540712086a6d856daf687b22ddbff196e621c4f",
+        "scripts/mic-selector.tsx": "f1b07e49dcc05402e2a349aed06e4b0e57b8bceecd9819ce613a46cd52d92c3d",
+        "scripts/model-selector.tsx": "75be06438bcda5234d873ac24c484ce8a5cee51c47d3a4e3c3161e18fbf7a75e",
+        "scripts/open-in-chat.tsx": "7ce522e30d9c031c378452ae93c788a208b962a7168bdfc55041aa0a414649b4",
+        "scripts/package-info.tsx": "901c2767b40d33b1f91aa51388d13085a3195ab056231fcbd9a74e735aeadad8",
+        "scripts/persona-command.tsx": "398912a6573aa4c5416a69fa0ec50a993f205ae4d4cb02c6aa7ba4b3d26e4582",
+        "scripts/persona-glint.tsx": "e9241ea297b543951eb28e1cdd027772ec742f6eb1a1eb5cbe19bbcfe6033f23",
+        "scripts/persona-halo.tsx": "76b543fd575d3b61e00d3fedb9ac41ae33efb333b730b558f21d711f8836c441",
+        "scripts/persona-mana.tsx": "2024d34d93bf56f0790f5370eef6e881af2607aec22cac1d508154283568f3e6",
+        "scripts/persona-obsidian.tsx": "7ed4d087c7b8aadfbf89c9da72a120ece7649f612d2fbe166f9a47b54448b8cf",
+        "scripts/persona-opal.tsx": "2a03742f3a82152851a7f3919985953bc64e8c485a746015857398b42304357e",
+        "scripts/plan.tsx": "aedfbc69821f60fe755304614d7104a5f88561004ee69761b339d5b3841c055a",
+        "scripts/prompt-input-cursor.tsx": "425254c1f272f7cbc93a965de3a8940c5164307a05b316f0c8930510b34470b6",
+        "scripts/prompt-input-tooltip.tsx": "f03ff6342b4137b347a5e993c87d10eb5951ed99176049ea6465b81d880c83ac",
+        "scripts/prompt-input.tsx": "5c1a190f667ebe59c7bd1ea8529844090337a2b26a90ade1b3907e5f9191d91a",
+        "scripts/queue-prompt-input.tsx": "eceec42c4cfebf144c7044329ac45ae74794a5c74576ea6dded1c6f87753f40a",
+        "scripts/queue.tsx": "17b55320a2157af4024562558b065ea2f9c83ce0a2ad8ac337f5cb70b41cc14d",
+        "scripts/reasoning.tsx": "9ea4285df0caf8d53969e530c7a8afbb31798f04d940377759e88b90a1765618",
+        "scripts/sandbox.tsx": "286446276fe27312ea443baa40211a32f62ea9b901847aabca0256cdcdad9ac2",
+        "scripts/schema-display-basic.tsx": "388b0d6d31247bbb56b9de3324e66a001702f4964de8c60a16b9039b32783d7e",
+        "scripts/schema-display-body.tsx": "941dd26ed94847bb792bb8b1f5459e344e0d820dcdc51804254d2385dd683751",
+        "scripts/schema-display-nested.tsx": "03d519460a04c9ab9d67176e8161efa5db97c786f4c53a3121eda672f31ac30c",
+        "scripts/schema-display-params.tsx": "84883f2a17f783edb9c22993da407f2e731073eddc431a15980fdcf030d64590",
+        "scripts/schema-display.tsx": "721570b85a7c425f003f1adfac4fe00356bc2e4fead6d9c16283fe3f4c85a64b",
+        "scripts/shimmer-duration.tsx": "c7d86732c5ebfaef1c496759a2e2919ed9dea7fef337e2d621990be28e16cc20",
+        "scripts/shimmer-elements.tsx": "26bc817bfab244e9b0b12e4adaf3fc87a95f54213435053499cb89ea91a0c77d",
+        "scripts/shimmer.tsx": "5b1c83ba49bdaffecc58b8eb5fc2d1f730ea6f6872688fd6dead9d7bd53f8a4b",
+        "scripts/snippet-plain.tsx": "2b6f48a76914cd1db3ca6bfbf159d0f83f45311f4e0d0cdf1b34a235ae2db8d6",
+        "scripts/snippet.tsx": "d078c8d7b61479ea70ae078ba56839df5b455aa571b2de76e347ae428509ebe4",
+        "scripts/sources-custom.tsx": "8ceb02178c14c53381cf7f25a3375be2a573580a112303be483148c23738b4e2",
+        "scripts/sources.tsx": "4fd8ddec394197405e686c1d632b380ce0c7a302626fb7e4a372a16d9dd4b347",
+        "scripts/speech-input.tsx": "5cc185e24cdfef088d7d2c76a31a18c48fd3db90049bbb8ba3275ad98a6ae1ba",
+        "scripts/stack-trace-collapsed.tsx": "ec57c9bda182cde7a1e1b120d4fb54b6f35c94b0ec238e792dcd694fa1d4f443",
+        "scripts/stack-trace-no-internal.tsx": "2a57c6a862b5e933b0888d3f049a61391d19951274e9d9357ae09007c08cf0e4",
+        "scripts/stack-trace.tsx": "ba021501ded4935f716f710284c1c1db8ebaa16bc1bf96cb4f959b466e4d2b48",
+        "scripts/suggestion-input.tsx": "bab7dd161f089147fbf6717ae6b7a657317a07bfc8a88df5f296e207a4f56193",
+        "scripts/suggestion.tsx": "f99cbfd7e0c4ce7bd92fd0bce925af37a316b6408f84489294feb95cc05eea8d",
+        "scripts/task.tsx": "85fa27e7c9ae98a6b076d4e8c1305109294825396092a72cebf9b241788328b4",
+        "scripts/terminal-basic.tsx": "573e2adf152d193e5a0b932ac185fb31d76dceec4407bfef5bf1e786c4abf92d",
+        "scripts/terminal-clear.tsx": "2256f51be771218428e6e5aa0458158249d0c216a3ee83f21cc71be804b72a16",
+        "scripts/terminal-streaming.tsx": "ce32c3123ddbdaf79b593eadcb6e4670f9776d0f24ee1f54e085c7a6fb747822",
+        "scripts/terminal.tsx": "5ac950b773366962d7f02bbb29586a9574eaffc034bf0e8ec6110b8498f444d1",
+        "scripts/test-results-basic.tsx": "d31b0c4922897dd092a1317dce9d73010d8780db554ede29065e8683a8d9809c",
+        "scripts/test-results-errors.tsx": "d88841b9ec3226a27c9a630ec749e292dbff4db89b8885b409b1bd681f18541b",
+        "scripts/test-results-suites.tsx": "7659130e2cb9ec20d70bdaceb30a1b020619b5bdbc4850afc16a024615c63f11",
+        "scripts/test-results.tsx": "a8e5c1fe967c8349e4bea0de0361bccbaba871ef9346e6f7374f97081ea6ff80",
+        "scripts/tool-input-available.tsx": "28496f812bc4706c28d11fd9abd0baca199585f98334488db3b9f6bea815fd68",
+        "scripts/tool-input-streaming.tsx": "2a6d469911ddaef5eebbec445574c2a81d1c9e77b2264acd8f1fb1f34b732ffb",
+        "scripts/tool-output-available.tsx": "c1afc1b608b51bb6d87e1aca52ebd344be9e5f1379d369f35d353f8090d2c196",
+        "scripts/tool-output-error.tsx": "e53ea80ad048e75c173074a963395c50e6a8cb4c2885682dc1cb784624782213",
+        "scripts/tool.tsx": "d0f554e0b0131c93f2664127cd1f62c149f9d59b148f766056e149329422b2ed",
+        "scripts/transcription.tsx": "c402bc5da97b8b929fa8908db58e0909511d70bd1b74dc19b2dd177ac7d4546d",
+        "scripts/voice-selector.tsx": "af52cf774171cc4cb5d91517274c504a98ae2bd25ce6900650d5d795fb11cf3c",
+        "scripts/web-preview.tsx": "161c86cb08d1bfa7a51079c43b7d42c28a551cc0651ef35650cc8e450072f936"
+      },
+      "last_checked": "2026-03-01T06:58:26.766058+00:00",
+      "tree_shas": {
+        "references/agent.md": "c2e09f91c817476ef7273d55d792b5f3acb11a13",
+        "references/artifact.md": "f8dc39a0e5c6af51ab2ed676d767bd94ae78ae72",
+        "references/attachments.md": "213e248ecbb2aaaba5b24a7bcc8ca955fb54d2e6",
+        "references/audio-player.md": "2bd7b944b3e7dbd50338bd187b38b6e44d253682",
+        "references/canvas.md": "091d9a371fec8571922d31e4b1c548caa32d0fb7",
+        "references/chain-of-thought.md": "8437816470ca2729fe5cb965732527e73bc05cef",
+        "references/checkpoint.md": "b15e535b5778235258684ac624733d8093609d69",
+        "references/code-block.md": "9a2d65a82012d48169ff895a256339ee22294df2",
+        "references/commit.md": "08de2c7c32ae7ce2154c87b9594aa91ebc71fdd2",
+        "references/confirmation.md": "5320e1bcdf04a41925a8f84a636de3c14e9653ec",
+        "references/connection.md": "606f4f6357a0e5a3294298759f549f3f330daab9",
+        "references/context.md": "772bb23dd99cdbc2c54ab8da4d975a7d17d37447",
+        "references/controls.md": "ad95a02d3715d8f5cac9604813de483fff610090",
+        "references/conversation.md": "ce4c376fc4611ca7b82b45b245ac5c9d2215001c",
+        "references/edge.md": "29bc3dc6b2d14e74f3300e64a450cc602d797f73",
+        "references/environment-variables.md": "bb2e472d3104116709f3eaf49183f6db017a829a",
+        "references/file-tree.md": "729a5d3df17b60d687cd12ff01d91255e1548916",
+        "references/image.md": "86f0377e7b4c2708faf3cd88e076fc3833451800",
+        "references/inline-citation.md": "42861dc4ccd4e4e297a8c497edc0eb7ff6de801f",
+        "references/jsx-preview.md": "ca0eb468c852b9087c038b6809ba43cc40616dfd",
+        "references/message.md": "9ed6799c2c349d6a47f46266f4eebffb995c9532",
+        "references/mic-selector.md": "8f01915e226b2b62cfbbd0dee032f036ff71d6e0",
+        "references/model-selector.md": "86b1834f2a0391d8929c57a6d24e1606dd6cff2a",
+        "references/node.md": "ff1da06fa04ae26006688aceb0a5bd94de705ddd",
+        "references/open-in-chat.md": "29327c440ff2d70258450588de7521e2a2249686",
+        "references/package-info.md": "52eb1652e5769e839c4b672e43472d5e67e17cf8",
+        "references/panel.md": "bde552811735cb7cc11b50ea7fde81e5ccbebb1c",
+        "references/persona.md": "ddf71a5d892ee30b30028891202d39eae5d9fee9",
+        "references/plan.md": "58a41a03b16861c55e2f8c6a16833707a75317cd",
+        "references/prompt-input.md": "b1456c64d6051af5b4966db715378a81068a7e1a",
+        "references/queue.md": "6d265b4afb34cd7ad1da522349038902e2ff7c69",
+        "references/reasoning.md": "f192ec01e0e46f8b52eda1e1fcb2dfaedf29741f",
+        "references/sandbox.md": "adc7ee1f91947ce10664b5f191acefe7f4648110",
+        "references/schema-display.md": "0ed1947f2f5b1e0cbbaf85ca51cfd11f81c62747",
+        "references/shimmer.md": "3af11dd0c239e8222db948bb791b5da46f506e3a",
+        "references/snippet.md": "9e9cf4c2a6f9e94e67db83dd083b78f378404566",
+        "references/sources.md": "60f063a7a14d49ede9dd397cc4ea377d21fcf83f",
+        "references/speech-input.md": "f80e453624e23c689aa6efac3d1db67896fa903d",
+        "references/stack-trace.md": "cff6ff57d5328cce9a425f290f3afb4b772c66f5",
+        "references/suggestion.md": "9302ea6aca952a70d279d8dfff6cd9e0bb73001b",
+        "references/task.md": "70e055e9e37a3e183e28f254ac03e0a537cbb4b0",
+        "references/terminal.md": "44c9c45c20a63be6f4f1ecc23b04897fb3b75d37",
+        "references/test-results.md": "74fd4da7fa3fec4b4a43d3f72a4c06020f596964",
+        "references/tool.md": "bf44e08fe0cc24f253e4515c90d9d1e096896796",
+        "references/toolbar.md": "20b254279882bd142c3de4a3580b4a4acf3148c3",
+        "references/transcription.md": "7dc7ad5addbc54adcb252a6c473d7825db635349",
+        "references/voice-selector.md": "0c4299ee4abeebe8de3c7719738c1d11e82463ea",
+        "references/web-preview.md": "81926d390a9bd8158cf42b569ab731018232be27",
+        "scripts/agent.tsx": "e83af14fc7aadeeb208ba9e3c03e4db344afe92f",
+        "scripts/artifact.tsx": "eb130636010683d1f2f911877baede9d956da519",
+        "scripts/attachments-inline.tsx": "ae931a557882db364fefda92425e5f1648b4ba71",
+        "scripts/attachments-list.tsx": "b363dea973c6f80781830ea21bae866619c536a0",
+        "scripts/attachments.tsx": "fc8e44903a9eba20f8e00121b57c17602b810e9a",
+        "scripts/audio-player-remote.tsx": "19d8d89d84d35f468ddffe0f14a4a1407d39bc44",
+        "scripts/audio-player.tsx": "8ef7ff2bdef4bdb89a593b2ee63aa65cb73bbfe3",
+        "scripts/chain-of-thought.tsx": "04dac44549a7f3f2e46f9bfa6cbda72076a0e3e3",
+        "scripts/checkpoint.tsx": "426f0a8a41c34b296f13356d2065c1ce3b29a7b1",
+        "scripts/code-block-dark.tsx": "cbafe3f585f7b585c3210ff1a62720a9f86d2995",
+        "scripts/code-block.tsx": "a0547ecdc6b754e90aadb5eb85d062922745128a",
+        "scripts/commit.tsx": "53a4e082d08a48064662276d552eaa321e1fc5d4",
+        "scripts/confirmation-accepted.tsx": "5e112d2c501ebefbcb36bddbe224cc64d82508de",
+        "scripts/confirmation-rejected.tsx": "d29e650a42030bbd96abec15d8b3fe2a4827e9c5",
+        "scripts/confirmation-request.tsx": "1fd685423bc3d1d6b17affc28e6f938e7065ae4d",
+        "scripts/confirmation.tsx": "5120b319b50611e7d50c022dc9a5cd2a7b66407a",
+        "scripts/context.tsx": "3ed101a4dfd83aa0ed54abe761cf2cf7489a04f8",
+        "scripts/conversation.tsx": "15de5c0a724f82501e455cf42e4a341975049600",
+        "scripts/environment-variables.tsx": "703accd81457cce3ed69b933a1647daed8cfed7c",
+        "scripts/file-tree-basic.tsx": "f9455fd01028e005f0009ca7f964a563b7e8199c",
+        "scripts/file-tree-expanded.tsx": "531262759cd4871d02a4362738139631a9b0cae4",
+        "scripts/file-tree-selection.tsx": "6cc489fb071d25337c53bb10d561fb23f2f1b25f",
+        "scripts/file-tree.tsx": "2f26deafd536d9f18b9e5aef4c1efedc11e558f1",
+        "scripts/image.tsx": "6f0448e07f58f02f748fe3c05e86da83bf089319",
+        "scripts/inline-citation.tsx": "2616d472c1a2bfd61a2e4919565db71472e2284c",
+        "scripts/jsx-preview.tsx": "d198ed5852af6d3c203933c584579e7171da7c4e",
+        "scripts/message.tsx": "892ae751873010d63604f4cd46cc50ecbdc8b6ea",
+        "scripts/mic-selector.tsx": "34ff88d60d505acc4b60c9aea77d7098467bd659",
+        "scripts/model-selector.tsx": "5864c152922118275dddf3dedef9fea59e330cc6",
+        "scripts/open-in-chat.tsx": "d47f0341ba8b8f83f89e0a797d4cf26fae272723",
+        "scripts/package-info.tsx": "cdb7c18505e7f88ca5c53d74e47034681c43e638",
+        "scripts/persona-command.tsx": "779c604dfc663808a6388ae5415166cc37e60dd7",
+        "scripts/persona-glint.tsx": "c02d863a0a6ab8b665981618711e2d735f4053c0",
+        "scripts/persona-halo.tsx": "f23df901ae0a3e1ec843ede58c4357264bcab97f",
+        "scripts/persona-mana.tsx": "131e1eb65a3b6886b115b2d5b91be844bdb11af8",
+        "scripts/persona-obsidian.tsx": "619c7d210224dd373102e5a110596d598fdd5268",
+        "scripts/persona-opal.tsx": "89bac6a3f268ee4fcf8030828314c39e0a2e40b3",
+        "scripts/plan.tsx": "a0091d8a2412c509c7ce1200c7dc579245e69f36",
+        "scripts/prompt-input-cursor.tsx": "877b570579145b7205742014dd4a18c94651dc03",
+        "scripts/prompt-input-tooltip.tsx": "c57e5ee4b46f84450e32c7e9fb065200768a454b",
+        "scripts/prompt-input.tsx": "2df4ce1e6d2f59591cd830a2f9ff70021e3a4cea",
+        "scripts/queue-prompt-input.tsx": "b9847761715573d2eea1c2e5be5f8cf959eefd82",
+        "scripts/queue.tsx": "4c9a94e3bc0c450a037b8a8a39df55338ed721d5",
+        "scripts/reasoning.tsx": "51991b7bd9b5489d06526c1f10352d00fcac0813",
+        "scripts/sandbox.tsx": "74ab9920b9885b96840c5a9fb40a027d8231e5ea",
+        "scripts/schema-display-basic.tsx": "9c31864078e01a024db00406bd93c87750d02229",
+        "scripts/schema-display-body.tsx": "49ab5f2c75b5183149892a23def219d44f0b1963",
+        "scripts/schema-display-nested.tsx": "1748a21a4c928855a90bcd54a5ef97b9b010c9a7",
+        "scripts/schema-display-params.tsx": "1b3b1bcfa21db225683fe296ead1d95fe506242d",
+        "scripts/schema-display.tsx": "30fab339e78ff31e4e08a229ab7ba150319d668a",
+        "scripts/shimmer-duration.tsx": "5fe372033e0dd67447acd83bd19319539fa6b89e",
+        "scripts/shimmer-elements.tsx": "74da859c4c0e0dcf4cb36f2e18ee0f05c21cdf88",
+        "scripts/shimmer.tsx": "1032a9a523c48dfc7a2c59dca57e6c94357ca917",
+        "scripts/snippet-plain.tsx": "8c3bb7bf8b1d5d4d4e275368ebfda60122d6e927",
+        "scripts/snippet.tsx": "5cbd56088e4928d5a522fc608a36266ca5001db8",
+        "scripts/sources-custom.tsx": "f6d07c44779eeb020a4b9c5318f495a6ffb46569",
+        "scripts/sources.tsx": "b05e811837648b6d1c4267f1964c31ce80b7038b",
+        "scripts/speech-input.tsx": "a7d570665e0179552df5b02186ffda98762ac908",
+        "scripts/stack-trace-collapsed.tsx": "29cfed6027698b793ccfbefde92a0eedbea08fab",
+        "scripts/stack-trace-no-internal.tsx": "9a68181e8fe0b3cf7da104d0a216997ada15334d",
+        "scripts/stack-trace.tsx": "f33488b6f6e0db9ec6fea4af2cb15b51d2a0e962",
+        "scripts/suggestion-input.tsx": "730f45623b078855d4be1e57c5446684c4a2bac4",
+        "scripts/suggestion.tsx": "b830f5a0b8342de553ad7913e98d7c5877ed7b58",
+        "scripts/task.tsx": "03bf07db057b9f130e43a485d22f562009399ff8",
+        "scripts/terminal-basic.tsx": "c477bed740eedc58c1ceffa275eba4d44714685d",
+        "scripts/terminal-clear.tsx": "e480e1a061b802cca276583a91fea5d4f327098f",
+        "scripts/terminal-streaming.tsx": "f0502d018b0c80b9f1d7f56c5c8102a6c2f4ad5d",
+        "scripts/terminal.tsx": "43227ce4b91c8139feb2c9e9049f2adefe19a51b",
+        "scripts/test-results-basic.tsx": "d61f55137ef8e3875bb20da07659169630a2c659",
+        "scripts/test-results-errors.tsx": "37f4e54709086fb38d565ea84cd2e335254db610",
+        "scripts/test-results-suites.tsx": "0ca1d2f09c34186069f0b6e37e2d6416fcc409c5",
+        "scripts/test-results.tsx": "0e1e852c887f290079fdc7f7c3142c9d7491a108",
+        "scripts/tool-input-available.tsx": "0c657b2b18e2ff121c2b57379cf15e2f1808f093",
+        "scripts/tool-input-streaming.tsx": "6f44aa2ce187276ceb3abd251ac97e15667492d2",
+        "scripts/tool-output-available.tsx": "0943ec414faf329cc20d19c8cbefe365af92d5df",
+        "scripts/tool-output-error.tsx": "529d9e4250bfb64d4d47e817d76174dce011c8c2",
+        "scripts/tool.tsx": "cfdcc92ab13cfb6d7b6fe838ebb6c13af9933f6f",
+        "scripts/transcription.tsx": "c7a61b150166301a210e3095c87d50639228a725",
+        "scripts/voice-selector.tsx": "c5543aa69e682bd9533b595e1366b156aa00ca59",
+        "scripts/web-preview.tsx": "8abbdb2140d94757a299ff42cff40062ae1bd611"
+      },
+      "upstream_body_sha256": "a74a348be94ab6c84bf09123a0daa8e2e1d85c8e850776d83f7cb2a497ac4d3f"
+    },
     "ai-sdk": {
-      "last_checked": "2026-02-26T12:04:35.350034+00:00",
+      "file_hashes": {
+        "references/ai-gateway.md": "f3c716c7f9ddad655044f19823ce5c2792985fba5589a0e99e8e3b1139fec90c",
+        "references/common-errors.md": "64949f0614a629733d1c47d6e5d5b953d90a696e71922695f69248a21290dcad",
+        "references/devtools.md": "a07e778b4ce4279cb3a70321a6e5a6021614ed6188d29a5d59ea21e3e53e8d3d",
+        "references/type-safe-agents.md": "7501751dd0d505e9ee3c9fbf8298d758e8bdae0395554d8f5333e4e017202ae8"
+      },
+      "last_checked": "2026-03-01T06:57:38.912740+00:00",
+      "tree_shas": {
+        "references/ai-gateway.md": "8bb2d66ff45d193e8dd4f8144d51c15db8c80dcf",
+        "references/common-errors.md": "529521ebec8f31164bbaf3e1c744c60c8ea3f4c0",
+        "references/devtools.md": "197e203ad4ffad88743b1a5dda4910fdb5475728",
+        "references/type-safe-agents.md": "17d7a6fdc5edcda9cd39c87f4f80f686c9fea29e"
+      },
       "upstream_body_sha256": "4e816d861d834b4597132551f7615c167c4fc3a41ef41bc8d81806ac63abd05c"
     },
+    "ai-seo": {
+      "file_hashes": {
+        "references/content-patterns.md": "7f32aab75574788fbee572dac9fe177e63b21fce672ef863246bd4778fc29a3b",
+        "references/platform-ranking-factors.md": "4004b3d9d562f98273a0048c48af6a46040ed800b1a1ccb958b299217860a623"
+      },
+      "last_checked": "2026-03-01T06:58:59.284532+00:00",
+      "tree_shas": {
+        "references/content-patterns.md": "e1926c80aacf6cc32d661ad64f507f33794ceb54",
+        "references/platform-ranking-factors.md": "4353d0902d5ed008f51e62f76937947ca8c08fdf"
+      },
+      "upstream_body_sha256": "a60af5b2ff0d2c3e6e9fc7f05a9195d3b54c552de7d94be0c106101ff7a55d51"
+    },
     "algorithmic-art": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:03:36.531224+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "9629c98430c91ee0181bc284d6450bcf58f38c75a44571eaf866888e9badde68"
     },
+    "analytics-tracking": {
+      "file_hashes": {
+        "references/event-library.md": "efc7bdb0a7b3efdea9e67ff0d1bc894dcf89ec9b9b8f3414f123d12bee109412",
+        "references/ga4-implementation.md": "f33fd6db0cbdb1bdc183af5f52bedd956d14680e54bca2e2c3917de29698636e",
+        "references/gtm-implementation.md": "112da33832439d2ae0b2729e5031fc927df444cd1ae8eb20542d45c1b5690f52"
+      },
+      "last_checked": "2026-03-01T06:59:00.225850+00:00",
+      "tree_shas": {
+        "references/event-library.md": "c381b56c44b5b987e66de708d6061af873f68e55",
+        "references/ga4-implementation.md": "f2656dcbf0f4336eb756d9796e2d2cdab87452c7",
+        "references/gtm-implementation.md": "956e63840d545b7ad5bbef8373e1f19e0bc258f7"
+      },
+      "upstream_body_sha256": "f5f06d2af3f463b606762e2e3c4871193052929fa0aa331337453b985f3c1b3b"
+    },
     "apple-notes": {
-      "last_checked": "2026-02-26T12:04:06.772464+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:28.904360+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "47450223c78f3127f5559988ca49c02e70300c8da9640f4f22a1fa862bd3cb61"
     },
     "apple-reminders": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:07.701974+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "7b25f4c2db8312f7480f3bd749321c9b991d7a70bddf9f3e3cc5e4506a8c7afd"
     },
     "bear-notes": {
-      "last_checked": "2026-02-26T12:04:08.628931+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:29.157325+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "003ac7bc0757fa052ee12acd2c647c16568f00d3a848fcc09dbdcf6b728ea3b7"
     },
     "blogwatcher": {
-      "last_checked": "2026-02-26T12:04:09.440859+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:29.389505+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "a17ed63af90283af1aea17c4711abf3d9197d85e56eabc694c88dfe17daedf57"
     },
     "blucli": {
-      "last_checked": "2026-02-26T12:04:10.290680+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:29.613062+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "ea5a47ab850927c3de2a496b5fbaf2f87484f8807761407b4c45b8e7972abbf3"
     },
     "canvas-design": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:03:37.397875+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "34d9b3abb0f986d92fc311bfcdb367578cddda9bf6470a5867be476fb7d76c7e"
     },
+    "churn-prevention": {
+      "file_hashes": {
+        "references/cancel-flow-patterns.md": "bd4f9eb09757189e4fe4f849c708731a307508e8765c3345639480c222378120",
+        "references/dunning-playbook.md": "95afe21035cb81769ef0024de08806fec31073eb507a806f05b6b18b70e259a1"
+      },
+      "last_checked": "2026-03-01T06:59:01.330978+00:00",
+      "tree_shas": {
+        "references/cancel-flow-patterns.md": "a47ab991d28a264fe81914ddf9cbeb2d9e9bf781",
+        "references/dunning-playbook.md": "294e3b367054979eb6456378e57d9a96ab0ba1e1"
+      },
+      "upstream_body_sha256": "1126e3cea070d8b221abb4fa4bc940e100a0da2631bf97278457b8e4e1df0539"
+    },
     "code-reviewer": {
-      "last_checked": "2026-02-26T12:03:47.677138+00:00",
+      "file_hashes": {
+        "AGENTS.md": "b61a49ea2ad10fd361aa921bb53accac1476ad5f8ef579870cc0ee692b47bbc8",
+        "rules/correctness-error-handling.md": "b4ab7fd638c5bbbcfd19c0bf37d13a52e4d1256ef1e7b85f4904b23aa61f33d6",
+        "rules/maintainability-naming.md": "48aed33950d98a5e0db5aaacf4f674fbcbf7579f869d52cd9ff2397f454bc62c",
+        "rules/maintainability-type-hints.md": "68325d8918f31fe7a69cb99e74119452fde874943a1f86d4228b7d74a799fe5f",
+        "rules/performance-n-plus-one.md": "387c40d86afa621954e869059b832740774cce9529ce5eb4e234ea341ca44f73",
+        "rules/security-sql-injection.md": "546d66cd7d55ca086c7908bd10c47c616e0b2ca476581cc0ec14cf450be7b29a",
+        "rules/security-xss-prevention.md": "dcedfff54f9bf4ccffe69d66e855a65b1e201fd5f4ed098b7f1245f7830e1f22"
+      },
+      "last_checked": "2026-03-01T06:57:19.164737+00:00",
+      "tree_shas": {
+        "AGENTS.md": "556689d79a9003d43c3d9f315b456923217c90cc",
+        "rules/correctness-error-handling.md": "661520da0a003fd48b21d57edf0e4a0737dd57ab",
+        "rules/maintainability-naming.md": "80a1f9134c543f1c3d15bd5d83cc6f7e1b3155f1",
+        "rules/maintainability-type-hints.md": "0fbeceedc4343a60ef7ba2e76679da9774f78a30",
+        "rules/performance-n-plus-one.md": "7fb7c46fc1d47e09090d37cd340a93f897c132a5",
+        "rules/security-sql-injection.md": "91d1ce0daa2a604778ca5b6a28d539f001d619a8",
+        "rules/security-xss-prevention.md": "4b6fdaaf75fbc50b94cd11f5dfd961967ff9ee5e"
+      },
       "upstream_body_sha256": "a7f46905597d813bd6e0364de9a7383faa86ec25e3f79b9af149bb477af73bf3"
     },
+    "cold-email": {
+      "file_hashes": {
+        "references/benchmarks.md": "3dc1d38a2d1f4fbb2706be7ca3d40156b66a3d7078c183a930ff373c3bb04c09",
+        "references/follow-up-sequences.md": "87e14749104b0c5bcd865e55d33513a161edb8e6773b2a2d9802b5460f2f7369",
+        "references/frameworks.md": "b29fb89922f96ae1c6911675a7e173a8f7c6a40999c9a18b14ac7f357b5f5a03",
+        "references/personalization.md": "08f18652938e14143402786fbdb8e1a6269650bb5eef9106898f1cdf31e47e36",
+        "references/subject-lines.md": "f71f31b1151d972bb19ff03791ffb9d24941a8ccea8b913e5a5c7aca439b45ce"
+      },
+      "last_checked": "2026-03-01T06:59:02.304087+00:00",
+      "tree_shas": {
+        "references/benchmarks.md": "bc6e44d811375fe9c249e26a3c1af37fdc7635cd",
+        "references/follow-up-sequences.md": "f32d6d796b303bbcb79bc9084744bd42fdfb6338",
+        "references/frameworks.md": "871e0f33f693465624036d8dd84e897cd5890820",
+        "references/personalization.md": "c3f98d3594afc3be73f361bd30ff18bd125409bf",
+        "references/subject-lines.md": "3a2cc592d32e00b1bd368446979539853be87066"
+      },
+      "upstream_body_sha256": "fe6702ef23cc24d56bfe15a314aad818203aec233990063e4a0a73aae9f401a9"
+    },
+    "competitor-alternatives": {
+      "file_hashes": {
+        "references/content-architecture.md": "9fbc1793b63f3e0302ff4f05ec74fb9944792a5f878a890aba47bab5b2ac4d35",
+        "references/templates.md": "8f367433afe78d532f81e0da757514cdbeaa3ea39689ce158c1c963079a93046"
+      },
+      "last_checked": "2026-03-01T06:59:03.824423+00:00",
+      "tree_shas": {
+        "references/content-architecture.md": "74b9ead2819a5e4a778e6570552b96743242ec53",
+        "references/templates.md": "74375051f02004debf977cd4013f40e79010a7bc"
+      },
+      "upstream_body_sha256": "e2e4f1db99ca343711bb65f825c60d725301228376848cc032eb13d5fa588dc5"
+    },
+    "composition-patterns": {
+      "file_hashes": {
+        "AGENTS.md": "89e3ddd58fcf99a53a50e25dfd21b8cde1be5f10b7df6bacd3dfa6796932f516",
+        "README.md": "85915a43a6f0b4efe525e3cf6398dd866166da2025837c4460468a24a940da94",
+        "metadata.json": "49262ed5cb4186f31ee980cf8d990be0170c51efed4908d0464a1cff9905bd05",
+        "rules/_sections.md": "a174213b87e6911e2b766995a2cbaf8d1534057076e82fb79fe3f0ecb38047df",
+        "rules/_template.md": "587f7d16b0660eb61fee4a4d3d7df2b3077d6835de170602c7d6e60bee559131",
+        "rules/architecture-avoid-boolean-props.md": "007555ebb020f4d552582a2c4db194db71a1fd33094012e5187bcfa4f8c392d5",
+        "rules/architecture-compound-components.md": "f246af13dc269b521cf20eb8ad99a0cb645beac381c8c9b117262c34612c8457",
+        "rules/patterns-children-over-render-props.md": "7c45a0d21b3c4126a32cba916ee31adeae195386ad1dbbe6634aedb7457aa0ad",
+        "rules/patterns-explicit-variants.md": "8c19e596e61807549d01ce8c6954c6358199f97a8511c0c02c625ec0efda8c0e",
+        "rules/react19-no-forwardref.md": "881830adb7534c4b2d70db426556646ad9837f5478f744f35641f635ada22227",
+        "rules/state-context-interface.md": "09e73afbf9285fa416679cc864a287b9e8b821d0969272ab784295386d8c9bc3",
+        "rules/state-decouple-implementation.md": "76a8c1eb29a70d8996ab3f71260345af2f7bc89deab815a421d6c87c6591a9c3",
+        "rules/state-lift-state.md": "74c54038a6c554c748fe31cec673b80861b5d920b7553cf78cdf10d18b4b759b"
+      },
+      "last_checked": "2026-03-01T06:57:54.974523+00:00",
+      "tree_shas": {
+        "AGENTS.md": "558bf9aa1e36db2161f1633c9bfae14a819f0508",
+        "README.md": "01f359b0e79ce544d1463057be54946e50d62bcd",
+        "metadata.json": "3470b744190af044373abbfe80d94630c0cc6041",
+        "rules/_sections.md": "f921dd41b53e4d847f25a6b3eca25a4e8857db44",
+        "rules/_template.md": "119a30167f162c439f05e73c63044c590dff645c",
+        "rules/architecture-avoid-boolean-props.md": "ccee19ce495b9d7fdf08867db3c6b6282006312e",
+        "rules/architecture-compound-components.md": "e5e3043cb5a81b83dce0389848b828455f00854f",
+        "rules/patterns-children-over-render-props.md": "d4345ee30aea5f1b11815251edca7ebd0aefe2e2",
+        "rules/patterns-explicit-variants.md": "56e32e8bee5e5768f747db4e9718a6c2b54bfce5",
+        "rules/react19-no-forwardref.md": "e0d8f8a76f14888f2fafc8cccd3d9395e4711d0d",
+        "rules/state-context-interface.md": "d961bede0c6c6e318f6ba3aca9b5dfcdb768d8f9",
+        "rules/state-decouple-implementation.md": "71a5afaa7d7078c262c92d32c3b97723de62f99f",
+        "rules/state-lift-state.md": "d7fe27b54933135f9050365b6c2001c101029d51"
+      },
+      "upstream_body_sha256": "60ded750c7efc9042d0db3bce7acdd7cd79a04e34157ef9b0e4bd4b6026759f9"
+    },
     "content-creator": {
-      "last_checked": "2026-02-26T12:03:48.441274+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:20.896145+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "2e987107d31d6885f6315b782185342e86fb5ec7935c73e42b0aed801d6b48a1"
     },
+    "content-strategy": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:59:04.799488+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "fd3d0886861c882d7e50ccb03b22dcf63a0c1359f92c2419686751cb92003af2"
+    },
+    "copy-editing": {
+      "file_hashes": {
+        "references/plain-english-alternatives.md": "df4f820d4c63ae8a517c64a243c101658352cd07d002355bf3c97de0a00f3775"
+      },
+      "last_checked": "2026-03-01T06:59:05.355223+00:00",
+      "tree_shas": {
+        "references/plain-english-alternatives.md": "2fc323557dabdee6ee9f0a52e2a4c24f473fc775"
+      },
+      "upstream_body_sha256": "9bebdbd94eae9db3cdd3e761f781577672779a98459a29cbe7b26b920903fa6b"
+    },
+    "copywriting": {
+      "file_hashes": {
+        "references/copy-frameworks.md": "f387b6ed4b510efa9f0d3c459f4898971c8b0176e8c34185040cb264eca50186",
+        "references/natural-transitions.md": "4ff23f8943af2f65b072f26f1c53ce55f19cc26d7be211c11cae8e34b43e859f"
+      },
+      "last_checked": "2026-03-01T06:59:06.098777+00:00",
+      "tree_shas": {
+        "references/copy-frameworks.md": "0abc8123ccdd1957ea0748e695eefafbcad3ae29",
+        "references/natural-transitions.md": "ee72faa54b24714ceb9b75269834a5c80888c90f"
+      },
+      "upstream_body_sha256": "0ac066c859c6ad808cda6bf67a23d65c8abc5b31f2171fc5332141d1b190a5af"
+    },
     "data-analyst": {
-      "last_checked": "2026-02-26T12:03:49.371909+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:21.105978+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "3eeb44bab9ce29be9a529e0e6c4c524d7e97fd55ddb2a66c89b765997f4aeaa2"
     },
     "debugger": {
-      "last_checked": "2026-02-26T12:03:50.305333+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:21.294215+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "02cabcaf7a07d83e009822ee88229bfc3becaf9029bd191f3cd0cc2dfa0eb9fe"
     },
     "decision-helper": {
-      "last_checked": "2026-02-26T12:03:51.179866+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:21.547968+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "c7488398a73327bfa640dafc8b7ee47b51db4fe60460b7447f6deba247d5e84c"
     },
     "deep-research": {
-      "last_checked": "2026-02-26T12:03:52.052321+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:21.785175+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "75cf47055a39ffa5f0d71ce841aab8eac7936708e9fe8bf3fffcb653c32ec546"
     },
     "doc-coauthoring": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:03:38.384073+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "c37b110ac86e414d72d7b46a1b0e521c23109698debb35c45c24fa1f82be1bd7"
     },
     "editor": {
-      "last_checked": "2026-02-26T12:03:53.050693+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:22.010450+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "2fc273e39b4d343890aa9ce19847da7485805bbd1e74089dd422f556554dd758"
     },
     "eightctl": {
-      "last_checked": "2026-02-26T12:04:11.139788+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:29.807556+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "fd8232a107397ccb2f01b74e65b9443601c7b5d067ab4d137890e72b0a083577"
     },
     "email-drafter": {
-      "last_checked": "2026-02-26T12:03:54.082106+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:22.212139+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "7a8c8d1d189119891ae968fa3837372ae6298a87831e74e99fcd78bb37b1874d"
     },
+    "email-sequence": {
+      "file_hashes": {
+        "references/copy-guidelines.md": "02f08897e4aa99ecc4ec1893d61d0c26d0c5e62e09af26f175087455e9b68e01",
+        "references/email-types.md": "a5dd4f0555a7b21d2ff426948d15657825b9d16265652563f5e272d2e1879bfd",
+        "references/sequence-templates.md": "d47b12e263ad52b72ab741c490bbc98d8bf8034d61faccc50b7dbb2650a9fba0"
+      },
+      "last_checked": "2026-03-01T06:59:07.015604+00:00",
+      "tree_shas": {
+        "references/copy-guidelines.md": "6e31f2b5cc331ae6ffbe3127b52199bbaf05c14d",
+        "references/email-types.md": "dd6124051517e98d0550f7e35477b428ef5b81f6",
+        "references/sequence-templates.md": "791c7ecbd617d326b8cf17f37685990901b03a93"
+      },
+      "upstream_body_sha256": "495960484013314fd003d828a1635755139217a189606f8a9449cc1688908139"
+    },
     "fact-checker": {
-      "last_checked": "2026-02-26T12:03:54.911632+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:22.383199+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "ea57e72b50e4b86be5c4581f8724ccd1b54ea7a063845efc1969b1ecb1f93e88"
     },
     "flags-sdk": {
-      "last_checked": "2026-02-26T12:04:37.230528+00:00",
+      "file_hashes": {
+        "references/api.md": "7b52236e24d24252f9140fa27ba920c0a0e12d6474dfe081e702bb36a9460059",
+        "references/nextjs.md": "5dda7bbb8d24b8c6b7af32c59655e97caea630f9d0c701775d1b8c807b2675cb",
+        "references/providers.md": "80683ab3b7074b5229a7375fbf75fb9542448823501108072119eb2fa99985d6",
+        "references/sveltekit.md": "2b52b5599e5b56ac0e58dec09232a08cae3d457533b69dd3b398b12b7aff6c1f"
+      },
+      "last_checked": "2026-03-01T06:58:16.709693+00:00",
+      "tree_shas": {
+        "references/api.md": "db2e60f7b9baa9f7c4514d4d0e887a43bbf98c0c",
+        "references/nextjs.md": "e5c2fc32d04945fdb3a39901993687b50a0079e6",
+        "references/providers.md": "6a259e7f01bb18971256c9d81867003f3b9969ae",
+        "references/sveltekit.md": "f51a185f56ccc51e392725030acc7eca7a67cd87"
+      },
       "upstream_body_sha256": "125d05247428e5a8852b9f92d100cf2dbdca6ab9b9061f1e303d596d01713bc7"
     },
+    "form-cro": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:59:08.171194+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "61c06fecc846a6cc4a103e35889045fa76bf3684d0bfe4ed687c8634c8716da3"
+    },
+    "free-tool-strategy": {
+      "file_hashes": {
+        "references/tool-types.md": "3869418a784ec94e95528dbe3f39cd2571cff6f7649e5e0be28d675be61d5a3f"
+      },
+      "last_checked": "2026-03-01T06:59:08.639604+00:00",
+      "tree_shas": {
+        "references/tool-types.md": "65104ffb77fea458030fb113fc125a8c5021e150"
+      },
+      "upstream_body_sha256": "f0b17eb7a611c5511253970b65724ab679289ff7c38b12cef8c7b5d391b52c0d"
+    },
     "frontend-design": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:03:39.160735+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "ccbb75579edfbbdbedfd70e9416bcabd7f230735990c3f73155791376dd3b4d7"
     },
     "fullstack-developer": {
-      "last_checked": "2026-02-26T12:03:55.767076+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:22.563583+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "4eb5d88129e43a6e6e0910aef2270c76df1b7d9509e1d4a27f57c4a1086810ae"
     },
     "gemini-cli": {
-      "last_checked": "2026-02-26T12:04:11.983105+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:30.046402+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "8fe31f0b228a343c58ea2a47bb9f20a01d4f2003891695903e976fbb0e3dcb24"
     },
     "gifgrep": {
-      "last_checked": "2026-02-26T12:04:12.862499+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:30.234121+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "55bbf67bb14ab608cf5ed46d79d9447e700c3ae940ed6a1ad579db9280446cd4"
     },
     "github-cli": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:13.753831+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "273ff5fb1188edee13f818bf5163d7309491c7ac12dae2979898bd0ad394b8ee"
     },
     "goplaces": {
-      "last_checked": "2026-02-26T12:04:14.592569+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:30.477084+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "59e4092bae64c010e170b1b858be9890d7cc6ae8716d8148ef32f0dafc24e59f"
     },
     "internal-comms": {
-      "last_checked": "2026-02-26T12:03:40.005301+00:00",
+      "file_hashes": {
+        "examples/3p-updates.md": "087e4363c0f3513728a7e695eeb9ead5c3ecd12a4681b59340691180e65b68fc",
+        "examples/company-newsletter.md": "30f81cfbdb03858a006169c72169024089c7c5d3d32611d337782da4f38c86b5",
+        "examples/faq-answers.md": "5ecd3356cd6666937f2ebefa753253edfdbdca15e368d07baf398bfcced72484",
+        "examples/general-comms.md": "4d3a4bb198a77626bcf018e96b2b45a2dbabed172d4ade0fcd70d23ae8a47a47"
+      },
+      "last_checked": "2026-03-01T06:56:40.877508+00:00",
+      "tree_shas": {
+        "examples/3p-updates.md": "5329bfbf3b47035946a3995dd63025799b582f8c",
+        "examples/company-newsletter.md": "4997a072b62ed7f65a9fd113903db3d9eba34b98",
+        "examples/faq-answers.md": "395262a860636434593cd3c3da258000231ea4f6",
+        "examples/general-comms.md": "0ea977018ca8167d39bfc9adb253f80336819578"
+      },
       "upstream_body_sha256": "8edcacd8ddd46f8d1e5bacd07d1f678cf1e0490cac97616ef4ce87dab7958b6a"
     },
+    "launch-strategy": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:59:09.355365+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "4c411fe5577b6ada1c85196fcca765a3ead07b7bffc58cfa0d2bafb07e7e52f6"
+    },
     "loom-transcript": {
-      "last_checked": "2026-02-26T12:04:02.163178+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:27.030068+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "c136046d350158edd2687767b842f929a8d282371b652cfadd58de8263101168"
     },
+    "marketing-ideas": {
+      "file_hashes": {
+        "references/ideas-by-category.md": "fac44ef0ea24a3035d85bd11096adef408497ea073ad156933f2d356d482dde2"
+      },
+      "last_checked": "2026-03-01T06:59:09.807018+00:00",
+      "tree_shas": {
+        "references/ideas-by-category.md": "3819a9c494c7d93cae3085e9fdb368b7577ebbdc"
+      },
+      "upstream_body_sha256": "275fc54cf950b6129c002e4fe416970557c588c641f929fecde7b1ac9eacb446"
+    },
+    "marketing-psychology": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:59:10.508569+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "f93033e3afccfaedc51b58d4afca1c9ed9d63a72e37360ece19571f265435af1"
+    },
     "mcp-builder": {
-      "last_checked": "2026-02-26T12:03:41.008360+00:00",
+      "file_hashes": {
+        "reference/evaluation.md": "8c99479f8a2d22a636c38e274537aac3610879e26f34e0709825077c4576f427",
+        "reference/mcp_best_practices.md": "80fb4369a349447cf18ecdd7494fe7938b6065377e9f08c077cec411093a3007",
+        "reference/node_mcp_server.md": "c3ba35a4f599dd53be9c6555ae72c19a7bf412cd5426576c2c08d42755482c66",
+        "reference/python_mcp_server.md": "2da52f77e675191014ca2e146a4b95aa04d0ca7dd7e2b100322df15ade685e80",
+        "scripts/connections.py": "9403668a2041568772082a8b334122c1f88daf0541fb393af4522d0094a47a6e",
+        "scripts/evaluation.py": "49ed1d17cdce5da101b210197740713f49b935c29d4f339542a14b132658e6f7",
+        "scripts/example_evaluation.xml": "9272b348ddcc4b06ba562367ccd0770e018158c0068ac5116d5e34aaeff8777a",
+        "scripts/requirements.txt": "d5d7558b2368ecea9dfeed7d1fbc71ee9e0750bebd1282faa527d528a344c3c7"
+      },
+      "last_checked": "2026-03-01T06:56:41.936822+00:00",
+      "tree_shas": {
+        "reference/evaluation.md": "87e9bb78840fac113d93b4a27ab5b229a18cf226",
+        "reference/mcp_best_practices.md": "b9d343cc3ae89b1fc139dae96bdb2b7e29ba3648",
+        "reference/node_mcp_server.md": "f6e5df982adc0848bf261c47ab8d65a1e0469391",
+        "reference/python_mcp_server.md": "cf7ec996d2e6e3655bc75ff6902738d03a37334e",
+        "scripts/connections.py": "ffcd0da3fbe1539320d022017ae83b61a9587a5c",
+        "scripts/evaluation.py": "41778569c45a458e0eea839b8917692ad65be2d5",
+        "scripts/example_evaluation.xml": "41e4459b5af861e61f1ca87d2f8f5ab5543dc054",
+        "scripts/requirements.txt": "e73e5d1e356edafadb9dc9243e6f300f2c5529b3"
+      },
       "upstream_body_sha256": "f166c687002f5d99349b576cd131fb9df140c9eeedaaef5a1d5c21fd00283510"
     },
     "mcporter": {
-      "last_checked": "2026-02-26T12:04:15.519873+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:30.687629+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "c63a2abf0502e25d887d16737e36d0fc9a2bf3b589686440f6cccb79eafdd5dc"
     },
     "meeting-notes": {
-      "last_checked": "2026-02-26T12:03:56.713967+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:22.793022+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "d5381258298097dc0607cf1cff8c3a211b31a8776f3a4af3b476cf8344190157"
     },
     "nano-banana-pro": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:16.518499+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "23247de9c4f102984f454fd12682d32aa6c823a85a6af803822d28007ef9a1f5"
     },
     "nano-pdf": {
-      "last_checked": "2026-02-26T12:04:17.434603+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:30.944166+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "61140a6e22ae3090cdd7886a8f1474a27a9f5fc4f9cb14bfdeaaa3961ca62c07"
     },
     "notion-api": {
-      "last_checked": "2026-02-26T12:04:18.271046+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:31.186819+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "aabccc85ebaa05f079fbc4fa9ca71f7e15a16c743485782db5567012bf2f9dd6"
     },
     "obsidian-vault": {
-      "last_checked": "2026-02-26T12:04:19.153551+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:31.377452+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "33d5ad143d3ef1d55096a62d70c79f440fbd9f3dafb142a17221a284cbbe0de8"
     },
+    "onboarding-cro": {
+      "file_hashes": {
+        "references/experiments.md": "b4caad0b50ca9483a6a79846d0b24a7bab62850b45a3f2232d73f78629468932"
+      },
+      "last_checked": "2026-03-01T06:59:11.028415+00:00",
+      "tree_shas": {
+        "references/experiments.md": "5878ae71df61e44056419370b74e4f9b7b897546"
+      },
+      "upstream_body_sha256": "ba2fc348ed3941eee241455174bba83d7ddbee68a039b414d47e31ce86ffce0b"
+    },
     "openai-image-gen": {
-      "last_checked": "2026-02-26T12:04:20.035733+00:00",
+      "file_hashes": {
+        "scripts/gen.py": "6492aadf17ed455f20bdc889363210a56f55cce63868889e3c2e79ea3e4817d0",
+        "scripts/test_gen.py": "5a055c1360245d9c5f57ae77316a4129458265c9067503adc398612dbdfef678"
+      },
+      "last_checked": "2026-03-01T06:57:31.596852+00:00",
+      "tree_shas": {
+        "scripts/gen.py": "4043f1a8ed7326db0a3fa4056f7482515b48188b",
+        "scripts/test_gen.py": "3f0a38d978f322137fd6b7bc2f8ef8b04fc206a6"
+      },
       "upstream_body_sha256": "4d59bc82e7822c408314da505fef8c5e232fc776fc9524d552641122f39ceb1f"
     },
     "openai-whisper-api": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:20.855225+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "1f5113077faa853693867e15edc814175ca49fc49260f89db24ebfbc2f98fcbc"
     },
     "openai-whisper-local": {
-      "last_checked": "2026-02-26T12:04:21.737918+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:32.265181+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "8907e927affa8e8bcc53b9c152b0a3ace4f2bf4ec2dbac9515ed45cdc699fd4a"
     },
     "openhue": {
-      "last_checked": "2026-02-26T12:04:22.567707+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:32.502156+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "576611a15bf84657c89b3105b593e2264090de5375da0f22a30f22c14ba13b0f"
     },
     "oracle-cli": {
-      "last_checked": "2026-02-26T12:04:23.543168+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:32.717708+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "479e385f6a08f811b97a9519b6efc7f31a6f48c6ae66dcb3bc0f05134bdf0c94"
     },
     "ordercli": {
-      "last_checked": "2026-02-26T12:04:24.551467+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:32.950796+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "dc9a576672194a8a1ef15ec2ca72e3c148454afa480b072bc905f3ed86ca2316"
     },
+    "page-cro": {
+      "file_hashes": {
+        "references/experiments.md": "bbcc356c0af36cfaa4556bf9e929deac30c65cafb37f909d7c51d4777fe254ca"
+      },
+      "last_checked": "2026-03-01T06:59:11.664778+00:00",
+      "tree_shas": {
+        "references/experiments.md": "abc31c716ec966c9c6c9a12ca3e8b076ce3ea320"
+      },
+      "upstream_body_sha256": "32594fd9cb28bc0e15075873f0150eca1999deba957cb1e770d9d3212c816673"
+    },
+    "paid-ads": {
+      "file_hashes": {
+        "references/ad-copy-templates.md": "853ab37e23b75aa3355bdbed9a1357948e635dbdf737be5a1a7aa0126d701206",
+        "references/audience-targeting.md": "21ed7c99fb1124ca38635d6f313cc2f3ca49a192f390cd55293b7bd5a028e1b1",
+        "references/platform-setup-checklists.md": "b86e206f8c7233c235d7d385a69e17fac16ac001ab130242b7700fe650752f69"
+      },
+      "last_checked": "2026-03-01T06:59:12.377722+00:00",
+      "tree_shas": {
+        "references/ad-copy-templates.md": "048184066833f76ea00a272e913203281fb17988",
+        "references/audience-targeting.md": "00dc42bb38c0b1de5b1be00e2bb4ee8d6adf7c19",
+        "references/platform-setup-checklists.md": "5e663a5e990af6b2e7b9c545e4776d3f4c5feaa5"
+      },
+      "upstream_body_sha256": "73672d1bbec0cea566f678d18b2aa8d9376b576a9b72334a018a56ac9d17629a"
+    },
+    "paywall-upgrade-cro": {
+      "file_hashes": {
+        "references/experiments.md": "5a5760e23c4809ddbc123905e0073ebca2653e7edad29482db810b825d62bd19"
+      },
+      "last_checked": "2026-03-01T06:59:13.484853+00:00",
+      "tree_shas": {
+        "references/experiments.md": "3de1628510df87d196b32e54a2eb76be925ed6ec"
+      },
+      "upstream_body_sha256": "e73b9ce5b8b9a72c78d28ff6b78e49e498623dbaa665729433b93ec079f51348"
+    },
+    "popup-cro": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:59:14.204562+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "83a27631c7910028e8a84ab4044f02cb034e78028a020c33ba1adc23b0a66819"
+    },
+    "pricing-strategy": {
+      "file_hashes": {
+        "references/research-methods.md": "b6aab09860dbab2f11d69cc9c179cc7f6e1a100ede28e5c49b59070a2caaeb15",
+        "references/tier-structure.md": "b59910d37cceb74484f28b065963daa60f5c4fb1ffc36a0584d0f3cad11f3e30"
+      },
+      "last_checked": "2026-03-01T06:59:14.690187+00:00",
+      "tree_shas": {
+        "references/research-methods.md": "bda4e041ba2fee86d5b4de0ead585aa3d9772c8d",
+        "references/tier-structure.md": "35a6d5375b408b8bfe46586380a88dda1c6fdfbf"
+      },
+      "upstream_body_sha256": "8f2ed931bed96f130dd64656a7541ff5fdceaaad903b7ec33e426244f73cb662"
+    },
+    "product-marketing-context": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:59:15.676013+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "7c58436236e43c9c041aa816ab19ed2d66f2956c4f78602b1295a4b62c66cb43"
+    },
+    "programmatic-seo": {
+      "file_hashes": {
+        "references/playbooks.md": "b2edf9b9434729630f746fec2f228e50aa5b6fe1bf753e0d4d46ecf8a3137274"
+      },
+      "last_checked": "2026-03-01T06:59:16.167997+00:00",
+      "tree_shas": {
+        "references/playbooks.md": "35c354c6b7826ae9b57331c7204617ee6a3bbe49"
+      },
+      "upstream_body_sha256": "3912f58d6b7cc63d23d476b4c36c2bd1a282dbfdfb771bed587979cb3d725de8"
+    },
     "project-planner": {
-      "last_checked": "2026-02-26T12:03:57.640246+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:23.022466+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "61d7062e21315a0a2db1cd3e43f89e95019d0ba0d963d2c7ecf6c5fa3e67d976"
     },
     "python-expert": {
-      "last_checked": "2026-02-26T12:03:58.515755+00:00",
+      "file_hashes": {
+        "AGENTS.md": "014a6e33d91a0645a9862723feb11d10f080ae2226ea87ec8f685291eb549cfc"
+      },
+      "last_checked": "2026-03-01T06:57:23.263013+00:00",
+      "tree_shas": {
+        "AGENTS.md": "d3a34893edcabaa13a827f93def890f675dd230a"
+      },
       "upstream_body_sha256": "6a141f691213430f33803c09b284e20f710ecc750aeb772c1abb7455a8448671"
     },
+    "react-best-practices": {
+      "file_hashes": {
+        "AGENTS.md": "be5257266331a38b025243e813b6dfe2b50659a9b7990a3556c1110cfc9d5e91",
+        "README.md": "9eafb2123d3b8b2aef41fba0db2648a3f4f49996f8c7c8bb2c86263befd8b48a",
+        "metadata.json": "c4e18bac3290fbe1b471a605867d4df68b03144ea26b8befdbe8f9d8fd124354",
+        "rules/_sections.md": "01c59969e4e867f0708c8f8ef9c6d87fab9a07d0586244f429ff84013db8a115",
+        "rules/_template.md": "99df2a3ea088c6c22de2484ddc7e964d0e9923846f44c63380343ecc64455442",
+        "rules/advanced-event-handler-refs.md": "a3097edeecfb2ff6851cd66ed8cdf0617c3c88180504bee824aa6e75a215bbbc",
+        "rules/advanced-init-once.md": "3e4dc22173eb0e2b6dcf583e3babd862b8696328f8f59aee7c4d746c5bc05f6c",
+        "rules/advanced-use-latest.md": "8a3f64dfe5a77d1564248faf17fe662ae75b55d497a243cb30b38eb07ccbbf9a",
+        "rules/async-api-routes.md": "523338540d73427dc14c0cbb19f2741ebccdf8b105a7b2c1b33d2905cf237a42",
+        "rules/async-defer-await.md": "9b9166c7fc58b436cf039ac4e36dd0d3c4f762b61111f579d93cdb9f2ab2b6f9",
+        "rules/async-dependencies.md": "16ef469f877e30c6b8e1e1b4bc3e527312fa3c6318cb785a4eca186ea236131a",
+        "rules/async-parallel.md": "6d2f841896279e976dfcdc1ac89e70771ac188baadfd43c096b5706cb838b961",
+        "rules/async-suspense-boundaries.md": "de05fedac2eb7ae563b887b5a424464ec3dfaf84e5b7797467ebe2a796ac8afc",
+        "rules/bundle-barrel-imports.md": "9e61a5d579a8a7d55194c2e110414d7ee2d8da947ba187d444daa1e54d265f0f",
+        "rules/bundle-conditional.md": "09c8259c3efb04fc0abb8e412ccbda217c222ae8118516283e571c995fe3a7d4",
+        "rules/bundle-defer-third-party.md": "3719fb47b191e8db4fe22686ec88448ad5af9e6838585425abbe103d0b642e37",
+        "rules/bundle-dynamic-imports.md": "401817a7369f315fc5a68a1095742ff7d53d0461906880dc9d64a41495ee1986",
+        "rules/bundle-preload.md": "d1f7cc28da7cd5ab249acd287edc5b761afcfb194e9cb62cd44c5f3543db2de2",
+        "rules/client-event-listeners.md": "242a873349febc1ce685e85617994784dbab92c2eaa68aed7fed5a83e7680e93",
+        "rules/client-localstorage-schema.md": "0fb7cdf9dc93fdf22f87e3669f953fb9d4ac9b0be42eec4a29fe9a2560610b88",
+        "rules/client-passive-event-listeners.md": "1f35016f9053de69e884ee9be00654e37979c2ca85f5e57764dc2626ff7acb4b",
+        "rules/client-swr-dedup.md": "644652c39c6cc00de8d1c77a7273612e868dc3f7edda30764164c12ec0f764a3",
+        "rules/js-batch-dom-css.md": "480b891b9eaf96e929dc1e964274a4828e3a78009b7d00ccd965a0d425215959",
+        "rules/js-cache-function-results.md": "3daaa11d24f4295cb6be8bc6f407f2ce83cc7b5bd1f0e68891ea8ab835721dc7",
+        "rules/js-cache-property-access.md": "73e47431e74878a927061bf0ddc7cd91a7556cb35d2573f3421e82300d9ae311",
+        "rules/js-cache-storage.md": "11b826b0433898c1ece2d3547010d8e77db9fb240185748c45db91493de9b6cc",
+        "rules/js-combine-iterations.md": "71add08aeeb43091d4ff4c0b2842cce8b4bdef8ad3e732cc034bb5a84827e746",
+        "rules/js-early-exit.md": "925ce5ce87f3347186ca62212f29cc6baa2b8c85a96d2720ad07c3d0abf781c0",
+        "rules/js-hoist-regexp.md": "f9e9aef2f7c2307dd7310f283df85dcada45fc43e9bb941b0c3aa414dec21ec4",
+        "rules/js-index-maps.md": "5df1bdc2cfabb2c98abd55d26762e5c18189535c2e686184f426082e62920391",
+        "rules/js-length-check-first.md": "8b54a311c826b299272f29187fc58bc55772a04c4a72eeb29456ee96dc9fc624",
+        "rules/js-min-max-loop.md": "87dfb67e2f39df6ad8bcfb5b78c5fb364d3c07554ad188a202408d99f3763421",
+        "rules/js-set-map-lookups.md": "a7fd781a6ba9ad49065961b6f9a90ef486bf6b648390e1a08704025f98e1642b",
+        "rules/js-tosorted-immutable.md": "d0a5e1b0fec48a0a81397957e2f068e224329f7c42cb5feeed8aae6fa64025e8",
+        "rules/rendering-activity.md": "1e5e7eaf3555e61d6a2e900089c676527d26259501db5594f59544b6c664f85a",
+        "rules/rendering-animate-svg-wrapper.md": "9c6ae0ca7a51434e803887c64cded760956579a1452ccb80a461a03f9c937c77",
+        "rules/rendering-conditional-render.md": "2ec2fa23c4148285144687050c52369adba3da2fbe3d486f8d3e0aad8f06f2bc",
+        "rules/rendering-content-visibility.md": "64eee6d5b916fe74df33363994b27fc7f71bea3bcedc7ee04bda23107ca3e6e4",
+        "rules/rendering-hoist-jsx.md": "93b229560fae92005ed9a2a829064607b39b2e984e92d221d05b2d41df2b7c0e",
+        "rules/rendering-hydration-no-flicker.md": "dc7ab358c67c177bca6e6f360fbc935ebe4efa928c0ba3ebd3f9f3d9e2000ca3",
+        "rules/rendering-hydration-suppress-warning.md": "915bacb934e2927d84b37a3f3d225a47b309ac8f9e494ed2bcb66ce07c5676a2",
+        "rules/rendering-svg-precision.md": "ed468533f6e95f622859c884b122cf21f9f593ed6bb3d500a54de4b9f9bcb9fb",
+        "rules/rendering-usetransition-loading.md": "3a1249c3f13026b6f54ab5712c388df219d6af01b12aa542749acd99a46f4bc1",
+        "rules/rerender-defer-reads.md": "234050a77faf50cb306be10a9e15bd4421134ab5907e75f13e6d78e2bd262dc9",
+        "rules/rerender-dependencies.md": "17eb5830956fb56486fd3cfc7431f5849d39751730c05ad9e77dd4f0c27169c5",
+        "rules/rerender-derived-state-no-effect.md": "cb11ec76f50aa7b6847269f02d79b120c889a30d9ecd2c1d578f75144419c77a",
+        "rules/rerender-derived-state.md": "1c326bb67b01fb084eb00c8911b0a7cff54681c2315b629f88e49b64eaa6481d",
+        "rules/rerender-functional-setstate.md": "5e68df6b2ae8058e67f476ff1ac67bde159f5a9d18df439e46eabcdeb7b52e58",
+        "rules/rerender-lazy-state-init.md": "4ae844740f266fc8cbf050701230286624a2440ec5be67b9a63d9edc3c580573",
+        "rules/rerender-memo-with-default-value.md": "81c47476564ad8a79fc68fc442734255ca7d6829424359464503fda0a9f9a0dd",
+        "rules/rerender-memo.md": "1f258990c2f27ff6256b3cc5c43300631bb3f0d81f749aed08d07fcdcc131dd1",
+        "rules/rerender-move-effect-to-event.md": "abc2cbf167bee056743023351e96806a411d3398da8802093620aecf0721f029",
+        "rules/rerender-simple-expression-in-memo.md": "5bdcf2d1558ba5204e643c887b7b4060f89630969425651eb68e96427d97f800",
+        "rules/rerender-transitions.md": "60f4033909a62df5e5b8c601494f9e50a562e2f8c1c2d81eac24f38142265f1c",
+        "rules/rerender-use-ref-transient-values.md": "f1a649af9d1d0b5c762f6c9c4c1c70c90d7df82aa10296ee87aadb78c1b76c54",
+        "rules/server-after-nonblocking.md": "d0b8d24a3db9f0f65f9e2bddbf230b0e03a5f60e1229d93a4a18f5e7a991c7c2",
+        "rules/server-auth-actions.md": "a2ca8aa102839251c7971ec784560fab943c20b36fe6f80365d4110c13260c23",
+        "rules/server-cache-lru.md": "1924b64561841923b88a657085097a0aeba3e0ba2d5470b9f5c15cc10d6ae70f",
+        "rules/server-cache-react.md": "fddeea6c870bb3da4134b61d54b7d09b83d2603f929b7547cd3dc1dc269edd5c",
+        "rules/server-dedup-props.md": "c2747424cdac46be62f835f245a0aa887b0090b416d28e2ac8676702645eeb37",
+        "rules/server-parallel-fetching.md": "569a2e9fc04f9606686cd75c5894ef8781b502786a7fffe241396846c7733472",
+        "rules/server-serialization.md": "f4c7d68b29c82381baad059c4a7f09e868e71ec9c3115a26ad3ae7d24c0dfe1f"
+      },
+      "last_checked": "2026-03-01T06:57:40.320730+00:00",
+      "tree_shas": {
+        "AGENTS.md": "db951abe78a833270dc3292fdaaef15d03b6b1c1",
+        "README.md": "f283e1c0c21c5b13c848452528c3949ff544846c",
+        "metadata.json": "3bec38b176cc71d105895ec4678bbe79305dcb4c",
+        "rules/_sections.md": "4d20c144bc3b9265fc5976c704a8dd60ed3a806a",
+        "rules/_template.md": "1e9e70703485021e0b969f5731f38c8b9f8694db",
+        "rules/advanced-event-handler-refs.md": "97e7ade243aa6dae50d6faa5111dea0d04778ead",
+        "rules/advanced-init-once.md": "73ee38e5e74c0afa28cb730afe3275479432092a",
+        "rules/advanced-use-latest.md": "9c7cb501693d4a9521697f13dbd5906dd99f0257",
+        "rules/async-api-routes.md": "6feda1ef0ac06b57b33c7b5bd6a19ca88d6c8a34",
+        "rules/async-defer-await.md": "ea7082a3623e3d6439111d86c89b064f22b64447",
+        "rules/async-dependencies.md": "0484ebab993f3db78277e8731872473d02475e6d",
+        "rules/async-parallel.md": "64133f6c31fec81eaaabd712586337d20122e09f",
+        "rules/async-suspense-boundaries.md": "1fbc05b04ed2474637b12014a77688750e78f931",
+        "rules/bundle-barrel-imports.md": "ee48f3273c8631f41dda416ce12cd65fb47e2c1d",
+        "rules/bundle-conditional.md": "99d6fc90e31d683d2b6b71353b92d620b484b644",
+        "rules/bundle-defer-third-party.md": "db041d1510e51defeade05926ba4e6bbad1068b5",
+        "rules/bundle-dynamic-imports.md": "60b62695e7a080e2020ff2242d8d841c5e3ecbc4",
+        "rules/bundle-preload.md": "7000504065472628ae614786a3faadd23b0435a7",
+        "rules/client-event-listeners.md": "aad4ae91605d715aad8e92b76bd7fb85c91d7cdf",
+        "rules/client-localstorage-schema.md": "d30a1a7d4f85b0d50a0808eaa1b382c6deb595f4",
+        "rules/client-passive-event-listeners.md": "ce39a889efb4452ec4c044555ff818301dcf7ece",
+        "rules/client-swr-dedup.md": "2a430f27fd6abdc1b1b2f809b7a60114ff506790",
+        "rules/js-batch-dom-css.md": "a62d84ed8149b6d4f173debc7043af03f8f8dd06",
+        "rules/js-cache-function-results.md": "180f8ac8fffd7e6ee320242d59d06565d40a12f8",
+        "rules/js-cache-property-access.md": "39eec9061b4ca820150cc8183fb73f9e0c91ce85",
+        "rules/js-cache-storage.md": "aa4a30c08176aabd27b41fa44d5c1981457b675f",
+        "rules/js-combine-iterations.md": "044d017ec3b24b53e46d638acd1d936a22ac6323",
+        "rules/js-early-exit.md": "f46cb89c6cbe06e481aba0136848e3b17263ba96",
+        "rules/js-hoist-regexp.md": "dae3fefdc0a1db66badcd4875489715edcdb038b",
+        "rules/js-index-maps.md": "9d357a00b15ac67cdd638886f5197a13173a637d",
+        "rules/js-length-check-first.md": "8b89573630fdc3aa10564273f390ecc7e2b1cd3e",
+        "rules/js-min-max-loop.md": "4b6656e96aecf3ae6ade52974090ae8b3e3f2bb5",
+        "rules/js-set-map-lookups.md": "680a4892ee291c432bf8e769a44d0f1eb102b74b",
+        "rules/js-tosorted-immutable.md": "eae8b3f8aed2c7a893ceaae4cab55fa1c444b309",
+        "rules/rendering-activity.md": "c957a490b7c2688542766150741e85e066539251",
+        "rules/rendering-animate-svg-wrapper.md": "646744cbe53b213c6fa5ead54ef107510e5be89d",
+        "rules/rendering-conditional-render.md": "7e866f5852dac80e0822e7f7c33476f5c9fc22f1",
+        "rules/rendering-content-visibility.md": "aa6656362b2c0dad9ffea788b5850843d6c0629e",
+        "rules/rendering-hoist-jsx.md": "32d2f3fcea53dadcf847231ee20c60fa2c5c3049",
+        "rules/rendering-hydration-no-flicker.md": "5cf0e79b69afd7564b965c09435a2c7ee79eb2bd",
+        "rules/rendering-hydration-suppress-warning.md": "24ba2513a29f5259b3184695d2d4da25e03e42ac",
+        "rules/rendering-svg-precision.md": "6d7712860365294936a1b736d29d3eb970b91da7",
+        "rules/rendering-usetransition-loading.md": "0c1b0b98e884d2c77bdec66df754693bd48c7777",
+        "rules/rerender-defer-reads.md": "e867c95f02fe6ed6ac2f91fdf1c0922304e0423a",
+        "rules/rerender-dependencies.md": "47a4d92685702e3a3b07073c62a61800fa0a6d7d",
+        "rules/rerender-derived-state-no-effect.md": "3d9fe4050794ea6655add6bee50cfbc104e5dc31",
+        "rules/rerender-derived-state.md": "e5c899f6c073338bbd1b73c0275bc3e5e7d9ae7b",
+        "rules/rerender-functional-setstate.md": "b004ef45e347503947fee397b6c3d163b0a317fb",
+        "rules/rerender-lazy-state-init.md": "4ecb350fbadff3db805b72429276e672d42736dc",
+        "rules/rerender-memo-with-default-value.md": "63570491848cb42c2bc7073bceb754893a6a4cfa",
+        "rules/rerender-memo.md": "f8982ab612105a3b7faee1292b797338e7fb5271",
+        "rules/rerender-move-effect-to-event.md": "dd58a1af091b3cf5cb271d25904af4feb836d1aa",
+        "rules/rerender-simple-expression-in-memo.md": "59dfab0f3b048097627e0ca6e4c8da36629a5268",
+        "rules/rerender-transitions.md": "d99f43f764232e994a49a1df89ec9d624552f439",
+        "rules/rerender-use-ref-transient-values.md": "cf04b81f8a531eacd07a32e8917fb3ed3c1bbecb",
+        "rules/server-after-nonblocking.md": "e8f5b260f5fc6d58141bc61e0a091569adb81e7e",
+        "rules/server-auth-actions.md": "ee82c0442bc69ffae7bf20c07709d57893da1123",
+        "rules/server-cache-lru.md": "ef6938aa53c55dc3c0035bd6c66838810d870260",
+        "rules/server-cache-react.md": "87c9ca33168a321a59fbaaa84843e2f48c99751a",
+        "rules/server-dedup-props.md": "fb24a2562c73fadbb9a11a79897c2cf93ea3c69a",
+        "rules/server-parallel-fetching.md": "1affc835a601a894fd02de08e6c9cdfd76d34b64",
+        "rules/server-serialization.md": "39c5c4164c31be7f171ea2f4b3b32fe47709a651"
+      },
+      "upstream_body_sha256": "6994ebd6d3c20839c3ae02ba546d2d683675e157940180130a9ebaf84b6067b0"
+    },
+    "react-native-skills": {
+      "file_hashes": {
+        "AGENTS.md": "72996343b8260800fbeb9af63ddaed91f14b65dc547e0922f9f8e9bd72076cbf",
+        "README.md": "d60d7623005a833b928be6a109ed9d14dea43d7217fb534e8f2e4de5fc1f0ddf",
+        "metadata.json": "59ee2274cadbd95b2220727028f0dbc26d3e0251e7937226edc9e7640756ba21",
+        "rules/_sections.md": "21d7445e92bd7d393b420118c3fb9ebbf30aaf123a15143afb6c0b1b562cfdfd",
+        "rules/_template.md": "99df2a3ea088c6c22de2484ddc7e964d0e9923846f44c63380343ecc64455442",
+        "rules/animation-derived-value.md": "689228e9d59227934f296563963951aa9368be0afb2a188f650de161203b1862",
+        "rules/animation-gesture-detector-press.md": "69408d4be669e74689d865c5f50a22fc3a802d521fe493371761abd20526e58e",
+        "rules/animation-gpu-properties.md": "f885e4179445da27cbc225e0a4aa3ed9016fc3507ca6f864392ba7a9d0bd7516",
+        "rules/design-system-compound-components.md": "dcb10900a58fcf57cca2e27c062d02df2325a7949e08fb45e9e05cc2b132b1a6",
+        "rules/fonts-config-plugin.md": "b92568774064a604e7a479d4c8d7263aed5609740e9161d2f2764bfff761905d",
+        "rules/imports-design-system-folder.md": "aa6337f7f2869a46a9141ec65e02c3da5c3bf051023899b82e0f0aef5bff8423",
+        "rules/js-hoist-intl.md": "b4b08622465ffcd5e5961878eb8c6d7359aa242d16c990b59941c9111962fe46",
+        "rules/list-performance-callbacks.md": "db800e9dfe0080eb4954b96e2a362ee8344d08e08b1ed06bc8059450f3e6f0dd",
+        "rules/list-performance-function-references.md": "b54470e41d578b207ee3223f6853efb7fbf8e5f83d9aecf8da16989072f99544",
+        "rules/list-performance-images.md": "e88f16ac113c29230d674b7aa2c66c31d5772a74b1ea378d48a97b1143fe6c19",
+        "rules/list-performance-inline-objects.md": "e2a80aac0f29c6abaf0163c1cc273d09cc8a0030ec077ca2022bbf5c309e4625",
+        "rules/list-performance-item-expensive.md": "a68cc8ec5dba3c55761bd5df9dfd3d98485f63076868d3e03af15f1e58907ce3",
+        "rules/list-performance-item-memo.md": "38ec1d149ee485434d11c2b9e2101dfc914afadae4a0738ca905f26b05f708c1",
+        "rules/list-performance-item-types.md": "eed225f4e9e504bfa7db01f5395d1402545cc47de8adf1829a9408cd5d158cf6",
+        "rules/list-performance-virtualize.md": "98cad308118acb4d6e8e975c0168ce56e2d48ca52ed47f23bc9a30667c066ada",
+        "rules/monorepo-native-deps-in-app.md": "8368b109027fcec1b8a81bfb99718aef2b64edaba77107f73d7c465cc5a14217",
+        "rules/monorepo-single-dependency-versions.md": "61c01b9eaab1e319bf078204231fb573bdfea3c43a6eb99e7ef73ee95d474ccc",
+        "rules/navigation-native-navigators.md": "6642dedb57e72f0b56df5fbc3d5b8aaa91fc4456932c12712cfd076d393f32c6",
+        "rules/react-compiler-destructure-functions.md": "8048926a4fa3fbd28fc0ecf4ba4c383a2f0ed06c2fd7330dd4a15d7f4e548044",
+        "rules/react-compiler-reanimated-shared-values.md": "3174303a72b6849ff0eda5cd9f9650f26baa5f31ed28d35a75076af714fb2ffc",
+        "rules/react-state-dispatcher.md": "7ec5b653e3ff8d9ca97d8d66981cce5590c0e49fa79ab708fd6324542b588870",
+        "rules/react-state-fallback.md": "eb76e386d71680bfdfc0ab64dba1221f4d3d0fdcb4980bb4a871381d58e9e58b",
+        "rules/react-state-minimize.md": "31b989de61defda1c61d8578c4700efd64a427218c3f3dbb7062a1666e1cbe43",
+        "rules/rendering-no-falsy-and.md": "7300fa45ac3a4968db144727a21052421bc62de9b5e9f6f59e28bd16d2fff001",
+        "rules/rendering-text-in-text-component.md": "fc67897b6126b6b5574f4d284a6c5b2282528fe89de8ec08e6cfd2a86ab5b235",
+        "rules/scroll-position-no-state.md": "70aa1ee679e755556d7b01b326431fe898d3c23ddba40d0da6bdac23c87a1525",
+        "rules/state-ground-truth.md": "9f3efc73d2e66a5deb3199c9774f42524cd6a0f69784af38301946be5d747cb5",
+        "rules/ui-expo-image.md": "c3c13cce3dd2cc7f8a9b4861e5743af98f62e28f5699f72f492e79a335cfae55",
+        "rules/ui-image-gallery.md": "b34d1ba03710ed9622187716541ae618968e7d03bc28895c2ac918d3cc5853f1",
+        "rules/ui-measure-views.md": "170d058abc4900ea9e851e54f5e8b437ffffc2c9d3847ae35e30a515c8990c3d",
+        "rules/ui-menus.md": "5964adbecfe9aeb28d736a4eaacec6469a1c4ca3f48779d243eb38b6d181cfe9",
+        "rules/ui-native-modals.md": "d803493b3046ad31cbb2c189f1fffb948fd0055050e3c322589bd548421e23a8",
+        "rules/ui-pressable.md": "52cdbad127d713d7d32c59ef74ab1bbd6dca211edc9b25993453f7f4545e79fa",
+        "rules/ui-safe-area-scroll.md": "3dd776caef2344d73529010940b50042861d06d31a192122a4df64bc06aed0e8",
+        "rules/ui-scrollview-content-inset.md": "89e4bbe5e9a602660f4155e9d4c0dee09db1adf21c73f47213cd67ec896e5a13",
+        "rules/ui-styling.md": "cdef4d8b1a097b844e5992ab78e66a2dc604faf1e90f8d325a0eb116e8ef6a7e"
+      },
+      "last_checked": "2026-03-01T06:57:58.537770+00:00",
+      "tree_shas": {
+        "AGENTS.md": "d263eb9c111002248ec8b1539dbcd7ba7b6fddde",
+        "README.md": "854db9f525c3427060b4ecefd266f00beca94eac",
+        "metadata.json": "600eb5bc73d42a337a1d7aa3a59c654fee7b3278",
+        "rules/_sections.md": "0519cf2325eec35f2f56611204d9ee35aa2a9782",
+        "rules/_template.md": "1e9e70703485021e0b969f5731f38c8b9f8694db",
+        "rules/animation-derived-value.md": "310928a957b841fc5af335e984a4df6c1a6b3f3a",
+        "rules/animation-gesture-detector-press.md": "87c67827054bbb0a41d7e4ad78adf3612accb6bf",
+        "rules/animation-gpu-properties.md": "5fda09558e89b2d6021bbbe5a2731fd26d16b1f3",
+        "rules/design-system-compound-components.md": "d8239ee1fbb95d52b5b57a1d699199b1f4758e8c",
+        "rules/fonts-config-plugin.md": "39aa01477af69b372e7e6251831430da1c3203f9",
+        "rules/imports-design-system-folder.md": "8466dcb2544dad65639d29e5921a6be00ea1ac2c",
+        "rules/js-hoist-intl.md": "9af1c354c3e5e8836883c1a79a533fa5e72d4958",
+        "rules/list-performance-callbacks.md": "a0b3913ff3b88e92bd0a91b555f8c96732b2b953",
+        "rules/list-performance-function-references.md": "9721929b28b8115e8fa24ff8a6f82a6b1ec94d6e",
+        "rules/list-performance-images.md": "75a3bafc83f65e0e14af3b7cc5786ea40b0d34b4",
+        "rules/list-performance-inline-objects.md": "d5b6514a6658917468399803b16cb61b17459af7",
+        "rules/list-performance-item-expensive.md": "f617a76d4e525cde99b937a8e0e163dfe0ef52b0",
+        "rules/list-performance-item-memo.md": "634935e8ed0e6bd10014450c91b8a97187cbeda1",
+        "rules/list-performance-item-types.md": "1027e4e6cd982476271d12507c329653ec793484",
+        "rules/list-performance-virtualize.md": "8a393ba1eef972f72a00a67c6b0a23c09c688639",
+        "rules/monorepo-native-deps-in-app.md": "ff85d76735d89e4cdfa89afd75759020780c5d5f",
+        "rules/monorepo-single-dependency-versions.md": "1087dfa511e9837f14b71f49d1c3d2018d6cfdc1",
+        "rules/navigation-native-navigators.md": "035c5fd37ce16afc0613405bd1f0b8ad0cc8b1ce",
+        "rules/react-compiler-destructure-functions.md": "f76c25ac6f8c48c8436f0ccee1359a649a33b48f",
+        "rules/react-compiler-reanimated-shared-values.md": "0dcbaf47a6abeb72da8673f99b45d2e8b609412b",
+        "rules/react-state-dispatcher.md": "93e8b6db6112936ad57e6506f56eeef0725336c1",
+        "rules/react-state-fallback.md": "204f34665f206a734cb2d0de17a7179f3793dc89",
+        "rules/react-state-minimize.md": "64605b6c382e407f244d2db8b72bb3105ebae87b",
+        "rules/rendering-no-falsy-and.md": "30f05d3f8bea95379273799a21f0a1990a6e6511",
+        "rules/rendering-text-in-text-component.md": "fd1b9f407014c783f3e59a5f3e5bf72979d62547",
+        "rules/scroll-position-no-state.md": "a5760cd2892a9985aeeed93abf719be5dc4efa88",
+        "rules/state-ground-truth.md": "c3c4bd9e497bcec63c303ec1cf2d0ff34e5a39cb",
+        "rules/ui-expo-image.md": "72d768f1bf89d998e93611724e3608f48eb6b3a1",
+        "rules/ui-image-gallery.md": "ef26d962f376c8c3fe052d578e143932fdd96a58",
+        "rules/ui-measure-views.md": "8b783fee314ec7a4152cf49e0febcbdd78411e2c",
+        "rules/ui-menus.md": "5168bc2037ca1fd1e1312abd4a2b77fec8eb5264",
+        "rules/ui-native-modals.md": "f560e11e12e703a46517ff87d371a43e56230a81",
+        "rules/ui-pressable.md": "31c3d204274292e244466bae9f425064263ae80a",
+        "rules/ui-safe-area-scroll.md": "79812bc9ce35eaad4c965103d0d87b7230084ca8",
+        "rules/ui-scrollview-content-inset.md": "bbebc3b81c22ded13447efe5876c8c3408b4eb02",
+        "rules/ui-styling.md": "3908de3c4bbd03ce2f024917a2d82f9c03517100"
+      },
+      "upstream_body_sha256": "73b35ff59755a1b0778ab23b13516ef1cd15483ca277f521f272f664cd53821e"
+    },
+    "referral-program": {
+      "file_hashes": {
+        "references/affiliate-programs.md": "691313b7c7157c1791759e046c08434219172fa5c3dc145a04ed8476c503fe0c",
+        "references/program-examples.md": "2baad60cdb251414ea559bd4dcf23d6c394ff66e593ae9392453f2e24f585c8a"
+      },
+      "last_checked": "2026-03-01T06:59:16.849547+00:00",
+      "tree_shas": {
+        "references/affiliate-programs.md": "9150ad483b742031260d576d79b4efcd634f797c",
+        "references/program-examples.md": "8d3f72cb88cd489d1c97a37008f5e97ae3ebde1b"
+      },
+      "upstream_body_sha256": "52606b0720d0893f933e86e6ac3a47db16960431b13a96687c3b49dd3448e761"
+    },
     "sag-tts": {
-      "last_checked": "2026-02-26T12:04:25.366416+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:33.213495+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "dfa493b79ed44057e762e1709003cbc842d146a64b77489f7a5e8aeff8642b5a"
     },
+    "schema-markup": {
+      "file_hashes": {
+        "references/schema-examples.md": "5d55c96ae9859a5fb84cb18828c4a96dcd468e7aeec667c88fdf9032558ab318"
+      },
+      "last_checked": "2026-03-01T06:59:17.703672+00:00",
+      "tree_shas": {
+        "references/schema-examples.md": "2987e9ecaa18e11fc769f86b8e0969453328aea7"
+      },
+      "upstream_body_sha256": "d0b27e01d9d0c70cceb60e234ee88f48b7e6d94bbd79786d587636fcb2d2dc32"
+    },
+    "seo-audit": {
+      "file_hashes": {
+        "references/ai-writing-detection.md": "f1e273f56ce7e2215ff218bf903680ddcec0fd026ab90c3ebfb3439ed0edfaa4"
+      },
+      "last_checked": "2026-03-01T06:59:18.448664+00:00",
+      "tree_shas": {
+        "references/ai-writing-detection.md": "cb67ece4135f4153575bbbdfbf722364babff61d"
+      },
+      "upstream_body_sha256": "3d2f088cca53fd6f71fdda0e75720af4e0b344d2e5a02c6edec396345df8d78b"
+    },
     "sherpa-onnx-tts": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:26.285533+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "26879cc20f462c989f010f7237f7b470f6f08c4eb714584545164dc9faf662a8"
     },
+    "signup-flow-cro": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:59:19.140234+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "8fc7c98c820e981d9f9ae21ab4550742007bbf1778e765a37af6514fd5e4a770"
+    },
     "skill-creator": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:03:42.121000+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "6de28fd07c28f7a2fe8ffd4118b028e44622ec2d42903db4e9e80525ab15ab01"
     },
     "slack-gif-creator": {
-      "last_checked": "2026-02-26T12:03:43.099862+00:00",
+      "file_hashes": {
+        "core/easing.py": "60bc943449802541f0f0881a874faa7ef408aaaf0b758fde756664ada7740452",
+        "core/frame_composer.py": "a127ea8f2a58893ea10a5c7b5cab4e2010af6515adc538676eb0cc14f5a03985",
+        "core/gif_builder.py": "b6f50d738c491ee0438a2e86e897f71cdab9792494ba4605f140befb0bddbf89",
+        "core/validators.py": "56bd19e3aae05f8387d78ec8185d6098b3dc909d1fa041211753da37212528a3",
+        "requirements.txt": "edc7108a0c6b56183566c71ee96830f6dc791e3b41952112d9cb56b33a6bd757"
+      },
+      "last_checked": "2026-03-01T06:56:44.104791+00:00",
+      "tree_shas": {
+        "core/easing.py": "772fa830235dac37ba995ee66778111f59c2ee31",
+        "core/frame_composer.py": "1afe434811bd4a8a1bdb4df7961147f2c9afd130",
+        "core/gif_builder.py": "5759f144fe3cef50f3dfd3b8911e612e80099cea",
+        "core/validators.py": "a6f5bdf28ddd0a9613f2e076e37d940e03ad997c",
+        "requirements.txt": "8bc4493e9163cb513d4be38ab9fe5c1ff763e0d7"
+      },
       "upstream_body_sha256": "c64cd4fe91b7da3338a29a72157018c8555c642ae3a077a2b462c9e3b177b73d"
     },
+    "social-content": {
+      "file_hashes": {
+        "references/platforms.md": "3c4e1b15717a3bcd4ed0cf29dc167dac28aa88bbf01723fde53815122396090f",
+        "references/post-templates.md": "db6525e51a690b61faf97a0acf51a2a57526de90da01c6bb37679d056c18c7f4",
+        "references/reverse-engineering.md": "c27bef59d463b3b11331c1770f4a23e9e6bbce7d7c8db1e7f7f4f14ba206243f"
+      },
+      "last_checked": "2026-03-01T06:59:19.612180+00:00",
+      "tree_shas": {
+        "references/platforms.md": "a559d693232ac59de5aec8e43eb7a74cc836fa35",
+        "references/post-templates.md": "a12859b50a014cecf8ca7f8cf79a5788a486ce42",
+        "references/reverse-engineering.md": "6d6b8f9d8a497fbefd9ab17f5a4d281c7035edf9"
+      },
+      "upstream_body_sha256": "eb5d558bf5dd1b06bebcfaa40b912ce65aab974627ab87fcea0ec6f6c6464f04"
+    },
     "songsee": {
-      "last_checked": "2026-02-26T12:04:27.138566+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:33.453228+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "41bc1447971ece801a3759991e97fc493b681ca1124455d2df9736d999a62a0e"
     },
     "sonoscli": {
-      "last_checked": "2026-02-26T12:04:28.048428+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:33.645406+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "6c5ed166aee95fa446f86fb5cd2b6a38b23541b5ad9ae4cf6bda5702284b4887"
     },
     "spotify-player": {
-      "last_checked": "2026-02-26T12:04:28.865012+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:33.870441+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "729cf2abc58fec53c885cb0442f69a7fe828aa83780faf3c5454f8bd8916e145"
     },
     "sprint-planner": {
-      "last_checked": "2026-02-26T12:03:59.426856+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:23.689375+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "6d07cae764b8d7d70ef9b19d6a5f08a02828ccd8d999e03c0eb346100d2f1912"
     },
     "strategy-advisor": {
-      "last_checked": "2026-02-26T12:04:00.413757+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:23.924983+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "24a98bfc5569ca50cd4efeee23615373e9c165ffc238641b398daf82390863a6"
     },
     "streamdown": {
-      "last_checked": "2026-02-26T12:04:36.329733+00:00",
+      "file_hashes": {
+        "assets/examples/basic-streaming.tsx": "a75f5b65b434d37d6643cb5568df366f16fd4d6e221c03d10e06658573fce583",
+        "assets/examples/custom-security.tsx": "6a35f76b4f47ed38be3d5040a76d69780f435870491fe30c5975ac120a339537",
+        "assets/examples/full-featured.tsx": "8f4ba2b424cd6f44ed4438b42f0e5a8484e31ec366aa84e2164c654b278b0b60",
+        "assets/examples/static-mode.tsx": "240de593ed0709b4fc9d8a1b9ee4e624b3309cfd8984e5209f68117ac680d22f",
+        "assets/examples/with-caret.tsx": "e6f3c9432d81bf07d053c7120b49abda5d2fed74c30c5bff0613be5bea832dc6",
+        "references/api.md": "0cbf881170faffdb94f5f24c9b09a8466025641edec0723218062bb0a9d91dd2",
+        "references/features.md": "a3005934f31ada7831dcdd9149f770807c6107ec1b2fcebc05625c52634904bf",
+        "references/plugins.md": "fb300d88559165bc0d521970b7e236c11860580b17f194fd70a76f098328175e",
+        "references/security.md": "a2256d7b65ffa898d9c846c9096d3137c33b34efc15fc14856fb7c8b1bd3706e",
+        "references/styling.md": "b94d2e00f94161fb883f5bbb235c0ebc9ab41b82f9003887131ed3f041957605"
+      },
+      "last_checked": "2026-03-01T06:58:08.949601+00:00",
+      "tree_shas": {
+        "assets/examples/basic-streaming.tsx": "e58aa175b11c24adf09b0e7606585a563991860f",
+        "assets/examples/custom-security.tsx": "ba06cad58e59cc52cfaad1c7342c84fcfc8c8225",
+        "assets/examples/full-featured.tsx": "55c7a96660b074b5a9fede53438285f654be5663",
+        "assets/examples/static-mode.tsx": "ee2efecbc5f32fae9d81dd74ebb6ee90761a4e08",
+        "assets/examples/with-caret.tsx": "cd6782d5f4065ec39a517be819a03cfa3122aec0",
+        "references/api.md": "bd897036b35ffe8053a2ff5cd0be73bb63815458",
+        "references/features.md": "99ee7b4712d9c0ab3ef1fc28bd346848aa7f9fd3",
+        "references/plugins.md": "7d542a7e5c6317460b46f9f0d8b2dbdd72ce7d22",
+        "references/security.md": "4e30981ee9b5589f2ee993a305b126e7851a1e58",
+        "references/styling.md": "671083ecb847486ed615fd72b09518f672a71b56"
+      },
       "upstream_body_sha256": "64049cd87815219ec66186be7f1b130a0bb5fe3e803853013fa70e2d218ce334"
     },
     "summarize-cli": {
-      "last_checked": "2026-02-26T12:04:29.726955+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:34.092134+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "d0081ccea96950d389b5c68e469ca351586ff9763005113273a9f5a97c25074c"
     },
     "theme-factory": {
-      "last_checked": "2026-02-26T12:03:44.012893+00:00",
+      "file_hashes": {
+        "theme-showcase.pdf": "3e126eca9fe99088051f7cb984c97cedb31c7d9e09ce0ba5d61bd01e70a0d253",
+        "themes/arctic-frost.md": "868a75a8fb5b2a61d0f0ab87c437fe632d3cbab6371c418f06aa2816ac109ae0",
+        "themes/botanical-garden.md": "222cb8e7496abc9b75b29453c809fb9839e7e4b01fa45deecdd896b38d087765",
+        "themes/desert-rose.md": "bd065b8629be3b64655183927e248e3d892a27b8d184b009cfba89c96102744f",
+        "themes/forest-canopy.md": "ecb722efa24688e808b5bf323c334ca2349e989cfddd72ce8400ce5d4c4bd3e7",
+        "themes/golden-hour.md": "3444a00df971d3c2f06b665e21a2e9eb5d7d7d6f6281f2758773b8345776a139",
+        "themes/midnight-galaxy.md": "0e134c4c0324df41e34ac314269aa6829cd378cf3c304b31858d0cd158d2f944",
+        "themes/modern-minimalist.md": "b8bc572b75948d4df69c401af703b9262ed6820a3ceb270da30a529e92763614",
+        "themes/ocean-depths.md": "a7ad8eec85341dbfcb2665da827a4b6a4baee08ab3335ac02421f18e6b46b2e2",
+        "themes/sunset-boulevard.md": "658af11ab04be4923692571081ffb42a428141ae537703117b9236d9f8ee22a3",
+        "themes/tech-innovation.md": "183648163026dd5eeba3df5effa335b55ba333c3ee1fe215278605e55f40a52a"
+      },
+      "last_checked": "2026-03-01T06:56:45.594169+00:00",
+      "tree_shas": {
+        "theme-showcase.pdf": "24495d145c95917aba3a3445f7105444b6f7cfcc",
+        "themes/arctic-frost.md": "e9f1eb0574e377ec8be59a71a1c206958f8b253e",
+        "themes/botanical-garden.md": "0c95bf7349c26996c7d43d6c0276a285287a9ffe",
+        "themes/desert-rose.md": "ea7c74eb80794fe15f870e12c5588b2a988f77a1",
+        "themes/forest-canopy.md": "90c2b26518d8d7ff1d58981def5e93e2eca01780",
+        "themes/golden-hour.md": "ed8fc256f4e9b2dfffd46e82fdc451c32f87dbb1",
+        "themes/midnight-galaxy.md": "97e1c5f380eba51cd8956ec96114629c6540b76e",
+        "themes/modern-minimalist.md": "6bd26a29beb09e663a1c049f5f8ec86189ae2db2",
+        "themes/ocean-depths.md": "b675126f53c49af7b6c3e00793a6d4773fb77af6",
+        "themes/sunset-boulevard.md": "df799a0cc0e61c9226e52725afb45a1c6388f242",
+        "themes/tech-innovation.md": "e029a435fb02647e6fd0b440618ae21f326d35e1"
+      },
       "upstream_body_sha256": "8e8e12cc41a1e566094985d04f7f4b8f7dad93619e4a1d161f915cce19e57926"
     },
     "things-mac-cli": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:30.682720+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "a101ff5b5daa53d0b670637241cd925c63dd61522b6eb4ff673bd31294906aaa"
     },
     "tmux-controller": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:31.651157+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "c2cdad82f3936d82b0de21fee993b0b46c1d21bc83e1299842b1a6287438da8a"
     },
     "trello-api": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:04:32.656023+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "067412e7026831915c0115e28f781f714c019984d6c50349a4cbc32b59ac279a"
     },
+    "ux-designer": {
+      "file_hashes": {
+        "AGENTS.md": "3f3afa6f43242b3b9b7ac3866337bcd09c66beeda091bcc5dc4ffa44775dece0",
+        "rules/accessibility.md": "c03ad6bbe3d89878ccf67f8bcdf3227ee5bfaac58f75bcca9d4e6a36bfce0dcd",
+        "rules/information-architecture.md": "ee8f81e96412bb268ab6c2cc38c9235b21e8c629f71a3a6dabe7f5ee991ca09e",
+        "rules/interaction-design.md": "d76faf5dbea6a4e610188bd8af6a09b61d5d1523f011de188b5bbffe66c03120",
+        "rules/research.md": "9f2fe81fc4f38785a8ad8221fd4b6e94dae9b38336145de0f69340b7f467780f",
+        "rules/visual-design.md": "9c0316b4203890a8dc3b3be6d2a57bfaf037d6ea0b46f55af9e03eb9d8b96237"
+      },
+      "last_checked": "2026-03-01T06:57:24.390863+00:00",
+      "tree_shas": {
+        "AGENTS.md": "ddb7fdfadf3b1b65e1b8b0916f24a2a500395f05",
+        "rules/accessibility.md": "671406cf964fa0464ea17fb9aa2df84cf5024ceb",
+        "rules/information-architecture.md": "4c19eb96ec46942da789d08bed97cb92a21bec73",
+        "rules/interaction-design.md": "3ec0004160602d76e5f52b7f11ceb82d0d149e42",
+        "rules/research.md": "3bf245fd41cfd7c9687c681fdad7e17ed9810953",
+        "rules/visual-design.md": "fc2d68470f789448a637cb9875c3180940937e7b"
+      },
+      "upstream_body_sha256": "5e448dd92a4c33775b2495c6fe4702ddf0042efd6af751d58ce3c9acb09315ca"
+    },
     "video-frames": {
-      "last_checked": "2026-02-26T12:04:33.586609+00:00",
+      "file_hashes": {
+        "scripts/frame.sh": "b339455e9e618c836ccf2e3732e4fec9897f079730d8814eadb716e2459df453"
+      },
+      "last_checked": "2026-03-01T06:57:34.579734+00:00",
+      "tree_shas": {
+        "scripts/frame.sh": "31b3adb34c068732d04cb0d951d519338458df98"
+      },
       "upstream_body_sha256": "5de84af73e240c31fd4500f2c7b1ecb64a218288bb07bc18214c0bb701fdf0b2"
     },
     "visualization-expert": {
-      "last_checked": "2026-02-26T12:04:01.298566+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:24.159415+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "e32737f34d368ad56d5f91c716dd3e998a26d6c7d1bb77dd58a9b7a83cae93ac"
     },
     "weather-cli": {
-      "last_checked": "2026-02-26T12:04:34.458168+00:00",
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:57:34.361989+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "6ed4946bcebcace10001fad887f3121fe3f7653947d376a1f67906af9b84603b"
     },
     "web-artifacts-builder": {
+      "file_hashes": {},
       "last_checked": "2026-02-26T12:03:44.806939+00:00",
+      "tree_shas": {},
       "upstream_body_sha256": "2e16a0def85144d0eea83458cad6d18f58287109786c969a7c627f93ac1e59c8"
     },
+    "web-design-guidelines": {
+      "file_hashes": {},
+      "last_checked": "2026-03-01T06:58:08.152399+00:00",
+      "tree_shas": {},
+      "upstream_body_sha256": "17d7239c9233292386c96805dd2182708e594b0a6bec9c385fb201b3e5977b3f"
+    },
     "webapp-testing": {
-      "last_checked": "2026-02-26T12:03:45.696005+00:00",
+      "file_hashes": {
+        "examples/console_logging.py": "ea46877289acb82da7e7ce59d0bc37c8977cd57e2a006d0c88d7a1c625bf95da",
+        "examples/element_discovery.py": "d63c89604a22f8845d724e95dda45db49b1bf57c25ce0a83afbb7b8da3d402f0",
+        "examples/static_html_automation.py": "9d533aafb875ee3ab8b8ebf8f5b9003ac8d999da3d09b285cce252e623140064",
+        "scripts/with_server.py": "b0dcf4918935b795f4eda9821579b9902119235ff4447f687a30286e7d0925fd"
+      },
+      "last_checked": "2026-03-01T06:56:48.517264+00:00",
+      "tree_shas": {
+        "examples/console_logging.py": "9329b5e232ed53d944bfe95e750070117d31b9ab",
+        "examples/element_discovery.py": "917ba72f52421a1b324f93ae8e38af72010a87b9",
+        "examples/static_html_automation.py": "90bbedcc08cdb345c74fb938ebad02c0baf56603",
+        "scripts/with_server.py": "431f2eba16b268b7f3e2ae4daae9db41c0289b6d"
+      },
       "upstream_body_sha256": "5910ca5e0392b84631cc7a626e21f92bae6207cb0e990e9d74b59dbd27995dd8"
     }
   },
-  "version": 2
+  "version": 3
 }
