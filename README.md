@@ -10,7 +10,7 @@ A trusted, curated cross-tool registry for agent components, with end-to-end pro
 
 </div>
 
-## Why
+## Motivation
 
 AI coding assistants are powerful, but their skills are fragmented across tools and ecosystems. Standards like [Agent Skills](https://agentskills.io) define a common skill format, but don't guarantee that the content itself is tool-neutral. Each tool still integrates skills, hooks, and MCP servers in subtly different ways — so a skill written for Claude Code doesn't work well in Gemini CLI, and a Cursor plugin can't be installed in Codex.
 
@@ -124,6 +124,20 @@ bun test                   # Run all tests
 ## Contributing
 
 See [`catalog/README.md`](catalog/README.md) for the skill taxonomy and listing conventions. Skills are authored as SKILL.md files with frontmatter metadata — no directory nesting required.
+
+### Suggest a Skill, Hook, or MCP
+
+Want to see a specific upstream project, skill, hook, or MCP server added to the catalog? [Open an issue](https://github.com/yunseo-kim/awesome-agent-toolbox/issues/new) with a link and a brief description of why it would be a good fit.
+
+A few guidelines:
+
+- **Quality over quantity.** Whether you wrote it yourself or discovered it elsewhere, every suggestion should be something a third party would independently recognize as high-quality and genuinely useful.
+- **Self-authored work is welcome**, but held to the same bar — community traction, solid documentation, and a clear use case go a long way.
+- **Final decisions rest with the maintainers.** I review every suggestion for quality, security, and catalog fit before inclusion.
+
+### Security
+
+To report a security vulnerability, see [`SECURITY.md`](SECURITY.md).
 
 ## License
 
