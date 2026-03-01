@@ -16,7 +16,7 @@ NOTICE.md carries attribution and upstream license text. The SKILL.md `license` 
 
 Use when body content is copied as-is or with minor generalization. Only frontmatter was replaced and NOTICE.md was added.
 
-Section order: `# Attribution Notice` > `## Modifications` > `## Upstream License`
+Section order: `# Attribution Notice` > `## Modifications` > `## Upstream Copyright and License`
 
 ```markdown
 # Attribution Notice
@@ -73,7 +73,7 @@ catalog. Changes include:
 - Generalized platform-specific references to be tool-agnostic
 - Adapted descriptions and instructions for generic AI assistant use
 
-## Upstream License
+## Upstream Copyright and License
 
 MIT License
 
@@ -125,7 +125,7 @@ https://github.com/anthropics/skills/blob/main/LICENSE
 
 Use when body content was meaningfully modified from a single upstream source — structure, wording, or scope changes beyond frontmatter replacement.
 
-Section order: `# Attribution Notice` > `## NOTICE of Modification` > `---` > `## <source> -- <skill> skill` > `### Upstream Copyright and License`
+Section order: `# Attribution Notice` > `## Modifications` > `---` > `## <source> -- <skill> skill` > `### Upstream Copyright and License`
 
 ```markdown
 # Attribution Notice
@@ -172,7 +172,7 @@ following project. This adapted version is governed by the
 The upstream copyright notice and license text are reproduced below to satisfy
 the attribution requirements of the original license.
 
-## NOTICE of Modification
+## Modifications
 
 **Portions of the work listed below have been modified, adapted, and
 restructured by Yunseo Kim on 12026-02-25 to create this CI triage
@@ -225,7 +225,7 @@ SOFTWARE.
 
 Use when content was created by combining material from multiple upstream sources.
 
-Section order: `# Attribution Notice` > `## NOTICE of Modification` > `---` > numbered `## N. <source> -- <skill(s)>` sections each with `### Upstream Copyright and License`
+Section order: `# Attribution Notice` > `## Modifications` > `---` > numbered `## N. <source> -- <skill(s)>` sections each with `### Upstream Copyright and License`
 
 Key differences from Pattern B: plural language ("projects", "notices", "licenses"), prose modification paragraph (not bullets), numbered source sections separated by `---`.
 
@@ -295,10 +295,8 @@ Each source gets a numbered section (`## 1. vercel/next.js -- update-docs skill`
 | Aspect | Pattern A | Pattern B | Pattern C |
 |--------|-----------|-----------|-----------|
 | Opening | "incorporates material derived from" | "derivative work that incorporates and adapts" | same as B, but "projects" (plural) |
-| Modifications header | `## Modifications` | `## NOTICE of Modification` | `## NOTICE of Modification` |
 | Modifications format | "Changes include:" + bullets | Bold paragraph (with author/date) + `Specifically:` + bullets | Bold prose paragraph (no bullets) |
 | Source section | None (info in opening paragraph) | `## <org>/<repo> -- <skill> skill` | Numbered: `## N. <org>/<repo> -- <skill(s)>` |
-| License heading | `## Upstream License` | `### Upstream Copyright and License` | `### Upstream Copyright and License` |
 | Horizontal rules | None | Before source section | Between all source sections |
 
 ---
