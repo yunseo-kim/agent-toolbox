@@ -52,7 +52,7 @@ tag push (v*) --> validate --> test --> build --> release notes --> GitHub Relea
 | **GitHub Release** | `softprops/action-gh-release@v2` | Permission error |
 | **npm publish** | `bunx npm publish --provenance --access public` | Missing NPM_TOKEN or publish conflict |
 
-**Release is initiated locally** via `bun run release` (bumpp) which bumps version, generates CHANGELOG.md, commits, tags, and pushes. The tag push triggers this workflow.
+**Release is initiated locally** in two phases: `bun run release` creates a release PR (version bump + changelog + commit on a release branch). After the PR is merged, `bun run tag --push` creates a GPG-signed tag on main HEAD and pushes it, which triggers this workflow.
 
 **Changelog scope**: Only CLI/toolchain commits appear. Catalog-scoped commits (`catalog`, `sync` scopes) are filtered out by `cliff.toml` configuration.
 
@@ -106,7 +106,7 @@ Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 | Configure upstream sync | `catalog/metadata/upstream-sources.yaml` |
 | Debug sync script | `.github/upstream-sync/sync.py` |
 | Reset sync cache | Delete `.github/upstream-sync/sha-cache.json` and re-run with `--init` |
-| Create a release | Run `bun run release` locally -- bumpp handles version, changelog, tag, push |
+| Create a release | Run `bun run release` (creates PR), merge, then `bun run tag --push` |
 | Debug release workflow | `.github/workflows/release.yml` |
 | Configure changelog scope | `cliff.toml` -- commit_parsers with skip rules |
 | Configure version bump | `bump.config.ts` -- bumpp + git-cliff integration |
