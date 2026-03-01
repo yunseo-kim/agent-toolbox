@@ -16,7 +16,7 @@ AI coding assistants are powerful, but their skills are fragmented across tools 
 
 Fragmentation is only half the problem. Agent skills are a new software supply chain — and they're already under attack. Snyk's [ToxicSkills report](https://github.com/snyk/agent-scan/blob/main/.github/reports/skills-report.pdf) found that **13.4% of ~4,000 scanned skills contained critical security issues** — prompt injection, data exfiltration, and embedded malware — with 76 confirmed malicious payloads. [1Password](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface) and [Cisco](https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare) have independently documented live attacks where the top-downloaded skill on a major registry turned out to be an infostealer, and coordinated campaigns weaponized skills for silent credential theft. In an ecosystem where a SKILL.md file is effectively an installer, distributing unvetted skills means distributing unvetted code.
 
-**awesome-agent-toolbox** solves both problems by maintaining a **single neutral catalog** of skills with end-to-end provenance tracking and automated security vetting, then generating tool-specific artifacts for each target. Write once, install everywhere — safely.
+**awesome-agent-toolbox** solves both problems by maintaining a **single neutral catalog** of skills with [end-to-end provenance tracking](.catalog/README.md) and [automated security vetting](#security), then generating tool-specific artifacts for each target. Write once, install everywhere — safely.
 
 ## Architecture
 
@@ -121,6 +121,20 @@ bun test                   # Run all tests
 | **Cursor** | `.cursor/` compatible artifacts | Implemented |
 | **Codex** | Agent skill directories | Implemented |
 
+## Security
+
+Every skill in the catalog is automatically scanned for security threats using [Cisco Skill Scanner](https://github.com/cisco-ai-defense/skill-scanner) with a **strict** policy preset. The scanner runs on every push and pull request that touches skill files, combining eight detection engines:
+
+- **Static analysis** — YAML + YARA pattern matching, bytecode verification, shell pipeline taint analysis
+- **Behavioral analysis** — AST-based dataflow tracking from sources to sinks across multiple files
+- **LLM semantic analysis** — OpenAI gpt-5.2 evaluates code intent against Cisco's AITech threat taxonomy
+- **Meta-analysis** — Second-pass false positive filtering with cross-finding correlation
+- **VirusTotal** — Hash-based binary malware scanning
+
+Results are uploaded as SARIF to GitHub Code Scanning, so findings appear as inline PR annotations. A pre-commit hook provides the same scanning locally before every commit. For full details, see [`SECURITY.md`](SECURITY.md).
+
+To report a security vulnerability, use [GitHub Security Advisories](https://github.com/yunseo-kim/awesome-agent-toolbox/security/advisories/new) or email [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim).
+
 ## Contributing
 
 See [`catalog/README.md`](catalog/README.md) for the skill taxonomy and listing conventions. Skills are authored as SKILL.md files with frontmatter metadata — no directory nesting required.
@@ -134,10 +148,6 @@ A few guidelines:
 - **Quality over quantity.** Whether you wrote it yourself or discovered it elsewhere, every suggestion should be something a third party would independently recognize as high-quality and genuinely useful.
 - **Self-authored work is welcome**, but held to the same bar — community traction, solid documentation, and a clear use case go a long way.
 - **Final decisions rest with the maintainers.** I review every suggestion for quality, security, and catalog fit before inclusion.
-
-### Security
-
-To report a security vulnerability, see [`SECURITY.md`](SECURITY.md).
 
 ## License
 

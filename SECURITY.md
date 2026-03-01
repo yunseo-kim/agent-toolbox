@@ -102,13 +102,40 @@ The daily upstream sync workflow includes the following safety mechanisms:
 - **Adapted skills are never auto-modified** — Upstream changes are reported as advisories only.
 - **All sync PRs pass the full CI gate** before merging.
 
+### Automated Security Scanning
+
+All catalog skills and development tooling skills are scanned automatically using [Cisco Skill Scanner](https://github.com/cisco-ai-defense/skill-scanner), an open-source multi-engine security scanner purpose-built for AI agent skills.
+
+**CI/CD integration** — A GitHub Actions workflow (`.github/workflows/skill-scanner.yml`) runs on every push to `main` and every pull request that modifies files under `catalog/skills/` or `.agents/skills/`. Results are uploaded as SARIF to GitHub Code Scanning, providing inline annotations on pull requests.
+
+**Pre-commit hook** — A `.pre-commit-config.yaml` provides the same scanning locally before every commit, catching issues before they reach CI.
+
+**Policy** — Both CI and pre-commit use the **strict** preset, which maximizes detection sensitivity: narrow allowlists, no false-positive suppression, lower detection thresholds, and broader rule scoping. The `--lenient` flag is used alongside strict policy to tolerate metadata quirks in ported skills without relaxing security analysis.
+
+**Enabled analyzers:**
+
+| Analyzer | Detection Method | Requires API Key |
+|----------|------------------|-----------------|
+| Static | YAML + YARA pattern matching | No |
+| Bytecode | Python .pyc integrity verification | No |
+| Pipeline | Shell command taint analysis | No |
+| Behavioral | AST dataflow source-to-sink analysis | No |
+| LLM | Semantic analysis via OpenAI gpt-4o | Yes (`SKILL_SCANNER_LLM_API_KEY`) |
+| Meta | False positive filtering + finding correlation | Yes (`SKILL_SCANNER_LLM_API_KEY`) |
+| Trigger | Description specificity checks | No |
+| VirusTotal | Hash-based binary malware scanning | Yes (`VIRUSTOTAL_API_KEY`) |
+
+The workflow fails if any findings at or above **HIGH** severity are detected, blocking the pull request from merging.
+
+**Threat coverage** includes: prompt injection (direct and indirect), data exfiltration, credential theft, command injection, code execution, Unicode steganography, homoglyph attacks, tool poisoning, and capability inflation — mapped to Cisco's [AITech threat taxonomy](https://github.com/cisco-ai-defense/skill-scanner/blob/main/docs/architecture/threat-taxonomy.md).
+
 ### Release Integrity
 
 - **GPG-signed tags** — All release tags are GPG-signed annotated tags.
 - **GPG-signed commits** — All commits on `main` must be GPG-signed (enforced by repository rulesets).
 - **npm provenance** — Packages are published with `--provenance` for verifiable build attestation.
 - **Linear history** — Squash-merge-only policy prevents history rewriting; force-push to `main` is blocked.
-- **CI gate** — Four required status checks (typecheck, catalog validation, test suite, drift detection) must pass before any merge to `main`.
+- **CI gate** — Five required status checks (typecheck, catalog validation, test suite, drift detection, skill security scan) must pass before any merge to `main`.
 
 ### Runtime Catalog Fetching
 
