@@ -4,15 +4,19 @@
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-A cross-tool distribution system for agent skills, plugins, and MCP servers — targeting **Claude Code, OpenCode, Gemini CLI, Cursor, and Codex**.
+<a href="https://www.buymeacoffee.com/yunseokim" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+A trusted, curated cross-tool registry for agent components, with end-to-end provenance and automated security vetting of skills, MCP servers, and hooks — targeting **Claude Code, OpenCode, Codex, Antigravity, Gemini CLI, Cursor, and Windsurf**.
 
 </div>
 
 ## Why
 
-AI coding assistants are powerful, but their skills are fragmented across tools and ecosystems. A skill written for Claude Code doesn't work in Gemini CLI. A Cursor plugin can't be installed in Codex.
+AI coding assistants are powerful, but their skills are fragmented across tools and ecosystems. Standards like [Agent Skills](https://agentskills.io) define a common skill format, but don't guarantee that the content itself is tool-neutral. Each tool still integrates skills, hooks, and MCP servers in subtly different ways — so a skill written for Claude Code doesn't work well in Gemini CLI, and a Cursor plugin can't be installed in Codex.
 
-**awesome-agent-toolbox** solves this by maintaining a **single neutral catalog** of skills, then generating tool-specific artifacts for each target. Write once, install everywhere.
+Fragmentation is only half the problem. Agent skills are a new software supply chain — and they're already under attack. Snyk's [ToxicSkills report](https://github.com/snyk/agent-scan/blob/main/.github/reports/skills-report.pdf) found that **13.4% of ~4,000 scanned skills contained critical security issues** — prompt injection, data exfiltration, and embedded malware — with 76 confirmed malicious payloads. [1Password](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface) and [Cisco](https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare) have independently documented live attacks where the top-downloaded skill on a major registry turned out to be an infostealer, and coordinated campaigns weaponized skills for silent credential theft. In an ecosystem where a SKILL.md file is effectively an installer, distributing unvetted skills means distributing unvetted code.
+
+**awesome-agent-toolbox** solves both problems by maintaining a **single neutral catalog** of skills with end-to-end provenance tracking and automated security vetting, then generating tool-specific artifacts for each target. Write once, install everywhere — safely.
 
 ## Architecture
 
@@ -59,6 +63,12 @@ awesome-agent-toolbox/
 2. **Generators** — Target-specific generators in `src/generators/` transform catalog content into each tool's native format.
 3. **Install** — The install engine applies filters (domain, subdomain, framework, tag, preset, skill name) and deploys to the target environment.
 
+## Browse the Catalog
+
+**[View all skills by domain →](catalog/README.md)**
+
+The catalog currently contains **118 skills** across 10 domains, curated from leading open-source projects and adapted for cross-tool compatibility.
+
 ## Getting Started
 
 ### Install Skills
@@ -100,12 +110,6 @@ bun run build:all          # Generate artifacts for all targets
 bun run typecheck          # TypeScript type checking
 bun test                   # Run all tests
 ```
-
-## Browse the Catalog
-
-**[View all skills by domain →](catalog/README.md)**
-
-The catalog currently contains **114 skills** across 10 domains, curated from leading open-source projects and adapted for cross-tool compatibility.
 
 ## Supported Targets
 
