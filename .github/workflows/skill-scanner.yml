@@ -10,16 +10,24 @@ on:
     paths:
       - 'catalog/skills/**'
       - '.agents/skills/**'
+  schedule:
+    # Monthly full scan on 1st at 06:00 UTC
+    - cron: '0 6 1 * *'
   workflow_dispatch:
     inputs:
       verbose:
-        description: 'Enable verbose output (policy fingerprints, co-occurrence metadata, meta-analyzer false positives, and summary in log)'
+        description: 'Enable verbose logging (policy fingerprints, co-occurrence metadata, meta-analyzer false positives, and summary in log)'
+        type: boolean
+        default: true
+      archive:
+        description: 'Archive scan reports as markdown to docs/security-reports/'
         type: boolean
         default: false
 
 permissions:
   security-events: write
-  contents: read
+  contents: write
+  pull-requests: write
 
 jobs:
   scan:
@@ -30,8 +38,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Full history needed for incremental diff on push/PR
-          fetch-depth: ${{ github.event_name == 'workflow_dispatch' && 1 || 0 }}
+          # Full history for push/PR incremental diff; shallow clone for full scans
+          fetch-depth: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && 0 || 1 }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -41,9 +49,13 @@ jobs:
       - name: Install skill-scanner
         run: pip install cisco-ai-skill-scanner
 
+      - name: Prepare report directory
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true)
+        run: mkdir -p docs/security-reports
+
       - name: Detect changed skills
         id: changes
-        if: github.event_name != 'workflow_dispatch'
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
         run: |
           # Determine base SHA for diff
           if [ "${{ github.event_name }}" = "pull_request" ]; then
@@ -81,29 +93,36 @@ jobs:
         continue-on-error: true
         if: >-
           github.event_name == 'workflow_dispatch' ||
+          github.event_name == 'schedule' ||
           steps.changes.outputs.catalog != 'none'
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
-          SCAN_VERBOSE: ${{ inputs.verbose }}
+          SCAN_VERBOSE: ${{ inputs.verbose == true || github.event_name == 'schedule' }}
+          SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
           CHANGED_SKILLS: ${{ steps.changes.outputs.catalog }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
           VERBOSE_FLAGS=""
           if [ "$SCAN_VERBOSE" = "true" ]; then
-            VERBOSE_FLAGS="--verbose --format summary"
+            VERBOSE_FLAGS="--verbose"
+          fi
+
+          ARCHIVE_FLAGS=""
+          if [ "$SCAN_ARCHIVE" = "true" ]; then
+            REPORT_DATE="$(printf '%05d' $(($(date +%Y) + 10000)))-$(date +%m)"
+            ARCHIVE_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-catalog.md --detailed"
           fi
 
           COMMON_FLAGS="--policy strict --use-behavioral --use-llm --llm-provider openai \
             --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
 
-          # Full scan: manual dispatch or edge-case fallback
-          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$CHANGED_SKILLS" = "all" ]; then
+          # Full scan: manual dispatch, schedule, or edge-case fallback
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$EVENT_NAME" = "schedule" ] || [ "$CHANGED_SKILLS" = "all" ]; then
             echo "Running full catalog scan..."
             skill-scanner scan-all catalog/skills \
-              $VERBOSE_FLAGS $COMMON_FLAGS \
-              --format sarif --output catalog-results.sarif \
+              $VERBOSE_FLAGS $ARCHIVE_FLAGS $COMMON_FLAGS \
               --recursive --check-overlap
             exit $?
           fi
@@ -116,8 +135,8 @@ jobs:
             if [ -d "$skill_dir" ]; then
               echo "::group::Scanning $skill_dir"
               skill-scanner scan "$skill_dir" \
-                $VERBOSE_FLAGS $COMMON_FLAGS \
-                --format sarif --output "/tmp/catalog-${skill_name}.sarif" || failed=1
+                --format sarif --output "/tmp/catalog-${skill_name}.sarif" \
+                $VERBOSE_FLAGS $COMMON_FLAGS || failed=1
               echo "::endgroup::"
             else
               echo "::warning::Skill directory $skill_dir no longer exists (deleted?), skipping"
@@ -141,29 +160,36 @@ jobs:
         continue-on-error: true
         if: >-
           github.event_name == 'workflow_dispatch' ||
+          github.event_name == 'schedule' ||
           steps.changes.outputs.dev != 'none'
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
-          SCAN_VERBOSE: ${{ inputs.verbose }}
+          SCAN_VERBOSE: ${{ inputs.verbose == true || github.event_name == 'schedule' }}
+          SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
           CHANGED_SKILLS: ${{ steps.changes.outputs.dev }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
           VERBOSE_FLAGS=""
           if [ "$SCAN_VERBOSE" = "true" ]; then
-            VERBOSE_FLAGS="--verbose --format summary"
+            VERBOSE_FLAGS="--verbose"
+          fi
+
+          ARCHIVE_FLAGS=""
+          if [ "$SCAN_ARCHIVE" = "true" ]; then
+            REPORT_DATE="$(printf '%05d' $(($(date +%Y) + 10000)))-$(date +%m)"
+            ARCHIVE_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-dev.md --detailed"
           fi
 
           COMMON_FLAGS="--policy strict --use-behavioral --use-llm --llm-provider openai \
             --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
 
-          # Full scan: manual dispatch or edge-case fallback
-          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$CHANGED_SKILLS" = "all" ]; then
+          # Full scan: manual dispatch, schedule, or edge-case fallback
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$EVENT_NAME" = "schedule" ] || [ "$CHANGED_SKILLS" = "all" ]; then
             echo "Running full dev tooling scan..."
             skill-scanner scan-all .agents/skills \
-              $VERBOSE_FLAGS $COMMON_FLAGS \
-              --format sarif --output dev-results.sarif \
+              $VERBOSE_FLAGS $ARCHIVE_FLAGS $COMMON_FLAGS \
               --recursive --check-overlap
             exit $?
           fi
@@ -176,8 +202,8 @@ jobs:
             if [ -d "$skill_dir" ]; then
               echo "::group::Scanning $skill_dir"
               skill-scanner scan "$skill_dir" \
-                $VERBOSE_FLAGS $COMMON_FLAGS \
-                --format sarif --output "/tmp/dev-${skill_name}.sarif" || failed=1
+                --format sarif --output "/tmp/dev-${skill_name}.sarif" \
+                $VERBOSE_FLAGS $COMMON_FLAGS || failed=1
               echo "::endgroup::"
             else
               echo "::warning::Skill directory $skill_dir no longer exists (deleted?), skipping"
@@ -209,6 +235,59 @@ jobs:
         with:
           sarif_file: dev-results.sarif
           category: skill-scanner-dev
+
+      - name: Archive scan reports
+        if: >-
+          always() &&
+          (github.event_name == 'schedule' ||
+          (github.event_name == 'workflow_dispatch' && inputs.archive == true))
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPORT_DATE="$(printf '%05d' $(($(date +%Y) + 10000)))-$(date +%m)"
+          CATALOG_REPORT="docs/security-reports/${REPORT_DATE}-catalog.md"
+          DEV_REPORT="docs/security-reports/${REPORT_DATE}-dev.md"
+
+          # Check if any reports were generated
+          if [ ! -f "$CATALOG_REPORT" ] && [ ! -f "$DEV_REPORT" ]; then
+            echo "No reports to archive"
+            exit 0
+          fi
+
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Create branch and commit
+          BRANCH="docs/security-report-${REPORT_DATE}"
+          git checkout -b "$BRANCH"
+          git add docs/security-reports/
+          git commit -m "docs(security): archive ${REPORT_DATE} skill security scan report"
+          git push origin "$BRANCH"
+
+          # Build PR body
+          cat > /tmp/pr-body.md << EOF
+          ## Monthly Security Scan Report
+
+          Automated full scan report for **${REPORT_DATE}**.
+
+          Generated by the scheduled skill-scanner workflow with all analyzers enabled (strict policy).
+
+          ### Reports
+          EOF
+
+          # Trim leading whitespace from heredoc
+          sed -i 's/^          //' /tmp/pr-body.md
+
+          [ -f "$CATALOG_REPORT" ] && echo "- \`${CATALOG_REPORT}\` -- Catalog skills scan" >> /tmp/pr-body.md
+          [ -f "$DEV_REPORT" ] && echo "- \`${DEV_REPORT}\` -- Dev tooling skills scan" >> /tmp/pr-body.md
+
+          # Create PR
+          gh pr create \
+            --title "docs(security): ${REPORT_DATE} skill security scan report" \
+            --body-file /tmp/pr-body.md \
+            --base main
 
       - name: Check scan results
         if: always()
