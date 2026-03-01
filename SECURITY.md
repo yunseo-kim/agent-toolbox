@@ -22,9 +22,9 @@ This project distributes code from upstream sources alongside its own toolchain.
 
 ### In Scope
 
-- **Toolchain vulnerabilities** -- Bugs in the CLI, generators, install engine, or schemas (`src/`) that could lead to code execution, path traversal, privilege escalation, or data loss.
-- **Catalog content security** -- Malicious or vulnerable content in distributed skills, hooks, or MCP servers (`catalog/`), including prompt injection, data exfiltration, credential theft, or embedded malware.
-- **Supply chain compromise** -- Tampering with the upstream sync pipeline, build artifacts (`dist/`), or the npm package that could introduce malicious content.
+- **Toolchain vulnerabilities** — Bugs in the CLI, generators, install engine, or schemas (`src/`) that could lead to code execution, path traversal, privilege escalation, or data loss.
+- **Catalog content security** — Malicious or vulnerable content in distributed skills, hooks, or MCP servers (`catalog/`), including prompt injection, data exfiltration, credential theft, or embedded malware.
+- **Supply chain compromise** — Tampering with the upstream sync pipeline, build artifacts (`dist/`), or the npm package that could introduce malicious content.
 
 ### Out of Scope
 
@@ -39,8 +39,8 @@ This project distributes code from upstream sources alongside its own toolchain.
 
 Report vulnerabilities privately using one of the following channels:
 
-1. **GitHub Security Advisories (preferred)** -- Use the ["Report a Vulnerability"](https://github.com/yunseo-kim/awesome-agent-toolbox/security/advisories/new) tab to submit a private report.
-2. **Email (fallback)** -- Send a report to [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim) if you cannot use GitHub Security Advisories.
+1. **GitHub Security Advisories (preferred)** — Use the ["Report a Vulnerability"](https://github.com/yunseo-kim/awesome-agent-toolbox/security/advisories/new) tab to submit a private report.
+2. **Email (fallback)** — Send a report to [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim) if you cannot use GitHub Security Advisories.
 
 ### What to Include
 
@@ -65,7 +65,7 @@ These timelines are best-effort commitments. Complex issues may take longer, but
 
 Because this project distributes third-party code, catalog content requires distinct handling.
 
-**Reporting malicious or vulnerable catalog content** -- Use the same private reporting channels described above. Include the skill name, provenance type, and upstream source if known.
+**Reporting malicious or vulnerable catalog content** — Use the same private reporting channels described above. Include the skill name, provenance type, and upstream source if known.
 
 **How catalog issues are handled:**
 
@@ -74,7 +74,7 @@ Because this project distributes third-party code, catalog content requires dist
 3. A security advisory is published if the issue affects users who installed the content.
 4. For ported skills, the upstream sync is paused for that item until the upstream fix is confirmed.
 
-**Upstream vulnerability propagation** -- If a vulnerability is discovered in an upstream repository that we port from, the affected catalog item is pinned, patched, or removed until the upstream fix is available and verified.
+**Upstream vulnerability propagation** — If a vulnerability is discovered in an upstream repository that we port from, the affected catalog item is pinned, patched, or removed until the upstream fix is available and verified.
 
 ## Supply Chain Integrity
 
@@ -95,20 +95,20 @@ All catalog items require a `NOTICE.md` with attribution. For the full classific
 
 The daily upstream sync workflow includes the following safety mechanisms:
 
-- **Tree SHA verification** -- Unchanged directories are short-circuited without fetching content.
-- **Per-file change classification** -- Each file is classified as safe (auto-apply) or review-needed (requires manual approval).
-- **Local-only file exclusion** -- Files like `NOTICE.md` are never overwritten by upstream content.
-- **SHA-256 caching** -- Prevents re-processing of identical upstream state.
-- **Adapted skills are never auto-modified** -- Upstream changes are reported as advisories only.
+- **Tree SHA verification** — Unchanged directories are short-circuited without fetching content.
+- **Per-file change classification** — Each file is classified as safe (auto-apply) or review-needed (requires manual approval).
+- **Local-only file exclusion** — Files like `NOTICE.md` are never overwritten by upstream content.
+- **SHA-256 caching** — Prevents re-processing of identical upstream state.
+- **Adapted skills are never auto-modified** — Upstream changes are reported as advisories only.
 - **All sync PRs pass the full CI gate** before merging.
 
 ### Release Integrity
 
-- **GPG-signed tags** -- All release tags are GPG-signed annotated tags.
-- **GPG-signed commits** -- All commits on `main` must be GPG-signed (enforced by repository rulesets).
-- **npm provenance** -- Packages are published with `--provenance` for verifiable build attestation.
-- **Linear history** -- Squash-merge-only policy prevents history rewriting; force-push to `main` is blocked.
-- **CI gate** -- Four required status checks (typecheck, catalog validation, test suite, drift detection) must pass before any merge to `main`.
+- **GPG-signed tags** — All release tags are GPG-signed annotated tags.
+- **GPG-signed commits** — All commits on `main` must be GPG-signed (enforced by repository rulesets).
+- **npm provenance** — Packages are published with `--provenance` for verifiable build attestation.
+- **Linear history** — Squash-merge-only policy prevents history rewriting; force-push to `main` is blocked.
+- **CI gate** — Four required status checks (typecheck, catalog validation, test suite, drift detection) must pass before any merge to `main`.
 
 ### Runtime Catalog Fetching
 
