@@ -10,6 +10,12 @@ on:
     paths:
       - 'catalog/skills/**'
       - '.agents/skills/**'
+  workflow_dispatch:
+    inputs:
+      verbose:
+        description: 'Enable verbose output (policy fingerprints, co-occurrence metadata, meta-analyzer false positives, and summary in log)'
+        type: boolean
+        default: false
 
 permissions:
   security-events: write
@@ -23,6 +29,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Full history needed for incremental diff on push/PR
+          fetch-depth: ${{ github.event_name == 'workflow_dispatch' && 1 || 0 }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -32,51 +41,160 @@ jobs:
       - name: Install skill-scanner
         run: pip install cisco-ai-skill-scanner
 
+      - name: Detect changed skills
+        id: changes
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          # Determine base SHA for diff
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          else
+            BASE_SHA="${{ github.event.before }}"
+          fi
+
+          # Handle edge cases: force push, initial push, invalid SHA
+          if [ -z "$BASE_SHA" ] || \
+             [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] || \
+             ! git cat-file -t "$BASE_SHA" >/dev/null 2>&1; then
+            echo "::warning::Cannot determine base SHA — falling back to full scan"
+            echo "catalog=all" >> "$GITHUB_OUTPUT"
+            echo "dev=all" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Detect changed catalog skill directories
+          CATALOG=$(git diff --name-only "$BASE_SHA"..HEAD -- catalog/skills/ 2>/dev/null | \
+            sed -n 's|^catalog/skills/\([^/]*\)/.*|\1|p' | sort -u | tr '\n' ' ' | xargs)
+
+          # Detect changed dev tooling skill directories
+          DEV=$(git diff --name-only "$BASE_SHA"..HEAD -- .agents/skills/ 2>/dev/null | \
+            sed -n 's|^\.agents/skills/\([^/]*\)/.*|\1|p' | sort -u | tr '\n' ' ' | xargs)
+
+          echo "catalog=${CATALOG:-none}" >> "$GITHUB_OUTPUT"
+          echo "dev=${DEV:-none}" >> "$GITHUB_OUTPUT"
+
+          [ -n "$CATALOG" ] && echo "Changed catalog skills: $CATALOG" || echo "No catalog skills changed"
+          [ -n "$DEV" ] && echo "Changed dev skills: $DEV" || echo "No dev skills changed"
+
       - name: Scan catalog skills
         id: scan-catalog
         continue-on-error: true
+        if: >-
+          github.event_name == 'workflow_dispatch' ||
+          steps.changes.outputs.catalog != 'none'
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+          SCAN_VERBOSE: ${{ inputs.verbose }}
+          CHANGED_SKILLS: ${{ steps.changes.outputs.catalog }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
-          skill-scanner scan-all catalog/skills \
-            --policy strict \
-            --use-behavioral \
-            --use-llm \
-            --llm-provider openai \
-            --use-trigger \
-            --use-virustotal \
-            --enable-meta \
-            --format sarif \
-            --output catalog-results.sarif \
-            --recursive \
-            --check-overlap \
-            --lenient \
-            --fail-on-severity high
+          VERBOSE_FLAGS=""
+          if [ "$SCAN_VERBOSE" = "true" ]; then
+            VERBOSE_FLAGS="--verbose --format summary"
+          fi
+
+          COMMON_FLAGS="--policy strict --use-behavioral --use-llm --llm-provider openai \
+            --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
+
+          # Full scan: manual dispatch or edge-case fallback
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$CHANGED_SKILLS" = "all" ]; then
+            echo "Running full catalog scan..."
+            skill-scanner scan-all catalog/skills \
+              $VERBOSE_FLAGS $COMMON_FLAGS \
+              --format sarif --output catalog-results.sarif \
+              --recursive --check-overlap
+            exit $?
+          fi
+
+          # Incremental scan: only changed skill directories
+          echo "Running incremental catalog scan..."
+          failed=0
+          for skill_name in $CHANGED_SKILLS; do
+            skill_dir="catalog/skills/$skill_name"
+            if [ -d "$skill_dir" ]; then
+              echo "::group::Scanning $skill_dir"
+              skill-scanner scan "$skill_dir" \
+                $VERBOSE_FLAGS $COMMON_FLAGS \
+                --format sarif --output "/tmp/catalog-${skill_name}.sarif" || failed=1
+              echo "::endgroup::"
+            else
+              echo "::warning::Skill directory $skill_dir no longer exists (deleted?), skipping"
+            fi
+          done
+
+          # Merge individual SARIF files into one
+          if ls /tmp/catalog-*.sarif 1>/dev/null 2>&1; then
+            jq -s '{
+              "$schema": .[0]["$schema"],
+              version: .[0].version,
+              runs: [.[].runs[]]
+            }' /tmp/catalog-*.sarif > catalog-results.sarif
+          fi
+
+          [ "$failed" = "1" ] && exit 1
+          exit 0
 
       - name: Scan dev tooling skills
         id: scan-dev
         continue-on-error: true
+        if: >-
+          github.event_name == 'workflow_dispatch' ||
+          steps.changes.outputs.dev != 'none'
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+          SCAN_VERBOSE: ${{ inputs.verbose }}
+          CHANGED_SKILLS: ${{ steps.changes.outputs.dev }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
-          skill-scanner scan-all .agents/skills \
-            --policy strict \
-            --use-behavioral \
-            --use-llm \
-            --llm-provider openai \
-            --use-trigger \
-            --use-virustotal \
-            --enable-meta \
-            --format sarif \
-            --output dev-results.sarif \
-            --recursive \
-            --check-overlap \
-            --lenient \
-            --fail-on-severity high
+          VERBOSE_FLAGS=""
+          if [ "$SCAN_VERBOSE" = "true" ]; then
+            VERBOSE_FLAGS="--verbose --format summary"
+          fi
+
+          COMMON_FLAGS="--policy strict --use-behavioral --use-llm --llm-provider openai \
+            --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
+
+          # Full scan: manual dispatch or edge-case fallback
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$CHANGED_SKILLS" = "all" ]; then
+            echo "Running full dev tooling scan..."
+            skill-scanner scan-all .agents/skills \
+              $VERBOSE_FLAGS $COMMON_FLAGS \
+              --format sarif --output dev-results.sarif \
+              --recursive --check-overlap
+            exit $?
+          fi
+
+          # Incremental scan: only changed skill directories
+          echo "Running incremental dev tooling scan..."
+          failed=0
+          for skill_name in $CHANGED_SKILLS; do
+            skill_dir=".agents/skills/$skill_name"
+            if [ -d "$skill_dir" ]; then
+              echo "::group::Scanning $skill_dir"
+              skill-scanner scan "$skill_dir" \
+                $VERBOSE_FLAGS $COMMON_FLAGS \
+                --format sarif --output "/tmp/dev-${skill_name}.sarif" || failed=1
+              echo "::endgroup::"
+            else
+              echo "::warning::Skill directory $skill_dir no longer exists (deleted?), skipping"
+            fi
+          done
+
+          # Merge individual SARIF files into one
+          if ls /tmp/dev-*.sarif 1>/dev/null 2>&1; then
+            jq -s '{
+              "$schema": .[0]["$schema"],
+              version: .[0].version,
+              runs: [.[].runs[]]
+            }' /tmp/dev-*.sarif > dev-results.sarif
+          fi
+
+          [ "$failed" = "1" ] && exit 1
+          exit 0
 
       - name: Upload SARIF (catalog)
         if: always() && hashFiles('catalog-results.sarif') != ''
