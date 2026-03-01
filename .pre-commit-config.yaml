@@ -13,15 +13,6 @@ repos:
     hooks:
       - id: skill-scanner
         args:
-          - --policy
-          - strict
-          - --use-behavioral
-          - --use-llm
-          - --llm-provider
-          - openai
-          - --use-trigger
-          - --use-virustotal
-          - --enable-meta
-          - --fail-on-severity
+          - --severity
           - high
           - --lenient

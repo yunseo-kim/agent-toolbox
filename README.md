@@ -16,7 +16,7 @@ AI coding assistants are powerful, but their skills are fragmented across tools 
 
 Fragmentation is only half the problem. Agent skills are a new software supply chain — and they're already under attack. Snyk's [ToxicSkills report](https://github.com/snyk/agent-scan/blob/main/.github/reports/skills-report.pdf) found that **13.4% of ~4,000 scanned skills contained critical security issues** — prompt injection, data exfiltration, and embedded malware — with 76 confirmed malicious payloads. [1Password](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface) and [Cisco](https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare) have independently documented live attacks where the top-downloaded skill on a major registry turned out to be an infostealer, and coordinated campaigns weaponized skills for silent credential theft. In an ecosystem where a SKILL.md file is effectively an installer, distributing unvetted skills means distributing unvetted code.
 
-**awesome-agent-toolbox** solves both problems by maintaining a **single neutral catalog** of skills with [end-to-end provenance tracking](.catalog/README.md) and [automated security vetting](#security), then generating tool-specific artifacts for each target. Write once, install everywhere — safely.
+**awesome-agent-toolbox** solves both problems by maintaining a **single neutral catalog** of skills with [end-to-end provenance tracking](catalog/README.md) and [automated security vetting](#security), then generating tool-specific artifacts for each target. Write once, install everywhere — safely.
 
 ## Architecture
 
