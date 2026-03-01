@@ -87,10 +87,10 @@ Is the skill tool-specific and not portable?
   Yes -> IGNORED (with reason)
 
 Is the upstream license compatible with this project?
-  Strong copyleft (GPL, AGPL, SSPL) -> IGNORED or EXTERNAL (cannot distribute under SUL 1.0)
+  Strong copyleft (GPL, AGPL, SSPL) -> IGNORED or EXTERNAL (cannot distribute under SUL-1.0)
   Proprietary / no-redistribute     -> IGNORED or EXTERNAL (list in README only)
   Weak copyleft (MPL-2.0, LGPL)     -> Portable, but skill retains upstream license
-  Permissive (MIT, Apache 2.0, BSD) -> Portable under project default license
+  Permissive (MIT, Apache-2.0, BSD) -> Portable under project default license
   See references/catalog-conventions.md > license for the full decision tree.
 
 Will you modify the body content beyond frontmatter + NOTICE.md?
@@ -160,7 +160,7 @@ Load `references/notice-templates.md` for NOTICE.md templates.
    - Domain/subdomain MUST exist in `catalog/metadata/taxonomy.yaml`. Read it to validate.
    - Author: use upstream author if body is unmodified (ported); use modifier if body was changed.
    - lastUpdated: convert upstream's last commit date to Holocene Era (Gregorian year + 10000).
-   - License: default `Sustainable Use License 1.0` for permissive upstreams (MIT, Apache, BSD).
+   - License: default `SUL-1.0` (Sustainable Use License 1.0) for permissive upstreams (MIT, Apache, BSD).
      Override only for weak-copyleft upstreams (MPL-2.0, LGPL) that require file-level license retention.
      See `references/catalog-conventions.md` > license for the full decision tree.
 

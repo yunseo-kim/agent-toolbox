@@ -8,7 +8,7 @@ Detailed rules for catalog skill frontmatter, licensing, authorship, and dates.
 ---
 name: skill-name                        # required, kebab-case, max 64 chars
 description: "What this skill does..."  # required, max 1024 chars
-license: Sustainable Use License 1.0    # required, see License Rules below
+license: SUL-1.0                        # required, SPDX identifier, see License Rules below
 metadata:
   domain: devops                        # required, from taxonomy.yaml
   subdomain: ci-cd                      # optional, from taxonomy.yaml
@@ -38,16 +38,18 @@ metadata:
 
 The `license` field declares the license governing the catalog skill as distributed.
 
-**Default**: `Sustainable Use License 1.0` (the project-wide license per root `LICENSE.md`).
+**Default**: `SUL-1.0` (the project-wide license per root `LICENSE.md`).
 
 The project's LICENSE.md includes a carve-out: "Certain third-party components incorporated into the awesome-agent-toolbox Software may retain their original license terms where explicitly indicated by a NOTICE.md file accompanying that component." This carve-out is the mechanism for license overrides.
+
+**Format**: Use [SPDX license identifiers](https://spdx.org/licenses/) when possible (e.g., `MIT`, `Apache-2.0`, `MPL-2.0`). For the project default, use `SUL-1.0`. For synthesized skills with multiple licenses, join identifiers with ` / ` (e.g., `MIT / MPL-2.0`).
 
 #### Decision Tree
 
 ```
 Is the upstream license permissive?
   (MIT, Apache 2.0, BSD 2/3-Clause, ISC, Unlicense, CC0, WTFPL)
-  Yes -> Use default: `Sustainable Use License 1.0`
+  Yes -> Use default: `SUL-1.0`
          Permissive licenses allow derivative works under different licenses.
          Include attribution in NOTICE.md per upstream requirements.
 
@@ -75,12 +77,12 @@ Is the upstream license permissive?
 
 | Upstream License Type | Examples | license field | Action |
 |----------------------|----------|---------------|--------|
-| Permissive | MIT, Apache 2.0, BSD, ISC | `Sustainable Use License 1.0` | Use default; attribution in NOTICE.md |
+| Permissive | MIT, Apache-2.0, BSD, ISC | `SUL-1.0` | Use default; attribution in NOTICE.md |
 | Weak copyleft | MPL-2.0, LGPL | Override: e.g., `MPL-2.0` | Skill files retain upstream license |
 | Strong copyleft | GPL, AGPL, SSPL | N/A | Do not port (IGNORED or EXTERNAL) |
 | Proprietary / No-redistribute | Custom, no-distribute | N/A | Do not port (IGNORED or EXTERNAL) |
-| Dual-licensed (permissive option) | MIT OR Apache 2.0 | `Sustainable Use License 1.0` | Choose the permissive option; use default |
-| Synthesized (all permissive) | MIT + Apache 2.0 | `Sustainable Use License 1.0` | Use default; list all licenses in NOTICE.md |
+| Dual-licensed (permissive option) | MIT OR Apache 2.0 | `SUL-1.0` | Choose the permissive option; use default |
+| Synthesized (all permissive) | MIT + Apache 2.0 | `SUL-1.0` | Use default; list all licenses in NOTICE.md |
 | Synthesized (mixed with weak copyleft) | MIT + MPL-2.0 | `MIT / MPL-2.0` | Override with multi-license; NOTICE.md details which files |
 
 ### metadata.domain / metadata.subdomain
