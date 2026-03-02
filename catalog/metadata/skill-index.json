@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-02-27T19:19:03.481Z",
+  "generatedAt": "2026-03-02T17:09:44.523Z",
   "skills": [
     {
       "name": "ab-test-setup",
@@ -102,15 +102,6 @@
     {
       "name": "bear-notes",
       "description": "Create, search, and manage Bear notes via the grizzly CLI on macOS. Use when working with Bear note management from the terminal.\n",
-      "domain": "productivity",
-      "provenance": "ported",
-      "author": "cpojer <christoph.pojer@gmail.com>",
-      "lastUpdated": "12026-01-31",
-      "license": "Sustainable Use License 1.0"
-    },
-    {
-      "name": "blogwatcher",
-      "description": "Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI. Track new articles, mark as read, and manage blog subscriptions.\n",
       "domain": "productivity",
       "provenance": "ported",
       "author": "cpojer <christoph.pojer@gmail.com>",
@@ -1233,14 +1224,6 @@
       "bear",
       "cli",
       "note-taking"
-    ],
-    "blogwatcher": [
-      "rss",
-      "atom",
-      "blog",
-      "feed-reader",
-      "monitoring",
-      "cli"
     ],
     "blucli": [
       "bluos",

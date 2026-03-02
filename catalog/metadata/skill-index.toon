@@ -1,6 +1,6 @@
 version: 2
-generatedAt: "2026-02-27T19:19:03.481Z"
-skills[118	]{name	description	domain	subdomain	provenance	author	lastUpdated	license}:
+generatedAt: "2026-03-02T17:09:44.523Z"
+skills[117	]{name	description	domain	subdomain	provenance	author	lastUpdated	license}:
   ab-test-setup	Plan, design, and implement A/B tests and experiments with proper sample sizing, statistical significance, and hypothesis frameworks	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
   academic-researcher	Academic research assistant for literature reviews, paper analysis, scholarly writing, and citation formatting in APA, MLA, and Chicago styles	research	citation-management	ported	Shubhamsaboo <shubhamsaboo111@gmail.com>	12026-02-04	Sustainable Use License 1.0
   ad-creative	Generate, iterate, and scale ad creative for Google, Meta, LinkedIn, and TikTok with headlines, descriptions, and platform-specific specs	business	sales-marketing	ported	Corey Haines	12026-02-19	Sustainable Use License 1.0
@@ -12,7 +12,6 @@ skills[118	]{name	description	domain	subdomain	provenance	author	lastUpdated	lic
   apple-notes	"Manage Apple Notes via the memo CLI on macOS. Create, view, edit, delete, search, move, and export notes from the terminal. Use when managing Apple Notes programmatically.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
   apple-reminders	"Manage Apple Reminders via remindctl CLI. List, add, edit, complete, and delete reminders with support for lists, date filters, and JSON/plain output.\n"	productivity	null	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-18	Sustainable Use License 1.0
   bear-notes	"Create, search, and manage Bear notes via the grizzly CLI on macOS. Use when working with Bear note management from the terminal.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
-  blogwatcher	"Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI. Track new articles, mark as read, and manage blog subscriptions.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
   blucli	"Control Bluesound/NAD players via the BluOS CLI. Discovery, playback, grouping, and volume management from the terminal.\n"	productivity	null	ported	cpojer <christoph.pojer@gmail.com>	12026-01-31	Sustainable Use License 1.0
   canvas-design	Create beautiful visual art in .png and .pdf documents using design philosophy. Use when creating posters, art pieces, designs, or other static visual content.	content-media	generative-art	adapted	Yunseo Kim <dev@yunseo.kim>	12025-12-01	Sustainable Use License 1.0
   chat-sdk	"Build multi-platform chat bots with Chat SDK (`chat` npm package). Use when developers want to (1) Build a Slack, Teams, Google Chat, Discord, GitHub, or Linear bot, (2) Use the Chat SDK to handle mentions, messages, reactions, slash commands, cards, modals, or streaming, (3) Set up webhook handlers for chat platforms, (4) Send interactive cards or stream AI responses to chat platforms. Triggers on \"chat sdk\", \"chat bot\", \"slack bot\", \"teams bot\", \"discord bot\", \"@chat-adapter\", building bots that work across multiple chat platforms.\n"	development	backend	adapted	Yunseo Kim <dev@yunseo.kim>	12026-02-25	Sustainable Use License 1.0
@@ -131,7 +130,6 @@ tags:
   "apple-notes"[4	]: macos	apple-notes	cli	note-taking
   "apple-reminders"[4	]: macos	apple-reminders	cli	task-management
   "bear-notes"[4	]: macos	bear	cli	note-taking
-  blogwatcher[6	]: rss	atom	blog	feed-reader	monitoring	cli
   blucli[6	]: bluos	audio	smart-speaker	iot	media-playback	cli
   "canvas-design"[6	]: design	visual-art	pdf	png	typography	creative-design
   "chat-sdk"[12	]: chat-sdk	bots	slack	discord	teams	google-chat	github	linear	webhooks	streaming	jsx	cards

@@ -1493,12 +1493,6 @@
       "tree_shas": {},
       "upstream_body_sha256": "003ac7bc0757fa052ee12acd2c647c16568f00d3a848fcc09dbdcf6b728ea3b7"
     },
-    "blogwatcher": {
-      "file_hashes": {},
-      "last_checked": "2026-03-01T06:57:29.389505+00:00",
-      "tree_shas": {},
-      "upstream_body_sha256": "a17ed63af90283af1aea17c4711abf3d9197d85e56eabc694c88dfe17daedf57"
-    },
     "blucli": {
       "file_hashes": {},
       "last_checked": "2026-03-01T06:57:29.613062+00:00",

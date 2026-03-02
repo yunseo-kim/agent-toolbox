@@ -105,7 +105,6 @@ sources:
     skills:
       apple-notes:        { upstream_dir: apple-notes }
       bear-notes:         { upstream_dir: bear-notes }
-      blogwatcher:        { upstream_dir: blogwatcher }
       blucli:             { upstream_dir: blucli }
       eightctl:           { upstream_dir: eightctl }
       gemini-cli:         { upstream_dir: gemini }             # renamed
