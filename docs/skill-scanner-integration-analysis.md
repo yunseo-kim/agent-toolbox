@@ -148,7 +148,7 @@ The estimates below are directional. They assume:
 - no systemic retry storm
 - standard API pricing tiers
 
-Estimated cost per full scan:
+Estimated cost per full scan (split-model profile assumptions):
 
 - Stability-first (`gpt-5.2` + `gpt-4.1`): about **5.79 to 11.86 USD** (central estimate **7.74 USD**)
 - Accuracy-first (`gpt-5.2` + `claude-opus-4-6`): about **11.01 to 23.17 USD** (central estimate **14.84 USD**)
@@ -158,6 +158,27 @@ Notes:
 
 - Meta follow-up behavior can increase totals beyond central values.
 - Consensus mode (`--llm-consensus-runs > 1`) scales LLM cost roughly linearly with run count.
+- These are model-topology-specific estimates. Do not compare directly with single-model runs.
+
+### Empirical Cost Validation (Single-Model `gpt-5.2`, n=1)
+
+Observed full-scan run (legacy single-model setup, LLM and Meta both `gpt-5.2`):
+
+- Requests: **385**
+- Input tokens: **2.673M**
+- Billed cost: **9.81 USD**
+
+Arithmetic check against official GPT-5.2 pricing (`1.75 USD/1M input`, `14 USD/1M output`):
+
+- Input-only floor: `2.673 x 1.75 = 4.67775 USD`
+- Implied output spend: `9.81 - 4.67775 = 5.13225 USD`
+- Implied output tokens: `5.13225 / 14 x 1,000,000 = ~366,589 tokens`
+
+Validation judgment:
+
+- The observed **9.81 USD** is arithmetically consistent.
+- It should be treated as an anchor point for **single-model gpt-5.2** profile only.
+- It does not invalidate split-model estimates above, but it indicates real-world runs can sit near upper-mid cost bands when request count and output tokens are elevated.
 
 ## Estimated Full-Scan Duration (Current 133 Skills)
 
@@ -167,7 +188,7 @@ Wall-clock estimates combine:
 - Model speed character from provider docs
 - Sequential per-skill processing characteristics in scanner pipeline
 
-Estimated duration per full scan:
+Estimated duration per full scan (split-model profile assumptions):
 
 - Cost-first (`gpt-5-mini` + `gpt-4.1`): about **14 to 24 min** (high-latency case up to **~42 min**)
 - Stability-first (`gpt-5.2` + `gpt-4.1`): about **19 to 30 min** (high-latency case up to **~52 min**)
@@ -177,6 +198,20 @@ Notes:
 
 - These are CI planning ranges, not SLA guarantees.
 - Retry/backoff and provider-side variance dominate tail latency.
+- Catalog and dev scans run sequentially in this workflow, so total wall-clock is additive.
+
+### Empirical Duration Validation (Single-Model `gpt-5.2`, n=1)
+
+Observed full-scan run (legacy single-model setup):
+
+- Catalog scan: **1h 2m 2s**
+- Dev scan: **9m 50s**
+- Total: **1h 11m 52s**
+
+Validation judgment:
+
+- This exceeds the split-model stability high-latency marker (`~52 min`), so it should be tracked as a separate **single-model gpt-5.2 tail-path observation**.
+- With only one sample, this should not be used to narrow ranges; use it as an observed upper anchor until additional runs are collected.
 
 ## Recommended Policy for This Repository
 
