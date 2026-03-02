@@ -98,6 +98,7 @@ jobs:
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
+          SKILL_SCANNER_META_LLM_MODEL: gpt-4.1
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
           SCAN_VERBOSE: ${{ inputs.verbose == true || github.event_name == 'schedule' }}
           SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
@@ -165,6 +166,7 @@ jobs:
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
+          SKILL_SCANNER_META_LLM_MODEL: gpt-4.1
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
           SCAN_VERBOSE: ${{ inputs.verbose == true || github.event_name == 'schedule' }}
           SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
