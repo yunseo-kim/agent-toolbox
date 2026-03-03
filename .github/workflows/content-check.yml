@@ -1,0 +1,76 @@
+name: Content Divergence Check
+
+on:
+  schedule:
+    # Weekly on Monday at 07:00 UTC
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-web-design-guidelines:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for content divergence
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          LOCAL_FILE="catalog/skills/web-design-guidelines/references/command.md"
+          UPSTREAM_URL="https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md"
+
+          # Fetch upstream content
+          if ! curl -fsSL "$UPSTREAM_URL" -o /tmp/upstream-command.md; then
+            echo "::warning::Failed to fetch upstream command.md — repo may be renamed, deleted, or private"
+            exit 0
+          fi
+
+          # Compare SHA-256 hashes
+          UPSTREAM_HASH=$(sha256sum /tmp/upstream-command.md | cut -d' ' -f1)
+          LOCAL_HASH=$(sha256sum "$LOCAL_FILE" | cut -d' ' -f1)
+          echo "Upstream: $UPSTREAM_HASH"
+          echo "Local:    $LOCAL_HASH"
+
+          if [ "$UPSTREAM_HASH" = "$LOCAL_HASH" ]; then
+            echo "✅ No divergence"
+            exit 0
+          fi
+          echo "⚠️ Divergence detected"
+
+          # Ensure label exists (ignore error if it already does)
+          gh label create "upstream-content" \
+            --description "Upstream content divergence detected" \
+            --color "D93F0B" 2>/dev/null || true
+
+          # Skip if an open issue already exists
+          EXISTING=$(gh issue list --label "upstream-content" --state open \
+            --json number --jq '.[0].number' 2>/dev/null || echo "")
+          if [ -n "$EXISTING" ]; then
+            echo "Issue #$EXISTING already open — skipping"
+            exit 0
+          fi
+
+          # Write issue body to temp file
+          {
+            echo '## Content Divergence'
+            echo ''
+            echo '`catalog/skills/web-design-guidelines/references/command.md` no longer matches'
+            echo '[`vercel-labs/web-interface-guidelines/command.md`](https://github.com/vercel-labs/web-interface-guidelines/blob/main/command.md).'
+            echo ''
+            echo '### Next Steps'
+            echo ''
+            echo '1. Review upstream changes: https://github.com/vercel-labs/web-interface-guidelines/commits/main/command.md'
+            echo '2. Update `catalog/skills/web-design-guidelines/references/command.md` if relevant'
+            echo '3. Update the pinned commit SHA in `catalog/skills/web-design-guidelines/NOTICE.md`'
+            echo ''
+            echo '*Detected by weekly [content-check](.github/workflows/content-check.yml) workflow.*'
+          } > /tmp/issue-body.md
+          gh issue create \
+            --title 'web-design-guidelines: upstream content divergence detected' \
+            --label 'upstream-content' \
+            --body-file /tmp/issue-body.md
