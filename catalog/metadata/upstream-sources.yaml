@@ -114,7 +114,7 @@ sources:
       nano-pdf:           { upstream_dir: nano-pdf }
       notion-api:         { upstream_dir: notion }             # renamed
       obsidian-vault:     { upstream_dir: obsidian }           # renamed
-      openai-image-gen:   { upstream_dir: openai-image-gen }
+      openai-image-gen:   { upstream_dir: openai-image-gen, exclude_files: [scripts/test_gen.py] }
       openai-whisper-local: { upstream_dir: openai-whisper }   # renamed
       openhue:            { upstream_dir: openhue }
       oracle-cli:         { upstream_dir: oracle }             # renamed

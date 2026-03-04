@@ -225,13 +225,15 @@ class TestListSkillFiles(unittest.TestCase):
         )
 
     def test_excludes_local_only_files(self):
-        tree = make_tree(**{
-            "skills/demo/NOTICE.md": "n1",
-            "skills/demo/LICENSE": "l1",
-            "skills/demo/LICENSE.md": "l2",
-            "skills/demo/LICENSE.txt": "l3",
-            "skills/demo/SKILL.md": "s1",
-        })
+        tree = make_tree(
+            **{
+                "skills/demo/NOTICE.md": "n1",
+                "skills/demo/LICENSE": "l1",
+                "skills/demo/LICENSE.md": "l2",
+                "skills/demo/LICENSE.txt": "l3",
+                "skills/demo/SKILL.md": "s1",
+            }
+        )
 
         result = sync.list_skill_files(tree, "skills/demo/")
 
@@ -341,7 +343,9 @@ class TestFetchRawBinary(unittest.TestCase):
 
     @patch("sync.subprocess.run")
     def test_returns_none_on_404(self, mock_run):
-        mock_run.return_value = MagicMock(returncode=1, stdout="", stderr="404 Not Found")
+        mock_run.return_value = MagicMock(
+            returncode=1, stdout="", stderr="404 Not Found"
+        )
 
         self.assertIsNone(sync.fetch_raw_binary("o/r", "main", "x.ttf"))
 
@@ -353,15 +357,20 @@ class TestFetchRawBinary(unittest.TestCase):
 
     @patch("sync.subprocess.run")
     def test_returns_none_on_invalid_base64(self, mock_run):
-        mock_run.return_value = MagicMock(returncode=0, stdout="!!!not-base64!!!", stderr="")
+        mock_run.return_value = MagicMock(
+            returncode=0, stdout="!!!not-base64!!!", stderr=""
+        )
 
         self.assertIsNone(sync.fetch_raw_binary("o/r", "main", "x.ttf"))
 
     @patch("sync.subprocess.run")
     def test_returns_none_on_non_404_error(self, mock_run):
-        mock_run.return_value = MagicMock(returncode=1, stdout="", stderr="rate limit exceeded")
+        mock_run.return_value = MagicMock(
+            returncode=1, stdout="", stderr="rate limit exceeded"
+        )
 
         self.assertIsNone(sync.fetch_raw_binary("o/r", "main", "x.ttf"))
+
 
 class TestSyncSkillFiles(TempCatalogTestCase):
     def _call(self, tree, cached_entry, **kwargs):
@@ -387,10 +396,34 @@ class TestSyncSkillFiles(TempCatalogTestCase):
 
         self.assertEqual(classification, "safe")
         self.assertEqual(changes["files_added"], ["new.md"])
-        self.assertEqual((self.catalog_root / "demo" / "new.md").read_text(), "upstream")
+        self.assertEqual(
+            (self.catalog_root / "demo" / "new.md").read_text(), "upstream"
+        )
+
+    def test_exclude_files_skips_sync_and_clears_cached_entry(self):
+        cached = {
+            "file_hashes": {"scripts/test_gen.py": sync.sha256("old")},
+            "tree_shas": {"scripts/test_gen.py": "old-tree"},
+        }
+        tree = make_tree(**{"skills/demo/scripts/test_gen.py": "new-tree"})
+
+        classification, changes = self._call(
+            tree,
+            cached,
+            exclude_files=["scripts/test_gen.py"],
+        )
+
+        self.assertEqual(classification, "unchanged")
+        self.assertEqual(changes["files_added"], [])
+        self.assertEqual(changes["files_modified"], [])
+        self.assertEqual(changes["files_deleted"], [])
+        self.assertEqual(cached["file_hashes"], {})
+        self.assertEqual(cached["tree_shas"], {})
 
     @patch("sync.fetch_raw_file")
-    def test_new_file_local_exists_and_matches_upstream_is_unchanged(self, mock_fetch_raw):
+    def test_new_file_local_exists_and_matches_upstream_is_unchanged(
+        self, mock_fetch_raw
+    ):
         skill_root = self.catalog_root / "demo"
         skill_root.mkdir(parents=True)
         (skill_root / "new.md").write_text("same")
@@ -440,7 +473,9 @@ class TestSyncSkillFiles(TempCatalogTestCase):
         self.assertEqual((skill_root / "doc.md").read_text(), "new")
 
     @patch("sync.fetch_raw_file")
-    def test_modified_file_local_differs_from_cache_is_review_no_overwrite(self, mock_fetch_raw):
+    def test_modified_file_local_differs_from_cache_is_review_no_overwrite(
+        self, mock_fetch_raw
+    ):
         skill_root = self.catalog_root / "demo"
         skill_root.mkdir(parents=True)
         (skill_root / "doc.md").write_text("local-edited")
@@ -496,7 +531,9 @@ class TestSyncSkillFiles(TempCatalogTestCase):
 
     @patch("sync.fetch_raw_binary")
     @patch("sync.fetch_raw_file")
-    def test_unchanged_tree_sha_short_circuits_fetch(self, mock_fetch_raw, mock_fetch_raw_binary):
+    def test_unchanged_tree_sha_short_circuits_fetch(
+        self, mock_fetch_raw, mock_fetch_raw_binary
+    ):
         cached = {
             "file_hashes": {"doc.md": sync.sha256("x")},
             "tree_shas": {"doc.md": "same-tree"},
@@ -548,7 +585,9 @@ class TestSyncSkillFiles(TempCatalogTestCase):
 
         self.assertEqual(classification, "safe")
         self.assertEqual(changes["files_added"], ["image.png"])
-        self.assertEqual((self.catalog_root / "demo" / "image.png").read_bytes(), b"\x89PNG\r\n")
+        self.assertEqual(
+            (self.catalog_root / "demo" / "image.png").read_bytes(), b"\x89PNG\r\n"
+        )
         mock_fetch_raw.assert_not_called()
 
     @patch("sync.fetch_raw_file")
@@ -569,7 +608,9 @@ class TestSyncSkillFiles(TempCatalogTestCase):
             upstream_path="alt/root/demo/SKILL.md",
         )
 
-        mock_fetch_raw.assert_called_once_with("owner/repo", "main", "alt/root/demo/rules.md")
+        mock_fetch_raw.assert_called_once_with(
+            "owner/repo", "main", "alt/root/demo/rules.md"
+        )
 
     @patch("sync.fetch_raw_file")
     def test_skill_md_excluded_from_file_hashes(self, mock_fetch_raw):
@@ -636,7 +677,9 @@ class TestSyncSkillFiles(TempCatalogTestCase):
             },
             "tree_shas": {"mod.md": "old-mod-tree", "del.md": "old-del-tree"},
         }
-        tree = make_tree(**{"skills/demo/add.md": "add-tree", "skills/demo/mod.md": "new-mod-tree"})
+        tree = make_tree(
+            **{"skills/demo/add.md": "add-tree", "skills/demo/mod.md": "new-mod-tree"}
+        )
 
         classification, changes = self._call(tree, cached)
 
@@ -792,9 +835,7 @@ class TestProcessRepo(TempCatalogTestCase):
         }
 
     def _upstream_skill(self, body):
-        return (
-            "---\nname: demo\nmetadata:\n  lastUpdated: \"12026-01-01\"\n---\n" + body
-        )
+        return '---\nname: demo\nmetadata:\n  lastUpdated: "12026-01-01"\n---\n' + body
 
     @patch("sync.sync_skill_files")
     @patch("sync.fetch_repo_tree")
@@ -806,20 +847,27 @@ class TestProcessRepo(TempCatalogTestCase):
         skill_dir = self.catalog_root / "demo"
         skill_dir.mkdir(parents=True)
         (skill_dir / "SKILL.md").write_text(
-            "---\nmetadata:\n  lastUpdated: \"12026-01-01\"\n---\nold-body"
+            '---\nmetadata:\n  lastUpdated: "12026-01-01"\n---\nold-body'
         )
 
         mock_fetch_raw.return_value = self._upstream_skill("new-body")
         mock_commit_date.return_value = "2026-02-01T00:00:00Z"
         mock_sync_files.return_value = (
             "safe",
-            {"skill_md_changed": False, "files_added": [], "files_modified": [], "files_deleted": []},
+            {
+                "skill_md_changed": False,
+                "files_added": [],
+                "files_modified": [],
+                "files_deleted": [],
+            },
         )
 
         cache = make_cache(
             skills={"demo": {"upstream_body_sha256": sync.sha256("old-body")}}
         )
-        report = sync.process_repo("owner/repo", self._base_config(), cache, dry_run=True)
+        report = sync.process_repo(
+            "owner/repo", self._base_config(), cache, dry_run=True
+        )
 
         self.assertEqual(len(report["safe"]), 1)
         self.assertEqual(len(report["review"]), 0)
@@ -834,20 +882,27 @@ class TestProcessRepo(TempCatalogTestCase):
         skill_dir = self.catalog_root / "demo"
         skill_dir.mkdir(parents=True)
         (skill_dir / "SKILL.md").write_text(
-            "---\nmetadata:\n  lastUpdated: \"12026-01-01\"\n---\nold-body"
+            '---\nmetadata:\n  lastUpdated: "12026-01-01"\n---\nold-body'
         )
 
         mock_fetch_raw.return_value = self._upstream_skill("new-body")
         mock_commit_date.return_value = "2026-02-01T00:00:00Z"
         mock_sync_files.return_value = (
             "review",
-            {"skill_md_changed": False, "files_added": [], "files_modified": ["x.md"], "files_deleted": []},
+            {
+                "skill_md_changed": False,
+                "files_added": [],
+                "files_modified": ["x.md"],
+                "files_deleted": [],
+            },
         )
 
         cache = make_cache(
             skills={"demo": {"upstream_body_sha256": sync.sha256("old-body")}}
         )
-        report = sync.process_repo("owner/repo", self._base_config(), cache, dry_run=True)
+        report = sync.process_repo(
+            "owner/repo", self._base_config(), cache, dry_run=True
+        )
 
         self.assertEqual(len(report["safe"]), 0)
         self.assertEqual(len(report["review"]), 1)
@@ -862,27 +917,36 @@ class TestProcessRepo(TempCatalogTestCase):
         skill_dir = self.catalog_root / "demo"
         skill_dir.mkdir(parents=True)
         (skill_dir / "SKILL.md").write_text(
-            "---\nmetadata:\n  lastUpdated: \"12026-01-01\"\n---\nlocal-edited"
+            '---\nmetadata:\n  lastUpdated: "12026-01-01"\n---\nlocal-edited'
         )
 
         mock_fetch_raw.return_value = self._upstream_skill("new-body")
         mock_commit_date.return_value = "2026-02-01T00:00:00Z"
         mock_sync_files.return_value = (
             "safe",
-            {"skill_md_changed": False, "files_added": ["x.md"], "files_modified": [], "files_deleted": []},
+            {
+                "skill_md_changed": False,
+                "files_added": ["x.md"],
+                "files_modified": [],
+                "files_deleted": [],
+            },
         )
 
         cache = make_cache(
             skills={"demo": {"upstream_body_sha256": sync.sha256("old-body")}}
         )
-        report = sync.process_repo("owner/repo", self._base_config(), cache, dry_run=True)
+        report = sync.process_repo(
+            "owner/repo", self._base_config(), cache, dry_run=True
+        )
 
         self.assertEqual(len(report["safe"]), 0)
         self.assertEqual(len(report["review"]), 1)
 
     @patch("sync.fetch_repo_tree")
     @patch("sync.fetch_raw_file")
-    def test_init_mode_populates_body_hash_and_file_hashes(self, mock_fetch_raw, mock_tree):
+    def test_init_mode_populates_body_hash_and_file_hashes(
+        self, mock_fetch_raw, mock_tree
+    ):
         config = self._base_config()
         cache = make_cache()
         mock_tree.return_value = {
@@ -924,7 +988,12 @@ class TestProcessRepo(TempCatalogTestCase):
         mock_fetch_raw.return_value = self._upstream_skill("adapted-body")
         mock_sync_files.return_value = (
             "unchanged",
-            {"skill_md_changed": False, "files_added": [], "files_modified": [], "files_deleted": []},
+            {
+                "skill_md_changed": False,
+                "files_added": [],
+                "files_modified": [],
+                "files_deleted": [],
+            },
         )
 
         sync.process_repo("owner/repo", config, make_cache(), dry_run=False)
@@ -932,6 +1001,44 @@ class TestProcessRepo(TempCatalogTestCase):
         self.assertTrue(mock_sync_files.called)
         _, kwargs = mock_sync_files.call_args
         self.assertTrue(kwargs["dry_run"])
+
+    @patch("sync.fetch_repo_tree")
+    @patch("sync.fetch_raw_file")
+    @patch("sync.sync_skill_files")
+    def test_ported_skills_forward_exclude_files_to_sync(
+        self, mock_sync_files, mock_fetch_raw, mock_tree
+    ):
+        config = {
+            "ref": "main",
+            "discover": {"root": "skills/", "skill_file": "SKILL.md"},
+            "skills": {
+                "demo": {
+                    "upstream_dir": "demo",
+                    "exclude_files": ["scripts/test_gen.py"],
+                }
+            },
+            "adapted_skills": {},
+            "ignored": [],
+        }
+        mock_tree.return_value = {}
+        mock_fetch_raw.return_value = self._upstream_skill("same-body")
+        mock_sync_files.return_value = (
+            "unchanged",
+            {
+                "skill_md_changed": False,
+                "files_added": [],
+                "files_modified": [],
+                "files_deleted": [],
+            },
+        )
+        cache = make_cache(
+            skills={"demo": {"upstream_body_sha256": sync.sha256("same-body")}}
+        )
+
+        sync.process_repo("owner/repo", config, cache, dry_run=True)
+
+        _, kwargs = mock_sync_files.call_args
+        self.assertEqual(kwargs["exclude_files"], ["scripts/test_gen.py"])
 
 
 class TestCreatePrForRepo(unittest.TestCase):
