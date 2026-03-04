@@ -17,6 +17,9 @@ catalog. Changes include:
 - Removed platform-specific metadata and install configuration
 - Generalized platform-specific references to be tool-agnostic
 - Adapted descriptions and instructions for generic AI assistant use
+- Added security hardening for upload workflows, including explicit preflight approval before transmission
+- Added stricter remote-host guidance (localhost-first defaults) and provider/redirect guardrails
+- Added compatibility and allowed-tools metadata to reduce capability ambiguity and tool-scope risk
 
 ## Upstream License
 

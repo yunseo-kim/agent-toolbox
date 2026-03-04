@@ -9,7 +9,6 @@ compatibility: "Requires oracle CLI, network access for external providers, and 
 allowed-tools:
   - Bash
   - Read
-
 metadata:
   domain: data-ai
   tags: "ai, code-review, consultation, llm, oracle-cli"
