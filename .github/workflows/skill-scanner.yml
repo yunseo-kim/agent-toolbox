@@ -115,7 +115,7 @@ jobs:
             ARCHIVE_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-catalog.md --detailed"
           fi
 
-          COMMON_FLAGS="--policy strict --use-behavioral --use-llm --llm-provider openai \
+          COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
             --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
 
           # Full scan: manual dispatch, schedule, or edge-case fallback
@@ -182,7 +182,7 @@ jobs:
             ARCHIVE_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-dev.md --detailed"
           fi
 
-          COMMON_FLAGS="--policy strict --use-behavioral --use-llm --llm-provider openai \
+          COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
             --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
 
           # Full scan: manual dispatch, schedule, or edge-case fallback
