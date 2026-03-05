@@ -1,15 +1,18 @@
 ---
 name: web-artifacts-builder
-description: "Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui. Use for complex interactive artifacts requiring state management, routing, or component libraries."
-license: Sustainable Use License 1.0
-
+description: "Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui. Use for complex interactive artifacts requiring state management, routing, or component libraries, not for simple single-file HTML/JSX artifacts."
+license: SUL-1.0
+compatibility: "Requires Node.js 18+, pnpm, and network access to fetch npm packages and shadcn/ui components from upstream."
+allowed-tools:
+  - Bash
+  - Read
 metadata:
   domain: development
   subdomain: frontend
   tags: "react, tailwind, shadcn, artifacts, html-bundling"
   frameworks: "react, tailwind, shadcn-ui"
   author: "Yunseo Kim <dev@yunseo.kim>"
-  lastUpdated: "12026-02-28"
+  lastUpdated: "12026-03-05"
   provenance: adapted
 ---
 
@@ -22,7 +25,9 @@ To build powerful frontend interactive artifacts, follow these steps:
 4. Display artifact to user
 5. (Optional) Test the artifact
 
-**Stack**: React 18 + TypeScript + Vite + Parcel (bundling) + Tailwind CSS + shadcn/ui
+**Stack**: React 19 + TypeScript 5.9 + Vite 7/6 (Node-aware) + Parcel 2.16 + Tailwind CSS 4 + shadcn/ui CLI
+
+Use this skill for complex, multi-component artifacts. For simple single-file HTML/JSX artifacts, use a lighter workflow.
 
 ## Design & Style Guidelines
 
@@ -40,12 +45,12 @@ cd <project-name>
 
 This creates a fully configured project with:
 - ✅ React + TypeScript (via Vite)
-- ✅ Tailwind CSS 3.4.1 with shadcn/ui theming system
+- ✅ Tailwind CSS 4.2.1 via `@tailwindcss/vite`
 - ✅ Path aliases (`@/`) configured
-- ✅ 40+ shadcn/ui components pre-installed
-- ✅ All Radix UI dependencies included
-- ✅ Parcel configured for bundling (via .parcelrc)
-- ✅ Node 18+ compatibility (auto-detects and pins Vite version)
+- ✅ 40+ shadcn/ui components installed from upstream CLI (no vendored tarball)
+- ✅ React 19.2.4 and TypeScript 5.9.3 pinned
+- ✅ Parcel configured for bundling (via `.parcelrc`)
+- ✅ Node-aware Vite pinning (`7.3.1` latest, `6.4.1` fallback)
 
 ### Step 2: Develop Your Artifact
 
@@ -63,10 +68,10 @@ This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS,
 **Requirements**: Your project must have an `index.html` in the root directory.
 
 **What the script does**:
-- Installs bundling dependencies (parcel, @parcel/config-default, parcel-resolver-tspaths, html-inline)
-- Creates `.parcelrc` config with path alias support
+- Installs bundling dependencies (`parcel`, `@parcel/config-default`, `web-resource-inliner`)
+- Creates `.parcelrc` config
 - Builds with Parcel (no source maps)
-- Inlines all assets into single HTML using html-inline
+- Inlines all assets into single HTML using `web-resource-inliner`
 
 ### Step 4: Share Artifact with User
 
@@ -81,3 +86,5 @@ To test/visualize the artifact, use available tools (including other Skills or b
 ## Reference
 
 - **shadcn/ui components**: https://ui.shadcn.com/docs/components
+- **shadcn/ui Vite install**: https://ui.shadcn.com/docs/installation/vite
+- **shadcn/ui CLI**: https://ui.shadcn.com/docs/cli

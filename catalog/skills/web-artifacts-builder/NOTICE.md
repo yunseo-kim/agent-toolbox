@@ -14,6 +14,9 @@ in the awesome-agent-toolbox catalog. Changes include:
 - Added catalog frontmatter metadata (domain, subdomain, tags, frameworks)
 - Removed Anthropic-specific license frontmatter field
 - Generalized Anthropic-specific references to be tool-agnostic (e.g., "claude.ai HTML artifacts" → "interactive HTML artifacts")
+- Updated `scripts/init-artifact.sh`: added strict shell mode, validated project-name input, pinned modern stack versions (React 19.2.4, TypeScript 5.9.3, Tailwind CSS 4.2.1), and switched to upstream `shadcn` CLI install flow (`init` + `add`)
+- Updated `scripts/bundle-artifact.sh`: replaced unmaintained `html-inline` with `web-resource-inliner@8.0.0` while keeping Parcel 2.16.4 for bundling
+- Removed vendored shadcn component artifacts from `scripts/` (`shadcn-components.tar.gz`)
 
 ## Upstream Copyright and License
 
