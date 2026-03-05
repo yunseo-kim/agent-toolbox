@@ -334,7 +334,7 @@ analysis_thresholds:
   zerowidth_threshold_with_decode: 20   # Flag steganography earlier
   zerowidth_threshold_alone: 100        # Lower bar for standalone zero-width
   analyzability_low_risk: 90            # Score >= this → LOW risk
-  analyzability_medium_risk: 70         # Score >= this → MEDIUM risk
+  analyzability_medium_risk: 65         # Score >= this → MEDIUM risk
   min_dangerous_lines: 3                # Min confusable-char lines for HOMOGLYPH_ATTACK
   min_confidence_pct: 80                # Min confidence % for FILE_MAGIC_MISMATCH
   exception_handler_context_lines: 30   # Context lines around exception handlers

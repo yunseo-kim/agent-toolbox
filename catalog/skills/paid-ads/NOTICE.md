@@ -16,6 +16,9 @@ catalog. Changes include:
 - Replaced agentskills.io frontmatter (metadata.version)
   with catalog frontmatter (domain, subdomain, tags, provenance, author, lastUpdated)
 - Added catalog license field
+- Added explicit security boundaries for untrusted inputs and credential handling
+- Bundled upstream tool assets as local references under `references/tools/`, including `tools/REGISTRY.md`, `tools/integrations/{google-ads,meta-ads,linkedin-ads,tiktok-ads,ga4,segment}.md`, and `tools/clis/{google-ads,meta-ads,linkedin-ads,tiktok-ads,ga4,segment}.js`
+- Upstream tool content snapshot aligned to `coreyhaines31/marketingskills` commit `2f5db8d95cff07fcc67d6f2be7fb0a677bf897e6`
 
 ## Upstream License
 
