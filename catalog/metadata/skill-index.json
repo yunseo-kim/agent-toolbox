@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-03-02T17:09:44.523Z",
+  "generatedAt": "2026-03-06T17:44:12.792Z",
   "skills": [
     {
       "name": "ab-test-setup",
@@ -27,9 +27,9 @@
       "description": "Generate, iterate, and scale ad creative for Google, Meta, LinkedIn, and TikTok with headlines, descriptions, and platform-specific specs",
       "domain": "business",
       "subdomain": "sales-marketing",
-      "provenance": "ported",
-      "author": "Corey Haines",
-      "lastUpdated": "12026-02-19",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-06",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -44,21 +44,21 @@
     },
     {
       "name": "ai-sdk",
-      "description": "Answer questions about the Vercel AI SDK and help build AI-powered features. Use when developers ask about AI SDK functions like generateText, streamText, ToolLoopAgent, embed, or tools, want to build AI agents, chatbots, RAG systems, or text generation features, have questions about AI providers (OpenAI, Anthropic, Google, etc.), streaming, tool calling, structured output, or embeddings, or use React hooks like useChat or useCompletion. Triggers on: \"AI SDK\", \"Vercel AI SDK\", \"generateText\", \"streamText\", \"add AI to my app\", \"build an agent\", \"tool calling\", \"structured output\", \"useChat\".\n",
+      "description": "Answer questions about the Vercel AI SDK and help build AI-powered features. Use when developers ask about AI SDK functions like generateText, streamText, ToolLoopAgent, embed, or tools, want to build AI agents, chatbots, RAG systems, or text generation features, have questions about AI providers (OpenAI, Anthropic, Google, etc.), streaming, tool calling, structured output, or embeddings, or use React hooks like useChat or useCompletion. Triggers on: \"AI SDK\", \"Vercel AI SDK\", \"generateText\", \"streamText\", \"useChat\", \"useCompletion\".\n",
       "domain": "data-ai",
-      "provenance": "ported",
-      "author": "Nico Albanese <49612682+nicoalbanese@users.noreply.github.com>",
-      "lastUpdated": "12026-02-11",
-      "license": "Sustainable Use License 1.0"
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-07",
+      "license": "SUL-1.0"
     },
     {
       "name": "ai-seo",
       "description": "Optimize content for AI search engines, get cited by LLMs, and appear in AI-generated answers using AEO, GEO, and LLMO strategies",
       "domain": "business",
       "subdomain": "sales-marketing",
-      "provenance": "ported",
-      "author": "Corey Haines",
-      "lastUpdated": "12026-02-19",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-06",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -76,9 +76,9 @@
       "description": "Set up, improve, or audit analytics tracking with GA4, GTM, event naming conventions, and conversion measurement",
       "domain": "business",
       "subdomain": "sales-marketing",
-      "provenance": "ported",
-      "author": "Corey Haines",
-      "lastUpdated": "12026-02-19",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-06",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -142,9 +142,9 @@
       "description": "Reduce churn with cancellation flows, save offers, dunning sequences, and failed payment recovery strategies",
       "domain": "business",
       "subdomain": "sales-marketing",
-      "provenance": "ported",
-      "author": "Corey Haines",
-      "lastUpdated": "12026-02-19",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-06",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -348,9 +348,9 @@
       "description": "Create or optimize email sequences, drip campaigns, and automated lifecycle email flows with templates and copy guidelines",
       "domain": "business",
       "subdomain": "sales-marketing",
-      "provenance": "ported",
-      "author": "Corey Haines",
-      "lastUpdated": "12026-02-19",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-06",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -496,7 +496,7 @@
       "subdomain": "project-management",
       "provenance": "adapted",
       "author": "Yunseo Kim <dev@yunseo.kim>",
-      "lastUpdated": "12026-02-26",
+      "lastUpdated": "12026-03-06",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -572,10 +572,10 @@
       "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
       "domain": "development",
       "subdomain": "developer-tooling",
-      "provenance": "ported",
-      "author": "ant-andi <andibrae@anthropic.com>",
-      "lastUpdated": "12025-12-01",
-      "license": "Sustainable Use License 1.0"
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-07",
+      "license": "SUL-1.0"
     },
     {
       "name": "mcporter",
@@ -705,10 +705,10 @@
       "name": "oracle-cli",
       "description": "Bundle prompts and files into one-shot AI consultations via the oracle CLI. Supports browser and API engines, session management, and multiple model providers for code review and architecture analysis.\n",
       "domain": "data-ai",
-      "provenance": "ported",
-      "author": "cpojer <christoph.pojer@gmail.com>",
-      "lastUpdated": "12026-01-31",
-      "license": "Sustainable Use License 1.0"
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-05",
+      "license": "SUL-1.0"
     },
     {
       "name": "ordercli",
@@ -734,9 +734,9 @@
       "description": "Plan and optimize paid advertising campaigns on Google Ads, Meta, LinkedIn, Twitter/X, and TikTok platforms",
       "domain": "business",
       "subdomain": "sales-marketing",
-      "provenance": "ported",
-      "author": "Corey Haines",
-      "lastUpdated": "12026-02-19",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-06",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -853,9 +853,9 @@
       "description": "Create, optimize, or analyze referral programs, affiliate programs, and word-of-mouth strategies for growth",
       "domain": "business",
       "subdomain": "sales-marketing",
-      "provenance": "ported",
-      "author": "Corey Haines",
-      "lastUpdated": "12026-02-19",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-06",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -1042,8 +1042,8 @@
       "domain": "productivity",
       "provenance": "adapted",
       "author": "Yunseo Kim <dev@yunseo.kim>",
-      "lastUpdated": "12026-02-28",
-      "license": "Sustainable Use License 1.0"
+      "lastUpdated": "12026-03-05",
+      "license": "SUL-1.0"
     },
     {
       "name": "tmux-controller",
@@ -1061,7 +1061,7 @@
       "domain": "data-ai",
       "provenance": "adapted",
       "author": "Yunseo Kim <dev@yunseo.kim>",
-      "lastUpdated": "12026-02-27",
+      "lastUpdated": "12026-03-06",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -1113,22 +1113,22 @@
     },
     {
       "name": "web-artifacts-builder",
-      "description": "Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui. Use for complex interactive artifacts requiring state management, routing, or component libraries.",
+      "description": "Build multi-component HTML artifacts using React, Tailwind CSS, and shadcn/ui. Use for complex interactive artifacts requiring state management, routing, or component libraries, not for simple single-file HTML/JSX artifacts.",
       "domain": "development",
       "subdomain": "frontend",
       "provenance": "adapted",
       "author": "Yunseo Kim <dev@yunseo.kim>",
-      "lastUpdated": "12026-02-28",
-      "license": "Sustainable Use License 1.0"
+      "lastUpdated": "12026-03-05",
+      "license": "SUL-1.0"
     },
     {
       "name": "web-design-guidelines",
       "description": "Review UI code for Web Interface Guidelines compliance. Audits code against 100+ rules covering accessibility, performance, UX, forms, animation, typography, images, navigation, dark mode, touch interactions, and i18n. Use when asked to review UI, check accessibility, audit design, or review UX.\n",
       "domain": "development",
       "subdomain": "frontend",
-      "provenance": "ported",
-      "author": "Thomas Mustier",
-      "lastUpdated": "12026-01-16",
+      "provenance": "adapted",
+      "author": "Yunseo Kim <dev@yunseo.kim>",
+      "lastUpdated": "12026-03-03",
       "license": "Sustainable Use License 1.0"
     },
     {
