@@ -2,19 +2,19 @@
 
 > **Source**: [`cisco-ai-defense/skill-scanner`](https://github.com/cisco-ai-defense/skill-scanner) (v2.0.0, commit `67a29d9`)
 >
-> **Last analyzed**: 12026-03-04
+> **Last updated**: 12026-03-04
 >
 > This document catalogs every `rule_id` emitted by the Cisco Skill Scanner and its **default severity** when no `severity_overrides` are applied (i.e., the `balanced` preset / `default_policy.yaml`).
 
 ---
 
-## How Default Severity Is Determined
+## How Severity Is Determined
 
 Severities come from **three distinct layers**, evaluated in this order:
 
 1. **Hardcoded in source** — Python analyzers and YAML signature files define the baseline severity for each rule.
 2. **YARA threat mapping** — YARA rule matches are mapped to a threat category via `ThreatMapping.YARA_THREATS` in `skill_scanner/threats/threats.py`, which assigns severity per threat type.
-3. **Policy overrides** — The active scan policy (`severity_overrides` in `default_policy.yaml`) can raise or lower any rule's severity. The default `balanced` preset ships with **no overrides** (`severity_overrides: []`).
+3. **Policy overrides** — The active scan policy can raise or lower any rule's severity. The default `balanced` preset ships with **no overrides** (`severity_overrides: []`).
 
 The tables below reflect the **baseline severity before any policy override** — i.e., what you get out of the box with the `balanced` preset and no custom policy.
 
