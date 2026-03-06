@@ -29,6 +29,29 @@ async function ingestApi(method, path, body) {
   }
 }
 
+function redactSensitive(value) {
+  // Recursively redact known sensitive fields from objects/arrays before logging.
+  const SENSITIVE_KEYS = new Set(['api_key', 'secret', 'secret_key', 'token', 'access_token']);
+
+  if (value === null || typeof value !== 'object') {
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(redactSensitive);
+  }
+
+  const clone = {};
+  for (const [key, val] of Object.entries(value)) {
+    if (SENSITIVE_KEYS.has(key)) {
+      clone[key] = '***';
+    } else {
+      clone[key] = redactSensitive(val);
+    }
+  }
+  return clone;
+}
+
 async function queryApi(method, path, params) {
   if (!SECRET_KEY) {
     return { error: 'AMPLITUDE_SECRET_KEY required for query/export operations' }
@@ -173,7 +196,7 @@ async function main() {
       }
   }
 
-  console.log(JSON.stringify(result, null, 2))
+  console.log(JSON.stringify(redactSensitive(result), null, 2))
 }
 
 main().catch(err => {
