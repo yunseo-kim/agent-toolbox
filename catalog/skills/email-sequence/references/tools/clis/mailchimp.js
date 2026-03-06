@@ -246,9 +246,21 @@ async function main() {
           automations: 'automations list [--count <n>] [--offset <n>]',
         }
       }
+  } 
+
+  let logPayload
+  if (result && typeof result === 'object' && result._dry_run) {
+    // In dry-run mode, it's useful to inspect the request; headers are already sanitized
+    logPayload = sanitizeResultForLogging(result)
+  } else if (result && typeof result === 'object' && 'status' in result) {
+    // Log only high-level status information, omit potentially sensitive body content
+    logPayload = { status: result.status, _info: 'Response content omitted from logs' }
+  } else {
+    // Generic message when no structured status is available
+    logPayload = { _info: 'Command completed; response content omitted from logs' }
   }
 
-  console.log(JSON.stringify(sanitizeResultForLogging(result), null, 2))
+  console.log(JSON.stringify(logPayload, null, 2))
 }
 
 main().catch(err => {
