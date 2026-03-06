@@ -19,9 +19,28 @@ function sanitizeForLogging(value) {
     'token',
   ])
 
+  // Values derived from environment variables or other known-sensitive values
+  const SENSITIVE_VALUES = new Set(
+    [
+      DEFAULT_ACCOUNT_ID,
+    ].filter(v => typeof v === 'string' && v.length > 0)
+  )
+
+  function maskSensitivePrimitive(val) {
+    if (typeof val !== 'string') {
+      return val
+    }
+    for (const sensitive of SENSITIVE_VALUES) {
+      if (sensitive && val.includes(sensitive)) {
+        return '***'
+      }
+    }
+    return val
+  }
+
   function sanitize(obj) {
     if (obj === null || typeof obj !== 'object') {
-      return obj
+      return maskSensitivePrimitive(obj)
     }
     if (Array.isArray(obj)) {
       return obj.map(sanitize)
