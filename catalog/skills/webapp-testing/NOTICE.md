@@ -14,6 +14,10 @@ in the awesome-agent-toolbox catalog. Changes include:
 - Added catalog frontmatter metadata (domain, subdomain, tags, frameworks)
 - Removed Anthropic-specific license frontmatter field
 - Generalized Anthropic-specific references to be tool-agnostic
+- Added explicit compatibility and allowed-tools metadata for clearer tool-scope boundaries
+- Hardened `scripts/with_server.py` command validation and redirected server output streams to avoid pipe-buffer deadlocks
+- Updated examples to use configurable output paths via `WEBAPP_TESTING_OUTPUT_DIR` instead of fixed `/tmp` or `/mnt/user-data/outputs` paths
+- Refined guidance text to prioritize `--help` usage without instructing agents to avoid source review
 
 ## Upstream Copyright and License
 
