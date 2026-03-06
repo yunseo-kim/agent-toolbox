@@ -9,6 +9,37 @@ if (!TOKEN) {
   process.exit(1)
 }
 
+function sanitizeForLogging(value) {
+  const SENSITIVE_KEYS = new Set([
+    'access_token',
+    'authorization',
+    'auth',
+    'password',
+    'secret',
+    'token',
+  ])
+
+  function sanitize(obj) {
+    if (obj === null || typeof obj !== 'object') {
+      return obj
+    }
+    if (Array.isArray(obj)) {
+      return obj.map(sanitize)
+    }
+    const result = {}
+    for (const [key, val] of Object.entries(obj)) {
+      if (SENSITIVE_KEYS.has(String(key).toLowerCase())) {
+        result[key] = '***'
+      } else {
+        result[key] = sanitize(val)
+      }
+    }
+    return result
+  }
+
+  return sanitize(value)
+}
+
 async function api(method, path, body) {
   const url = `${BASE_URL}${path}`
   const opts = {
@@ -172,7 +203,7 @@ async function main() {
       }
   }
 
-  console.log(JSON.stringify(result, null, 2))
+  console.log(JSON.stringify(sanitizeForLogging(result), null, 2))
 }
 
 main().catch(err => {
