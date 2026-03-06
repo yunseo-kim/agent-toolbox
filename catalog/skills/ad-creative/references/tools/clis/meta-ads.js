@@ -77,6 +77,31 @@ function getAccountId() {
   return args['account-id'] || DEFAULT_ACCOUNT_ID
 }
 
+function sanitizeResultForLogging(result) {
+  // Treat anything that looks like a Meta ad account id (e.g. act_123456789) as sensitive
+  const accountIdPattern = /\bact_\d+\b/gi
+
+  function redactValue(val) {
+    if (typeof val === 'string') {
+      return val.replace(accountIdPattern, 'act_***')
+    }
+    return val
+  }
+
+  const seen = new WeakSet()
+  const redacted = JSON.parse(
+    JSON.stringify(result, (key, val) => {
+      if (val && typeof val === 'object') {
+        if (seen.has(val)) return
+        seen.add(val)
+      }
+      return redactValue(val)
+    })
+  )
+
+  return safeStringify(redacted, 2)
+}
+
 async function main() {
   let result
 
@@ -191,7 +216,13 @@ async function main() {
       }
   }
 
-  console.log(safeStringify(result, 2))
+  if (args.verbose) {
+    console.log(sanitizeResultForLogging(result))
+  } else if (result && result.error) {
+    console.log(safeStringify({ error: result.error }, 2))
+  } else {
+    console.log(safeStringify({ status: 'ok' }, 2))
+  }
 }
 
 main().catch(err => {
