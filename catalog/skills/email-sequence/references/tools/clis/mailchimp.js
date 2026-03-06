@@ -250,8 +250,14 @@ async function main() {
 
   let logPayload
   if (result && typeof result === 'object' && result._dry_run) {
-    // In dry-run mode, it's useful to inspect the request; headers are already sanitized
-    logPayload = sanitizeResultForLogging(result)
+    // In dry-run mode, log only high-level request metadata to avoid leaking sensitive details
+    const { method, url } = result
+    logPayload = {
+      _dry_run: true,
+      method,
+      url,
+      _info: 'Request not sent (dry-run); headers and body omitted from logs'
+    }
   } else if (result && typeof result === 'object' && 'status' in result) {
     // Log only high-level status information, omit potentially sensitive body content
     logPayload = { status: result.status, _info: 'Response content omitted from logs' }
