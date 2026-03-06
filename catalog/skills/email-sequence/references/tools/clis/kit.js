@@ -223,7 +223,32 @@ async function main() {
       }
   }
 
-  console.log(JSON.stringify(result, null, 2))
+  safeLogResult(result)
+}
+
+function redactSensitive(value) {
+  if (value === null || value === undefined) return value
+  if (Array.isArray(value)) {
+    return value.map(redactSensitive)
+  }
+  if (typeof value === 'object') {
+    const redacted = {}
+    for (const [key, val] of Object.entries(value)) {
+      const lowerKey = key.toLowerCase()
+      if (lowerKey === 'api_secret' || lowerKey === 'api_key' || lowerKey === 'authorization') {
+        redacted[key] = '***'
+      } else {
+        redacted[key] = redactSensitive(val)
+      }
+    }
+    return redacted
+  }
+  return value
+}
+
+function safeLogResult(result) {
+  const sanitized = redactSensitive(result)
+  console.log(JSON.stringify(sanitized, null, 2))
 }
 
 main().catch(err => {
