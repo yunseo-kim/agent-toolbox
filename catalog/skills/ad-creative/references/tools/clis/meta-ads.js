@@ -80,10 +80,17 @@ function getAccountId() {
 function sanitizeResultForLogging(result) {
   // Treat anything that looks like a Meta ad account id (e.g. act_123456789) as sensitive
   const accountIdPattern = /\bact_\d+\b/gi
+  // Also treat the default account id from the environment as sensitive, wherever it appears
+  const defaultAccountId = DEFAULT_ACCOUNT_ID
 
   function redactValue(val) {
     if (typeof val === 'string') {
-      return val.replace(accountIdPattern, 'act_***')
+      let redacted = val.replace(accountIdPattern, 'act_***')
+      if (defaultAccountId) {
+        // Replace any direct occurrence of the environment-derived account id
+        redacted = redacted.split(defaultAccountId).join('***')
+      }
+      return redacted
     }
     return val
   }
