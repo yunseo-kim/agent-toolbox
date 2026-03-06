@@ -2,8 +2,9 @@
 # Install: pip install pre-commit && pre-commit install
 #
 # Required environment variables for full analysis:
-#   SKILL_SCANNER_LLM_API_KEY  - OpenAI API key (LLM + Meta analyzers)
-#   SKILL_SCANNER_LLM_MODEL    - LLM model name (default: gpt-4o)
+#   SKILL_SCANNER_LLM_API_KEY       - OpenAI API key (LLM + Meta analyzers)
+#   SKILL_SCANNER_LLM_MODEL         - LLM Analyzer model (recommended: gpt-5.2-2025-12-11)
+#   SKILL_SCANNER_META_LLM_MODEL    - Meta Analyzer model (recommended: gpt-4.1)
 #   VIRUSTOTAL_API_KEY         - VirusTotal API key (binary scanning)
 #   AI_DEFENSE_API_KEY         - (disabled) Cisco AI Defense API key
 

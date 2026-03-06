@@ -99,7 +99,7 @@ jobs:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.4-2026-03-05
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
-          SCAN_VERBOSE: ${{ inputs.verbose == true || github.event_name == 'schedule' }}
+          SCAN_VERBOSE: ${{ inputs.verbose == 'true' || github.event_name == 'schedule' }}
           SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
           CHANGED_SKILLS: ${{ steps.changes.outputs.catalog }}
           EVENT_NAME: ${{ github.event_name }}
@@ -166,7 +166,7 @@ jobs:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.4-2026-03-05
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
-          SCAN_VERBOSE: ${{ inputs.verbose == true || github.event_name == 'schedule' }}
+          SCAN_VERBOSE: ${{ inputs.verbose == 'true' || github.event_name == 'schedule' }}
           SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
           CHANGED_SKILLS: ${{ steps.changes.outputs.dev }}
           EVENT_NAME: ${{ github.event_name }}
