@@ -4,6 +4,25 @@ const TOKEN = process.env.META_ACCESS_TOKEN
 const DEFAULT_ACCOUNT_ID = process.env.META_AD_ACCOUNT_ID
 const BASE_URL = 'https://graph.facebook.com/v18.0'
 
+function safeStringify(value, space) {
+  const sensitiveKeyPattern = /(token|secret|password|access[_-]?token)/i
+  const seen = new WeakSet()
+  return JSON.stringify(
+    value,
+    (key, val) => {
+      if (typeof key === 'string' && sensitiveKeyPattern.test(key)) {
+        return '***'
+      }
+      if (val && typeof val === 'object') {
+        if (seen.has(val)) return
+        seen.add(val)
+      }
+      return val
+    },
+    space
+  )
+}
+
 if (!TOKEN) {
   console.error(JSON.stringify({ error: 'META_ACCESS_TOKEN environment variable required' }))
   process.exit(1)
@@ -172,7 +191,7 @@ async function main() {
       }
   }
 
-  console.log(JSON.stringify(result, null, 2))
+  console.log(safeStringify(result, 2))
 }
 
 main().catch(err => {
