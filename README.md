@@ -71,7 +71,7 @@ awesome-agent-toolbox/
 
 **[View all skills by domain →](catalog/README.md)**
 
-The catalog currently contains **118 skills** across 10 domains, curated from leading open-source projects and adapted for cross-tool compatibility.
+The catalog currently contains **110+ skills** across 10 domains, curated from leading open-source projects and adapted for cross-tool compatibility.
 
 ## Getting Started
 
@@ -127,7 +127,7 @@ bun test                   # Run all tests
 
 ## Security
 
-Every skill in the catalog is automatically scanned for security threats using [Cisco Skill Scanner](https://github.com/cisco-ai-defense/skill-scanner) with a **strict** policy preset. The scanner runs on every push and pull request that touches skill files, combining eight detection engines:
+Every skill in the catalog is automatically scanned for security threats using [Cisco Skill Scanner](https://github.com/cisco-ai-defense/skill-scanner) with a [custom strict-based policy](docs/skill-scanner-policy.md). The scanner runs on every push and pull request that touches skill files, combining eight detection engines:
 
 - **Static analysis** — YAML + YARA pattern matching, bytecode verification, shell pipeline taint analysis
 - **Behavioral analysis** — AST-based dataflow tracking from sources to sinks across multiple files

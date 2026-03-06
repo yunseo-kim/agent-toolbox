@@ -110,7 +110,7 @@ All catalog skills and development tooling skills are scanned automatically usin
 
 **Pre-commit hook** — A `.pre-commit-config.yaml` provides the same scanning locally before every commit, catching issues before they reach CI.
 
-**Policy** — Both CI and pre-commit use the **strict** preset, which maximizes detection sensitivity: narrow allowlists, no false-positive suppression, lower detection thresholds, and broader rule scoping. The `--lenient` flag is used alongside strict policy to tolerate metadata quirks in ported skills without relaxing security analysis.
+**Policy** — Both CI and pre-commit use a [custom strict-based policy](docs/skill-scanner-policy.md) (`skill-scanner-policy.yaml`), which starts from the scanner's **strict** preset and selectively relaxes presentation thresholds and allowlists to fit a multi-skill catalog — without disabling any detection rules or suppressing findings. The `--lenient` flag is used alongside the custom policy to tolerate metadata quirks in ported skills without relaxing security analysis. For the full field-by-field preset comparison, see [`docs/skill-scanner-policy.md`](docs/skill-scanner-policy.md).
 
 **Enabled analyzers:**
 
