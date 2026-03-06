@@ -52,6 +52,43 @@ function parseArgs(args) {
   return result
 }
 
+function sanitizeResultForLogging(value) {
+  const SENSITIVE_KEYS = new Set([
+    'api_key',
+    'apikey',
+    'authorization',
+    'Authorization',
+    'password',
+    'secret',
+    'token',
+    'access_token',
+    'refresh_token',
+    'email',
+    'email_address',
+    'merge_fields'
+  ])
+
+  function sanitize(v) {
+    if (v === null || typeof v !== 'object') {
+      return v
+    }
+    if (Array.isArray(v)) {
+      return v.map(sanitize)
+    }
+    const out = {}
+    for (const [k, val] of Object.entries(v)) {
+      if (SENSITIVE_KEYS.has(k)) {
+        out[k] = '***'
+      } else {
+        out[k] = sanitize(val)
+      }
+    }
+    return out
+  }
+
+  return sanitize(value)
+}
+
 const args = parseArgs(process.argv.slice(2))
 const [cmd, sub, ...rest] = args._
 
@@ -211,7 +248,7 @@ async function main() {
       }
   }
 
-  console.log(JSON.stringify(result, null, 2))
+  console.log(JSON.stringify(sanitizeResultForLogging(result), null, 2))
 }
 
 main().catch(err => {
