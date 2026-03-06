@@ -9,14 +9,15 @@ This adapted version is governed by the
 
 ## Modifications
 
-This skill was ported from the original `skills/use-ai-sdk/` in the
+This skill was adapted from the original `skills/use-ai-sdk/` in the
 vercel/ai repository for use in the awesome-agent-toolbox
 catalog. Changes include:
 
 - Converted Agent Skills format (`skills/use-ai-sdk/`) to catalog skill format
-- Adapted SKILL.md frontmatter to catalog schema (added `metadata.domain`, `metadata.tags`, `metadata.frameworks`)
-- Preserved all reference files: ai-gateway.md, common-errors.md, devtools.md, type-safe-agents.md
-- Retained all core content: generateText, streamText, ToolLoopAgent, useChat patterns, AI Gateway, DevTools, type-safe agents, and common error migration guides
+- Adapted SKILL.md frontmatter to catalog schema (domain/tags/frameworks and provenance metadata)
+- Added catalog safety guardrails in SKILL.md (read-only default, explicit confirmation before install/network commands, untrusted external-doc handling)
+- Added operational security notes in references (`devtools.md` privacy handling, `ai-gateway.md` API-key handling)
+- Preserved reference files and core AI SDK guidance (generateText, streamText, ToolLoopAgent, useChat, AI Gateway, DevTools, and migration notes)
 
 ## Upstream License
 

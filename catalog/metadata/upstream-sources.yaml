@@ -161,7 +161,8 @@ sources:
     discover:
       root: skills/
       skill_file: SKILL.md
-    skills:
+    skills: {}
+    adapted_skills:
       ai-sdk: { upstream_dir: use-ai-sdk }                   # renamed
     ignored:
       - add-provider-package

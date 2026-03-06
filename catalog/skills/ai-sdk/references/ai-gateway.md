@@ -15,6 +15,8 @@ Authenticate with OIDC (for Vercel deployments) or an [AI Gateway API key](https
 AI_GATEWAY_API_KEY=your_api_key_here
 ```
 
+Keep API keys in local environment files only, never in source code. Do not print keys in logs or commit `.env*` files.
+
 ## Usage
 
 The AI Gateway is the default global provider, so you can access models using a simple string:
