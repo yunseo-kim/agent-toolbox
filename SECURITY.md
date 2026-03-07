@@ -14,7 +14,7 @@ Semantic versioning applies only to the CLI/toolchain (`src/`). Catalog content 
 
 Pre-1.0 releases receive no backports. Only the latest published version is supported. After 1.0, this policy will be revised to cover maintenance windows for prior minor releases.
 
-For details on the versioning model, see [docs/RELEASE-STRATEGY.md](docs/RELEASE-STRATEGY.md).
+For details on the versioning model, see [docs/release-strategy.md](docs/release-strategy.md).
 
 ## Scope
 
@@ -89,7 +89,7 @@ Every catalog item declares a provenance type that determines how it relates to 
 | Synthesized | Combined from multiple sources | No sync; all sources attributed in NOTICE.md |
 | Original | Created in this project | No upstream dependency |
 
-All catalog items require a `NOTICE.md` with attribution. For the full classification criteria, see [docs/CLASSIFICATION.md](docs/CLASSIFICATION.md).
+All catalog items require a `NOTICE.md` with attribution. For the full classification criteria, see [docs/classification.md](docs/classification.md).
 
 ### Automated Upstream Sync
 

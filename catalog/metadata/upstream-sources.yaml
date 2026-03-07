@@ -17,7 +17,7 @@
 # Ported skills (in 'skills') are eligible for automated body sync.
 # Adapted skills (in 'adapted_skills') are monitored for upstream changes
 # but NEVER auto-updated — changes are reported as advisories only.
-# See docs/CLASSIFICATION.md for full criteria.
+# See docs/classification.md for full criteria.
 #
 # Adapted skills may use 'upstream_path' instead of 'upstream_dir' when the
 # upstream file location doesn't follow the standard discover.root + dir + skill_file pattern.
