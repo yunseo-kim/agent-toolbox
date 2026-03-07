@@ -45,7 +45,7 @@ Catalog items are classified using metadata in SKILL.md frontmatter — not dire
 | **Adapted** | In `catalog/skills/` with significant modifications from one source |
 | **Synthesized** | In `catalog/skills/` as original work combining multiple sources |
 
-For detailed classification criteria, see [`docs/CLASSIFICATION.md`](../docs/CLASSIFICATION.md).
+For detailed classification criteria, see [`docs/classification.md`](../docs/classification.md).
 
 ### Selective Install
 
