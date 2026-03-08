@@ -3,7 +3,7 @@ import { PresetsSchema, type PresetsConfig } from "../schemas/presets.js";
 
 export async function loadPresets(presetsPath: string): Promise<PresetsConfig> {
   const content = await Bun.file(presetsPath).text();
-  const raw = parseYaml(content);
+  const raw: unknown = parseYaml(content);
   return PresetsSchema.parse(raw);
 }
 

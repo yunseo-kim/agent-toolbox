@@ -9,7 +9,7 @@ const FRONTMATTER_REGEX = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/;
 
 export function parseFrontmatter(content: string): ParsedFrontmatter {
   const normalized = content.startsWith("\uFEFF") ? content.slice(1) : content;
-  const match = normalized.match(FRONTMATTER_REGEX);
+  const match = FRONTMATTER_REGEX.exec(normalized);
 
   if (!match) {
     throw new Error(
@@ -26,7 +26,7 @@ export function parseFrontmatter(content: string): ParsedFrontmatter {
     parsed = parseYaml(yamlBlock);
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
-    throw new Error(`Malformed YAML frontmatter: ${reason}`);
+    throw new Error(`Malformed YAML frontmatter: ${reason}`, { cause: error });
   }
 
   if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
