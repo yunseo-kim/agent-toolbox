@@ -54,6 +54,8 @@
     "test:integration": "bun test tests/integration/",
     "test:matrix": "bun test tests/matrix/",
     "typecheck": "tsc --noEmit",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix",
     "release": "bun run scripts/release.ts",
     "tag": "bun run scripts/tag.ts",
     "changelog": "git cliff -o CHANGELOG.md"
@@ -64,9 +66,12 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/bun": "latest",
     "bumpp": "^10.4.0",
-    "typescript": "^5.7"
+    "eslint": "^10.0.3",
+    "typescript": "^5.7",
+    "typescript-eslint": "^8.56.1"
   },
   "publishConfig": {
     "access": "public",
