@@ -7,11 +7,12 @@ Bun-native test framework (`bun:test`). No external test libraries. Preload conf
 ```
 tests/
 ├── setup.ts            # Preloaded before all tests (bunfig.toml)
-├── unit/               # Schema, taxonomy, frontmatter, scanner, filter tests
+├── unit/               # Schema, taxonomy, frontmatter, scanner, provider, filter tests
 │   ├── schemas.test.ts
 │   ├── taxonomy.test.ts
 │   ├── frontmatter.test.ts
 │   ├── scanner.test.ts
+│   ├── provider.test.ts
 │   ├── index-builder.test.ts
 │   └── filter.test.ts
 ├── integration/        # End-to-end pipeline tests
@@ -42,6 +43,7 @@ bun run typecheck           # TypeScript checking (not test, but CI gate)
 | `filter.test.ts`        | `src/install/filter.ts`        | AND-composed filter logic: domain, subdomain, tag, framework, preset, skill name                                |
 | `generators.test.ts`    | `src/generators/*/`            | Target artifact creation, directory structure, file presence per target                                         |
 | `install.test.ts`       | `src/install/`                 | Full install pipeline: dry-run, filter application, error handling                                              |
+| `provider.test.ts`      | `src/catalog/provider.ts`      | Catalog resolution: local path, remote fetch, ETag caching, offline mode, refresh                               |
 
 ## CONVENTIONS
 
