@@ -3,19 +3,19 @@ name: Upstream Skill Sync
 on:
   schedule:
     # Daily at 06:00 UTC
-    - cron: '0 6 * * *'
+    - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       repo:
-        description: 'Process specific repo only (e.g., openclaw/openclaw)'
+        description: "Process specific repo only (e.g., openclaw/openclaw)"
         required: false
         type: string
       dry_run:
-        description: 'Dry run — print changes without creating PRs or issues'
+        description: "Dry run — print changes without creating PRs or issues"
         type: boolean
         default: false
       init:
-        description: 'Initialize SHA cache without creating PRs or issues'
+        description: "Initialize SHA cache without creating PRs or issues"
         type: boolean
         default: false
 
@@ -39,7 +39,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Configure git identity
         run: |

@@ -26,12 +26,12 @@ validate ──→ test ──→ build
     └──→ drift-check
 ```
 
-| Job | Steps | Fails When |
-|-----|-------|------------|
-| **validate** | `bun run typecheck` → `bun run validate` | Type errors; invalid frontmatter; domain/subdomain not in taxonomy |
-| **test** | `bun test` (all unit + integration) | Any test assertion fails |
-| **build** | `bun run build:index` → `bun run build:all` → verify 5 target dirs | Missing target directories; build errors |
-| **drift-check** | Rebuild index → compare (excluding `generatedAt` timestamp) | `skill-index.json` is out of date |
+| Job             | Steps                                                              | Fails When                                                         |
+| --------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| **validate**    | `bun run typecheck` → `bun run validate`                           | Type errors; invalid frontmatter; domain/subdomain not in taxonomy |
+| **test**        | `bun test` (all unit + integration)                                | Any test assertion fails                                           |
+| **build**       | `bun run build:index` → `bun run build:all` → verify 5 target dirs | Missing target directories; build errors                           |
+| **drift-check** | Rebuild index → compare (excluding `generatedAt` timestamp)        | `skill-index.json` is out of date                                  |
 
 **Drift detection**: Strips volatile `generatedAt` timestamp from both committed and rebuilt `skill-index.json`, then diffs content. Fails if any structural difference found. Fix: `bun run build:index && git add catalog/metadata/skill-index.json`.
 
@@ -43,15 +43,15 @@ Triggers: push of tags matching `v[0-9]+.*`.
 tag push (v*) --> validate --> test --> build --> release notes --> GitHub Release --> npm publish
 ```
 
-| Step | Command | Fails When |
-|------|---------|------------|
-| **typecheck** | `bun run typecheck` | Type errors |
-| **validate** | `bun run validate` | Invalid frontmatter or taxonomy |
-| **test** | `bun test` | Any test assertion fails |
-| **build** | `bun run build:index` + `bun run build:all` | Missing targets or build errors |
-| **release notes** | `orhun/git-cliff-action@v4` | git-cliff config error |
-| **GitHub Release** | `softprops/action-gh-release@v2` | Permission error |
-| **npm publish** | `bunx npm publish --provenance --access public` | Missing NPM_TOKEN or publish conflict |
+| Step               | Command                                         | Fails When                            |
+| ------------------ | ----------------------------------------------- | ------------------------------------- |
+| **typecheck**      | `bun run typecheck`                             | Type errors                           |
+| **validate**       | `bun run validate`                              | Invalid frontmatter or taxonomy       |
+| **test**           | `bun test`                                      | Any test assertion fails              |
+| **build**          | `bun run build:index` + `bun run build:all`     | Missing targets or build errors       |
+| **release notes**  | `orhun/git-cliff-action@v4`                     | git-cliff config error                |
+| **GitHub Release** | `softprops/action-gh-release@v2`                | Permission error                      |
+| **npm publish**    | `bunx npm publish --provenance --access public` | Missing NPM_TOKEN or publish conflict |
 
 **Release is initiated locally** in two phases: `bun run release` creates a release PR (version bump + changelog + commit on a release branch). After the PR is merged, `bun run tag --push` creates a GPG-signed tag on main HEAD and pushes it, which triggers this workflow.
 
@@ -67,20 +67,20 @@ Uses [cisco-ai-defense/skill-scanner](https://github.com/cisco-ai-defense/skill-
 
 ### Scan Modes
 
-| Trigger | Mode | Behavior |
-|---------|------|----------|
-| `schedule` (monthly) | **Full scan + archive** | Runs `scan-all` with verbose output, archives detailed markdown reports to `docs/security-reports/` via PR |
-| `workflow_dispatch` (manual) | **Full scan** | Runs `scan-all` on both `catalog/skills` and `.agents/skills` with `--recursive --check-overlap`; optionally archives reports |
-| `push` / `pull_request` (auto) | **Incremental scan** | Detects changed skill directories via `git diff`, runs individual `scan` per changed skill, merges SARIF outputs |
+| Trigger                        | Mode                    | Behavior                                                                                                                      |
+| ------------------------------ | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `schedule` (monthly)           | **Full scan + archive** | Runs `scan-all` with verbose output, archives detailed markdown reports to `docs/security-reports/` via PR                    |
+| `workflow_dispatch` (manual)   | **Full scan**           | Runs `scan-all` on both `catalog/skills` and `.agents/skills` with `--recursive --check-overlap`; optionally archives reports |
+| `push` / `pull_request` (auto) | **Incremental scan**    | Detects changed skill directories via `git diff`, runs individual `scan` per changed skill, merges SARIF outputs              |
 
 Incremental scans skip `--recursive` and `--check-overlap` (single-skill scans don't need them). Edge cases (force push, initial push, invalid base SHA) fall back to full scan automatically.
 
 ### Manual Dispatch Options
 
-| Input | Type | Default | Description |
-|-------|------|---------|-------------|
+| Input     | Type    | Default | Description                                                                                                                                                                                               |
+| --------- | ------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `verbose` | boolean | `false` | Enable verbose output: adds `--verbose` flag (policy fingerprints, co-occurrence metadata, meta-analyzer false positives in SARIF) and `--format summary` (human-readable summary printed to Actions log) |
-| `archive` | boolean | `false` | Archive scan reports as detailed markdown to `docs/security-reports/` (creates a PR to main) |
+| `archive` | boolean | `false` | Archive scan reports as detailed markdown to `docs/security-reports/` (creates a PR to main)                                                                                                              |
 
 ```
 checkout -> setup python -> install skill-scanner -> prepare report dir (archive only) -> detect changed skills (push/PR only) -> scan catalog skills -> scan dev tooling skills -> upload SARIF -> archive reports (schedule/archive only) -> check results
@@ -88,30 +88,31 @@ checkout -> setup python -> install skill-scanner -> prepare report dir (archive
 
 ### Analyzers Enabled
 
-| Analyzer | Flag | Detection Method | Requires API Key |
-|----------|------|------------------|-----------------|
-| **Static** | *(default)* | YAML + YARA pattern matching | No |
-| **Bytecode** | *(default)* | Python .pyc integrity verification | No |
-| **Pipeline** | *(default)* | Shell command taint analysis | No |
-| **Behavioral** | `--use-behavioral` | AST dataflow source→sink analysis | No |
-| **LLM** | `--use-llm` | Semantic analysis via OpenAI gpt-4o | `SKILL_SCANNER_LLM_API_KEY` |
-| **Meta** | `--enable-meta` | False positive filtering + correlation | `SKILL_SCANNER_LLM_API_KEY` |
-| **Trigger** | `--use-trigger` | Vague description specificity checks | No |
-| **VirusTotal** | `--use-virustotal` | Hash-based binary malware scanning | `VIRUSTOTAL_API_KEY` |
-| **AI Defense** | *(disabled)* | Cisco cloud-based AI analysis | `AI_DEFENSE_API_KEY` |
+| Analyzer       | Flag               | Detection Method                       | Requires API Key            |
+| -------------- | ------------------ | -------------------------------------- | --------------------------- |
+| **Static**     | _(default)_        | YAML + YARA pattern matching           | No                          |
+| **Bytecode**   | _(default)_        | Python .pyc integrity verification     | No                          |
+| **Pipeline**   | _(default)_        | Shell command taint analysis           | No                          |
+| **Behavioral** | `--use-behavioral` | AST dataflow source→sink analysis      | No                          |
+| **LLM**        | `--use-llm`        | Semantic analysis via OpenAI gpt-4o    | `SKILL_SCANNER_LLM_API_KEY` |
+| **Meta**       | `--enable-meta`    | False positive filtering + correlation | `SKILL_SCANNER_LLM_API_KEY` |
+| **Trigger**    | `--use-trigger`    | Vague description specificity checks   | No                          |
+| **VirusTotal** | `--use-virustotal` | Hash-based binary malware scanning     | `VIRUSTOTAL_API_KEY`        |
+| **AI Defense** | _(disabled)_       | Cisco cloud-based AI analysis          | `AI_DEFENSE_API_KEY`        |
 
 ### Scan Targets
 
-| Target | Path | SARIF Category |
-|--------|------|----------------|
-| Catalog skills | `catalog/skills` | `skill-scanner-catalog` |
-| Dev tooling skills | `.agents/skills` | `skill-scanner-dev` |
+| Target             | Path             | SARIF Category          |
+| ------------------ | ---------------- | ----------------------- |
+| Catalog skills     | `catalog/skills` | `skill-scanner-catalog` |
+| Dev tooling skills | `.agents/skills` | `skill-scanner-dev`     |
 
 Both scans use `--lenient` to tolerate metadata quirks in ported skills while applying strict security analysis. Findings appear as inline annotations on PRs via GitHub Code Scanning (SARIF upload).
 
 ### Incremental Scan Details
 
 On push/PR triggers, the workflow:
+
 1. Computes `git diff` between the base SHA and HEAD to identify changed files under `catalog/skills/` and `.agents/skills/`
 2. Extracts unique skill directory names from the changed file paths
 3. Runs `skill-scanner scan <skill-dir>` individually for each changed skill
@@ -123,6 +124,7 @@ If no skill files changed (e.g., only workflow file changed), the scan steps are
 ### Monthly Report Archive
 
 On schedule (1st of each month) and manual dispatch with `archive=true`:
+
 1. Runs full `scan-all` with `--verbose --format markdown --detailed`
 2. Writes detailed markdown reports to `docs/security-reports/YYYYY-MM-catalog.md` and `docs/security-reports/YYYYY-MM-dev.md`
 3. Creates a PR to `main` with the new reports (branch: `docs/security-report-YYYYY-MM`)
@@ -132,10 +134,10 @@ Reports are linked from [`README.md`](../README.md) and [`SECURITY.md`](../SECUR
 
 ### Required Secrets
 
-| Secret | Maps to env var | Required for |
-|--------|----------------|--------------|
+| Secret                      | Maps to env var             | Required for                |
+| --------------------------- | --------------------------- | --------------------------- |
 | `SKILL_SCANNER_LLM_API_KEY` | `SKILL_SCANNER_LLM_API_KEY` | LLM analyzer, Meta analyzer |
-| `VIRUSTOTAL_API_KEY` | `VIRUSTOTAL_API_KEY` | VirusTotal binary scanner |
+| `VIRUSTOTAL_API_KEY`        | `VIRUSTOTAL_API_KEY`        | VirusTotal binary scanner   |
 
 ### Pre-commit Hook
 
@@ -153,6 +155,7 @@ The pre-commit hook uses the same analyzers and strict policy. Requires the same
 Scheduled: **Daily 06:00 UTC** + manual dispatch.
 
 **Manual dispatch options:**
+
 - `repo_filter`: Sync specific upstream repo only
 - `dry_run`: Preview changes without creating PRs/issues
 - `init`: Initialize cache for first run
@@ -162,6 +165,7 @@ Scheduled: **Daily 06:00 UTC** + manual dispatch.
 Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 
 **Full-directory sync for ported skills:**
+
 - Syncs all files in skill directory (not just SKILL.md body)
 - Tree SHA1 optimization: short-circuits unchanged directories without fetching content
 - Per-file safe/review classification: detects local modifications per file
@@ -172,13 +176,14 @@ Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 
 **Behavior by provenance:**
 
-| Provenance | In `upstream-sources.yaml` | Action |
-|------------|---------------------------|--------|
-| **Ported** | `skills` section | Auto-detect changes to SKILL.md body AND all files in skill directory → create PR with updates (preserves local frontmatter, preserves NOTICE.md). Per-file safe/review classification |
-| **Adapted** | `adapted_skills` section | Advisory only → report section-heading diffs in consolidated issue |
-| **Synthesized/Original** | Not tracked | Ignored |
+| Provenance               | In `upstream-sources.yaml` | Action                                                                                                                                                                                 |
+| ------------------------ | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Ported**               | `skills` section           | Auto-detect changes to SKILL.md body AND all files in skill directory → create PR with updates (preserves local frontmatter, preserves NOTICE.md). Per-file safe/review classification |
+| **Adapted**              | `adapted_skills` section   | Advisory only → report section-heading diffs in consolidated issue                                                                                                                     |
+| **Synthesized/Original** | Not tracked                | Ignored                                                                                                                                                                                |
 
 **Safety mechanisms:**
+
 - Tree SHA1 short-circuit: skips unchanged files without fetching content
 - Per-file classification: local modifications detected per file
 - LOCAL_ONLY_FILES exclusion: NOTICE.md never synced from upstream
@@ -190,23 +195,23 @@ Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 
 ## WHERE TO LOOK
 
-| Task | File |
-|------|------|
-| Fix CI failure | `.github/workflows/ci.yml` — check which job failed |
-| Fix drift detection | Rebuild index: `bun run build:index` and commit |
-| Fix skill security scan | `.github/workflows/skill-scanner.yml` — check scan output |
-| Run full verbose scan manually | Actions tab → Skill Security Scan → Run workflow → check `verbose` |
-| View archived scan reports | `docs/security-reports/` — monthly markdown reports |
-| Archive scan report manually | Actions tab → Skill Security Scan → Run workflow → check `archive` |
-| Configure scan policy | Edit `--policy` flag in `skill-scanner.yml` or `.pre-commit-config.yaml` |
-| Configure pre-commit hook | `.pre-commit-config.yaml` — adjust args or rev |
-| Configure upstream sync | `catalog/metadata/upstream-sources.yaml` |
-| Debug sync script | `.github/upstream-sync/sync.py` |
-| Reset sync cache | Delete `.github/upstream-sync/sha-cache.json` and re-run with `--init` |
-| Create a release | Run `bun run release` (creates PR), merge, then `bun run tag --push` |
-| Debug release workflow | `.github/workflows/release.yml` |
-| Configure changelog scope | `cliff.toml` -- commit_parsers with skip rules |
-| Configure version bump | `bump.config.ts` -- bumpp + git-cliff integration |
+| Task                           | File                                                                     |
+| ------------------------------ | ------------------------------------------------------------------------ |
+| Fix CI failure                 | `.github/workflows/ci.yml` — check which job failed                      |
+| Fix drift detection            | Rebuild index: `bun run build:index` and commit                          |
+| Fix skill security scan        | `.github/workflows/skill-scanner.yml` — check scan output                |
+| Run full verbose scan manually | Actions tab → Skill Security Scan → Run workflow → check `verbose`       |
+| View archived scan reports     | `docs/security-reports/` — monthly markdown reports                      |
+| Archive scan report manually   | Actions tab → Skill Security Scan → Run workflow → check `archive`       |
+| Configure scan policy          | Edit `--policy` flag in `skill-scanner.yml` or `.pre-commit-config.yaml` |
+| Configure pre-commit hook      | `.pre-commit-config.yaml` — adjust args or rev                           |
+| Configure upstream sync        | `catalog/metadata/upstream-sources.yaml`                                 |
+| Debug sync script              | `.github/upstream-sync/sync.py`                                          |
+| Reset sync cache               | Delete `.github/upstream-sync/sha-cache.json` and re-run with `--init`   |
+| Create a release               | Run `bun run release` (creates PR), merge, then `bun run tag --push`     |
+| Debug release workflow         | `.github/workflows/release.yml`                                          |
+| Configure changelog scope      | `cliff.toml` -- commit_parsers with skip rules                           |
+| Configure version bump         | `bump.config.ts` -- bumpp + git-cliff integration                        |
 
 ## ANTI-PATTERNS
 

@@ -47,7 +47,9 @@ describe("target generators", () => {
     const skillsDirEntries = await readdir(join(claudeOutputDir, "skills"), {
       withFileTypes: true,
     });
-    expect(skillsDirEntries.filter((entry) => entry.isDirectory())).toHaveLength(skills.length);
+    expect(
+      skillsDirEntries.filter((entry) => entry.isDirectory()),
+    ).toHaveLength(skills.length);
 
     const agentsStats = await stat(join(claudeOutputDir, "agents"));
     const commandsStats = await stat(join(claudeOutputDir, "commands"));
@@ -56,7 +58,9 @@ describe("target generators", () => {
     expect(commandsStats.isDirectory()).toBe(true);
     expect(hooksStats.isDirectory()).toBe(true);
 
-    const hooksJson = await Bun.file(join(claudeOutputDir, "hooks", "hooks.json")).text();
+    const hooksJson = await Bun.file(
+      join(claudeOutputDir, "hooks", "hooks.json"),
+    ).text();
     expect(() => JSON.parse(hooksJson)).not.toThrow();
   });
 
@@ -81,7 +85,9 @@ describe("target generators", () => {
     const skillsDirEntries = await readdir(join(openCodeOutputDir, "skills"), {
       withFileTypes: true,
     });
-    expect(skillsDirEntries.filter((entry) => entry.isDirectory())).toHaveLength(skills.length);
+    expect(
+      skillsDirEntries.filter((entry) => entry.isDirectory()),
+    ).toHaveLength(skills.length);
 
     const pluginFileUrl = pathToFileURL(pluginPath).href;
     const pluginModule = await import(pluginFileUrl);
@@ -100,9 +106,14 @@ describe("target generators", () => {
 
     expect(result.skillCount).toBe(3);
 
-    const skillsDirEntries = await readdir(join(claudeSubsetOutputDir, "skills"), {
-      withFileTypes: true,
-    });
-    expect(skillsDirEntries.filter((entry) => entry.isDirectory())).toHaveLength(3);
+    const skillsDirEntries = await readdir(
+      join(claudeSubsetOutputDir, "skills"),
+      {
+        withFileTypes: true,
+      },
+    );
+    expect(
+      skillsDirEntries.filter((entry) => entry.isDirectory()),
+    ).toHaveLength(3);
   });
 });

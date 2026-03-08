@@ -136,7 +136,13 @@ export const McpServerFrontmatter = z.object({
 
 export type McpServerFrontmatter = z.infer<typeof McpServerFrontmatter>;
 
-export const CatalogItemType = z.enum(["skill", "agent", "command", "hook", "mcp"]);
+export const CatalogItemType = z.enum([
+  "skill",
+  "agent",
+  "command",
+  "hook",
+  "mcp",
+]);
 
 export const SkillIndexEntry = z.object({
   name: z.string(),

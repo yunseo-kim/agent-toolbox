@@ -37,40 +37,68 @@ export function parseArgs(argv: string[]): Record<string, string | string[]> {
   return args;
 }
 
-export async function runInstall(rootDir: string, argv: string[]): Promise<void> {
+export async function runInstall(
+  rootDir: string,
+  argv: string[],
+): Promise<void> {
   const args = parseArgs(argv);
 
   if (!args.target || args.target === "true") {
     console.error("Usage: agent-toolbox install --target <tool> [options]");
     console.error("");
     console.error("Options:");
-    console.error("  --target <tool>       Required. claude-code, opencode, cursor, codex, gemini");
+    console.error(
+      "  --target <tool>       Required. claude-code, opencode, cursor, codex, gemini",
+    );
     console.error("  --domain <domain>     Filter by domain");
     console.error("  --subdomain <sub>     Filter by subdomain");
     console.error("  --framework <fw>      Filter by framework");
     console.error("  --tag <tag>           Filter by tag");
     console.error("  --preset <name>       Install preset bundle");
-    console.error("  --skill <name>        Install specific skill(s) (repeatable)");
+    console.error(
+      "  --skill <name>        Install specific skill(s) (repeatable)",
+    );
     console.error("  --dry-run             Preview without installing");
     console.error("  --interactive         Interactive selection (future)");
-    console.error("  --refresh             Force re-download catalog from remote");
-    console.error("  --offline             Use cached catalog only, no network");
+    console.error(
+      "  --refresh             Force re-download catalog from remote",
+    );
+    console.error(
+      "  --offline             Use cached catalog only, no network",
+    );
     process.exit(1);
   }
 
   const targetParse = TargetTool.safeParse(args.target);
   if (!targetParse.success) {
-    console.error(`Invalid target: ${args.target}. Valid: claude-code, opencode, cursor, codex, gemini`);
+    console.error(
+      `Invalid target: ${args.target}. Valid: claude-code, opencode, cursor, codex, gemini`,
+    );
     process.exit(1);
   }
 
   const filters = {
     target: targetParse.data,
-    domain: typeof args.domain === "string" && args.domain !== "true" ? args.domain : undefined,
-    subdomain: typeof args.subdomain === "string" && args.subdomain !== "true" ? args.subdomain : undefined,
-    framework: typeof args.framework === "string" && args.framework !== "true" ? args.framework : undefined,
-    tag: typeof args.tag === "string" && args.tag !== "true" ? args.tag : undefined,
-    preset: typeof args.preset === "string" && args.preset !== "true" ? args.preset : undefined,
+    domain:
+      typeof args.domain === "string" && args.domain !== "true"
+        ? args.domain
+        : undefined,
+    subdomain:
+      typeof args.subdomain === "string" && args.subdomain !== "true"
+        ? args.subdomain
+        : undefined,
+    framework:
+      typeof args.framework === "string" && args.framework !== "true"
+        ? args.framework
+        : undefined,
+    tag:
+      typeof args.tag === "string" && args.tag !== "true"
+        ? args.tag
+        : undefined,
+    preset:
+      typeof args.preset === "string" && args.preset !== "true"
+        ? args.preset
+        : undefined,
     skill: Array.isArray(args.skill) ? args.skill : undefined,
     dryRun: args["dry-run"] === "true",
     interactive: args.interactive === "true",
@@ -95,15 +123,21 @@ export async function runInstall(rootDir: string, argv: string[]): Promise<void>
   if (result.filterResult.appliedFilters.length > 0) {
     console.log(`Filters: ${result.filterResult.appliedFilters.join(", ")}`);
   }
-  console.log(`Matched: ${result.filterResult.matched.length}/${result.filterResult.total} skills`);
+  console.log(
+    `Matched: ${result.filterResult.matched.length}/${result.filterResult.total} skills`,
+  );
 
   if (result.dryRun) {
     console.log(`\n${yellow("[DRY RUN]")} Would install these skills:`);
     for (const skill of result.filterResult.matched) {
-      console.log(`  - ${skill.frontmatter.name} (${skill.frontmatter.metadata.domain})`);
+      console.log(
+        `  - ${skill.frontmatter.name} (${skill.frontmatter.metadata.domain})`,
+      );
     }
   } else if (result.generatorResult) {
-    console.log(`\n${green("✓")} Installed ${result.generatorResult.skillCount} skills for ${result.generatorResult.target}`);
+    console.log(
+      `\n${green("✓")} Installed ${result.generatorResult.skillCount} skills for ${result.generatorResult.target}`,
+    );
     console.log(`  Output: ${result.generatorResult.outputDir}`);
   }
 }

@@ -121,13 +121,13 @@ bun test                   # Run all tests
 
 ## Supported Targets
 
-| Target | Artifact Format | Status |
-|--------|----------------|--------|
-| **Claude Code** | `.claude/` skills + plugins | Implemented |
-| **OpenCode** | `skills/` with SKILL.md | Implemented |
-| **Gemini CLI** | `gemini-extension.json` + skills | Implemented |
-| **Cursor** | `.cursor/` compatible artifacts | Implemented |
-| **Codex** | Agent skill directories | Implemented |
+| Target          | Artifact Format                  | Status      |
+| --------------- | -------------------------------- | ----------- |
+| **Claude Code** | `.claude/` skills + plugins      | Implemented |
+| **OpenCode**    | `skills/` with SKILL.md          | Implemented |
+| **Gemini CLI**  | `gemini-extension.json` + skills | Implemented |
+| **Cursor**      | `.cursor/` compatible artifacts  | Implemented |
+| **Codex**       | Agent skill directories          | Implemented |
 
 ## Security
 

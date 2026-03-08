@@ -1,5 +1,12 @@
 import { existsSync } from "node:fs";
-import { mkdir, readFile, readdir, rename, rm, writeFile } from "node:fs/promises";
+import {
+  mkdir,
+  readFile,
+  readdir,
+  rename,
+  rm,
+  writeFile,
+} from "node:fs/promises";
 import { join } from "node:path";
 import { z } from "zod";
 
@@ -46,7 +53,9 @@ const CatalogResolveOptionsSchema = z.object({
   source: CatalogSourceSchema.partial().optional(),
 });
 
-const CommitShaSchema = z.string().regex(/^[0-9a-f]{40}$/i, "Invalid commit SHA");
+const CommitShaSchema = z
+  .string()
+  .regex(/^[0-9a-f]{40}$/i, "Invalid commit SHA");
 
 const CacheMetaSchema = z.object({
   commitSha: CommitShaSchema,
@@ -81,7 +90,8 @@ export function getCacheDir(): string {
   const home = process.env.HOME ?? process.env.USERPROFILE ?? "";
 
   if (process.platform === "win32") {
-    const localAppData = process.env.LOCALAPPDATA ?? join(home, "AppData", "Local");
+    const localAppData =
+      process.env.LOCALAPPDATA ?? join(home, "AppData", "Local");
     return join(localAppData, "agent-toolbox");
   }
 
@@ -102,7 +112,10 @@ async function fetchWithETag(
     requestHeaders["If-None-Match"] = cachedEtag;
   }
 
-  const response = await fetch(url, { headers: requestHeaders, redirect: "follow" });
+  const response = await fetch(url, {
+    headers: requestHeaders,
+    redirect: "follow",
+  });
 
   if (response.status === 304) {
     return {
@@ -113,7 +126,9 @@ async function fetchWithETag(
   }
 
   if (!response.ok) {
-    throw new Error(`HTTP ${response.status} fetching ${url}: ${response.statusText}`);
+    throw new Error(
+      `HTTP ${response.status} fetching ${url}: ${response.statusText}`,
+    );
   }
 
   return {
@@ -123,7 +138,10 @@ async function fetchWithETag(
   };
 }
 
-async function fetchCommitShaFromApi(source: CatalogSource, cachedEtag: string | null): Promise<FreshnessResult> {
+async function fetchCommitShaFromApi(
+  source: CatalogSource,
+  cachedEtag: string | null,
+): Promise<FreshnessResult> {
   const url = `https://api.github.com/repos/${source.owner}/${source.repo}/commits/${source.branch}`;
   const result = await fetchWithETag(url, cachedEtag, {
     Accept: "application/vnd.github.sha",
@@ -146,7 +164,10 @@ async function fetchCommitShaFromApi(source: CatalogSource, cachedEtag: string |
   };
 }
 
-async function checkCatalogFreshness(source: CatalogSource, cachedEtag: string | null): Promise<FreshnessResult> {
+async function checkCatalogFreshness(
+  source: CatalogSource,
+  cachedEtag: string | null,
+): Promise<FreshnessResult> {
   const rawUrl = `https://raw.githubusercontent.com/${source.owner}/${source.repo}/${source.branch}/catalog/metadata/skill-index.json`;
 
   try {
@@ -166,8 +187,14 @@ async function checkCatalogFreshness(source: CatalogSource, cachedEtag: string |
     try {
       return await fetchCommitShaFromApi(source, cachedEtag);
     } catch (secondaryError) {
-      const primaryReason = primaryError instanceof Error ? primaryError.message : String(primaryError);
-      const secondaryReason = secondaryError instanceof Error ? secondaryError.message : String(secondaryError);
+      const primaryReason =
+        primaryError instanceof Error
+          ? primaryError.message
+          : String(primaryError);
+      const secondaryReason =
+        secondaryError instanceof Error
+          ? secondaryError.message
+          : String(secondaryError);
       throw new Error(
         `Failed to check catalog updates via raw.githubusercontent.com (${primaryReason}) and GitHub API (${secondaryReason})`,
       );
@@ -183,7 +210,11 @@ async function fetchLatestCommitSha(source: CatalogSource): Promise<string> {
   return latest.sha;
 }
 
-async function downloadAndExtractCatalog(source: CatalogSource, sha: string, cacheRoot: string): Promise<void> {
+async function downloadAndExtractCatalog(
+  source: CatalogSource,
+  sha: string,
+  cacheRoot: string,
+): Promise<void> {
   const tarUrl = `https://codeload.github.com/${source.owner}/${source.repo}/tar.gz/${sha}`;
   const response = await fetch(tarUrl, {
     headers: { "User-Agent": USER_AGENT },
@@ -191,7 +222,9 @@ async function downloadAndExtractCatalog(source: CatalogSource, sha: string, cac
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to download catalog archive: HTTP ${response.status}`);
+    throw new Error(
+      `Failed to download catalog archive: HTTP ${response.status}`,
+    );
   }
 
   const tmpRoot = join(cacheRoot, ".tmp-catalog");
@@ -214,7 +247,9 @@ async function downloadAndExtractCatalog(source: CatalogSource, sha: string, cac
 
   if (exitCode !== 0) {
     const stderr = await new Response(extractProc.stderr).text();
-    throw new Error(`Catalog archive extraction failed (exit ${exitCode}): ${stderr.trim()}`);
+    throw new Error(
+      `Catalog archive extraction failed (exit ${exitCode}): ${stderr.trim()}`,
+    );
   }
 
   const extractedEntries = await readdir(tmpRoot, { withFileTypes: true });
@@ -247,7 +282,10 @@ async function readCacheMeta(cacheRoot: string): Promise<CacheMeta | null> {
   }
 }
 
-async function writeCacheMeta(cacheRoot: string, meta: CacheMeta): Promise<void> {
+async function writeCacheMeta(
+  cacheRoot: string,
+  meta: CacheMeta,
+): Promise<void> {
   const path = join(cacheRoot, "cache-meta.json");
   await mkdir(cacheRoot, { recursive: true });
   await writeFile(path, JSON.stringify(meta, null, 2), "utf8");
@@ -259,16 +297,18 @@ export function isRunningFromPackageManager(): boolean {
   const bunxMode = process.env.BUN_INSTALL_BIN ?? "";
 
   return (
-    npmExecPath.includes("npx")
-    || npmExecPath.includes("npm-cli")
-    || npmExecPath.includes("bunx")
-    || npmUserAgent.includes("npm/")
-    || npmUserAgent.includes("bun/")
-    || bunxMode.length > 0
+    npmExecPath.includes("npx") ||
+    npmExecPath.includes("npm-cli") ||
+    npmExecPath.includes("bunx") ||
+    npmUserAgent.includes("npm/") ||
+    npmUserAgent.includes("bun/") ||
+    bunxMode.length > 0
   );
 }
 
-export async function resolveCatalogDir(options: CatalogResolveOptions): Promise<string> {
+export async function resolveCatalogDir(
+  options: CatalogResolveOptions,
+): Promise<string> {
   const parsedOptions = CatalogResolveOptionsSchema.parse(options);
   const source = CatalogSourceSchema.parse({
     ...DEFAULT_SOURCE,
@@ -286,7 +326,9 @@ export async function resolveCatalogDir(options: CatalogResolveOptions): Promise
 
   if (parsedOptions.offline) {
     if (!hasCachedCatalog) {
-      throw new Error("No cached catalog found. Run once without --offline to download catalog data.");
+      throw new Error(
+        "No cached catalog found. Run once without --offline to download catalog data.",
+      );
     }
     return catalogDir;
   }
@@ -312,7 +354,9 @@ export async function resolveCatalogDir(options: CatalogResolveOptions): Promise
     } catch (error) {
       if (hasCachedCatalog) {
         const reason = error instanceof Error ? error.message : String(error);
-        console.warn(`Could not refresh catalog metadata (${reason}). Using cached catalog.`);
+        console.warn(
+          `Could not refresh catalog metadata (${reason}). Using cached catalog.`,
+        );
         return catalogDir;
       }
       throw error;
@@ -322,7 +366,11 @@ export async function resolveCatalogDir(options: CatalogResolveOptions): Promise
   try {
     const sha = await fetchLatestCommitSha(source);
 
-    if (!parsedOptions.refresh && cacheMeta?.commitSha === sha && hasCachedCatalog) {
+    if (
+      !parsedOptions.refresh &&
+      cacheMeta?.commitSha === sha &&
+      hasCachedCatalog
+    ) {
       await writeCacheMeta(cacheRoot, {
         ...cacheMeta,
         commitSha: sha,
@@ -345,7 +393,9 @@ export async function resolveCatalogDir(options: CatalogResolveOptions): Promise
   } catch (error) {
     if (hasCachedCatalog) {
       const reason = error instanceof Error ? error.message : String(error);
-      console.warn(`Failed to update catalog (${reason}). Using cached catalog.`);
+      console.warn(
+        `Failed to update catalog (${reason}). Using cached catalog.`,
+      );
       return catalogDir;
     }
     throw error;

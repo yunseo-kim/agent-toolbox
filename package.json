@@ -39,6 +39,7 @@
     "agent-toolbox": "src/cli/main.ts"
   },
   "scripts": {
+    "prepare": "lefthook install",
     "validate": "bun run src/cli/validate.ts",
     "build:index": "bun run src/cli/build-index.ts",
     "build:claude-code": "bun run src/cli/build-target.ts -- --target claude-code",
@@ -54,6 +55,10 @@
     "test:integration": "bun test tests/integration/",
     "test:matrix": "bun test tests/matrix/",
     "typecheck": "tsc --noEmit",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix",
+    "format": "prettier --write --ignore-unknown .",
+    "format:check": "prettier --check --ignore-unknown .",
     "release": "bun run scripts/release.ts",
     "tag": "bun run scripts/tag.ts",
     "changelog": "git cliff -o CHANGELOG.md"
@@ -64,9 +69,15 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/bun": "latest",
     "bumpp": "^10.4.0",
-    "typescript": "^5.7"
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "lefthook": "^2.1.3",
+    "prettier": "^3.8.1",
+    "typescript": "^5.7",
+    "typescript-eslint": "^8.56.1"
   },
   "publishConfig": {
     "access": "public",

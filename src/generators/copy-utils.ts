@@ -1,7 +1,10 @@
 import { mkdir, readdir } from "node:fs/promises";
 import { join } from "node:path";
 
-export async function copyDirectoryRecursive(src: string, dest: string): Promise<void> {
+export async function copyDirectoryRecursive(
+  src: string,
+  dest: string,
+): Promise<void> {
   await mkdir(dest, { recursive: true });
   const entries = await readdir(src, { withFileTypes: true });
 

@@ -82,7 +82,9 @@ git checkout main && git pull
 bun run tag --push
 \`\`\``;
 
-run(`gh pr create --title "${prTitle}" --body ${JSON.stringify(prBody)} --base main`);
+run(
+  `gh pr create --title "${prTitle}" --body ${JSON.stringify(prBody)} --base main`,
+);
 
 console.log(`\n── Release PR created for ${tag} ──`);
 console.log(`After the PR is merged and CI passes:`);

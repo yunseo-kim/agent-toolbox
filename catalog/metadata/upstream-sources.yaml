@@ -35,23 +35,23 @@ sources:
       root: skills/
       skill_file: SKILL.md
     skills:
-      internal-comms:       { upstream_dir: internal-comms }
-      mcp-builder:          { upstream_dir: mcp-builder }
-      slack-gif-creator:    { upstream_dir: slack-gif-creator }
-      theme-factory:        { upstream_dir: theme-factory }
-      webapp-testing:       { upstream_dir: webapp-testing }
+      internal-comms: { upstream_dir: internal-comms }
+      mcp-builder: { upstream_dir: mcp-builder }
+      slack-gif-creator: { upstream_dir: slack-gif-creator }
+      theme-factory: { upstream_dir: theme-factory }
+      webapp-testing: { upstream_dir: webapp-testing }
     adapted_skills:
-      algorithmic-art:      { upstream_dir: algorithmic-art }
-      canvas-design:        { upstream_dir: canvas-design }
-      doc-coauthoring:      { upstream_dir: doc-coauthoring }
-      skill-creator:        { upstream_dir: skill-creator }
-      frontend-design:      { upstream_dir: frontend-design }
+      algorithmic-art: { upstream_dir: algorithmic-art }
+      canvas-design: { upstream_dir: canvas-design }
+      doc-coauthoring: { upstream_dir: doc-coauthoring }
+      skill-creator: { upstream_dir: skill-creator }
+      frontend-design: { upstream_dir: frontend-design }
       web-artifacts-builder: { upstream_dir: web-artifacts-builder }
     ignored:
-      - docx    # Proprietary license
-      - pdf     # Proprietary license
-      - pptx    # Proprietary license
-      - xlsx    # Proprietary license
+      - docx # Proprietary license
+      - pdf # Proprietary license
+      - pptx # Proprietary license
+      - xlsx # Proprietary license
       - brand-guidelines
 
   Shubhamsaboo/awesome-llm-apps:
@@ -60,27 +60,27 @@ sources:
       root: awesome_agent_skills/
       skill_file: SKILL.md
     skills:
-      academic-researcher:  { upstream_dir: academic-researcher }
-      code-reviewer:        { upstream_dir: code-reviewer }
-      content-creator:      { upstream_dir: content-creator }
-      data-analyst:         { upstream_dir: data-analyst }
-      debugger:             { upstream_dir: debugger }
-      decision-helper:      { upstream_dir: decision-helper }
-      deep-research:        { upstream_dir: deep-research }
-      editor:               { upstream_dir: editor }
-      email-drafter:        { upstream_dir: email-drafter }
-      fact-checker:         { upstream_dir: fact-checker }
-      fullstack-developer:  { upstream_dir: fullstack-developer }
-      meeting-notes:        { upstream_dir: meeting-notes }
-      project-planner:      { upstream_dir: project-planner }
-      python-expert:        { upstream_dir: python-expert }
-      sprint-planner:       { upstream_dir: sprint-planner }
-      strategy-advisor:     { upstream_dir: strategy-advisor }
+      academic-researcher: { upstream_dir: academic-researcher }
+      code-reviewer: { upstream_dir: code-reviewer }
+      content-creator: { upstream_dir: content-creator }
+      data-analyst: { upstream_dir: data-analyst }
+      debugger: { upstream_dir: debugger }
+      decision-helper: { upstream_dir: decision-helper }
+      deep-research: { upstream_dir: deep-research }
+      editor: { upstream_dir: editor }
+      email-drafter: { upstream_dir: email-drafter }
+      fact-checker: { upstream_dir: fact-checker }
+      fullstack-developer: { upstream_dir: fullstack-developer }
+      meeting-notes: { upstream_dir: meeting-notes }
+      project-planner: { upstream_dir: project-planner }
+      python-expert: { upstream_dir: python-expert }
+      sprint-planner: { upstream_dir: sprint-planner }
+      strategy-advisor: { upstream_dir: strategy-advisor }
       visualization-expert: { upstream_dir: visualization-expert }
-      ux-designer:          { upstream_dir: ux-designer }
+      ux-designer: { upstream_dir: ux-designer }
     adapted_skills: {}
     ignored:
-      - technical-writer    # Incorporated in docs-writer
+      - technical-writer # Incorporated in docs-writer
 
   n8n-io/n8n:
     ref: master
@@ -90,10 +90,10 @@ sources:
     skills:
       loom-transcript: { upstream_dir: loom-transcript }
     adapted_skills:
-      content-design:  { upstream_dir: content-design }
-      create-pr:       { upstream_dir: create-pr }
-      issue-analysis:  { upstream_dir: linear-issue }     # renamed
-      reproduce-bug:   { upstream_dir: reproduce-bug }
+      content-design: { upstream_dir: content-design }
+      create-pr: { upstream_dir: create-pr }
+      issue-analysis: { upstream_dir: linear-issue } # renamed
+      reproduce-bug: { upstream_dir: reproduce-bug }
     ignored:
       - n8n-conventions
 
@@ -103,39 +103,39 @@ sources:
       root: skills/
       skill_file: SKILL.md
     skills:
-      apple-notes:        { upstream_dir: apple-notes }
-      bear-notes:         { upstream_dir: bear-notes }
-      blogwatcher:        { upstream_dir: blogwatcher }
-      blucli:             { upstream_dir: blucli }
-      eightctl:           { upstream_dir: eightctl }
-      gemini-cli:         { upstream_dir: gemini }             # renamed
-      gifgrep:            { upstream_dir: gifgrep }
-      goplaces:           { upstream_dir: goplaces }
-      mcporter:           { upstream_dir: mcporter }
-      nano-pdf:           { upstream_dir: nano-pdf }
-      notion-api:         { upstream_dir: notion }             # renamed
-      obsidian-vault:     { upstream_dir: obsidian }           # renamed
-      openai-image-gen:   { upstream_dir: openai-image-gen }
-      openai-whisper-local: { upstream_dir: openai-whisper }   # renamed
-      openhue:            { upstream_dir: openhue }
-      oracle-cli:         { upstream_dir: oracle }             # renamed
-      ordercli:           { upstream_dir: ordercli }
-      sag-tts:            { upstream_dir: sag }                # renamed
-      songsee:            { upstream_dir: songsee }
-      sonoscli:           { upstream_dir: sonoscli }
-      spotify-player:     { upstream_dir: spotify-player }
-      summarize-cli:      { upstream_dir: summarize }          # renamed
-      weather-cli:        { upstream_dir: weather }            # renamed
-      video-frames:       { upstream_dir: video-frames }
+      apple-notes: { upstream_dir: apple-notes }
+      bear-notes: { upstream_dir: bear-notes }
+      blogwatcher: { upstream_dir: blogwatcher }
+      blucli: { upstream_dir: blucli }
+      eightctl: { upstream_dir: eightctl }
+      gemini-cli: { upstream_dir: gemini } # renamed
+      gifgrep: { upstream_dir: gifgrep }
+      goplaces: { upstream_dir: goplaces }
+      mcporter: { upstream_dir: mcporter }
+      nano-pdf: { upstream_dir: nano-pdf }
+      notion-api: { upstream_dir: notion } # renamed
+      obsidian-vault: { upstream_dir: obsidian } # renamed
+      openai-image-gen: { upstream_dir: openai-image-gen }
+      openai-whisper-local: { upstream_dir: openai-whisper } # renamed
+      openhue: { upstream_dir: openhue }
+      oracle-cli: { upstream_dir: oracle } # renamed
+      ordercli: { upstream_dir: ordercli }
+      sag-tts: { upstream_dir: sag } # renamed
+      songsee: { upstream_dir: songsee }
+      sonoscli: { upstream_dir: sonoscli }
+      spotify-player: { upstream_dir: spotify-player }
+      summarize-cli: { upstream_dir: summarize } # renamed
+      weather-cli: { upstream_dir: weather } # renamed
+      video-frames: { upstream_dir: video-frames }
     adapted_skills:
-      apple-reminders:    { upstream_dir: apple-reminders }
-      github-cli:         { upstream_dir: github }             # renamed
-      nano-banana-pro:    { upstream_dir: nano-banana-pro }
+      apple-reminders: { upstream_dir: apple-reminders }
+      github-cli: { upstream_dir: github } # renamed
+      nano-banana-pro: { upstream_dir: nano-banana-pro }
       openai-whisper-api: { upstream_dir: openai-whisper-api }
-      sherpa-onnx-tts:    { upstream_dir: sherpa-onnx-tts }
-      tmux-controller:    { upstream_dir: tmux }               # renamed
-      things-mac-cli:     { upstream_dir: things-mac }         # renamed
-      trello-api:         { upstream_dir: trello }             # renamed
+      sherpa-onnx-tts: { upstream_dir: sherpa-onnx-tts }
+      tmux-controller: { upstream_dir: tmux } # renamed
+      things-mac-cli: { upstream_dir: things-mac } # renamed
+      trello-api: { upstream_dir: trello } # renamed
     ignored:
       - 1password
       - bluebubbles
@@ -151,7 +151,7 @@ sources:
       - imsg
       - peekaboo
       - session-logs
-      - skill-creator    # skill-creator already ported from anthropics/skills
+      - skill-creator # skill-creator already ported from anthropics/skills
       - slack
       - voice-call
       - wacli
@@ -163,7 +163,7 @@ sources:
       root: skills/
       skill_file: SKILL.md
     skills:
-      ai-sdk: { upstream_dir: use-ai-sdk }                   # renamed
+      ai-sdk: { upstream_dir: use-ai-sdk } # renamed
     ignored:
       - add-provider-package
       - capture-api-response-test-fixture
@@ -176,12 +176,12 @@ sources:
       root: skills/
       skill_file: SKILL.md
     skills:
-      react-best-practices:   { upstream_dir: react-best-practices }
-      composition-patterns:   { upstream_dir: composition-patterns }
-      react-native-skills:    { upstream_dir: react-native-skills }
-      web-design-guidelines:  { upstream_dir: web-design-guidelines }
+      react-best-practices: { upstream_dir: react-best-practices }
+      composition-patterns: { upstream_dir: composition-patterns }
+      react-native-skills: { upstream_dir: react-native-skills }
+      web-design-guidelines: { upstream_dir: web-design-guidelines }
     ignored:
-      - claude.ai/vercel-deploy-claimable  # claude.ai-specific deployment tool
+      - claude.ai/vercel-deploy-claimable # claude.ai-specific deployment tool
   vercel/streamdown:
     ref: main
     discover:
@@ -207,7 +207,10 @@ sources:
       skill_file: SKILL.md
     skills: {}
     adapted_skills:
-      nextjs-cache-components: { upstream_path: .claude-plugin/plugins/cache-components/skills/cache-components/SKILL.md }
+      nextjs-cache-components:
+        {
+          upstream_path: .claude-plugin/plugins/cache-components/skills/cache-components/SKILL.md,
+        }
     ignored:
       - authoring-skills
       - dce-edge
@@ -223,8 +226,8 @@ sources:
     skills: {}
     adapted_skills:
       frontend-code-review: { upstream_dir: frontend-code-review }
-      frontend-testing:     { upstream_dir: frontend-testing }
-      react-refactoring:    { upstream_dir: component-refactoring }  # renamed
+      frontend-testing: { upstream_dir: frontend-testing }
+      react-refactoring: { upstream_dir: component-refactoring } # renamed
     ignored:
       - orpc-contract-first
 
@@ -235,9 +238,9 @@ sources:
       skill_file: SKILL.md
     skills: {}
     adapted_skills:
-      js-docs-fact-check:  { upstream_dir: fact-check }     # renamed
-      js-resource-curator: { upstream_dir: resource-curator }  # renamed
-      seo-review:          { upstream_dir: seo-review }
+      js-docs-fact-check: { upstream_dir: fact-check } # renamed
+      js-resource-curator: { upstream_dir: resource-curator } # renamed
+      seo-review: { upstream_dir: seo-review }
     ignored:
       - concept-workflow
       - test-writer
@@ -260,7 +263,7 @@ sources:
       skill_file: SKILL.md
     skills: {}
     adapted_skills:
-      chat-sdk: { upstream_dir: chat }                     # renamed
+      chat-sdk: { upstream_dir: chat } # renamed
     ignored: []
 
   pytorch/executorch:
@@ -270,7 +273,7 @@ sources:
       skill_file: SKILL.md
     skills: {}
     adapted_skills:
-      torch-export: { upstream_dir: export }              # renamed
+      torch-export: { upstream_dir: export } # renamed
     ignored:
       - building
       - cortex-m
@@ -283,33 +286,33 @@ sources:
       root: skills/
       skill_file: SKILL.md
     skills:
-      ab-test-setup:            { upstream_dir: ab-test-setup }
-      ad-creative:              { upstream_dir: ad-creative }
-      ai-seo:                   { upstream_dir: ai-seo }
-      analytics-tracking:       { upstream_dir: analytics-tracking }
-      churn-prevention:         { upstream_dir: churn-prevention }
-      cold-email:               { upstream_dir: cold-email }
-      competitor-alternatives:  { upstream_dir: competitor-alternatives }
-      content-strategy:         { upstream_dir: content-strategy }
-      copy-editing:             { upstream_dir: copy-editing }
-      copywriting:              { upstream_dir: copywriting }
-      email-sequence:           { upstream_dir: email-sequence }
-      form-cro:                 { upstream_dir: form-cro }
-      free-tool-strategy:       { upstream_dir: free-tool-strategy }
-      launch-strategy:          { upstream_dir: launch-strategy }
-      marketing-ideas:          { upstream_dir: marketing-ideas }
-      marketing-psychology:     { upstream_dir: marketing-psychology }
-      onboarding-cro:           { upstream_dir: onboarding-cro }
-      page-cro:                 { upstream_dir: page-cro }
-      paid-ads:                 { upstream_dir: paid-ads }
-      paywall-upgrade-cro:      { upstream_dir: paywall-upgrade-cro }
-      popup-cro:                { upstream_dir: popup-cro }
-      pricing-strategy:         { upstream_dir: pricing-strategy }
+      ab-test-setup: { upstream_dir: ab-test-setup }
+      ad-creative: { upstream_dir: ad-creative }
+      ai-seo: { upstream_dir: ai-seo }
+      analytics-tracking: { upstream_dir: analytics-tracking }
+      churn-prevention: { upstream_dir: churn-prevention }
+      cold-email: { upstream_dir: cold-email }
+      competitor-alternatives: { upstream_dir: competitor-alternatives }
+      content-strategy: { upstream_dir: content-strategy }
+      copy-editing: { upstream_dir: copy-editing }
+      copywriting: { upstream_dir: copywriting }
+      email-sequence: { upstream_dir: email-sequence }
+      form-cro: { upstream_dir: form-cro }
+      free-tool-strategy: { upstream_dir: free-tool-strategy }
+      launch-strategy: { upstream_dir: launch-strategy }
+      marketing-ideas: { upstream_dir: marketing-ideas }
+      marketing-psychology: { upstream_dir: marketing-psychology }
+      onboarding-cro: { upstream_dir: onboarding-cro }
+      page-cro: { upstream_dir: page-cro }
+      paid-ads: { upstream_dir: paid-ads }
+      paywall-upgrade-cro: { upstream_dir: paywall-upgrade-cro }
+      popup-cro: { upstream_dir: popup-cro }
+      pricing-strategy: { upstream_dir: pricing-strategy }
       product-marketing-context: { upstream_dir: product-marketing-context }
-      programmatic-seo:         { upstream_dir: programmatic-seo }
-      referral-program:         { upstream_dir: referral-program }
-      schema-markup:            { upstream_dir: schema-markup }
-      seo-audit:                { upstream_dir: seo-audit }
-      signup-flow-cro:          { upstream_dir: signup-flow-cro }
-      social-content:           { upstream_dir: social-content }
+      programmatic-seo: { upstream_dir: programmatic-seo }
+      referral-program: { upstream_dir: referral-program }
+      schema-markup: { upstream_dir: schema-markup }
+      seo-audit: { upstream_dir: seo-audit }
+      signup-flow-cro: { upstream_dir: signup-flow-cro }
+      social-content: { upstream_dir: social-content }
     ignored: []

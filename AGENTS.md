@@ -25,28 +25,28 @@ This repository is a cross-tool distribution system for agent skills, plugins, a
 
 ## WHERE TO LOOK
 
-| Task | Location | Notes |
-|------|----------|-------|
-| Skill authoring rules | `.agents/skills/skill-creator/SKILL.md` | Canonical current guidance |
-| Skill scaffolding script | `.agents/skills/skill-creator/scripts/init_skill.py` | Current Python initializer |
-| Skill packaging script | `.agents/skills/skill-creator/scripts/package_skill.py` | Current `.skill` packager |
-| MCP builder guidance | `.agents/skills/mcp-builder/SKILL.md` | Canonical MCP extension guidance |
-| Root architecture decisions | `AGENTS.md` | This file is authoritative |
-| Dev tooling conventions | `.agents/skills/AGENTS.md` | Skill inventory, symlink structure, dev scripts |
-| Catalog conventions | `catalog/AGENTS.md` | Distributable content rules, frontmatter, licensing |
-| TypeScript toolchain | `src/AGENTS.md` | Module architecture, schemas, generators, CLI |
-| Test conventions | `tests/AGENTS.md` | Test structure, Bun test patterns, coverage |
-| CI/CD automation | `.github/AGENTS.md` | Pipeline jobs, drift detection, upstream sync |
-| Active skill source tree | `.agents/skills/` | Dev tooling source; symlinked to `.agent/`, `.claude/`, `.cursor/`, `.windsurf/` |
-| Catalog taxonomy | `catalog/metadata/taxonomy.yaml` | Controlled vocabulary for domains/subdomains |
-| Install presets | `catalog/metadata/presets.yaml` | Curated skill bundles for common use cases |
-| Skill index | `catalog/metadata/skill-index.json`, `catalog/metadata/skill-index.toon` | Auto-generated; do not hand-edit |
-| Upstream sync config | `catalog/metadata/upstream-sources.yaml` | Ported/adapted skill mappings |
-| Provenance guide | `docs/classification.md` | Ported vs adapted decision criteria |
-| Release strategy | `docs/release.md` | Branch model, versioning, release workflow |
-| Release workflow | `.github/workflows/release.yml` | Tag-triggered npm publish pipeline |
-| Changelog config | `cliff.toml` | git-cliff commit filtering (CLI-scoped only) |
-| Version bump config | `bump.config.ts` | bumpp + git-cliff integration |
+| Task                        | Location                                                                 | Notes                                                                            |
+| --------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Skill authoring rules       | `.agents/skills/skill-creator/SKILL.md`                                  | Canonical current guidance                                                       |
+| Skill scaffolding script    | `.agents/skills/skill-creator/scripts/init_skill.py`                     | Current Python initializer                                                       |
+| Skill packaging script      | `.agents/skills/skill-creator/scripts/package_skill.py`                  | Current `.skill` packager                                                        |
+| MCP builder guidance        | `.agents/skills/mcp-builder/SKILL.md`                                    | Canonical MCP extension guidance                                                 |
+| Root architecture decisions | `AGENTS.md`                                                              | This file is authoritative                                                       |
+| Dev tooling conventions     | `.agents/skills/AGENTS.md`                                               | Skill inventory, symlink structure, dev scripts                                  |
+| Catalog conventions         | `catalog/AGENTS.md`                                                      | Distributable content rules, frontmatter, licensing                              |
+| TypeScript toolchain        | `src/AGENTS.md`                                                          | Module architecture, schemas, generators, CLI                                    |
+| Test conventions            | `tests/AGENTS.md`                                                        | Test structure, Bun test patterns, coverage                                      |
+| CI/CD automation            | `.github/AGENTS.md`                                                      | Pipeline jobs, drift detection, upstream sync                                    |
+| Active skill source tree    | `.agents/skills/`                                                        | Dev tooling source; symlinked to `.agent/`, `.claude/`, `.cursor/`, `.windsurf/` |
+| Catalog taxonomy            | `catalog/metadata/taxonomy.yaml`                                         | Controlled vocabulary for domains/subdomains                                     |
+| Install presets             | `catalog/metadata/presets.yaml`                                          | Curated skill bundles for common use cases                                       |
+| Skill index                 | `catalog/metadata/skill-index.json`, `catalog/metadata/skill-index.toon` | Auto-generated; do not hand-edit                                                 |
+| Upstream sync config        | `catalog/metadata/upstream-sources.yaml`                                 | Ported/adapted skill mappings                                                    |
+| Provenance guide            | `docs/classification.md`                                                 | Ported vs adapted decision criteria                                              |
+| Release strategy            | `docs/release.md`                                                        | Branch model, versioning, release workflow                                       |
+| Release workflow            | `.github/workflows/release.yml`                                          | Tag-triggered npm publish pipeline                                               |
+| Changelog config            | `cliff.toml`                                                             | git-cliff commit filtering (CLI-scoped only)                                     |
+| Version bump config         | `bump.config.ts`                                                         | bumpp + git-cliff integration                                                    |
 
 > **Note:** The `.agents/skills/` paths above are **development tools** for contributors, not project content.
 > They will remain as dev tooling even after `catalog/` is populated with distributable content.
@@ -68,17 +68,17 @@ This repository is a cross-tool distribution system for agent skills, plugins, a
 
 ```yaml
 ---
-name: skill-name                        # required, kebab-case, max 64 chars
-description: "What this skill does..."  # required, max 1024 chars
-license: Sustainable Use License 1.0     # required, default unless NOTICE.md overrides
+name: skill-name # required, kebab-case, max 64 chars
+description: "What this skill does..." # required, max 1024 chars
+license: Sustainable Use License 1.0 # required, default unless NOTICE.md overrides
 metadata:
-  domain: devops                        # required, from taxonomy.yaml
-  subdomain: ci-cd                      # optional, from taxonomy.yaml
-  tags: "github, yaml, automation"      # optional, comma-separated, freeform kebab-case
-  frameworks: "nextjs"                  # optional, comma-separated, freeform kebab-case
+  domain: devops # required, from taxonomy.yaml
+  subdomain: ci-cd # optional, from taxonomy.yaml
+  tags: "github, yaml, automation" # optional, comma-separated, freeform kebab-case
+  frameworks: "nextjs" # optional, comma-separated, freeform kebab-case
   author: "Yunseo Kim <dev@yunseo.kim>" # required, modifier or upstream author
-  lastUpdated: "12026-02-25"            # required, Holocene Era YYYYY-MM-DD
-  provenance: ported                    # required, ported | adapted | synthesized | original
+  lastUpdated: "12026-02-25" # required, Holocene Era YYYYY-MM-DD
+  provenance: ported # required, ported | adapted | synthesized | original
 ---
 ```
 
@@ -149,29 +149,29 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 
 ### Column Schema
 
-| Column | Purpose |
-|--------|---------|
-| **Name** | Skill display name, linked to catalog entry (if hosted) or original source (if external-only) |
-| **Source** | Original upstream repository or repositories the skill derives from |
-| **Stars** | GitHub stars badge(s) for the source repository |
-| **Upstream License** | Upstream license badge for the source, linked to license or notice file |
-| **Provenance** | Ported / Adapted / Synthesized / External |
-| **Description** | One-line summary of what the skill does |
+| Column               | Purpose                                                                                       |
+| -------------------- | --------------------------------------------------------------------------------------------- |
+| **Name**             | Skill display name, linked to catalog entry (if hosted) or original source (if external-only) |
+| **Source**           | Original upstream repository or repositories the skill derives from                           |
+| **Stars**            | GitHub stars badge(s) for the source repository                                               |
+| **Upstream License** | Upstream license badge for the source, linked to license or notice file                       |
+| **Provenance**       | Ported / Adapted / Synthesized / External                                                     |
+| **Description**      | One-line summary of what the skill does                                                       |
 
 ### Provenance Types
 
-| Type | Definition | Name link | Source column | Stars | License |
-|------|-----------|-----------|--------------|-------|---------|
-| **External** | Listed in README only; not in `catalog/` | Links to original repo/skill path | Single `[org/repo](url)` | Stars badge of source repo | License badge of source repo |
-| **Ported** | Copied to `catalog/` with minimal changes from one source | Links to `catalog/skills/<name>` | Single `[org/repo](url)` | Stars badge of source repo | License badge of source repo |
-| **Adapted** | In `catalog/` with moderate edits from one source | Links to `catalog/skills/<name>` | Single `[org/repo](url)` | Stars badge of source repo | License badge of source repo |
-| **Synthesized** | In `catalog/` as original work combining multiple sources | Links to `catalog/skills/<name>` | All sources inline: `[org1/repo1](url), [org2/repo2](url), ...` | `—` (dash) | Multi-license badge linking to `catalog/skills/<name>/NOTICE.md` |
+| Type            | Definition                                                | Name link                         | Source column                                                   | Stars                      | License                                                          |
+| --------------- | --------------------------------------------------------- | --------------------------------- | --------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------- |
+| **External**    | Listed in README only; not in `catalog/`                  | Links to original repo/skill path | Single `[org/repo](url)`                                        | Stars badge of source repo | License badge of source repo                                     |
+| **Ported**      | Copied to `catalog/` with minimal changes from one source | Links to `catalog/skills/<name>`  | Single `[org/repo](url)`                                        | Stars badge of source repo | License badge of source repo                                     |
+| **Adapted**     | In `catalog/` with moderate edits from one source         | Links to `catalog/skills/<name>`  | Single `[org/repo](url)`                                        | Stars badge of source repo | License badge of source repo                                     |
+| **Synthesized** | In `catalog/` as original work combining multiple sources | Links to `catalog/skills/<name>`  | All sources inline: `[org1/repo1](url), [org2/repo2](url), ...` | `—` (dash)                 | Multi-license badge linking to `catalog/skills/<name>/NOTICE.md` |
 
 ### Editing Rules
 
 - Every skill in `catalog/skills/` MUST have a NOTICE.md with attribution and modification notices.
 - For synthesized skills, NOTICE.md MUST list all source projects with their respective license texts.
-- Multi-license badges use the format: `MIT / Apache 2.0` (list unique licenses, separated by ` / `).
+- Multi-license badges use the format: `MIT / Apache 2.0` (list unique licenses, separated by `/`).
 - When a synthesized skill replaces multiple individual external entries, remove the individual rows and add one synthesized row.
 - Source column links point to the repository root (not the skill subdirectory) for badge compatibility.
 - Keep Description concise — one sentence, no trailing period.

@@ -2,7 +2,11 @@ import { mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 import type { ParsedSkill } from "../../schemas/catalog.js";
 import { copyDirectoryRecursive } from "../copy-utils.js";
-import type { GeneratorOptions, GeneratorResult, TargetGenerator } from "../types.js";
+import type {
+  GeneratorOptions,
+  GeneratorResult,
+  TargetGenerator,
+} from "../types.js";
 
 const GEMINI_HOOK_EVENTS = [
   "SessionStart",
@@ -18,7 +22,9 @@ const GEMINI_HOOK_EVENTS = [
   "PreToolExecution",
 ] as const;
 
-function groupSkillsByDomain(skills: ParsedSkill[]): Map<string, ParsedSkill[]> {
+function groupSkillsByDomain(
+  skills: ParsedSkill[],
+): Map<string, ParsedSkill[]> {
   const byDomain = new Map<string, ParsedSkill[]>();
 
   for (const skill of skills) {
@@ -57,7 +63,9 @@ function generateGeminiContext(skills: ParsedSkill[]): string {
     lines.push(`### ${domain} (${sortedSkills.length} skills)`);
 
     for (const skill of sortedSkills) {
-      const description = skill.frontmatter.description.replace(/\s+/g, " ").trim();
+      const description = skill.frontmatter.description
+        .replace(/\s+/g, " ")
+        .trim();
       lines.push(`- ${skill.frontmatter.name}: ${description}`);
     }
 
@@ -91,7 +99,8 @@ export class GeminiGenerator implements TargetGenerator {
     const extensionManifest = {
       name: "agent-toolbox",
       version,
-      description: "Cross-tool distribution system for agent skills, plugins, and MCP servers",
+      description:
+        "Cross-tool distribution system for agent skills, plugins, and MCP servers",
       contextFileName: "GEMINI.md",
       skills: "./skills/",
       commands: "./commands/",
@@ -121,10 +130,16 @@ export class GeminiGenerator implements TargetGenerator {
 
     const hooksDir = join(outputDir, "hooks");
     await mkdir(hooksDir, { recursive: true });
-    await Bun.write(join(hooksDir, "hooks.json"), `${JSON.stringify(generateHooksConfig(), null, 2)}\n`);
+    await Bun.write(
+      join(hooksDir, "hooks.json"),
+      `${JSON.stringify(generateHooksConfig(), null, 2)}\n`,
+    );
     artifacts.push("hooks/hooks.json");
 
-    await Bun.write(join(outputDir, "GEMINI.md"), `${generateGeminiContext(skills)}\n`);
+    await Bun.write(
+      join(outputDir, "GEMINI.md"),
+      `${generateGeminiContext(skills)}\n`,
+    );
     artifacts.push("GEMINI.md");
 
     return {

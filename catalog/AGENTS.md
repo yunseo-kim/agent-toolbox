@@ -42,17 +42,17 @@ Compliant with the [Agent Skills specification](https://agentskills.io/specifica
 
 ```yaml
 ---
-name: skill-name                        # required, kebab-case, max 64 chars
-description: "What this skill does..."  # required, max 1024 chars
-license: Sustainable Use License 1.0     # required, default unless NOTICE.md overrides
+name: skill-name # required, kebab-case, max 64 chars
+description: "What this skill does..." # required, max 1024 chars
+license: Sustainable Use License 1.0 # required, default unless NOTICE.md overrides
 metadata:
-  domain: devops                        # required, from taxonomy.yaml
-  subdomain: ci-cd                      # optional, from taxonomy.yaml
-  tags: "github, yaml, automation"      # optional, comma-separated, freeform kebab-case
-  frameworks: "nextjs"                  # optional, comma-separated, freeform kebab-case
+  domain: devops # required, from taxonomy.yaml
+  subdomain: ci-cd # optional, from taxonomy.yaml
+  tags: "github, yaml, automation" # optional, comma-separated, freeform kebab-case
+  frameworks: "nextjs" # optional, comma-separated, freeform kebab-case
   author: "Yunseo Kim <dev@yunseo.kim>" # required, modifier or upstream author
-  lastUpdated: "12026-02-25"            # required, Holocene Era YYYYY-MM-DD
-  provenance: ported                    # required, ported | adapted | synthesized | original
+  lastUpdated: "12026-02-25" # required, Holocene Era YYYYY-MM-DD
+  provenance: ported # required, ported | adapted | synthesized | original
 ---
 ```
 
@@ -80,19 +80,19 @@ For detailed classification criteria distinguishing ported from adapted, see `..
 - Every skill MUST have `NOTICE.md` with attribution and modification notices.
 - **Ported/Adapted**: NOTICE.md references the original source license.
 - **Synthesized**: NOTICE.md MUST list all source projects with their respective license texts.
-- Multi-license badge format: `MIT / Apache 2.0` (unique licenses, ` / ` separator).
+- Multi-license badge format: `MIT / Apache 2.0` (unique licenses, `/` separator).
 
 ## WHERE TO LOOK
 
-| Task | Location |
-|------|----------|
-| Add/validate domain/subdomain | `metadata/taxonomy.yaml` |
-| Define install bundles | `metadata/presets.yaml` |
-| Check generated index | `metadata/skill-index.json` and `metadata/skill-index.toon` (auto-generated) |
-| Skill authoring conventions | `../.agents/skills/skill-creator/SKILL.md` |
-| README listing rules | `README.md` (catalog) or root `AGENTS.md` > README LISTING POLICY |
-| Upstream sync config | `metadata/upstream-sources.yaml` |
-| Upstream sync SHA cache | `../.github/upstream-sync/sha-cache.json` (auto-managed) |
+| Task                          | Location                                                                     |
+| ----------------------------- | ---------------------------------------------------------------------------- |
+| Add/validate domain/subdomain | `metadata/taxonomy.yaml`                                                     |
+| Define install bundles        | `metadata/presets.yaml`                                                      |
+| Check generated index         | `metadata/skill-index.json` and `metadata/skill-index.toon` (auto-generated) |
+| Skill authoring conventions   | `../.agents/skills/skill-creator/SKILL.md`                                   |
+| README listing rules          | `README.md` (catalog) or root `AGENTS.md` > README LISTING POLICY            |
+| Upstream sync config          | `metadata/upstream-sources.yaml`                                             |
+| Upstream sync SHA cache       | `../.github/upstream-sync/sha-cache.json` (auto-managed)                     |
 
 ## ANTI-PATTERNS
 
