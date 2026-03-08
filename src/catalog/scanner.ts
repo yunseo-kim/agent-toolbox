@@ -21,7 +21,7 @@ export async function scanSkills(catalogDir: string): Promise<ScanResult> {
   const errors: ScanError[] = [];
   const skillsRoot = join(catalogDir, "skills");
 
-  let skillDirs: string[] = [];
+  let skillDirs: string[];
 
   try {
     const entries = await readdir(skillsRoot, { withFileTypes: true });

@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { scanSkills } from "../catalog/scanner.js";
 import { ClaudeCodeGenerator } from "../generators/claude-code/generator.js";
 import { CodexGenerator } from "../generators/codex/generator.js";
@@ -67,7 +67,9 @@ export async function runBuildTarget(
     process.exit(1);
   }
 
-  const pkg = await Bun.file(join(rootDir, "package.json")).json();
+  const pkg = (await Bun.file(join(rootDir, "package.json")).json()) as {
+    version: string;
+  };
   const version: string = pkg.version;
 
   const outputDir = join(rootDir, "dist", "targets", targetParse.data);

@@ -232,7 +232,7 @@ export async function validateCatalog(
     }
   }
 
-  let totalSkills = 0;
+  let totalSkills: number;
 
   try {
     const skillRoot = join(catalogDir, "skills");

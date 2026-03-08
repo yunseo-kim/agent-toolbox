@@ -64,11 +64,11 @@ const CacheMetaSchema = z.object({
   source: CatalogSourceSchema,
 });
 
-type FetchWithEtagResult = {
+interface FetchWithEtagResult {
   status: number;
   body: string | null;
   etag: string | null;
-};
+}
 
 type FreshnessResult =
   | {
@@ -197,6 +197,7 @@ async function checkCatalogFreshness(
           : String(secondaryError);
       throw new Error(
         `Failed to check catalog updates via raw.githubusercontent.com (${primaryReason}) and GitHub API (${secondaryReason})`,
+        { cause: secondaryError },
       );
     }
   }
@@ -275,7 +276,7 @@ async function readCacheMeta(cacheRoot: string): Promise<CacheMeta | null> {
 
   try {
     const content = await readFile(path, "utf8");
-    const raw = JSON.parse(content);
+    const raw: unknown = JSON.parse(content);
     return CacheMetaSchema.parse(raw);
   } catch {
     return null;

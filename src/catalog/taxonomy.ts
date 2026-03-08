@@ -10,6 +10,7 @@ export async function loadTaxonomy(taxonomyPath: string): Promise<Taxonomy> {
     const reason = error instanceof Error ? error.message : String(error);
     throw new Error(
       `Failed to read taxonomy file '${taxonomyPath}': ${reason}`,
+      { cause: error },
     );
   }
 
@@ -19,14 +20,18 @@ export async function loadTaxonomy(taxonomyPath: string): Promise<Taxonomy> {
     rawTaxonomy = parseYaml(content);
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
-    throw new Error(`Malformed taxonomy YAML at '${taxonomyPath}': ${reason}`);
+    throw new Error(`Malformed taxonomy YAML at '${taxonomyPath}': ${reason}`, {
+      cause: error,
+    });
   }
 
   try {
     return TaxonomySchema.parse(rawTaxonomy);
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
-    throw new Error(`Invalid taxonomy schema at '${taxonomyPath}': ${reason}`);
+    throw new Error(`Invalid taxonomy schema at '${taxonomyPath}': ${reason}`, {
+      cause: error,
+    });
   }
 }
 

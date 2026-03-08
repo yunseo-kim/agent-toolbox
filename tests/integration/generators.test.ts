@@ -61,7 +61,7 @@ describe("target generators", () => {
     const hooksJson = await Bun.file(
       join(claudeOutputDir, "hooks", "hooks.json"),
     ).text();
-    expect(() => JSON.parse(hooksJson)).not.toThrow();
+    expect(() => JSON.parse(hooksJson) as unknown).not.toThrow();
   });
 
   test("OpenCode generator creates expected artifacts", async () => {
@@ -90,7 +90,7 @@ describe("target generators", () => {
     ).toHaveLength(skills.length);
 
     const pluginFileUrl = pathToFileURL(pluginPath).href;
-    const pluginModule = await import(pluginFileUrl);
+    const pluginModule: unknown = await import(pluginFileUrl);
     expect(pluginModule).toBeDefined();
   });
 
