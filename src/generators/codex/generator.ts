@@ -56,7 +56,7 @@ export class CodexGenerator implements TargetGenerator {
       icon: "toolbox",
       brand_color: "#2563eb",
       policy:
-        "You have access to skills from the awesome-agent-toolbox catalog. Read the relevant SKILL.md when a user's request matches a skill's description.",
+        "You have access to skills from the agent-toolbox catalog. Read the relevant SKILL.md when a user's request matches a skill's description.",
     };
 
     await Bun.write(join(agentsDir, "openai.yaml"), stringifyYaml(openAiMetadata));
