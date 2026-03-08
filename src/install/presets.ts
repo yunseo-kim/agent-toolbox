@@ -7,7 +7,10 @@ export async function loadPresets(presetsPath: string): Promise<PresetsConfig> {
   return PresetsSchema.parse(raw);
 }
 
-export function resolvePreset(config: PresetsConfig, presetName: string): string[] | null {
+export function resolvePreset(
+  config: PresetsConfig,
+  presetName: string,
+): string[] | null {
   const preset = config.presets.find((entry) => entry.name === presetName);
   return preset ? preset.items : null;
 }

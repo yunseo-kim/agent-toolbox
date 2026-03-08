@@ -1,7 +1,11 @@
 import { mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { copyDirectoryRecursive } from "../copy-utils.js";
-import type { GeneratorOptions, GeneratorResult, TargetGenerator } from "../types.js";
+import type {
+  GeneratorOptions,
+  GeneratorResult,
+  TargetGenerator,
+} from "../types.js";
 
 export class ClaudeCodeGenerator implements TargetGenerator {
   readonly target = "claude-code" as const;
@@ -20,9 +24,13 @@ export class ClaudeCodeGenerator implements TargetGenerator {
     const pluginManifest = {
       name: "agent-toolbox",
       version,
-      description: "Cross-tool distribution system for agent skills, plugins, and MCP servers",
+      description:
+        "Cross-tool distribution system for agent skills, plugins, and MCP servers",
     };
-    await Bun.write(join(pluginDir, "plugin.json"), JSON.stringify(pluginManifest, null, 2) + "\n");
+    await Bun.write(
+      join(pluginDir, "plugin.json"),
+      JSON.stringify(pluginManifest, null, 2) + "\n",
+    );
     artifacts.push(".claude-plugin/plugin.json");
 
     const skillsDir = join(outputDir, "skills");
@@ -45,7 +53,10 @@ export class ClaudeCodeGenerator implements TargetGenerator {
 
     const hooksDir = join(outputDir, "hooks");
     await mkdir(hooksDir, { recursive: true });
-    await Bun.write(join(hooksDir, "hooks.json"), JSON.stringify({ hooks: {} }, null, 2) + "\n");
+    await Bun.write(
+      join(hooksDir, "hooks.json"),
+      JSON.stringify({ hooks: {} }, null, 2) + "\n",
+    );
     artifacts.push("hooks/hooks.json");
 
     return {

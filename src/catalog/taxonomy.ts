@@ -8,7 +8,9 @@ export async function loadTaxonomy(taxonomyPath: string): Promise<Taxonomy> {
     content = await Bun.file(taxonomyPath).text();
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
-    throw new Error(`Failed to read taxonomy file '${taxonomyPath}': ${reason}`);
+    throw new Error(
+      `Failed to read taxonomy file '${taxonomyPath}': ${reason}`,
+    );
   }
 
   let rawTaxonomy: unknown;
@@ -32,7 +34,11 @@ export function validateDomain(taxonomy: Taxonomy, domain: string): boolean {
   return Object.hasOwn(taxonomy.domains, domain);
 }
 
-export function validateSubdomain(taxonomy: Taxonomy, domain: string, subdomain: string): boolean {
+export function validateSubdomain(
+  taxonomy: Taxonomy,
+  domain: string,
+  subdomain: string,
+): boolean {
   const domainEntry = taxonomy.domains[domain];
 
   if (!domainEntry) {
@@ -46,7 +52,10 @@ export function getValidDomains(taxonomy: Taxonomy): string[] {
   return Object.keys(taxonomy.domains).sort((a, b) => a.localeCompare(b));
 }
 
-export function getValidSubdomains(taxonomy: Taxonomy, domain: string): string[] {
+export function getValidSubdomains(
+  taxonomy: Taxonomy,
+  domain: string,
+): string[] {
   const domainEntry = taxonomy.domains[domain];
 
   if (!domainEntry) {

@@ -1,7 +1,11 @@
 import { mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { copyDirectoryRecursive } from "../copy-utils.js";
-import type { GeneratorOptions, GeneratorResult, TargetGenerator } from "../types.js";
+import type {
+  GeneratorOptions,
+  GeneratorResult,
+  TargetGenerator,
+} from "../types.js";
 
 function generateOpenCodePlugin(version: string, skillList: string): string {
   return [
@@ -13,17 +17,19 @@ function generateOpenCodePlugin(version: string, skillList: string): string {
     ``,
     `const __dirname = path.dirname(fileURLToPath(import.meta.url));`,
     ``,
-    `const SKILL_CATALOG = ${JSON.stringify([
-      "## Available Skills (agent-toolbox)",
-      "",
-      "You have access to skills from agent-toolbox. Each skill has a SKILL.md",
-      "with instructions. Read the relevant SKILL.md when a user's request matches a skill's",
-      "description.",
-      "",
-      "### Installed Skills:",
-      skillList,
-      "",
-    ].join("\n"))};`,
+    `const SKILL_CATALOG = ${JSON.stringify(
+      [
+        "## Available Skills (agent-toolbox)",
+        "",
+        "You have access to skills from agent-toolbox. Each skill has a SKILL.md",
+        "with instructions. Read the relevant SKILL.md when a user's request matches a skill's",
+        "description.",
+        "",
+        "### Installed Skills:",
+        skillList,
+        "",
+      ].join("\n"),
+    )};`,
     ``,
     `export const AwesomeAgentToolboxPlugin = async ({ directory }) => {`,
     `  return {`,

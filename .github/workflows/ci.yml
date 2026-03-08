@@ -81,14 +81,14 @@ jobs:
             echo "ERROR: dist/targets directory not found"
             exit 1
           fi
-          
+
           target_count=$(find dist/targets -maxdepth 1 -type d | wc -l)
           # wc -l counts the parent dir too, so we expect 6 (parent + 5 targets)
           if [ "$target_count" -lt 6 ]; then
             echo "ERROR: Expected at least 5 target subdirectories in dist/targets, found $((target_count - 1))"
             exit 1
           fi
-          
+
           echo "✓ Build outputs verified: dist/targets contains target subdirectories"
 
   drift-check:

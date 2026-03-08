@@ -6,7 +6,10 @@ import {
   CommaSeparatedList,
   TargetTool,
 } from "../../src/schemas/common.js";
-import { SkillFrontmatter, CatalogItemType } from "../../src/schemas/catalog.js";
+import {
+  SkillFrontmatter,
+  CatalogItemType,
+} from "../../src/schemas/catalog.js";
 import { TaxonomySchema } from "../../src/schemas/taxonomy.js";
 import { InstallFilters } from "../../src/schemas/install.js";
 
@@ -119,7 +122,10 @@ describe("taxonomy and install schemas", () => {
       },
     });
 
-    expect(parsed.domains.development.subdomains).toEqual(["frontend", "backend"]);
+    expect(parsed.domains.development.subdomains).toEqual([
+      "frontend",
+      "backend",
+    ]);
   });
 
   test("InstallFilters accepts valid filters and defaults booleans", () => {

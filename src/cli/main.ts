@@ -19,7 +19,8 @@ async function getVersion(rootDir: string): Promise<string> {
 }
 
 function printHelp(): void {
-  console.log(`
+  console.log(
+    `
 ${NAME} — Cross-tool distribution system for agent skills
 
 USAGE
@@ -58,11 +59,13 @@ EXAMPLES
   ${NAME} build --target opencode
   ${NAME} validate
   ${NAME} build-index
-`.trimStart());
+`.trimStart(),
+  );
 }
 
 function printBuildHelp(): void {
-  console.log(`
+  console.log(
+    `
 USAGE
   ${NAME} build --target <tool>
 
@@ -77,7 +80,8 @@ TARGETS
 EXAMPLES
   ${NAME} build --target opencode
   ${NAME} build --target all
-`.trimStart());
+`.trimStart(),
+  );
 }
 
 async function main(): Promise<void> {

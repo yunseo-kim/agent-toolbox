@@ -49,7 +49,7 @@ domains:
       - package-distribution
       - ecommerce-development
       - low-level
-      - developer-tooling     # meta-tools: skill authoring, MCP builders, plugin scaffolders
+      - developer-tooling # meta-tools: skill authoring, MCP builders, plugin scaffolders
 
   devops:
     description: Infrastructure, deployment, operations, testing, security, and code quality
@@ -59,9 +59,9 @@ domains:
       - cloud
       - containers
       - monitoring
-      - code-review        # formerly testing > code-quality
-      - testing            # formerly testing domain
-      - security           # formerly testing > security
+      - code-review # formerly testing > code-quality
+      - testing # formerly testing domain
+      - security # formerly testing > security
 
   documentation:
     description: Technical documentation, API references, knowledge bases, and developer-facing docs
@@ -104,7 +104,7 @@ domains:
   content-media:
     description: Non-technical content creation, education, media processing, and publishing
     subdomains:
-      - education           # formerly documentation > education
+      - education # formerly documentation > education
       - content-design
       - media-processing
       - generative-art

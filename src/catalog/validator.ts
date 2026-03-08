@@ -29,8 +29,14 @@ export interface ValidationStats {
   domains: Record<string, number>;
 }
 
-const HOLOCENE_DATE_REGEX = /^1\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01])$/;
-const VALID_PROVENANCE = new Set(["ported", "adapted", "synthesized", "original"]);
+const HOLOCENE_DATE_REGEX =
+  /^1\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01])$/;
+const VALID_PROVENANCE = new Set([
+  "ported",
+  "adapted",
+  "synthesized",
+  "original",
+]);
 
 function skillKeyFromPath(path: string): string {
   if (path.endsWith("SKILL.md")) {
@@ -40,7 +46,10 @@ function skillKeyFromPath(path: string): string {
   return basename(path);
 }
 
-export async function validateCatalog(catalogDir: string, taxonomyPath: string): Promise<ValidationResult> {
+export async function validateCatalog(
+  catalogDir: string,
+  taxonomyPath: string,
+): Promise<ValidationResult> {
   const errors: ValidationError[] = [];
   const warnings: ValidationWarning[] = [];
   const invalidSkillKeys = new Set<string>();
@@ -244,7 +253,9 @@ export async function validateCatalog(catalogDir: string, taxonomyPath: string):
       totalSkills,
       validSkills,
       invalidSkills,
-      domains: Object.fromEntries(Object.entries(domainCounts).sort(([a], [b]) => a.localeCompare(b))),
+      domains: Object.fromEntries(
+        Object.entries(domainCounts).sort(([a], [b]) => a.localeCompare(b)),
+      ),
     },
   };
 }

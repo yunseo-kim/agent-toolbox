@@ -8,7 +8,10 @@ import {
 } from "../../src/catalog/taxonomy.js";
 import { resolve } from "node:path";
 
-const taxonomyPath = resolve(import.meta.dir, "../../catalog/metadata/taxonomy.yaml");
+const taxonomyPath = resolve(
+  import.meta.dir,
+  "../../catalog/metadata/taxonomy.yaml",
+);
 
 describe("taxonomy loading and validation", () => {
   test("loads real taxonomy.yaml successfully", async () => {
@@ -42,7 +45,9 @@ describe("taxonomy loading and validation", () => {
 
   test("validateSubdomain returns false for invalid pair", async () => {
     const taxonomy = await loadTaxonomy(taxonomyPath);
-    expect(validateSubdomain(taxonomy, "development", "nonexistent")).toBe(false);
+    expect(validateSubdomain(taxonomy, "development", "nonexistent")).toBe(
+      false,
+    );
   });
 
   test("getValidDomains returns all 10 domains", async () => {

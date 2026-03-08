@@ -7,7 +7,10 @@ import { CursorGenerator } from "../generators/cursor/generator.js";
 import { GeminiGenerator } from "../generators/gemini/generator.js";
 import { OpenCodeGenerator } from "../generators/opencode/generator.js";
 import type { GeneratorResult, TargetGenerator } from "../generators/types.js";
-import { InstallFilters, type InstallFiltersInput } from "../schemas/install.js";
+import {
+  InstallFilters,
+  type InstallFiltersInput,
+} from "../schemas/install.js";
 import { filterSkills, type FilterResult } from "./filter.js";
 import { loadPresets, resolvePreset } from "./presets.js";
 
@@ -25,7 +28,10 @@ const generatorMap: Record<string, () => TargetGenerator> = {
   gemini: () => new GeminiGenerator(),
 };
 
-export async function install(rootDir: string, rawFilters: InstallFiltersInput): Promise<InstallResult> {
+export async function install(
+  rootDir: string,
+  rawFilters: InstallFiltersInput,
+): Promise<InstallResult> {
   const filters = InstallFilters.parse(rawFilters);
   const catalogDir = await resolveCatalogDir({
     rootDir,
@@ -68,7 +74,9 @@ export async function install(rootDir: string, rawFilters: InstallFiltersInput):
 
   const generator = createGenerator();
   const outputDir = join(rootDir, "dist", "targets", filters.target);
-  const pkg = await Bun.file(join(rootDir, "package.json")).json() as { version: string };
+  const pkg = (await Bun.file(join(rootDir, "package.json")).json()) as {
+    version: string;
+  };
 
   const generatorResult = await generator.generate({
     skills: filterResult.matched,

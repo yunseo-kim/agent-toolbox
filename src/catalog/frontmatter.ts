@@ -12,7 +12,9 @@ export function parseFrontmatter(content: string): ParsedFrontmatter {
   const match = normalized.match(FRONTMATTER_REGEX);
 
   if (!match) {
-    throw new Error("Missing YAML frontmatter. Expected content to start with '---'.");
+    throw new Error(
+      "Missing YAML frontmatter. Expected content to start with '---'.",
+    );
   }
 
   const [, yamlBlock] = match;

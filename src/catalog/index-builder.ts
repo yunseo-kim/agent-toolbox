@@ -1,7 +1,11 @@
 import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
 import { DELIMITERS, encode } from "@toon-format/toon";
-import { SkillIndex, type SkillIndex as SkillIndexType, type ParsedSkill } from "../schemas/catalog.js";
+import {
+  SkillIndex,
+  type SkillIndex as SkillIndexType,
+  type ParsedSkill,
+} from "../schemas/catalog.js";
 
 export function buildSkillIndex(skills: ParsedSkill[]): SkillIndexType {
   const skillEntries = skills
@@ -40,13 +44,19 @@ export function buildSkillIndex(skills: ParsedSkill[]): SkillIndexType {
   });
 }
 
-export async function writeSkillIndex(index: SkillIndexType, outputPath: string): Promise<void> {
+export async function writeSkillIndex(
+  index: SkillIndexType,
+  outputPath: string,
+): Promise<void> {
   await mkdir(dirname(outputPath), { recursive: true });
   const json = `${JSON.stringify(index, null, 2)}\n`;
   await Bun.write(outputPath, json);
 }
 
-export async function writeSkillIndexToon(index: SkillIndexType, outputPath: string): Promise<void> {
+export async function writeSkillIndexToon(
+  index: SkillIndexType,
+  outputPath: string,
+): Promise<void> {
   await mkdir(dirname(outputPath), { recursive: true });
   const toon = encode(index, { delimiter: DELIMITERS.tab });
   await Bun.write(outputPath, toon);

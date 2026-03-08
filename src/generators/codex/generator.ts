@@ -2,7 +2,11 @@ import { mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { stringify as stringifyYaml } from "yaml";
 import { copyDirectoryRecursive } from "../copy-utils.js";
-import type { GeneratorOptions, GeneratorResult, TargetGenerator } from "../types.js";
+import type {
+  GeneratorOptions,
+  GeneratorResult,
+  TargetGenerator,
+} from "../types.js";
 
 function generateInstallMd(): string {
   return [
@@ -59,7 +63,10 @@ export class CodexGenerator implements TargetGenerator {
         "You have access to skills from the agent-toolbox catalog. Read the relevant SKILL.md when a user's request matches a skill's description.",
     };
 
-    await Bun.write(join(agentsDir, "openai.yaml"), stringifyYaml(openAiMetadata));
+    await Bun.write(
+      join(agentsDir, "openai.yaml"),
+      stringifyYaml(openAiMetadata),
+    );
     artifacts.push("agents/openai.yaml");
 
     await Bun.write(join(outputDir, "INSTALL.md"), generateInstallMd());

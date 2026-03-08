@@ -6,10 +6,10 @@ The agent-toolbox maintainers take security seriously. This document covers how 
 
 Semantic versioning applies only to the CLI/toolchain (`src/`). Catalog content (skills, hooks, MCP servers) is unversioned and updated on a rolling basis.
 
-| Component | Version | Supported |
-|-----------|---------|-----------|
-| CLI/toolchain | 0.1.x (latest) | Yes |
-| CLI/toolchain | < 0.1.x | No |
+| Component       | Version               | Supported                   |
+| --------------- | --------------------- | --------------------------- |
+| CLI/toolchain   | 0.1.x (latest)        | Yes                         |
+| CLI/toolchain   | < 0.1.x               | No                          |
 | Catalog content | Rolling (unversioned) | Current HEAD on `main` only |
 
 Pre-1.0 releases receive no backports. Only the latest published version is supported. After 1.0, this policy will be revised to cover maintenance windows for prior minor releases.
@@ -51,13 +51,13 @@ Report vulnerabilities privately using one of the following channels:
 
 ### Response Timeline
 
-| Step | Timeline |
-|------|----------|
-| Acknowledgment of report | 3 business days |
-| Triage and severity assessment | 7 business days |
-| Fix for critical or high severity | 14 days |
-| Fix for medium or low severity | 30 days |
-| Public disclosure | After fix is released, or 90 days from report |
+| Step                              | Timeline                                      |
+| --------------------------------- | --------------------------------------------- |
+| Acknowledgment of report          | 3 business days                               |
+| Triage and severity assessment    | 7 business days                               |
+| Fix for critical or high severity | 14 days                                       |
+| Fix for medium or low severity    | 30 days                                       |
+| Public disclosure                 | After fix is released, or 90 days from report |
 
 These timelines are best-effort commitments. Complex issues may take longer, but we will keep you informed of progress.
 
@@ -82,12 +82,12 @@ Because this project distributes third-party code, catalog content requires dist
 
 Every catalog item declares a provenance type that determines how it relates to its source:
 
-| Provenance | Definition | Sync model |
-|------------|------------|------------|
-| Ported | Body unchanged from upstream | Automated sync with per-file verification |
-| Adapted | Meaningfully modified from upstream | Advisory monitoring only (never auto-applied) |
-| Synthesized | Combined from multiple sources | No sync; all sources attributed in NOTICE.md |
-| Original | Created in this project | No upstream dependency |
+| Provenance  | Definition                          | Sync model                                    |
+| ----------- | ----------------------------------- | --------------------------------------------- |
+| Ported      | Body unchanged from upstream        | Automated sync with per-file verification     |
+| Adapted     | Meaningfully modified from upstream | Advisory monitoring only (never auto-applied) |
+| Synthesized | Combined from multiple sources      | No sync; all sources attributed in NOTICE.md  |
+| Original    | Created in this project             | No upstream dependency                        |
 
 All catalog items require a `NOTICE.md` with attribution. For the full classification criteria, see [docs/classification.md](docs/classification.md).
 
@@ -114,16 +114,16 @@ All catalog skills and development tooling skills are scanned automatically usin
 
 **Enabled analyzers:**
 
-| Analyzer | Detection Method | Requires API Key |
-|----------|------------------|-----------------|
-| Static | YAML + YARA pattern matching | No |
-| Bytecode | Python .pyc integrity verification | No |
-| Pipeline | Shell command taint analysis | No |
-| Behavioral | AST dataflow source-to-sink analysis | No |
-| LLM | Semantic analysis via OpenAI gpt-4o | Yes (`SKILL_SCANNER_LLM_API_KEY`) |
-| Meta | False positive filtering + finding correlation | Yes (`SKILL_SCANNER_LLM_API_KEY`) |
-| Trigger | Description specificity checks | No |
-| VirusTotal | Hash-based binary malware scanning | Yes (`VIRUSTOTAL_API_KEY`) |
+| Analyzer   | Detection Method                               | Requires API Key                  |
+| ---------- | ---------------------------------------------- | --------------------------------- |
+| Static     | YAML + YARA pattern matching                   | No                                |
+| Bytecode   | Python .pyc integrity verification             | No                                |
+| Pipeline   | Shell command taint analysis                   | No                                |
+| Behavioral | AST dataflow source-to-sink analysis           | No                                |
+| LLM        | Semantic analysis via OpenAI gpt-4o            | Yes (`SKILL_SCANNER_LLM_API_KEY`) |
+| Meta       | False positive filtering + finding correlation | Yes (`SKILL_SCANNER_LLM_API_KEY`) |
+| Trigger    | Description specificity checks                 | No                                |
+| VirusTotal | Hash-based binary malware scanning             | Yes (`VIRUSTOTAL_API_KEY`)        |
 
 The workflow fails if any findings at or above **HIGH** severity are detected, blocking the pull request from merging.
 

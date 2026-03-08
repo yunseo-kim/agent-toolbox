@@ -64,9 +64,7 @@ const versionArg = positional[0];
 const descriptionArg = positional[1];
 
 // Resolve version: explicit arg or package.json
-const version = versionArg
-  ? versionArg.replace(/^v/, "")
-  : getPackageVersion();
+const version = versionArg ? versionArg.replace(/^v/, "") : getPackageVersion();
 
 const tag = `v${version}`;
 
@@ -95,7 +93,9 @@ if (!/^\d+\.\d+\.\d+/.test(version)) {
 }
 
 if (tagExists(tag)) {
-  console.error(`Tag ${tag} already exists. Delete it first: git tag -d ${tag}`);
+  console.error(
+    `Tag ${tag} already exists. Delete it first: git tag -d ${tag}`,
+  );
   process.exit(1);
 }
 

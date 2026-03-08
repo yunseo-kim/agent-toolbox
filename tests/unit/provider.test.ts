@@ -1,5 +1,9 @@
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { getCacheDir, isRunningFromPackageManager, resolveCatalogDir } from "../../src/catalog/provider.js";
+import {
+  getCacheDir,
+  isRunningFromPackageManager,
+  resolveCatalogDir,
+} from "../../src/catalog/provider.js";
 import { existsSync } from "node:fs";
 import { mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
@@ -232,7 +236,9 @@ describe("resolveCatalogDir", () => {
         expect.unreachable("Should have thrown");
       } catch (error) {
         expect(error).toBeDefined();
-        expect(error instanceof Error && error.message).toContain("No cached catalog found");
+        expect(error instanceof Error && error.message).toContain(
+          "No cached catalog found",
+        );
       } finally {
         if (originalCacheDir) {
           process.env.XDG_CACHE_HOME = originalCacheDir;
