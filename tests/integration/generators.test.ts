@@ -71,7 +71,7 @@ describe("target generators", () => {
 
     expect(result.skillCount).toBe(skills.length);
 
-    const pluginPath = join(openCodeOutputDir, "plugins", "awesome-agent-toolbox.js");
+    const pluginPath = join(openCodeOutputDir, "plugins", "agent-toolbox.js");
     const pluginStats = await stat(pluginPath);
     expect(pluginStats.isFile()).toBe(true);
 
