@@ -7,7 +7,7 @@ import { runInstall } from "./install.js";
 import { runValidate } from "./validate.js";
 import { red } from "./utils.js";
 
-const NAME = "awesome-agent-toolbox";
+const NAME = "agent-toolbox";
 
 async function getVersion(rootDir: string): Promise<string> {
   try {
