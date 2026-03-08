@@ -26,6 +26,12 @@ export default defineConfig(
       ".claude/",
       ".cursor/",
       ".windsurf/",
+
+      // Utility scripts (Bun-only dev scripts; not in tsconfig)
+      "scripts/",
+
+      // Launcher wrapper (plain JS for Node.js compatibility; not compiled)
+      "src/cli/launcher.js",
     ],
   },
   eslint.configs.recommended,
