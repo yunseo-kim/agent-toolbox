@@ -70,6 +70,8 @@
     "@types/bun": "latest",
     "bumpp": "^10.4.0",
     "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "3.8.1",
     "typescript": "^5.7",
     "typescript-eslint": "^8.56.1"
   },
