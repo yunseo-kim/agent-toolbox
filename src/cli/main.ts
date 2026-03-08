@@ -3,7 +3,12 @@
 import { resolve } from "node:path";
 import { runBuildAll, runBuildTarget } from "./build-target.js";
 import { runBuildIndex } from "./build-index.js";
+import { runCheck } from "./check.js";
+import { runFind } from "./find.js";
 import { runInstall } from "./install.js";
+import { runList } from "./list.js";
+import { runRemove } from "./remove.js";
+import { runUpdate } from "./update.js";
 import { runValidate } from "./validate.js";
 import { red } from "./utils.js";
 
@@ -11,7 +16,9 @@ const NAME = "agent-toolbox";
 
 async function getVersion(rootDir: string): Promise<string> {
   try {
-    const pkg = await Bun.file(resolve(rootDir, "package.json")).json();
+    const pkg = (await Bun.file(resolve(rootDir, "package.json")).json()) as {
+      version?: string;
+    };
     return pkg.version ?? "0.0.0";
   } catch {
     return "0.0.0";
@@ -28,11 +35,15 @@ USAGE
 
 COMMANDS
   install       Install skills to a target tool
+  list          List skills in the catalog
+  find          Search catalog skills by keyword
+  remove        Remove installed skills from a target
+  check         Check for outdated installed skills
+  update        Update installed skills to latest catalog
   build         Build target artifacts
   build-index   Generate skill-index.json and skill-index.toon
   validate      Validate catalog against taxonomy
 
-OPTIONS
   --help, -h    Show help
   --version, -v Show version
 
@@ -55,6 +66,12 @@ INSTALL OPTIONS
 EXAMPLES
   ${NAME} install --target opencode --domain devops
   ${NAME} install --target claude-code --dry-run
+  ${NAME} list
+  ${NAME} list --domain devops
+  ${NAME} find git
+  ${NAME} check --target claude-code
+  ${NAME} update --target opencode
+  ${NAME} remove --target cursor --skill git-master
   ${NAME} build --target all
   ${NAME} build --target opencode
   ${NAME} validate
@@ -145,6 +162,28 @@ async function main(): Promise<void> {
       await runInstall(rootDir, args.slice(1));
       break;
 
+    case "list":
+    case "ls":
+      await runList(rootDir, args.slice(1));
+      break;
+
+    case "find":
+    case "search":
+      await runFind(rootDir, args.slice(1));
+      break;
+
+    case "remove":
+    case "rm":
+      await runRemove(rootDir, args.slice(1));
+      break;
+
+    case "check":
+      await runCheck(rootDir, args.slice(1));
+      break;
+
+    case "update":
+      await runUpdate(rootDir, args.slice(1));
+      break;
     default:
       console.error(`${red("Error:")} Unknown command '${command}'`);
       console.error(`Run '${NAME} --help' for available commands.`);

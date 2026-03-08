@@ -4,3 +4,4 @@ export * from "./catalog.js";
 export * from "./presets.js";
 export * from "./targets.js";
 export * from "./install.js";
+export * from "./manifest.js";
