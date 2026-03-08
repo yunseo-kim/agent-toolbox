@@ -67,7 +67,7 @@ describe("install pipeline", () => {
     expect(result.generatorResult).not.toBeNull();
     expect(result.generatorResult?.skillCount).toBe(2);
 
-    const pluginPath = join(sandboxRoot, "dist", "targets", "opencode", "plugins", "awesome-agent-toolbox.js");
+    const pluginPath = join(sandboxRoot, "dist", "targets", "opencode", "plugins", "agent-toolbox.js");
     const pluginStats = await stat(pluginPath);
     expect(pluginStats.isFile()).toBe(true);
   });

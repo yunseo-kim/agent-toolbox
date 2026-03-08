@@ -1,6 +1,6 @@
 # Security Policy
 
-The awesome-agent-toolbox maintainers take security seriously. This document covers how to report vulnerabilities, what is in scope, and how the project's supply chain integrity works.
+The agent-toolbox maintainers take security seriously. This document covers how to report vulnerabilities, what is in scope, and how the project's supply chain integrity works.
 
 ## Supported Versions
 
@@ -14,7 +14,7 @@ Semantic versioning applies only to the CLI/toolchain (`src/`). Catalog content 
 
 Pre-1.0 releases receive no backports. Only the latest published version is supported. After 1.0, this policy will be revised to cover maintenance windows for prior minor releases.
 
-For details on the versioning model, see [docs/release-strategy.md](docs/release-strategy.md).
+For details on the versioning model, see [docs/release.md](docs/release.md).
 
 ## Scope
 
@@ -30,7 +30,7 @@ This project distributes code from upstream sources alongside its own toolchain.
 
 - Vulnerabilities in upstream repositories that we do not distribute (report these to the upstream project directly).
 - Issues in user-modified local copies of catalog content.
-- Feature requests, general bugs, or non-security functional issues (use [GitHub Issues](https://github.com/yunseo-kim/awesome-agent-toolbox/issues)).
+- Feature requests, general bugs, or non-security functional issues (use [GitHub Issues](https://github.com/yunseo-kim/agent-toolbox/issues)).
 - Security of the AI tools themselves (Claude Code, Gemini CLI, Cursor, etc.).
 
 ## Reporting a Vulnerability
@@ -39,7 +39,7 @@ This project distributes code from upstream sources alongside its own toolchain.
 
 Report vulnerabilities privately using one of the following channels:
 
-1. **GitHub Security Advisories (preferred)** — Use the ["Report a Vulnerability"](https://github.com/yunseo-kim/awesome-agent-toolbox/security/advisories/new) tab to submit a private report.
+1. **GitHub Security Advisories (preferred)** — Use the ["Report a Vulnerability"](https://github.com/yunseo-kim/agent-toolbox/security/advisories/new) tab to submit a private report.
 2. **Email (fallback)** — Send a report to [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim) if you cannot use GitHub Security Advisories.
 
 ### What to Include

@@ -26,11 +26,11 @@ interface CacheMeta {
 
 const DEFAULT_SOURCE: CatalogSource = {
   owner: "yunseo-kim",
-  repo: "awesome-agent-toolbox",
+  repo: "agent-toolbox",
   branch: "main",
 };
 
-const USER_AGENT = "awesome-agent-toolbox-cli";
+const USER_AGENT = "agent-toolbox-cli";
 
 const CatalogSourceSchema = z.object({
   owner: z.string().min(1),
@@ -75,17 +75,17 @@ type FreshnessResult =
 export function getCacheDir(): string {
   const xdgCacheHome = process.env.XDG_CACHE_HOME;
   if (xdgCacheHome) {
-    return join(xdgCacheHome, "awesome-agent-toolbox");
+    return join(xdgCacheHome, "agent-toolbox");
   }
 
   const home = process.env.HOME ?? process.env.USERPROFILE ?? "";
 
   if (process.platform === "win32") {
     const localAppData = process.env.LOCALAPPDATA ?? join(home, "AppData", "Local");
-    return join(localAppData, "awesome-agent-toolbox");
+    return join(localAppData, "agent-toolbox");
   }
 
-  return join(home, ".cache", "awesome-agent-toolbox");
+  return join(home, ".cache", "agent-toolbox");
 }
 
 async function fetchWithETag(

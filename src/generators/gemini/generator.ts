@@ -40,7 +40,7 @@ function generateGeminiContext(skills: ParsedSkill[]): string {
   const sortedDomains = [...byDomain.keys()].sort((a, b) => a.localeCompare(b));
 
   const lines: string[] = [
-    "# awesome-agent-toolbox Skills",
+    "# agent-toolbox Skills",
     "",
     "You have access to the following skills. Read the relevant SKILL.md when a user's request matches.",
     "",
@@ -89,7 +89,7 @@ export class GeminiGenerator implements TargetGenerator {
     await mkdir(outputDir, { recursive: true });
 
     const extensionManifest = {
-      name: "awesome-agent-toolbox",
+      name: "agent-toolbox",
       version,
       description: "Cross-tool distribution system for agent skills, plugins, and MCP servers",
       contextFileName: "GEMINI.md",

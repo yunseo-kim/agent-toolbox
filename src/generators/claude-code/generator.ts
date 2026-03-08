@@ -18,7 +18,7 @@ export class ClaudeCodeGenerator implements TargetGenerator {
     await mkdir(pluginDir, { recursive: true });
 
     const pluginManifest = {
-      name: "awesome-agent-toolbox",
+      name: "agent-toolbox",
       version,
       description: "Cross-tool distribution system for agent skills, plugins, and MCP servers",
     };

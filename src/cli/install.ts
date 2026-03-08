@@ -41,7 +41,7 @@ export async function runInstall(rootDir: string, argv: string[]): Promise<void>
   const args = parseArgs(argv);
 
   if (!args.target || args.target === "true") {
-    console.error("Usage: awesome-agent-toolbox install --target <tool> [options]");
+    console.error("Usage: agent-toolbox install --target <tool> [options]");
     console.error("");
     console.error("Options:");
     console.error("  --target <tool>       Required. claude-code, opencode, cursor, codex, gemini");

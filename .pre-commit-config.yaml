@@ -1,4 +1,4 @@
-# Pre-commit hooks for awesome-agent-toolbox
+# Pre-commit hooks for agent-toolbox
 # Install: pip install pre-commit && pre-commit install
 #
 # Required environment variables for full analysis:

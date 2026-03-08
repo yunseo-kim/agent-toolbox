@@ -5,7 +5,7 @@ import type { GeneratorOptions, GeneratorResult, TargetGenerator } from "../type
 
 function generateOpenCodePlugin(version: string, skillList: string): string {
   return [
-    `// awesome-agent-toolbox.js - OpenCode plugin bootstrap`,
+    `// agent-toolbox.js - OpenCode plugin bootstrap`,
     `// Injects skill catalog awareness into the system prompt`,
     ``,
     `import path from "path";`,
@@ -14,9 +14,9 @@ function generateOpenCodePlugin(version: string, skillList: string): string {
     `const __dirname = path.dirname(fileURLToPath(import.meta.url));`,
     ``,
     `const SKILL_CATALOG = ${JSON.stringify([
-      "## Available Skills (awesome-agent-toolbox)",
+      "## Available Skills (agent-toolbox)",
       "",
-      "You have access to skills from awesome-agent-toolbox. Each skill has a SKILL.md",
+      "You have access to skills from agent-toolbox. Each skill has a SKILL.md",
       "with instructions. Read the relevant SKILL.md when a user's request matches a skill's",
       "description.",
       "",
@@ -49,20 +49,20 @@ function generateInstallMd(): string {
     "```bash",
     "# macOS/Linux",
     "mkdir -p ~/.config/opencode/skills",
-    "ln -sf /path/to/dist/targets/opencode/skills ~/.config/opencode/skills/awesome-agent-toolbox",
+    "ln -sf /path/to/dist/targets/opencode/skills ~/.config/opencode/skills/agent-toolbox",
     "",
     "# Windows (PowerShell as Admin)",
-    'New-Item -ItemType Junction -Path "$env:APPDATA\\opencode\\skills\\awesome-agent-toolbox" -Target "\\path\\to\\dist\\targets\\opencode\\skills"',
+    'New-Item -ItemType Junction -Path "$env:APPDATA\\opencode\\skills\\agent-toolbox" -Target "\\path\\to\\dist\\targets\\opencode\\skills"',
     "```",
     "",
     "### 2. Install plugin",
     "```bash",
     "# macOS/Linux",
     "mkdir -p ~/.config/opencode/plugins",
-    "ln -sf /path/to/dist/targets/opencode/plugins/awesome-agent-toolbox.js ~/.config/opencode/plugins/awesome-agent-toolbox.js",
+    "ln -sf /path/to/dist/targets/opencode/plugins/agent-toolbox.js ~/.config/opencode/plugins/agent-toolbox.js",
     "",
     "# Windows (copy)",
-    'copy "\\path\\to\\dist\\targets\\opencode\\plugins\\awesome-agent-toolbox.js" "%APPDATA%\\opencode\\plugins\\"',
+    'copy "\\path\\to\\dist\\targets\\opencode\\plugins\\agent-toolbox.js" "%APPDATA%\\opencode\\plugins\\"',
     "```",
     "",
   ].join("\n");
@@ -101,8 +101,8 @@ export class OpenCodeGenerator implements TargetGenerator {
     await mkdir(pluginsDir, { recursive: true });
 
     const pluginJs = generateOpenCodePlugin(version, skillListLines);
-    await Bun.write(join(pluginsDir, "awesome-agent-toolbox.js"), pluginJs);
-    artifacts.push("plugins/awesome-agent-toolbox.js");
+    await Bun.write(join(pluginsDir, "agent-toolbox.js"), pluginJs);
+    artifacts.push("plugins/agent-toolbox.js");
 
     const installMd = generateInstallMd();
     await Bun.write(join(outputDir, "INSTALL.md"), installMd);
