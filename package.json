@@ -1,5 +1,5 @@
 {
-  "name": "awesome-agent-toolbox",
+  "name": "agent-toolbox",
   "version": "0.1.0",
   "description": "Cross-tool registry for agent skills, MCP servers, and hooks with provenance tracking and automated security vetting.",
   "keywords": [
@@ -24,19 +24,19 @@
     "skill",
     "skills"
   ],
-  "homepage": "https://github.com/yunseo-kim/awesome-agent-toolbox#readme",
+  "homepage": "https://github.com/yunseo-kim/agent-toolbox#readme",
   "bugs": {
-    "url": "https://github.com/yunseo-kim/awesome-agent-toolbox/issues"
+    "url": "https://github.com/yunseo-kim/agent-toolbox/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yunseo-kim/awesome-agent-toolbox.git"
+    "url": "git+https://github.com/yunseo-kim/agent-toolbox.git"
   },
   "license": "SUL-1.0",
   "author": "Yunseo Kim <dev@yunseo.kim> (https://about.yunseo.kim/)",
   "type": "module",
   "bin": {
-    "awesome-agent-toolbox": "src/cli/main.ts"
+    "agent-toolbox": "src/cli/main.ts"
   },
   "scripts": {
     "validate": "bun run src/cli/validate.ts",
