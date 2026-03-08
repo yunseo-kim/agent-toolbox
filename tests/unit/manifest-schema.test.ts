@@ -115,7 +115,7 @@ describe("InstallManifest schema", () => {
       "cursor",
       "codex",
       "gemini",
-    ]) {
+    ] as const) {
       const parsed = InstallManifest.parse({
         ...validManifest,
         target,
