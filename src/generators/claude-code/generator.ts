@@ -1,4 +1,4 @@
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { copyDirectoryRecursive } from "../copy-utils.js";
 import type {
@@ -27,9 +27,10 @@ export class ClaudeCodeGenerator implements TargetGenerator {
       description:
         "Cross-tool distribution system for agent skills, plugins, and MCP servers",
     };
-    await Bun.write(
+    await writeFile(
       join(pluginDir, "plugin.json"),
       JSON.stringify(pluginManifest, null, 2) + "\n",
+      "utf8",
     );
     artifacts.push(".claude-plugin/plugin.json");
 
@@ -44,18 +45,19 @@ export class ClaudeCodeGenerator implements TargetGenerator {
     }
 
     await mkdir(join(outputDir, "agents"), { recursive: true });
-    await Bun.write(join(outputDir, "agents", ".gitkeep"), "");
+    await writeFile(join(outputDir, "agents", ".gitkeep"), "", "utf8");
     artifacts.push("agents/");
 
     await mkdir(join(outputDir, "commands"), { recursive: true });
-    await Bun.write(join(outputDir, "commands", ".gitkeep"), "");
+    await writeFile(join(outputDir, "commands", ".gitkeep"), "", "utf8");
     artifacts.push("commands/");
 
     const hooksDir = join(outputDir, "hooks");
     await mkdir(hooksDir, { recursive: true });
-    await Bun.write(
+    await writeFile(
       join(hooksDir, "hooks.json"),
       JSON.stringify({ hooks: {} }, null, 2) + "\n",
+      "utf8",
     );
     artifacts.push("hooks/hooks.json");
 

@@ -1,4 +1,4 @@
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { copyDirectoryRecursive } from "../copy-utils.js";
 import type {
@@ -7,7 +7,7 @@ import type {
   TargetGenerator,
 } from "../types.js";
 
-function generateOpenCodePlugin(version: string, skillList: string): string {
+function generateOpenCodePlugin(skillList: string): string {
   return [
     `// agent-toolbox.js - OpenCode plugin bootstrap`,
     `// Injects skill catalog awareness into the system prompt`,
@@ -78,7 +78,7 @@ export class OpenCodeGenerator implements TargetGenerator {
   readonly target = "opencode" as const;
 
   async generate(options: GeneratorOptions): Promise<GeneratorResult> {
-    const { skills, outputDir, catalogDir, version } = options;
+    const { skills, outputDir, catalogDir } = options;
     const artifacts: string[] = [];
     const warnings: string[] = [];
 
@@ -106,12 +106,12 @@ export class OpenCodeGenerator implements TargetGenerator {
     const pluginsDir = join(outputDir, "plugins");
     await mkdir(pluginsDir, { recursive: true });
 
-    const pluginJs = generateOpenCodePlugin(version, skillListLines);
-    await Bun.write(join(pluginsDir, "agent-toolbox.js"), pluginJs);
+    const pluginJs = generateOpenCodePlugin(skillListLines);
+    await writeFile(join(pluginsDir, "agent-toolbox.js"), pluginJs, "utf8");
     artifacts.push("plugins/agent-toolbox.js");
 
     const installMd = generateInstallMd();
-    await Bun.write(join(outputDir, "INSTALL.md"), installMd);
+    await writeFile(join(outputDir, "INSTALL.md"), installMd, "utf8");
     artifacts.push("INSTALL.md");
 
     return {

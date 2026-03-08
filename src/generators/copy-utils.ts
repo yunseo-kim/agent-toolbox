@@ -1,4 +1,4 @@
-import { mkdir, readdir } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 export async function copyDirectoryRecursive(
@@ -15,8 +15,8 @@ export async function copyDirectoryRecursive(
     if (entry.isDirectory()) {
       await copyDirectoryRecursive(srcPath, destPath);
     } else {
-      const content = await Bun.file(srcPath).arrayBuffer();
-      await Bun.write(destPath, content);
+      const content = await readFile(srcPath);
+      await writeFile(destPath, content);
     }
   }
 }

@@ -29,6 +29,7 @@
  */
 
 import { execSync } from "node:child_process";
+import { writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -102,7 +103,7 @@ if (tagExists(tag)) {
 // ─── Create signed annotated tag ──────────────────────────────────────────
 
 const msgFile = join(tmpdir(), `tag-msg-${tag}.txt`);
-await Bun.write(msgFile, message);
+writeFileSync(msgFile, message, "utf8");
 
 execSync(`git tag -s ${tag} -F "${msgFile}"`, { stdio: "inherit" });
 

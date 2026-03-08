@@ -1,6 +1,7 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
 import { basename, dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { scanSkills } from "../catalog/scanner.js";
 import { validateCatalog } from "../catalog/validator.js";
 import { green, red, resolveRootDir, yellow } from "./utils.js";
@@ -82,7 +83,7 @@ export async function runValidate(rootDir: string): Promise<void> {
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
   runValidate(rootDir).catch((error) => {
     const reason = error instanceof Error ? error.message : String(error);
     console.error(`${red("✗")} ${reason}`);

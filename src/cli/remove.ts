@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { readdir, rm } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { removeSkillsFromManifest } from "../install/manifest.js";
 import { TargetTool } from "../schemas/common.js";
 import {
@@ -152,7 +153,7 @@ export async function runRemove(
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
   runRemove(rootDir, process.argv.slice(2)).catch((error) => {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`${red("Error:")} ${message}`);

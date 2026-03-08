@@ -1,4 +1,4 @@
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { ParsedSkill } from "../../schemas/catalog.js";
 import { copyDirectoryRecursive } from "../copy-utils.js";
@@ -107,9 +107,10 @@ export class GeminiGenerator implements TargetGenerator {
       hooks: "./hooks/hooks.json",
     };
 
-    await Bun.write(
+    await writeFile(
       join(outputDir, "gemini-extension.json"),
       `${JSON.stringify(extensionManifest, null, 2)}\n`,
+      "utf8",
     );
     artifacts.push("gemini-extension.json");
 
@@ -125,20 +126,22 @@ export class GeminiGenerator implements TargetGenerator {
 
     const commandsDir = join(outputDir, "commands");
     await mkdir(commandsDir, { recursive: true });
-    await Bun.write(join(commandsDir, ".gitkeep"), "");
+    await writeFile(join(commandsDir, ".gitkeep"), "", "utf8");
     artifacts.push("commands/");
 
     const hooksDir = join(outputDir, "hooks");
     await mkdir(hooksDir, { recursive: true });
-    await Bun.write(
+    await writeFile(
       join(hooksDir, "hooks.json"),
       `${JSON.stringify(generateHooksConfig(), null, 2)}\n`,
+      "utf8",
     );
     artifacts.push("hooks/hooks.json");
 
-    await Bun.write(
+    await writeFile(
       join(outputDir, "GEMINI.md"),
       `${generateGeminiContext(skills)}\n`,
+      "utf8",
     );
     artifacts.push("GEMINI.md");
 

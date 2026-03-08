@@ -1,5 +1,7 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { install } from "../install/installer.js";
 import { TargetTool } from "../schemas/common.js";
 import { green, parseArgs, red, resolveRootDir, yellow } from "./utils.js";
@@ -110,7 +112,7 @@ export async function runInstall(
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
   runInstall(rootDir, process.argv.slice(2)).catch((error) => {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`${red("Error:")} ${message}`);

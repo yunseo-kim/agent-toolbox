@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { scanSkills } from "../catalog/scanner.js";
 import { resolveCatalogDir } from "../catalog/provider.js";
@@ -77,7 +78,9 @@ export async function install(
 
   const generator = createGenerator();
   const outputDir = join(rootDir, "dist", "targets", filters.target);
-  const pkg = (await Bun.file(join(rootDir, "package.json")).json()) as {
+  const pkg = JSON.parse(
+    await readFile(join(rootDir, "package.json"), "utf8"),
+  ) as {
     version: string;
   };
 

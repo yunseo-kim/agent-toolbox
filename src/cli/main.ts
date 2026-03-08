@@ -1,6 +1,8 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
-import { resolve } from "node:path";
+import { readFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { runBuildAll, runBuildTarget } from "./build-target.js";
 import { runBuildIndex } from "./build-index.js";
 import { runCheck } from "./check.js";
@@ -16,7 +18,9 @@ const NAME = "agent-toolbox";
 
 async function getVersion(rootDir: string): Promise<string> {
   try {
-    const pkg = (await Bun.file(resolve(rootDir, "package.json")).json()) as {
+    const pkg = JSON.parse(
+      await readFile(resolve(rootDir, "package.json"), "utf8"),
+    ) as {
       version?: string;
     };
     return pkg.version ?? "0.0.0";
@@ -102,7 +106,7 @@ EXAMPLES
 }
 
 async function main(): Promise<void> {
-  const rootDir = resolve(import.meta.dir, "../..");
+  const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
   const args = process.argv.slice(2);
   const command = args[0];
 
