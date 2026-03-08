@@ -149,15 +149,12 @@ describe("InstallManifest schema", () => {
   });
 
   test("rejects missing required fields", () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { version: _v, ...noVersion } = validManifest;
     expect(InstallManifest.safeParse(noVersion).success).toBe(false);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { target: _t, ...noTarget } = validManifest;
     expect(InstallManifest.safeParse(noTarget).success).toBe(false);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { installedAt: _i, ...noInstalled } = validManifest;
     expect(InstallManifest.safeParse(noInstalled).success).toBe(false);
   });
