@@ -12,6 +12,7 @@ import {
   type InstallFiltersInput,
 } from "../schemas/install.js";
 import { filterSkills, type FilterResult } from "./filter.js";
+import { writeManifest } from "./manifest.js";
 import { loadPresets, resolvePreset } from "./presets.js";
 
 export interface InstallResult {
@@ -33,12 +34,14 @@ export async function install(
   rawFilters: InstallFiltersInput,
 ): Promise<InstallResult> {
   const filters = InstallFilters.parse(rawFilters);
-  const catalogDir = await resolveCatalogDir({
+  const catalogResolveOptions = {
     rootDir,
     remote: undefined,
     refresh: filters.refresh,
     offline: filters.offline,
-  });
+  };
+  const catalogDir = await resolveCatalogDir(catalogResolveOptions);
+  const isRemoteCatalog = !catalogDir.startsWith(rootDir);
   const presetsPath = join(catalogDir, "metadata", "presets.yaml");
 
   const { skills, errors } = await scanSkills(catalogDir);
@@ -83,6 +86,28 @@ export async function install(
     outputDir,
     catalogDir,
     version: pkg.version,
+  });
+
+  // Write install manifest for check/update/remove commands
+  await writeManifest(outputDir, {
+    version: 1 as const,
+    target: filters.target,
+    installedAt: new Date().toISOString(),
+    catalogSource: isRemoteCatalog ? "remote" : "local",
+    filters: {
+      domain: filters.domain,
+      subdomain: filters.subdomain,
+      framework: filters.framework,
+      tag: filters.tag,
+      preset: filters.preset,
+      skill: filters.skill,
+    },
+    skills: filterResult.matched.map((s) => ({
+      name: s.frontmatter.name,
+      domain: s.frontmatter.metadata.domain,
+      subdomain: s.frontmatter.metadata.subdomain,
+      lastUpdated: s.frontmatter.metadata.lastUpdated,
+    })),
   });
 
   return { filterResult, generatorResult, dryRun: false };

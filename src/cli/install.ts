@@ -1,41 +1,8 @@
 #!/usr/bin/env bun
 
-import { resolve } from "node:path";
 import { install } from "../install/installer.js";
 import { TargetTool } from "../schemas/common.js";
-import { green, red, resolveRootDir, yellow } from "./utils.js";
-
-export function parseArgs(argv: string[]): Record<string, string | string[]> {
-  const args: Record<string, string | string[]> = {};
-
-  for (let i = 0; i < argv.length; i += 1) {
-    const token = argv[i];
-    if (!token.startsWith("--")) {
-      continue;
-    }
-
-    const key = token.slice(2);
-    const nextToken = argv[i + 1];
-    const value = nextToken && !nextToken.startsWith("--") ? nextToken : "true";
-
-    if (key === "skill") {
-      if (!Array.isArray(args[key])) {
-        args[key] = args[key] ? [args[key] as string] : [];
-      }
-      if (value !== "true") {
-        (args[key] as string[]).push(value);
-      }
-    } else {
-      args[key] = value;
-    }
-
-    if (value !== "true") {
-      i += 1;
-    }
-  }
-
-  return args;
-}
+import { green, parseArgs, red, resolveRootDir, yellow } from "./utils.js";
 
 export async function runInstall(
   rootDir: string,
@@ -72,7 +39,7 @@ export async function runInstall(
   const targetParse = TargetTool.safeParse(args.target);
   if (!targetParse.success) {
     console.error(
-      `Invalid target: ${args.target}. Valid: claude-code, opencode, cursor, codex, gemini`,
+      `Invalid target: ${String(args.target)}. Valid: claude-code, opencode, cursor, codex, gemini`,
     );
     process.exit(1);
   }
@@ -114,10 +81,10 @@ export async function runInstall(
     tag: filters.tag,
     preset: filters.preset,
     skill: filters.skill,
-    dryRun: filters.dryRun as boolean,
-    interactive: filters.interactive as boolean,
-    refresh: filters.refresh as boolean,
-    offline: filters.offline as boolean,
+    dryRun: filters.dryRun,
+    interactive: filters.interactive,
+    refresh: filters.refresh,
+    offline: filters.offline,
   });
 
   if (result.filterResult.appliedFilters.length > 0) {
