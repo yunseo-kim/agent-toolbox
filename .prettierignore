@@ -1,0 +1,18 @@
+# Auto-generated (do not hand-edit)
+CHANGELOG.md
+bun.lock
+catalog/metadata/skill-index.json
+catalog/metadata/skill-index.toon
+
+# Legal document
+LICENSE.md
+
+# Catalog skills (preserve upstream formatting for sync eligibility)
+catalog/skills/
+
+# Dev tooling skills (authored instructional content with intentional formatting)
+.agents/
+.agent/
+.claude/
+.cursor/
+.windsurf/
