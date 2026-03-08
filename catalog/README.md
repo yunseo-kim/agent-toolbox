@@ -53,22 +53,22 @@ Skills can be filtered during installation using domain, subdomain, framework, t
 
 ```bash
 # Install all skills for a target
-bunx awesome-agent-toolbox install --target claude-code
+bunx agent-toolbox install --target claude-code
 
 # Filter by domain
-bunx awesome-agent-toolbox install --target gemini --domain devops
+bunx agent-toolbox install --target gemini --domain devops
 
 # Filter by domain + subdomain
-bunx awesome-agent-toolbox install --target gemini --domain devops --subdomain ci-cd
+bunx agent-toolbox install --target gemini --domain devops --subdomain ci-cd
 
 # Filter by preset bundle
-bunx awesome-agent-toolbox install --target cursor --preset devops-essentials
+bunx agent-toolbox install --target cursor --preset devops-essentials
 
 # Install specific skills
-bunx awesome-agent-toolbox install --target claude-code --skill git-master --skill docs-writer
+bunx agent-toolbox install --target claude-code --skill git-master --skill docs-writer
 
 # Dry run
-bunx awesome-agent-toolbox install --target gemini --domain devops --dry-run
+bunx agent-toolbox install --target gemini --domain devops --dry-run
 ```
 
 > **npm users:** Replace `bunx` with `npx`.

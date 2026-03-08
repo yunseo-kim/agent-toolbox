@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the awesome-agent-toolbox CLI will be documented in this file.
+All notable changes to the agent-toolbox CLI will be documented in this file.
 
 ## [0.1.0] - 12026-02-28
 

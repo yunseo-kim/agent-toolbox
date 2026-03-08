@@ -43,7 +43,7 @@ This repository is a cross-tool distribution system for agent skills, plugins, a
 | Skill index | `catalog/metadata/skill-index.json`, `catalog/metadata/skill-index.toon` | Auto-generated; do not hand-edit |
 | Upstream sync config | `catalog/metadata/upstream-sources.yaml` | Ported/adapted skill mappings |
 | Provenance guide | `docs/classification.md` | Ported vs adapted decision criteria |
-| Release strategy | `docs/release-strategy.md` | Branch model, versioning, release workflow |
+| Release strategy | `docs/release.md` | Branch model, versioning, release workflow |
 | Release workflow | `.github/workflows/release.yml` | Tag-triggered npm publish pipeline |
 | Changelog config | `cliff.toml` | git-cliff commit filtering (CLI-scoped only) |
 | Version bump config | `bump.config.ts` | bumpp + git-cliff integration |
@@ -235,7 +235,7 @@ bun test tests/integration/ # Integration only
 bun run typecheck           # TypeScript type checking
 
 # npm CLI fallback
-npx awesome-agent-toolbox install --target gemini --domain devops
+npx agent-toolbox install --target gemini --domain devops
 ```
 
 ## NOTES
