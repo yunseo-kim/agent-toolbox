@@ -22,7 +22,7 @@ Tracked issues discovered during codebase analysis. Each entry includes the prob
 **Severity**: Medium
 **Affected files**: `src/catalog/provider.ts:243`
 
-**Problem**: The remote catalog download uses `Bun.spawn(["tar", "xzf", ...])` (will become `execFile("tar", ...)` after Strategy C migration) to extract the downloaded catalog tarball. The `tar` command may not be available on Windows systems without Git Bash, WSL, or similar Unix tooling.
+**Problem**: The remote catalog download uses `execFile("tar", ...)` to extract the downloaded catalog tarball. The `tar` command may not be available on Windows systems without Git Bash, WSL, or similar Unix tooling.
 
 **Impact**: First-time install from npm may fail on Windows systems that lack `tar` in PATH. Subsequent runs with cached catalog are unaffected.
 
@@ -30,14 +30,12 @@ Tracked issues discovered during codebase analysis. Each entry includes the prob
 
 ---
 
-## 3. `npx agent-toolbox` fails — bin entry points to TypeScript file
+## 3. ~~`npx agent-toolbox` fails — bin entry points to TypeScript file~~
 
-**Status**: Open (will be resolved by Strategy C implementation on `feat/strategy-c-node-compat` branch)
-**Severity**: Critical
+**Status**: Resolved (fixed in `feat/dual-runtime-cli` branch)
+**Severity**: ~~Critical~~
 **Affected files**: `package.json:39`
 
-**Problem**: The `bin` field in `package.json` points to `src/cli/main.ts`. Node.js cannot execute TypeScript files natively, so `npx agent-toolbox` fails with a syntax error. Only `bunx` works because Bun handles TypeScript natively.
+**Problem**: The `bin` field in `package.json` pointed to `src/cli/main.ts`. Node.js cannot execute TypeScript files natively, so `npx agent-toolbox` failed with a syntax error. Only `bunx` worked because Bun handles TypeScript natively.
 
-**Impact**: Any user without Bun installed cannot use the CLI via npm/npx.
-
-**Suggested resolution**: Being addressed in Strategy C implementation — compile TypeScript to JavaScript and point `bin` to the compiled output. See branch `feat/strategy-c-node-compat`.
+**Resolution**: The CLI is now compiled to JavaScript via `bun build --target node` and served through a launcher wrapper (`dist/cli/launcher.js`) that auto-detects the invoking runtime. `npx` runs on Node.js, `bunx` re-executes with Bun for native performance. The `bin` field now points to `dist/cli/launcher.js`.
