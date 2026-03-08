@@ -22,14 +22,15 @@ src/
 
 ## MODULE RESPONSIBILITIES
 
-| Module        | Entry      | Purpose                                                                                   |
-| ------------- | ---------- | ----------------------------------------------------------------------------------------- |
-| `cli/`        | `main.ts`  | Dispatches `validate`, `build`, `build-index`, `install` commands                         |
-| `catalog/`    | `index.ts` | `scanSkills()` → `parseFrontmatter()` → `validateCatalog()` → `buildIndex()`              |
-| `schemas/`    | `index.ts` | Zod schemas: `SkillFrontmatter`, `SkillIndex`, `InstallFilters`, `TargetTool`             |
-| `generators/` | `index.ts` | Each target implements `TargetGenerator` interface with `generate()` method               |
-| `install/`    | `index.ts` | `filterSkills()` applies AND-composed domain/subdomain/tag/framework/preset/skill filters |
-| `mappers/`    | `index.ts` | Placeholder for tool-semantic mapping (not yet populated)                                 |
+| Module        | Entry         | Purpose                                                                                   |
+| ------------- | ------------- | ----------------------------------------------------------------------------------------- |
+| `cli/`        | `main.ts`     | Dispatches `validate`, `build`, `build-index`, `install` commands                         |
+| `catalog/`    | `index.ts`    | `scanSkills()` → `parseFrontmatter()` → `validateCatalog()` → `buildIndex()`              |
+|               | `provider.ts` | `resolveCatalogDir()` — local/remote/cached catalog resolution with ETag freshness        |
+| `schemas/`    | `index.ts`    | Zod schemas: `SkillFrontmatter`, `SkillIndex`, `InstallFilters`, `TargetTool`             |
+| `generators/` | `index.ts`    | Each target implements `TargetGenerator` interface with `generate()` method               |
+| `install/`    | `index.ts`    | `filterSkills()` applies AND-composed domain/subdomain/tag/framework/preset/skill filters |
+| `mappers/`    | `index.ts`    | Placeholder for tool-semantic mapping (not yet populated)                                 |
 
 ## KEY TYPES
 
@@ -105,7 +106,7 @@ Each generator receives `GeneratorOptions` (parsed skills + output dir) and retu
 
 - All imports use `.js` extension (Bun ESM convention).
 - Schemas are the single source of type truth — types are inferred via `z.infer<>`.
-- No linters/formatters configured — follow TypeScript strict mode and existing patterns.
+- ESLint flat config (`eslint.config.mjs`) with `typescript-eslint` + `eslint-config-prettier`. Prettier uses defaults.
 - `index.ts` files in each module re-export public API only.
 - Generator output goes to `dist/targets/<target>/` — never hand-edit.
 

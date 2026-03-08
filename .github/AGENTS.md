@@ -12,7 +12,7 @@ GitHub Actions workflows for validation, testing, building, drift detection, sec
 │   ├── skill-scanner.yml       # Skill security scanning (push/PR + manual dispatch)
 │   └── upstream-sync.yml       # Daily upstream skill sync
 └── upstream-sync/
-    ├── sync.py                 # Python 3.10+ stdlib-only full-directory sync script (~1200 lines)
+    ├── sync.py                 # Python 3.10+ stdlib-only full-directory sync script (~1700 lines)
     └── sha-cache.json          # Auto-managed cache v3 (SHA256 + tree SHAs + file hashes)
 ```
 
@@ -94,7 +94,7 @@ checkout -> setup python -> install skill-scanner -> prepare report dir (archive
 | **Bytecode**   | _(default)_        | Python .pyc integrity verification     | No                          |
 | **Pipeline**   | _(default)_        | Shell command taint analysis           | No                          |
 | **Behavioral** | `--use-behavioral` | AST dataflow source→sink analysis      | No                          |
-| **LLM**        | `--use-llm`        | Semantic analysis via OpenAI gpt-4o    | `SKILL_SCANNER_LLM_API_KEY` |
+| **LLM**        | `--use-llm`        | Semantic analysis via OpenAI gpt-5.2   | `SKILL_SCANNER_LLM_API_KEY` |
 | **Meta**       | `--enable-meta`    | False positive filtering + correlation | `SKILL_SCANNER_LLM_API_KEY` |
 | **Trigger**    | `--use-trigger`    | Vague description specificity checks   | No                          |
 | **VirusTotal** | `--use-virustotal` | Hash-based binary malware scanning     | `VIRUSTOTAL_API_KEY`        |
@@ -139,16 +139,15 @@ Reports are linked from [`README.md`](../README.md) and [`SECURITY.md`](../SECUR
 | `SKILL_SCANNER_LLM_API_KEY` | `SKILL_SCANNER_LLM_API_KEY` | LLM analyzer, Meta analyzer |
 | `VIRUSTOTAL_API_KEY`        | `VIRUSTOTAL_API_KEY`        | VirusTotal binary scanner   |
 
-### Pre-commit Hook
+### Git Hooks (Lefthook)
 
-The project also includes a `.pre-commit-config.yaml` for local skill scanning before every commit. Install with:
+The project uses Lefthook (`lefthook.yml`) for local git hooks. Install with:
 
 ```bash
-pip install pre-commit
-pre-commit install
+bun run prepare    # or: lefthook install
 ```
 
-The pre-commit hook uses the same analyzers and strict policy. Requires the same API keys set as local environment variables.
+Pre-commit runs ESLint + Prettier check. Pre-push runs typecheck + test suite. This replaces the earlier `.pre-commit-config.yaml` setup.
 
 ## UPSTREAM SYNC (`upstream-sync.yml`)
 
