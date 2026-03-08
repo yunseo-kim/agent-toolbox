@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { readdir } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { checkInstallStatus } from "../install/checker.js";
 import { install } from "../install/installer.js";
 import { MANIFEST_FILENAME, readManifest } from "../install/manifest.js";
@@ -199,7 +200,7 @@ export async function runUpdate(
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
   runUpdate(rootDir, process.argv.slice(2)).catch((error) => {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`${red("Error:")} ${message}`);

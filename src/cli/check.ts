@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { readdir } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { checkInstallStatus } from "../install/checker.js";
 import { MANIFEST_FILENAME } from "../install/manifest.js";
 import { TargetTool } from "../schemas/common.js";
@@ -175,7 +176,7 @@ export async function runCheck(rootDir: string, argv: string[]): Promise<void> {
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
   runCheck(rootDir, process.argv.slice(2)).catch((error) => {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`${red("Error:")} ${message}`);

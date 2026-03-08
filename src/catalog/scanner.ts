@@ -1,4 +1,4 @@
-import { readdir } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { parseFrontmatter } from "./frontmatter.js";
 import {
@@ -47,7 +47,7 @@ export async function scanSkills(catalogDir: string): Promise<ScanResult> {
     const skillPath = join(skillDir, "SKILL.md");
 
     try {
-      const skillContent = await Bun.file(skillPath).text();
+      const skillContent = await readFile(skillPath, "utf8");
       const { frontmatter, body } = parseFrontmatter(skillContent);
       const parsedFrontmatter = SkillFrontmatter.safeParse(frontmatter);
 

@@ -1,4 +1,4 @@
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { copyDirectoryRecursive } from "../copy-utils.js";
 import type {
@@ -32,9 +32,10 @@ export class CursorGenerator implements TargetGenerator {
       hooks: "./hooks/hooks.json",
     };
 
-    await Bun.write(
+    await writeFile(
       join(pluginDir, "plugin.json"),
       `${JSON.stringify(pluginManifest, null, 2)}\n`,
+      "utf8",
     );
     artifacts.push(".cursor-plugin/plugin.json");
 
@@ -50,19 +51,20 @@ export class CursorGenerator implements TargetGenerator {
 
     const agentsDir = join(outputDir, "agents");
     await mkdir(agentsDir, { recursive: true });
-    await Bun.write(join(agentsDir, ".gitkeep"), "");
+    await writeFile(join(agentsDir, ".gitkeep"), "", "utf8");
     artifacts.push("agents/");
 
     const commandsDir = join(outputDir, "commands");
     await mkdir(commandsDir, { recursive: true });
-    await Bun.write(join(commandsDir, ".gitkeep"), "");
+    await writeFile(join(commandsDir, ".gitkeep"), "", "utf8");
     artifacts.push("commands/");
 
     const hooksDir = join(outputDir, "hooks");
     await mkdir(hooksDir, { recursive: true });
-    await Bun.write(
+    await writeFile(
       join(hooksDir, "hooks.json"),
       `${JSON.stringify({ hooks: {} }, null, 2)}\n`,
+      "utf8",
     );
     artifacts.push("hooks/hooks.json");
 

@@ -1,8 +1,9 @@
+import { readFile } from "node:fs/promises";
 import { parse as parseYaml } from "yaml";
 import { PresetsSchema, type PresetsConfig } from "../schemas/presets.js";
 
 export async function loadPresets(presetsPath: string): Promise<PresetsConfig> {
-  const content = await Bun.file(presetsPath).text();
+  const content = await readFile(presetsPath, "utf8");
   const raw: unknown = parseYaml(content);
   return PresetsSchema.parse(raw);
 }

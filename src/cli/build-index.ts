@@ -1,6 +1,7 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   buildSkillIndex,
   writeSkillIndex,
@@ -37,7 +38,7 @@ export async function runBuildIndex(rootDir: string): Promise<void> {
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
   runBuildIndex(rootDir).catch((error) => {
     const reason = error instanceof Error ? error.message : String(error);
     console.error(`${red("✗")} ${reason}`);

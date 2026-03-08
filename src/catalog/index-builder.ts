@@ -1,4 +1,4 @@
-import { mkdir } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { DELIMITERS, encode } from "@toon-format/toon";
 import {
@@ -50,7 +50,7 @@ export async function writeSkillIndex(
 ): Promise<void> {
   await mkdir(dirname(outputPath), { recursive: true });
   const json = `${JSON.stringify(index, null, 2)}\n`;
-  await Bun.write(outputPath, json);
+  await writeFile(outputPath, json, "utf8");
 }
 
 export async function writeSkillIndexToon(
@@ -59,5 +59,5 @@ export async function writeSkillIndexToon(
 ): Promise<void> {
   await mkdir(dirname(outputPath), { recursive: true });
   const toon = encode(index, { delimiter: DELIMITERS.tab });
-  await Bun.write(outputPath, toon);
+  await writeFile(outputPath, toon, "utf8");
 }

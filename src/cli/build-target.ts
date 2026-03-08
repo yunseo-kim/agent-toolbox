@@ -1,6 +1,8 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
-import { join } from "node:path";
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { scanSkills } from "../catalog/scanner.js";
 import { ClaudeCodeGenerator } from "../generators/claude-code/generator.js";
 import { CodexGenerator } from "../generators/codex/generator.js";
@@ -67,7 +69,9 @@ export async function runBuildTarget(
     process.exit(1);
   }
 
-  const pkg = (await Bun.file(join(rootDir, "package.json")).json()) as {
+  const pkg = JSON.parse(
+    await readFile(join(rootDir, "package.json"), "utf8"),
+  ) as {
     version: string;
   };
   const version: string = pkg.version;
@@ -104,7 +108,7 @@ export async function runBuildAll(rootDir: string): Promise<void> {
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
 
   const targetArg =
     process.argv.find((_, index) => process.argv[index - 1] === "--target") ??

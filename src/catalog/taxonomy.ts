@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import { parse as parseYaml } from "yaml";
 import { TaxonomySchema, type Taxonomy } from "../schemas/taxonomy.js";
 
@@ -5,7 +6,7 @@ export async function loadTaxonomy(taxonomyPath: string): Promise<Taxonomy> {
   let content: string;
 
   try {
-    content = await Bun.file(taxonomyPath).text();
+    content = await readFile(taxonomyPath, "utf8");
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
     throw new Error(

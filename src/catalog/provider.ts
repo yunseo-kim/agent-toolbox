@@ -1,3 +1,4 @@
+import { execFile as execFileCb } from "node:child_process";
 import { existsSync } from "node:fs";
 import {
   mkdir,
@@ -8,6 +9,7 @@ import {
   writeFile,
 } from "node:fs/promises";
 import { join } from "node:path";
+import { promisify } from "node:util";
 import { z } from "zod";
 
 export interface CatalogSource {
@@ -38,6 +40,7 @@ const DEFAULT_SOURCE: CatalogSource = {
 };
 
 const USER_AGENT = "agent-toolbox-cli";
+const execFileAsync = promisify(execFileCb);
 
 const CatalogSourceSchema = z.object({
   owner: z.string().min(1),
@@ -238,18 +241,15 @@ async function downloadAndExtractCatalog(
   await mkdir(tmpRoot, { recursive: true });
 
   const archive = await response.arrayBuffer();
-  await Bun.write(archivePath, archive);
+  await writeFile(archivePath, Buffer.from(archive));
 
-  const extractProc = Bun.spawn(["tar", "xzf", archivePath, "-C", tmpRoot], {
-    stdout: "ignore",
-    stderr: "pipe",
-  });
-  const exitCode = await extractProc.exited;
-
-  if (exitCode !== 0) {
-    const stderr = await new Response(extractProc.stderr).text();
+  try {
+    await execFileAsync("tar", ["xzf", archivePath, "-C", tmpRoot]);
+  } catch (error: unknown) {
+    const execError = error as { stderr?: string; code?: number };
     throw new Error(
-      `Catalog archive extraction failed (exit ${exitCode}): ${stderr.trim()}`,
+      `Catalog archive extraction failed (exit ${execError.code ?? 1}): ${(execError.stderr ?? "").trim()}`,
+      { cause: error },
     );
   }
 

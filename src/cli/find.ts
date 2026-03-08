@@ -1,3 +1,5 @@
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { resolveCatalogDir } from "../catalog/provider.js";
 import { scanSkills } from "../catalog/scanner.js";
 import { searchSkills } from "../catalog/search.js";
@@ -138,7 +140,7 @@ export async function runFind(rootDir: string, argv: string[]): Promise<void> {
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
   runFind(rootDir, process.argv.slice(2)).catch((error) => {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`${red("Error:")} ${message}`);
