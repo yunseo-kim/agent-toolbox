@@ -21,14 +21,15 @@ GitHub Actions workflows for validation, testing, building, drift detection, sec
 Triggers: push to `main`, pull requests to `main`.
 
 ```
-validate ──→ test ──→ build
-    │
-    └──→ drift-check
+validate ──┬──→ test ──→ build
+lint ──────┘
+validate ──→ drift-check
 ```
 
 | Job             | Steps                                                              | Fails When                                                         |
 | --------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | **validate**    | `bun run typecheck` → `bun run validate`                           | Type errors; invalid frontmatter; domain/subdomain not in taxonomy |
+| **lint**        | `bun run lint` → `bun run format:check`                            | ESLint errors; unformatted files (Prettier)                        |
 | **test**        | `bun test` (all unit + integration)                                | Any test assertion fails                                           |
 | **build**       | `bun run build:index` → `bun run build:all` → verify 5 target dirs | Missing target directories; build errors                           |
 | **drift-check** | Rebuild index → compare (excluding `generatedAt` timestamp)        | `skill-index.json` is out of date                                  |
@@ -40,12 +41,14 @@ validate ──→ test ──→ build
 Triggers: push of tags matching `v[0-9]+.*`.
 
 ```
-tag push (v*) --> validate --> test --> build --> release notes --> GitHub Release --> npm publish
+tag push (v*) --> typecheck --> lint --> format:check --> validate --> test --> build --> release notes --> GitHub Release --> npm publish
 ```
 
 | Step               | Command                                         | Fails When                            |
 | ------------------ | ----------------------------------------------- | ------------------------------------- |
 | **typecheck**      | `bun run typecheck`                             | Type errors                           |
+| **lint**           | `bun run lint`                                  | ESLint errors                         |
+| **format:check**   | `bun run format:check`                          | Unformatted files (Prettier)          |
 | **validate**       | `bun run validate`                              | Invalid frontmatter or taxonomy       |
 | **test**           | `bun test`                                      | Any test assertion fails              |
 | **build**          | `bun run build:index` + `bun run build:all`     | Missing targets or build errors       |
