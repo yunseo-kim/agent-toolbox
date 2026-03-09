@@ -1,6 +1,6 @@
 # Dual-Runtime Architecture
 
-**Last Updated:** 12026-03-09
+**Last Updated:** 12026-03-10
 **Status:** Canonical Reference
 **Introduced In:** [feat(cli): add dual-runtime build pipeline for npx and bunx support (#22)](https://github.com/yunseo-kim/agent-toolbox/commit/7214d8914e998abad4ba254ccc982f0669d87829)
 
@@ -146,6 +146,79 @@ This means the CLI works correctly in Bun-only environments **without any additi
 | `bunx agent-toolbox`       | Yes (available)  | Node.js          | `undefined`      | `true`   | re-exec             | **Bun**     | 2             |
 | `bunx --bun agent-toolbox` | No               | Bun              | `defined`        | `true`   | `else` (in-process) | **Bun**     | 1             |
 | `bunx agent-toolbox`       | No (absent)      | Bun (fallback)   | `defined`        | `true`   | `else` (in-process) | **Bun**     | 1             |
+
+### Execution Path Performance
+
+Cold-start and warm (steady-state) benchmarks measuring the wall-clock time of each launcher path. Cold measurements use `sudo purge` (macOS) to flush the unified buffer cache between every trial, ensuring each starts with no page cache or dyld shared cache hits.
+
+**Environment:** Bun 1.3.5, Node.js v24.0.1, macOS arm64
+**Methodology:** 100 cold trials (purged), 100 warm iterations (3 warmup), median reported
+**Benchmark script:** [`scripts/bench-paths.ts`](../scripts/bench-paths.ts)
+
+#### `--version` (startup overhead only)
+
+| Path                  | Cold (median) | Warm (median) | Cold / Warm |
+| --------------------- | ------------- | ------------- | ----------- |
+| Path 1 (`npx`)        | 640.7 ms      | 92.4 ms       | 6.93x       |
+| Path 2 (`bunx`)       | 650.9 ms      | 92.4 ms       | 7.04x       |
+| Path 3 (`bunx --bun`) | 260.1 ms      | 52.6 ms       | 4.95x       |
+
+<details>
+<summary>Full statistics</summary>
+
+**Cold start (100 trials, purged):**
+
+| Path   | Median   | Mean ± StdDev       | Min      | Max      |
+| ------ | -------- | ------------------- | -------- | -------- |
+| Path 1 | 640.7 ms | 734.9 ms ± 277.7 ms | 524.3 ms | 2.04 s   |
+| Path 2 | 650.9 ms | 676.7 ms ± 174.5 ms | 482.6 ms | 1.94 s   |
+| Path 3 | 260.1 ms | 273.4 ms ± 81.2 ms  | 199.7 ms | 877.2 ms |
+
+**Warm (100 iterations, 3 warmup):**
+
+| Path   | Median  | Mean ± StdDev    | Min     | Max      |
+| ------ | ------- | ---------------- | ------- | -------- |
+| Path 1 | 92.4 ms | 94.0 ms ± 8.5 ms | 82.6 ms | 159.9 ms |
+| Path 2 | 92.4 ms | 92.2 ms ± 2.0 ms | 83.9 ms | 96.1 ms  |
+| Path 3 | 52.6 ms | 52.1 ms ± 3.3 ms | 46.9 ms | 77.0 ms  |
+
+</details>
+
+#### `validate` (118 skills — real workload)
+
+| Path                  | Cold (median) | Warm (median) | Cold / Warm |
+| --------------------- | ------------- | ------------- | ----------- |
+| Path 1 (`npx`)        | 749.7 ms      | 152.7 ms      | 4.91x       |
+| Path 2 (`bunx`)       | 763.1 ms      | 150.5 ms      | 5.07x       |
+| Path 3 (`bunx --bun`) | 360.3 ms      | 108.9 ms      | 3.31x       |
+
+<details>
+<summary>Full statistics</summary>
+
+**Cold start (100 trials, purged):**
+
+| Path   | Median   | Mean ± StdDev       | Min      | Max    |
+| ------ | -------- | ------------------- | -------- | ------ |
+| Path 1 | 749.7 ms | 750.8 ms ± 65.8 ms  | 571.0 ms | 1.06 s |
+| Path 2 | 763.1 ms | 781.6 ms ± 85.1 ms  | 632.5 ms | 1.16 s |
+| Path 3 | 360.3 ms | 392.8 ms ± 108.9 ms | 316.2 ms | 1.08 s |
+
+**Warm (100 iterations, 3 warmup):**
+
+| Path   | Median   | Mean ± StdDev     | Min      | Max      |
+| ------ | -------- | ----------------- | -------- | -------- |
+| Path 1 | 152.7 ms | 154.1 ms ± 8.2 ms | 143.9 ms | 201.3 ms |
+| Path 2 | 150.5 ms | 151.3 ms ± 4.3 ms | 143.4 ms | 166.2 ms |
+| Path 3 | 108.9 ms | 109.2 ms ± 1.1 ms | 107.3 ms | 112.7 ms |
+
+</details>
+
+#### Observations
+
+- **Cold-start penalty is substantial.** The first invocation after a cache flush costs 4–7× more than a warm run, dominated by runtime binary loading and dyld shared library resolution — not application code.
+- **Path 2's re-exec overhead is invisible in warm state.** Despite spawning two processes (Node.js → Bun), Path 2's warm median matches Path 1's. The Node.js bootloader exits immediately after `spawnSync`, and Bun's fast startup absorbs the overhead.
+- **Path 3 is consistently fastest** across both cold and warm conditions. With a single Bun process, it eliminates Node.js startup entirely, achieving ~0.57x warm and ~0.41x cold relative to Paths 1–2.
+- **Cold variance is high** (stddev 65–278 ms), reflecting macOS disk I/O jitter and dyld cache rebuild variability. Warm variance is low (stddev 1–9 ms), confirming steady-state reproducibility.
 
 ## Shebang Semantics
 
