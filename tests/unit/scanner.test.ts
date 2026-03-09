@@ -15,8 +15,8 @@ describe("catalog scanner", () => {
     errors = result.errors;
   });
 
-  test("scans and finds 118 skills", () => {
-    expect(skills).toHaveLength(118);
+  test("scans and finds 117 skills", () => {
+    expect(skills).toHaveLength(117);
   });
 
   test("returns 0 scan errors", () => {

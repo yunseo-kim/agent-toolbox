@@ -15,10 +15,6 @@ on:
     - cron: "0 6 1 * *"
   workflow_dispatch:
     inputs:
-      verbose:
-        description: "Enable verbose logging (policy fingerprints, co-occurrence metadata, meta-analyzer false positives, and summary in log)"
-        type: boolean
-        default: true
       archive:
         description: "Archive scan reports as markdown to docs/security-reports/"
         type: boolean
@@ -39,7 +35,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           # Full history for push/PR incremental diff; shallow clone for full scans
-          fetch-depth: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && 0 || 1 }}
+          fetch-depth: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && '0' || 1 }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -97,18 +93,14 @@ jobs:
           steps.changes.outputs.catalog != 'none'
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
-          SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
-          SKILL_SCANNER_META_LLM_MODEL: gpt-4.1
+          SKILL_SCANNER_LLM_MODEL: gpt-5.4-2026-03-05
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
-          SCAN_VERBOSE: ${{ inputs.verbose == 'true' || github.event_name == 'schedule' }}
+          # Verbose is always enabled
           SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
           CHANGED_SKILLS: ${{ steps.changes.outputs.catalog }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
-          VERBOSE_FLAGS=""
-          if [ "$SCAN_VERBOSE" = "true" ]; then
-            VERBOSE_FLAGS="--verbose"
-          fi
+          VERBOSE_FLAGS="--verbose"
 
           ARCHIVE_FLAGS=""
           if [ "$SCAN_ARCHIVE" = "true" ]; then
@@ -116,7 +108,7 @@ jobs:
             ARCHIVE_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-catalog.md --detailed"
           fi
 
-          COMMON_FLAGS="--policy strict --use-behavioral --use-llm --llm-provider openai \
+          COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
             --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
 
           # Full scan: manual dispatch, schedule, or edge-case fallback
@@ -146,10 +138,13 @@ jobs:
 
           # Merge individual SARIF files into one
           if ls /tmp/catalog-*.sarif 1>/dev/null 2>&1; then
-            jq -s '{
-              "$schema": .[0]["$schema"],
-              version: .[0].version,
-              runs: [.[].runs[]]
+            jq -s '. as $all | $all[0].runs[0] as $base | {
+              "$schema": $all[0]["$schema"],
+              version: $all[0].version,
+              runs: [$base + {
+                tool: ($base.tool | .driver.rules = ([$all[].runs[0].tool.driver.rules[]?] | unique_by(.id))),
+                results: [$all[].runs[0].results[]?]
+              }]
             }' /tmp/catalog-*.sarif > catalog-results.sarif
           fi
 
@@ -165,18 +160,14 @@ jobs:
           steps.changes.outputs.dev != 'none'
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
-          SKILL_SCANNER_LLM_MODEL: gpt-5.2-2025-12-11
-          SKILL_SCANNER_META_LLM_MODEL: gpt-4.1
+          SKILL_SCANNER_LLM_MODEL: gpt-5.4-2026-03-05
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
-          SCAN_VERBOSE: ${{ inputs.verbose == 'true' || github.event_name == 'schedule' }}
+          # Verbose is always enabled
           SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
           CHANGED_SKILLS: ${{ steps.changes.outputs.dev }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
-          VERBOSE_FLAGS=""
-          if [ "$SCAN_VERBOSE" = "true" ]; then
-            VERBOSE_FLAGS="--verbose"
-          fi
+          VERBOSE_FLAGS="--verbose"
 
           ARCHIVE_FLAGS=""
           if [ "$SCAN_ARCHIVE" = "true" ]; then
@@ -184,7 +175,7 @@ jobs:
             ARCHIVE_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-dev.md --detailed"
           fi
 
-          COMMON_FLAGS="--policy strict --use-behavioral --use-llm --llm-provider openai \
+          COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
             --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
 
           # Full scan: manual dispatch, schedule, or edge-case fallback
@@ -214,10 +205,13 @@ jobs:
 
           # Merge individual SARIF files into one
           if ls /tmp/dev-*.sarif 1>/dev/null 2>&1; then
-            jq -s '{
-              "$schema": .[0]["$schema"],
-              version: .[0].version,
-              runs: [.[].runs[]]
+            jq -s '. as $all | $all[0].runs[0] as $base | {
+              "$schema": $all[0]["$schema"],
+              version: $all[0].version,
+              runs: [$base + {
+                tool: ($base.tool | .driver.rules = ([$all[].runs[0].tool.driver.rules[]?] | unique_by(.id))),
+                results: [$all[].runs[0].results[]?]
+              }]
             }' /tmp/dev-*.sarif > dev-results.sarif
           fi
 

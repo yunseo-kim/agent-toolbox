@@ -39,12 +39,24 @@ Read this file directly to inspect captured data:
 cat .devtools/generations.json | jq
 ```
 
-Or launch the web UI:
+Or launch the web UI (prefer a locally installed dependency over ad-hoc latest fetches):
 
 ```bash
 npx @ai-sdk/devtools
 # Open http://localhost:4983
 ```
+
+If you must use `npx`, pin an explicit package version instead of relying on latest resolution.
+
+## Security and Privacy Notes
+
+DevTools logs can contain sensitive content (user prompts, model responses, tool inputs/outputs, and snippets of application data).
+
+- Use DevTools only in local development, not production systems.
+- Never commit `.devtools/generations.json` to version control.
+- Restrict local file permissions when handling sensitive projects (for example, `chmod 600 .devtools/generations.json`).
+- Redact secrets before sharing logs, screenshots, or copied traces.
+- Delete captured logs after debugging is complete.
 
 ## Data Structure
 

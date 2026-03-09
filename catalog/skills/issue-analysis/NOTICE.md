@@ -16,6 +16,10 @@ in the awesome-agent-toolbox catalog. Changes include:
 - Removed n8n-specific MCP compatibility requirements
 - Generalized from Linear-only to any issue tracker (Linear, Jira, GitHub Issues, etc.)
 - Renamed from "linear-issue" to "issue-analysis" to reflect universal applicability
+- Added security hardening guidance for external media and linked document analysis
+- Added explicit compatibility and allowed-tools metadata for clearer tool-scope boundaries
+- Replaced fixed-path image download example with bounded-download and unique temp-file guidance
+- Added untrusted-content handling, external-action confirmation gate, and sensitive-data redaction guidance
 
 ## Upstream License
 

@@ -84,7 +84,7 @@ def parse_upstream_sources(path: Path) -> dict:
             "owner/repo": {
                 "ref": "main",
                 "discover": {"root": "skills/", "skill_file": "SKILL.md"},
-                "skills": {"catalog-name": {"upstream_dir": "dir-name"}, ...},
+                "skills": {"catalog-name": {"upstream_dir": "dir-name", "exclude_files": ["path"]}, ...},
                 "adapted_skills": {"catalog-name": {"upstream_dir": "dir-name"}, ...},
                 "ignored": ["dir1", ...]
             },
@@ -172,19 +172,34 @@ def parse_upstream_sources(path: Path) -> dict:
             repo["discover"][key.strip()] = _parse_yaml_value(val)
             continue
 
-        # Skill entries (indent 6) — inline flow mapping: name: { upstream_dir: value }
+        # Skill entries (indent 6) — inline flow mapping:
+        # name: { upstream_dir: value, exclude_files: [path1, path2] }
         if indent == 6 and current_section == "skills":
             key, _, val = stripped.partition(":")
             catalog_name = key.strip()
             val = val.strip()
-            # Parse inline { upstream_dir: value } or { upstream_dir: value }  # comment
-            m = re.search(r"upstream_dir:\s*([^}#]+)", val)
+            # Parse inline upstream_dir and optional exclude_files list.
+            m = re.search(r"upstream_dir:\s*([^,}#]+)", val)
             if m:
                 upstream_dir = m.group(1).strip().rstrip(",").strip()
                 upstream_dir = _parse_yaml_value(upstream_dir)
             else:
                 upstream_dir = catalog_name
+
+            exclude_files: list[str] = []
+            ex = re.search(r"exclude_files:\s*\[([^\]]*)\]", val)
+            if ex:
+                raw_list = ex.group(1).strip()
+                if raw_list:
+                    for item in raw_list.split(","):
+                        item = item.strip()
+                        if not item:
+                            continue
+                        exclude_files.append(_parse_yaml_value(item))
+
             repo["skills"][catalog_name] = {"upstream_dir": upstream_dir}
+            if exclude_files:
+                repo["skills"][catalog_name]["exclude_files"] = exclude_files
             continue
 
         # Adapted skill entries (indent 6) — may have upstream_path or upstream_dir
@@ -540,6 +555,7 @@ def sync_skill_files(
     init: bool = False,
     dry_run: bool = False,
     upstream_path: str | None = None,
+    exclude_files: list[str] | None = None,
 ) -> tuple[str, dict]:
     """Sync non-SKILL.md files for a skill and return classification + changes."""
     if upstream_path:
@@ -550,7 +566,15 @@ def sync_skill_files(
     else:
         prefix = "{}{}{}".format(root, upstream_dir, "/")
 
+    exclude_set = set(exclude_files or [])
+
     upstream_files = list_skill_files(tree, prefix)
+    if exclude_set:
+        upstream_files = {
+            rel_path: tree_sha
+            for rel_path, tree_sha in upstream_files.items()
+            if rel_path not in exclude_set
+        }
     upstream_files.pop(skill_file, None)
 
     file_changes = {
@@ -644,6 +668,8 @@ def sync_skill_files(
             file_changes["files_modified"].append(rel_path)
 
     for rel_path in sorted(cached_hashes.keys()):
+        if rel_path in exclude_set:
+            continue
         if os.path.basename(rel_path) in LOCAL_ONLY_FILES:
             continue
         if rel_path == skill_file:
@@ -726,6 +752,7 @@ def process_repo(
     # --- Sync existing ported skills ---
     for catalog_name, skill_cfg in skills.items():
         upstream_dir = skill_cfg.get("upstream_dir", catalog_name)
+        exclude_files = skill_cfg.get("exclude_files", [])
         root = discover.get("root", "")
         skill_file = discover.get("skill_file", "SKILL.md")
         upstream_path = f"{root}{upstream_dir}/{skill_file}"
@@ -765,6 +792,7 @@ def process_repo(
             cached_entry,
             init=init,
             dry_run=dry_run,
+            exclude_files=exclude_files,
         )
 
         if init:
@@ -884,6 +912,7 @@ def process_repo(
 
         monitor_upstream_path = skill_cfg.get("upstream_path")
         monitor_upstream_dir = skill_cfg.get("upstream_dir", catalog_name)
+        monitor_exclude_files = skill_cfg.get("exclude_files", [])
         file_classification, file_changes = sync_skill_files(
             owner_repo,
             ref,
@@ -896,6 +925,7 @@ def process_repo(
             init=init,
             dry_run=True,
             upstream_path=monitor_upstream_path,
+            exclude_files=monitor_exclude_files,
         )
 
         if init:

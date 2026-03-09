@@ -10,7 +10,8 @@ GitHub Actions workflows for validation, testing, building, drift detection, sec
 │   ├── ci.yml                  # Main CI pipeline (push/PR to main)
 │   ├── release.yml             # Tag-triggered npm publish pipeline
 │   ├── skill-scanner.yml       # Skill security scanning (push/PR + manual dispatch)
-│   └── upstream-sync.yml       # Daily upstream skill sync
+│   ├── upstream-sync.yml       # Daily upstream skill sync
+│   └── content-check.yml       # Weekly content divergence check
 └── upstream-sync/
     ├── sync.py                 # Python 3.10+ stdlib-only full-directory sync script (~1700 lines)
     └── sha-cache.json          # Auto-managed cache v3 (SHA256 + tree SHAs + file hashes)
@@ -195,6 +196,27 @@ Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 - Adapted skills are NEVER auto-modified — advisory diffs only
 - New upstream skills are detected and reported with links
 
+## CONTENT DIVERGENCE CHECK (`content-check.yml`)
+
+Scheduled: **Weekly Monday 07:00 UTC** + manual dispatch.
+
+Lightweight hash-based check for adapted skills that embed external content not covered by `sync.py`. Separate from the upstream sync pipeline — no shared state or cache.
+
+**Currently monitors:**
+
+| Skill                   | Local File                                                   | Upstream Source                                                                                                                   |
+| ----------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| `web-design-guidelines` | `catalog/skills/web-design-guidelines/references/command.md` | [`vercel-labs/web-interface-guidelines/command.md`](https://github.com/vercel-labs/web-interface-guidelines/blob/main/command.md) |
+
+**How it works:**
+
+1. Fetches upstream file via `raw.githubusercontent.com`
+2. Compares SHA-256 hash against local copy
+3. If diverged: creates a GitHub issue labeled `upstream-content` (skips if one is already open)
+4. If fetch fails (repo renamed/deleted): emits warning, exits cleanly
+
+**Adding new content checks:** Add another step to the `check-web-design-guidelines` job (or a new job) following the same pattern — fetch, hash, compare, issue.
+
 ## WHERE TO LOOK
 
 | Task                           | File                                                                     |
@@ -214,6 +236,7 @@ Python 3.10+ stdlib-only (no pip dependencies). Uses `gh` CLI for GitHub API.
 | Debug release workflow         | `.github/workflows/release.yml`                                          |
 | Configure changelog scope      | `cliff.toml` -- commit_parsers with skip rules                           |
 | Configure version bump         | `bump.config.ts` -- bumpp + git-cliff integration                        |
+| Check content divergence.      | `.github/workflows/content-check.yml` — weekly hash check                |
 
 ## ANTI-PATTERNS
 

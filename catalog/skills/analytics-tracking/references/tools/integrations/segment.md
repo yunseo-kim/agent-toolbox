@@ -1,0 +1,1 @@
+../../../../../tools/marketing-tools/integrations/segment.md

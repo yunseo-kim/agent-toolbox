@@ -2,6 +2,11 @@
 name: webapp-testing
 description: "Test local web applications using Playwright with server lifecycle management, browser automation, and visual verification. Use for frontend testing, debugging UI, capturing screenshots, and viewing browser logs."
 license: Sustainable Use License 1.0
+compatibility: "Requires Python 3.9+, Playwright for Python, and local server commands. Writes output artifacts to a configurable local directory."
+allowed-tools:
+  - Bash
+  - Read
+  - Write
 
 metadata:
   domain: devops
@@ -20,7 +25,7 @@ To test local web applications, write native Python Playwright scripts.
 **Helper Scripts Available**:
 - `scripts/with_server.py` - Manages server lifecycle (supports multiple servers)
 
-**Always run scripts with `--help` first** to see usage. DO NOT read the source until you try running the script first and find that a customized solution is abslutely necessary. These scripts can be very large and thus pollute your context window. They exist to be called directly as black-box scripts rather than ingested into your context window.
+**Always run scripts with `--help` first** to see usage and options. Avoid pasting large script bodies into your context window; invoke scripts directly after checking usage.
 
 ## Decision Tree: Choosing Your Approach
 
@@ -75,7 +80,7 @@ with sync_playwright() as p:
 
 1. **Inspect rendered DOM**:
    ```python
-   page.screenshot(path='/tmp/inspect.png', full_page=True)
+   page.screenshot(path='./inspect.png', full_page=True)
    content = page.content()
    page.locator('button').all()
    ```
@@ -91,7 +96,7 @@ with sync_playwright() as p:
 
 ## Best Practices
 
-- **Use bundled scripts as black boxes** - To accomplish a task, consider whether one of the scripts available in `scripts/` can help. These scripts handle common, complex workflows reliably without cluttering the context window. Use `--help` to see usage, then invoke directly. 
+- **Use bundled scripts directly** - To accomplish a task, consider whether one of the scripts available in `scripts/` can help. These scripts handle common, complex workflows reliably without cluttering the context window. Use `--help` to see usage, then invoke directly.
 - Use `sync_playwright()` for synchronous scripts
 - Always close the browser when done
 - Use descriptive selectors: `text=`, `role=`, CSS selectors, or IDs

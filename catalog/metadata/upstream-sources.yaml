@@ -36,7 +36,6 @@ sources:
       skill_file: SKILL.md
     skills:
       internal-comms: { upstream_dir: internal-comms }
-      mcp-builder: { upstream_dir: mcp-builder }
       slack-gif-creator: { upstream_dir: slack-gif-creator }
       theme-factory: { upstream_dir: theme-factory }
       webapp-testing: { upstream_dir: webapp-testing }
@@ -44,6 +43,7 @@ sources:
       algorithmic-art: { upstream_dir: algorithmic-art }
       canvas-design: { upstream_dir: canvas-design }
       doc-coauthoring: { upstream_dir: doc-coauthoring }
+      mcp-builder: { upstream_dir: mcp-builder }
       skill-creator: { upstream_dir: skill-creator }
       frontend-design: { upstream_dir: frontend-design }
       web-artifacts-builder: { upstream_dir: web-artifacts-builder }
@@ -105,7 +105,6 @@ sources:
     skills:
       apple-notes: { upstream_dir: apple-notes }
       bear-notes: { upstream_dir: bear-notes }
-      blogwatcher: { upstream_dir: blogwatcher }
       blucli: { upstream_dir: blucli }
       eightctl: { upstream_dir: eightctl }
       gemini-cli: { upstream_dir: gemini } # renamed
@@ -118,7 +117,6 @@ sources:
       openai-image-gen: { upstream_dir: openai-image-gen }
       openai-whisper-local: { upstream_dir: openai-whisper } # renamed
       openhue: { upstream_dir: openhue }
-      oracle-cli: { upstream_dir: oracle } # renamed
       ordercli: { upstream_dir: ordercli }
       sag-tts: { upstream_dir: sag } # renamed
       songsee: { upstream_dir: songsee }
@@ -132,6 +130,7 @@ sources:
       github-cli: { upstream_dir: github } # renamed
       nano-banana-pro: { upstream_dir: nano-banana-pro }
       openai-whisper-api: { upstream_dir: openai-whisper-api }
+      oracle-cli: { upstream_dir: oracle } # renamed
       sherpa-onnx-tts: { upstream_dir: sherpa-onnx-tts }
       tmux-controller: { upstream_dir: tmux } # renamed
       things-mac-cli: { upstream_dir: things-mac } # renamed
@@ -162,7 +161,8 @@ sources:
     discover:
       root: skills/
       skill_file: SKILL.md
-    skills:
+    skills: {}
+    adapted_skills:
       ai-sdk: { upstream_dir: use-ai-sdk } # renamed
     ignored:
       - add-provider-package
@@ -179,6 +179,7 @@ sources:
       react-best-practices: { upstream_dir: react-best-practices }
       composition-patterns: { upstream_dir: composition-patterns }
       react-native-skills: { upstream_dir: react-native-skills }
+    adapted_skills:
       web-design-guidelines: { upstream_dir: web-design-guidelines }
     ignored:
       - claude.ai/vercel-deploy-claimable # claude.ai-specific deployment tool
@@ -287,16 +288,11 @@ sources:
       skill_file: SKILL.md
     skills:
       ab-test-setup: { upstream_dir: ab-test-setup }
-      ad-creative: { upstream_dir: ad-creative }
-      ai-seo: { upstream_dir: ai-seo }
-      analytics-tracking: { upstream_dir: analytics-tracking }
-      churn-prevention: { upstream_dir: churn-prevention }
       cold-email: { upstream_dir: cold-email }
       competitor-alternatives: { upstream_dir: competitor-alternatives }
       content-strategy: { upstream_dir: content-strategy }
       copy-editing: { upstream_dir: copy-editing }
       copywriting: { upstream_dir: copywriting }
-      email-sequence: { upstream_dir: email-sequence }
       form-cro: { upstream_dir: form-cro }
       free-tool-strategy: { upstream_dir: free-tool-strategy }
       launch-strategy: { upstream_dir: launch-strategy }
@@ -304,15 +300,21 @@ sources:
       marketing-psychology: { upstream_dir: marketing-psychology }
       onboarding-cro: { upstream_dir: onboarding-cro }
       page-cro: { upstream_dir: page-cro }
-      paid-ads: { upstream_dir: paid-ads }
       paywall-upgrade-cro: { upstream_dir: paywall-upgrade-cro }
       popup-cro: { upstream_dir: popup-cro }
       pricing-strategy: { upstream_dir: pricing-strategy }
       product-marketing-context: { upstream_dir: product-marketing-context }
       programmatic-seo: { upstream_dir: programmatic-seo }
-      referral-program: { upstream_dir: referral-program }
       schema-markup: { upstream_dir: schema-markup }
       seo-audit: { upstream_dir: seo-audit }
       signup-flow-cro: { upstream_dir: signup-flow-cro }
       social-content: { upstream_dir: social-content }
+    adapted_skills:
+      ad-creative: { upstream_dir: ad-creative }
+      ai-seo: { upstream_dir: ai-seo }
+      analytics-tracking: { upstream_dir: analytics-tracking }
+      churn-prevention: { upstream_dir: churn-prevention }
+      email-sequence: { upstream_dir: email-sequence }
+      paid-ads: { upstream_dir: paid-ads }
+      referral-program: { upstream_dir: referral-program }
     ignored: []

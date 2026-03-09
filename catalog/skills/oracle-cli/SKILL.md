@@ -4,14 +4,17 @@ description: >
   Bundle prompts and files into one-shot AI consultations via the oracle
   CLI. Supports browser and API engines, session management, and multiple
   model providers for code review and architecture analysis.
-license: Sustainable Use License 1.0
-
+license: SUL-1.0
+compatibility: "Requires oracle CLI, network access for external providers, and explicit user confirmation before any upload."
+allowed-tools:
+  - Bash
+  - Read
 metadata:
   domain: data-ai
   tags: "ai, code-review, consultation, llm, oracle-cli"
-  author: "cpojer <christoph.pojer@gmail.com>"
-  lastUpdated: "12026-01-31"
-  provenance: ported
+  author: "Yunseo Kim <dev@yunseo.kim>"
+  lastUpdated: "12026-03-05"
+  provenance: adapted
 ---
 
 # oracle — best use
@@ -31,8 +34,10 @@ Recommended defaults:
 
 1. Pick a tight file set (fewest files that still contain the truth).
 2. Preview payload + token spend (`--dry-run` + `--files-report`).
-3. Use browser mode for the usual GPT‑5.2 Pro workflow; use API only when you explicitly want it.
-4. If the run detaches/timeouts: reattach to the stored session (don’t re-run).
+3. Run a preflight confirmation gate: show exact files, destination provider/host, and require explicit approval before upload.
+4. Keep uploads provider-scoped: only send to a trusted, user-approved endpoint.
+5. Use browser mode for the usual GPT-5.2 Pro workflow; use API only when you explicitly want it.
+6. If the run detaches/timeouts: reattach to the stored session (don't re-run).
 
 ## Commands (preferred)
 
@@ -80,7 +85,8 @@ Recommended defaults:
 - Browser attachments:
   - `--browser-attachments auto|never|always` (auto pastes inline up to ~60k chars then uploads).
 - Remote browser host:
-  - Host: `oracle serve --host 0.0.0.0 --port 9473 --token <secret>`
+  - Host (safe default): `oracle serve --host 127.0.0.1 --port 9473 --token <secret>`
+  - Only bind `0.0.0.0` when remote access is explicitly required and network controls are in place.
   - Client: `oracle --engine browser --remote-host <host:port> --remote-token <secret> -p "<task>" --file "src/**"`
 
 ## Sessions + slugs
@@ -104,7 +110,29 @@ Oracle starts with **zero** project knowledge. Assume the model cannot infer you
 
 ## Safety
 
-- Don’t attach secrets by default (`.env`, key files, auth tokens). Redact aggressively; share only what’s required.
+**File attachment checklist (REQUIRED before using `--file`):**
+1. Review the file list — never attach files containing secrets, credentials, or private keys.
+2. Hard denylist — NEVER attach: `.env`, `.env.*`, `*.pem`, `*.key`, `id_rsa*`, `credentials.*`, `secrets.*`, `*.p12`, `*.pfx`, `keystore.*`, `*.jks`.
+3. Redact aggressively — strip API keys, tokens, passwords, and connection strings from attached files before sending.
+4. Require explicit user approval before attaching files to any external AI service.
+5. Display preflight summary before upload: exact file paths, estimated token/size impact, and destination provider/endpoint.
+6. If any file appears sensitive, stop and require manual review instead of proceeding.
+
+**Provider and endpoint guardrails:**
+- Treat destination endpoints as allowlist-only: upload only to trusted, user-approved providers/hosts.
+- Do not follow redirects to a different host during upload workflows.
+- If provider retention or data handling is unknown, pause and require explicit user confirmation.
+
+**Remote host safety:**
+- When using `--remote-host`, verify the host is trusted and the connection uses encryption.
+- Do not upload files to third-party services without explicit user confirmation.
+- Do not pass `--remote-token` values in plain text in shared environments.
+
+**Resource and session limits:**
+- Keep at most one long-running browser session per task unless the user explicitly requests concurrency.
+- Reattach to existing sessions instead of starting duplicates.
+- Stop/cancel stale sessions before launching new long runs to avoid resource exhaustion.
+- Prefer bounded runs and explicit timeouts when executing from automation or shared environments.
 
 ## “Exhaustive prompt” restoration pattern
 

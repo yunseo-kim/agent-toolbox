@@ -17,6 +17,12 @@ catalog. Changes include:
 - Removed platform-specific metadata and install configuration
 - Generalized platform-specific references to be tool-agnostic
 - Adapted descriptions and instructions for generic AI assistant use
+- Added explicit tool-scope metadata (`allowed-tools`) and runtime assumptions (`compatibility`)
+- Replaced unpinned install guidance with a pinned upstream release version and upgrade review notes
+- Added security guidance for Full Disk Access minimization and post-task permission revocation
+- Added auth token handling safeguards and reduced reliance on command-line token flags
+- Added safety guardrails for untrusted CLI output and sensitive local database content
+- Updated command coverage to match upstream behavior (including delete command notes)
 
 ## Upstream License
 

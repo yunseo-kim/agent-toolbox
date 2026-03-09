@@ -1,4 +1,4 @@
-# torch.export.export()
+# torch.export
 
 > This guide may lag behind upstream PyTorch. When in doubt, consult the
 > official docs:
@@ -10,7 +10,7 @@ ATen-dialect graph with no Python runtime dependency.
 
 ```python
 from torch.export import export
-exported = export(model.eval(), (example_input,))
+exported = export(model.train(False), (example_input,))
 ```
 
 ## How export works
@@ -129,7 +129,7 @@ batch = Dim("batch", min=1, max=32)
 seq_len = Dim("seq_len", min=1, max=2048)
 
 exported = export(
-    model.eval(),
+    model.train(False),
     (example_input,),
     dynamic_shapes={"x": {0: batch, 1: seq_len}},
 )
@@ -183,7 +183,7 @@ provide an example input with size > 1.
 ## The ExportedProgram
 
 ```python
-exported = export(model.eval(), (x,))
+exported = export(model.train(False), (x,))
 
 print(exported.graph)            # torch.fx.Graph — the traced DAG
 gm = exported.graph_module       # torch.fx.GraphModule wrapping the graph
@@ -678,7 +678,7 @@ production — for diagnosis.
 
 Enable verbose logging and parse into an HTML report:
 ```bash
-TORCH_LOGS="+dynamo,+export" python export_script.py 2>&1 | tlparse
+TORCH_LOGS="+dynamo,+export" python -m your_export_module 2>&1 | tlparse
 ```
 
 The report shows guard failures, graph breaks, symbol creation, and the traced

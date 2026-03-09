@@ -2,7 +2,7 @@
   "severity_threshold": "high",
   "skills_path": "catalog/skills",
   "fail_fast": true,
-  "policy": "strict",
+  "policy": "skill-scanner-policy.yaml",
   "use_behavioral": true,
   "use_trigger": true,
   "lenient": true

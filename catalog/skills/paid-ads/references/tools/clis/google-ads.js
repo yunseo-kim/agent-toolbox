@@ -1,0 +1,1 @@
+../../../../../tools/marketing-tools/clis/google-ads.js

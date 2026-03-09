@@ -21,9 +21,9 @@ describe("index builder", () => {
     skills = result.skills;
   });
 
-  test("builds index with 118 skills", () => {
+  test("builds index with 117 skills", () => {
     const index = buildSkillIndex(skills);
-    expect(index.skills).toHaveLength(118);
+    expect(index.skills).toHaveLength(117);
   });
 
   test("index has version 2", () => {
@@ -94,7 +94,7 @@ describe("index builder", () => {
   test("index validates against SkillIndex schema", () => {
     const index = buildSkillIndex(skills);
     const parsed = SkillIndex.parse(index);
-    expect(parsed.skills).toHaveLength(118);
+    expect(parsed.skills).toHaveLength(117);
   });
 
   describe("TOON index generation", () => {
@@ -111,7 +111,7 @@ describe("index builder", () => {
       const toon = encode(index, { delimiter: DELIMITERS.tab });
       const decoded = decode(toon) as typeof index;
       expect(decoded.version).toBe(2);
-      expect(decoded.skills).toHaveLength(118);
+      expect(decoded.skills).toHaveLength(117);
     });
 
     test("TOON roundtrip preserves skill fields", () => {

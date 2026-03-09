@@ -15,33 +15,18 @@ import {
   AudioPlayerTimeRange,
   AudioPlayerVolumeRange,
 } from "@/components/ai-elements/audio-player";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 const Example = () => {
-  const [data, setData] = useState<SpeechResult["audio"] | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "https://ejiidnob33g9ap1r.public.blob.vercel-storage.com/ElevenLabs_2025-11-10T22_07_46_Hayden_pvc_sp108_s50_sb75_se0_b_m2.mp3"
-      );
-      const arrayBuffer = await response.arrayBuffer();
-      const base64 = Buffer.from(arrayBuffer).toString("base64");
-
-      const newData: SpeechResult["audio"] = {
-        base64,
-        format: "mp3",
-        mediaType: "audio/mpeg",
-        uint8Array: new Uint8Array(arrayBuffer),
-      };
-
-      setData(newData);
+  const data = useMemo<SpeechResult["audio"]>(() => {
+    const bytes = new Uint8Array([73, 68, 51, 3, 0, 0, 0, 0, 0, 0]);
+    return {
+      base64: "SUQzAwAAAAAA",
+      format: "mp3",
+      mediaType: "audio/mpeg",
+      uint8Array: bytes,
     };
-
-    if (!data) {
-      fetchData();
-    }
-  }, [data]);
+  }, []);
 
   if (!data) {
     return <div>Loading...</div>;

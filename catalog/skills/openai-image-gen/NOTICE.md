@@ -17,6 +17,7 @@ catalog. Changes include:
 - Removed platform-specific metadata and install configuration
 - Generalized platform-specific references to be tool-agnostic
 - Adapted descriptions and instructions for generic AI assistant use
+- Excluded non-distributable test artifact `scripts/test_gen.py` from catalog sync and distribution to prevent recurring upstream sync churn
 
 ## Upstream License
 

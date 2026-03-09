@@ -31,7 +31,6 @@ Adding/removing a skill in `.agents/skills/` requires updating all symlinked dir
 | **catalog-porter** | Workflow | -- | catalog-conventions.md, notice-templates.md, upstream-sources.md, readme-listing.md | Upstream skill analysis, classification, and porting |
 | **docs-changelog** | Workflow | -- | highlights_examples.md, index/latest/preview_template.md | Changelog generation |
 | **doc-coauthoring** | Workflow | -- | -- | Collaborative drafting |
-| **find-skills** | Utility | -- | -- | Skill discovery helper |
 | **dependency-upgrade** | Reference | -- | -- | Dependency management patterns |
 | **github-actions-templates** | Reference | -- | -- | GitHub Actions patterns |
 | **gitlab-ci-patterns** | Reference | -- | -- | GitLab CI/CD patterns |

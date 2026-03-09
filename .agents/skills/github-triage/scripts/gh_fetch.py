@@ -2,8 +2,8 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
-#     "typer>=0.12.0",
-#     "rich>=13.0.0",
+#     "typer>=0.24.1,<0.25.0",
+#     "rich>=14.3.3,<15.0.0",
 # ]
 # ///
 """
