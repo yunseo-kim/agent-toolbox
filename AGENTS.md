@@ -44,6 +44,7 @@ This repository is a cross-tool distribution system for agent skills, plugins, a
 | Upstream sync config        | `catalog/metadata/upstream-sources.yaml`                                 | Ported/adapted skill mappings                                                    |
 | Provenance guide            | `docs/classification.md`                                                 | Ported vs adapted decision criteria                                              |
 | Release strategy            | `docs/release.md`                                                        | Branch model, versioning, release workflow                                       |
+| Dual-runtime architecture   | `docs/dual-runtime.md`                                                   | Launcher flow, shebang semantics, Node.js API compat, perf benchmarks            |
 | Release workflow            | `.github/workflows/release.yml`                                          | Tag-triggered npm publish pipeline                                               |
 | Changelog config            | `cliff.toml`                                                             | git-cliff commit filtering (CLI-scoped only)                                     |
 | Version bump config         | `bump.config.ts`                                                         | bumpp + git-cliff integration                                                    |
