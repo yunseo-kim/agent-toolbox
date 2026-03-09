@@ -1,6 +1,7 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
 import { basename, dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { scanSkills } from "../catalog/scanner.js";
 import { validateCatalog } from "../catalog/validator.js";
 import { green, red, resolveRootDir, yellow } from "./utils.js";
@@ -33,17 +34,23 @@ export async function runValidate(rootDir: string): Promise<void> {
 
   const parsedSkillNames = new Set(scan.skills.map((skill) => skill.dirName));
 
-  for (const skill of [...scan.skills].sort((a, b) => a.frontmatter.name.localeCompare(b.frontmatter.name))) {
+  for (const skill of [...scan.skills].sort((a, b) =>
+    a.frontmatter.name.localeCompare(b.frontmatter.name),
+  )) {
     const failure = invalidMessages.get(skill.dirName);
 
     if (failure) {
       console.log(`${red("✗")} ${skill.frontmatter.name}: ${failure}`);
     } else {
-      console.log(`${green("✓")} ${skill.frontmatter.name} (${skill.frontmatter.metadata.domain})`);
+      console.log(
+        `${green("✓")} ${skill.frontmatter.name} (${skill.frontmatter.metadata.domain})`,
+      );
     }
   }
 
-  for (const [skillName, message] of [...invalidMessages.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+  for (const [skillName, message] of [...invalidMessages.entries()].sort(
+    ([a], [b]) => a.localeCompare(b),
+  )) {
     if (!parsedSkillNames.has(skillName)) {
       console.log(`${red("✗")} ${skillName}: ${message}`);
     }
@@ -54,7 +61,9 @@ export async function runValidate(rootDir: string): Promise<void> {
 
     for (const warning of result.warnings) {
       const fieldSuffix = warning.field ? ` (${warning.field})` : "";
-      console.log(`  ${yellow("!")} ${skillKeyFromPath(warning.path)}${fieldSuffix}: ${warning.message}`);
+      console.log(
+        `  ${yellow("!")} ${skillKeyFromPath(warning.path)}${fieldSuffix}: ${warning.message}`,
+      );
     }
   }
 
@@ -64,7 +73,9 @@ export async function runValidate(rootDir: string): Promise<void> {
   console.log(`  Invalid: ${result.stats.invalidSkills}`);
   console.log("\n  Domains:");
 
-  for (const [domain, count] of Object.entries(result.stats.domains).sort(([a], [b]) => a.localeCompare(b))) {
+  for (const [domain, count] of Object.entries(result.stats.domains).sort(
+    ([a], [b]) => a.localeCompare(b),
+  )) {
     console.log(`    ${domain}: ${count}`);
   }
 
@@ -72,7 +83,7 @@ export async function runValidate(rootDir: string): Promise<void> {
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
   runValidate(rootDir).catch((error) => {
     const reason = error instanceof Error ? error.message : String(error);
     console.error(`${red("✗")} ${reason}`);

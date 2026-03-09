@@ -1,7 +1,12 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
-import { resolve } from "node:path";
-import { buildSkillIndex, writeSkillIndex, writeSkillIndexToon } from "../catalog/index-builder.js";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import {
+  buildSkillIndex,
+  writeSkillIndex,
+  writeSkillIndexToon,
+} from "../catalog/index-builder.js";
 import { scanSkills } from "../catalog/scanner.js";
 import { green, red, resolveRootDir } from "./utils.js";
 
@@ -24,12 +29,16 @@ export async function runBuildIndex(rootDir: string): Promise<void> {
   await writeSkillIndex(index, outputPath);
   await writeSkillIndexToon(index, toonOutputPath);
 
-  console.log(`${green("✓")} Generated skill-index.json with ${index.skills.length} skills`);
-  console.log(`${green("✓")} Generated skill-index.toon with ${index.skills.length} skills`);
+  console.log(
+    `${green("✓")} Generated skill-index.json with ${index.skills.length} skills`,
+  );
+  console.log(
+    `${green("✓")} Generated skill-index.toon with ${index.skills.length} skills`,
+  );
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
   runBuildIndex(rootDir).catch((error) => {
     const reason = error instanceof Error ? error.message : String(error);
     console.error(`${red("✗")} ${reason}`);

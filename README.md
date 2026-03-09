@@ -1,31 +1,35 @@
 <div align="center">
 
-# awesome-agent-toolbox
+# agent-toolbox
 
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![SUL-1.0 license](https://img.shields.io/badge/license-SUL%201.0-97ca00)](LICENSE.md)
+[![Release model](https://img.shields.io/badge/release_model-SemVer%20CLI%20%2B%20Rolling%20Catalog-0097a7)](./docs/release.md)
+[![GitHub issues](https://img.shields.io/badge/issue_tracking-GitHub-blue.svg)](https://github.com/snu-hanaro/static-fire-toolkit/issues)
+[![Cisco AI Defense](https://img.shields.io/badge/Secured%20by-Cisco%20AI%20Defense-049fd9?logo=cisco&logoColor=white)](https://github.com/cisco-ai-defense)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/yunseo-kim/agent-toolbox)
+
+[![CI](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/github-code-scanning/codeql)
+[![Skill Security Scan](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/skill-scanner.yml/badge.svg)](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/skill-scanner.yml)
+
+A trusted, curated cross-tool registry for agent components, with end-to-end provenance and automated security vetting of skills, MCP servers, and hooks — supporting **Claude Code, OpenCode, Codex, Antigravity, Gemini CLI, Cursor, and Windsurf**.
 
 <a href="https://www.buymeacoffee.com/yunseokim" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
-
-[![CI](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/github-code-scanning/codeql)
-[![Skill Security Scan](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/skill-scanner.yml/badge.svg)](https://github.com/yunseo-kim/awesome-agent-toolbox/actions/workflows/skill-scanner.yml)
-
-A trusted, curated cross-tool registry for agent components, with end-to-end provenance and automated security vetting of skills, MCP servers, and hooks — targeting **Claude Code, OpenCode, Codex, Antigravity, Gemini CLI, Cursor, and Windsurf**.
 
 </div>
 
 ## Motivation
 
-AI coding assistants are powerful, but their skills are fragmented across tools and ecosystems. Standards like [Agent Skills](https://agentskills.io) define a common skill format, but don't guarantee that the content itself is tool-neutral. Each tool still integrates skills, hooks, and MCP servers in subtly different ways — so a skill written for Claude Code doesn't work well in Gemini CLI, and a Cursor plugin can't be installed in Codex.
+AI coding assistants are powerful, but their skills are fragmented across tools and ecosystems. Standards like [Agent Skills](https://agentskills.io) define a common skill format, but don't guarantee that the content itself is tool-neutral. Each tool still integrates skills, hooks, and MCP servers in subtly different ways — so a skill written for Claude Code may not work well in Gemini CLI, and a Cursor plugin can't be installed in Codex.
 
-Fragmentation is only half the problem. Agent skills are a new software supply chain — and they're already under attack. Snyk's [ToxicSkills report](https://github.com/snyk/agent-scan/blob/main/.github/reports/skills-report.pdf) found that **13.4% of ~4,000 scanned skills contained critical security issues** — prompt injection, data exfiltration, and embedded malware — with 76 confirmed malicious payloads. [1Password](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface) and [Cisco](https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare) have independently documented live attacks where the top-downloaded skill on a major registry turned out to be an infostealer, and coordinated campaigns weaponized skills for silent credential theft. In an ecosystem where a SKILL.md file is effectively an installer, distributing unvetted skills means distributing unvetted code.
+Fragmentation is only half the problem. Agent skills & MCPs are a new software supply chain — and they're already under attack. Snyk's ["Exploring the Emerging Threats of the Agent Skill Ecosystem" technical report](https://github.com/snyk/agent-scan/blob/main/.github/reports/skills-report.pdf) found that **13.4% of ~4,000 scanned skills contained critical security issues** — prompt injection, data exfiltration, and embedded malware — with 76 confirmed malicious payloads. [1Password](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface) and [Cisco](https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare) have independently documented live attacks where the top-downloaded skill on a major registry turned out to be an infostealer, and coordinated campaigns weaponized skills for silent credential theft. In an ecosystem where a SKILL.md file is effectively an installer, distributing unvetted skills means distributing unvetted code.
 
-**awesome-agent-toolbox** solves both problems by maintaining a **single neutral catalog** of skills with [end-to-end provenance tracking](catalog/README.md) and [automated security vetting](#security), then generating tool-specific artifacts for each target. Write once, install everywhere — safely.
+**agent-toolbox** solves both problems by maintaining a **single neutral catalog** of skills with [end-to-end provenance tracking](catalog/README.md) and [automated security vetting](#security), then generating tool-specific artifacts for each target. Write once, install everywhere — safely.
 
 ## Architecture
 
 ```
-awesome-agent-toolbox/
+agent-toolbox/
 ├── catalog/                          # Neutral source-of-truth
 │   ├── skills/                       # Flat — one dir per skill, taxonomy via frontmatter
 │   ├── agents/
@@ -79,26 +83,26 @@ The catalog currently contains **110+ skills** across 10 domains, curated from l
 
 ```bash
 # Install all skills for a target
-bunx awesome-agent-toolbox install --target claude-code
+bunx agent-toolbox install --target claude-code
 
 # Filter by domain
-bunx awesome-agent-toolbox install --target gemini --domain devops
+bunx agent-toolbox install --target gemini --domain devops
 
 # Filter by subdomain
-bunx awesome-agent-toolbox install --target gemini --domain devops --subdomain ci-cd
+bunx agent-toolbox install --target gemini --domain devops --subdomain ci-cd
 
 # Use a curated preset
-bunx awesome-agent-toolbox install --target cursor --preset devops-essentials
+bunx agent-toolbox install --target cursor --preset devops-essentials
 
 # Install specific skills
-bunx awesome-agent-toolbox install --target claude-code --skill git-master --skill docs-writer
+bunx agent-toolbox install --target claude-code --skill git-master --skill docs-writer
 
 # Filter by framework or tag
-bunx awesome-agent-toolbox install --target codex --framework nextjs
-bunx awesome-agent-toolbox install --target gemini --tag yaml
+bunx agent-toolbox install --target codex --framework nextjs
+bunx agent-toolbox install --target gemini --tag yaml
 
 # Preview what would be installed
-bunx awesome-agent-toolbox install --target gemini --domain devops --dry-run
+bunx agent-toolbox install --target gemini --domain devops --dry-run
 ```
 
 > **npm users:** Replace `bunx` with `npx`.
@@ -117,13 +121,13 @@ bun test                   # Run all tests
 
 ## Supported Targets
 
-| Target | Artifact Format | Status |
-|--------|----------------|--------|
-| **Claude Code** | `.claude/` skills + plugins | Implemented |
-| **OpenCode** | `skills/` with SKILL.md | Implemented |
-| **Gemini CLI** | `gemini-extension.json` + skills | Implemented |
-| **Cursor** | `.cursor/` compatible artifacts | Implemented |
-| **Codex** | Agent skill directories | Implemented |
+| Target          | Artifact Format                  | Status      |
+| --------------- | -------------------------------- | ----------- |
+| **Claude Code** | `.claude/` skills + plugins      | Implemented |
+| **OpenCode**    | `skills/` with SKILL.md          | Implemented |
+| **Gemini CLI**  | `gemini-extension.json` + skills | Implemented |
+| **Cursor**      | `.cursor/` compatible artifacts  | Implemented |
+| **Codex**       | Agent skill directories          | Implemented |
 
 ## Security
 
@@ -137,7 +141,7 @@ Every skill in the catalog is automatically scanned for security threats using [
 
 Results are uploaded as SARIF to GitHub Code Scanning, so findings appear as inline PR annotations. A pre-commit hook provides the same scanning locally before every commit. Monthly full-scan reports are archived in [`docs/security-reports/`](docs/security-reports/). For full details, see [`SECURITY.md`](SECURITY.md).
 
-To report a security vulnerability, use [GitHub Security Advisories](https://github.com/yunseo-kim/awesome-agent-toolbox/security/advisories/new) or email [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim).
+To report a security vulnerability, use [GitHub Security Advisories](https://github.com/yunseo-kim/agent-toolbox/security/advisories/new) or email [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim).
 
 ## Contributing
 
@@ -145,7 +149,7 @@ See [`catalog/README.md`](catalog/README.md) for the skill taxonomy and listing 
 
 ### Suggest a Skill, Hook, or MCP
 
-Want to see a specific upstream project, skill, hook, or MCP server added to the catalog? [Open an issue](https://github.com/yunseo-kim/awesome-agent-toolbox/issues/new) with a link and a brief description of why it would be a good fit.
+Want to see a specific upstream project, skill, hook, or MCP server added to the catalog? [Open an issue](https://github.com/yunseo-kim/agent-toolbox/issues/new) with a link and a brief description of why it would be a good fit.
 
 A few guidelines:
 

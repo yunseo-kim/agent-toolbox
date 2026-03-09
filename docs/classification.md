@@ -35,19 +35,19 @@ Every catalog skill requires a `metadata.provenance` field declaring how it rela
 ## Decision Flowchart
 
 Did you modify the body content beyond frontmatter and/or NOTICE.md?
-  No  → **Ported**
-  Yes → Did you combine content from multiple source directories?
-    Yes → **Synthesized**
-    No  → **Adapted**
+No → **Ported**
+Yes → Did you combine content from multiple source directories?
+Yes → **Synthesized**
+No → **Adapted**
 
 ## Sync Implications
 
-| Provenance | In upstream-sources.yaml? | Auto-sync safe? | Appears in sync report? |
-|------------|---------------------------|-----------------|------------------------|
-| Ported     | Yes — `skills` section (required) | Yes | Yes — changes auto-applied |
-| Adapted    | Yes — `adapted_skills` section (advisory) | No | Yes — advisory only, never auto-applied |
-| Synthesized| No                        | No              | No                     |
-| Original   | No                        | N/A             | No                     |
+| Provenance  | In upstream-sources.yaml?                 | Auto-sync safe? | Appears in sync report?                 |
+| ----------- | ----------------------------------------- | --------------- | --------------------------------------- |
+| Ported      | Yes — `skills` section (required)         | Yes             | Yes — changes auto-applied              |
+| Adapted     | Yes — `adapted_skills` section (advisory) | No              | Yes — advisory only, never auto-applied |
+| Synthesized | No                                        | No              | No                                      |
+| Original    | No                                        | N/A             | No                                      |
 
 > **Note:** Adapted skills in `adapted_skills` are monitored for upstream changes but the sync
 > script will NEVER write upstream content to local files. When upstream changes are detected,

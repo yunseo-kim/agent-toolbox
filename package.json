@@ -1,5 +1,5 @@
 {
-  "name": "awesome-agent-toolbox",
+  "name": "agent-toolbox",
   "version": "0.1.0",
   "description": "Cross-tool registry for agent skills, MCP servers, and hooks with provenance tracking and automated security vetting.",
   "keywords": [
@@ -24,21 +24,22 @@
     "skill",
     "skills"
   ],
-  "homepage": "https://github.com/yunseo-kim/awesome-agent-toolbox#readme",
+  "homepage": "https://github.com/yunseo-kim/agent-toolbox#readme",
   "bugs": {
-    "url": "https://github.com/yunseo-kim/awesome-agent-toolbox/issues"
+    "url": "https://github.com/yunseo-kim/agent-toolbox/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yunseo-kim/awesome-agent-toolbox.git"
+    "url": "git+https://github.com/yunseo-kim/agent-toolbox.git"
   },
   "license": "SUL-1.0",
   "author": "Yunseo Kim <dev@yunseo.kim> (https://about.yunseo.kim/)",
   "type": "module",
   "bin": {
-    "awesome-agent-toolbox": "src/cli/main.ts"
+    "agent-toolbox": "dist/cli/launcher.js"
   },
   "scripts": {
+    "prepare": "lefthook install",
     "validate": "bun run src/cli/validate.ts",
     "build:index": "bun run src/cli/build-index.ts",
     "build:claude-code": "bun run src/cli/build-target.ts -- --target claude-code",
@@ -54,9 +55,15 @@
     "test:integration": "bun test tests/integration/",
     "test:matrix": "bun test tests/matrix/",
     "typecheck": "tsc --noEmit",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix",
+    "format": "prettier --write --ignore-unknown .",
+    "format:check": "prettier --check --ignore-unknown .",
     "release": "bun run scripts/release.ts",
     "tag": "bun run scripts/tag.ts",
-    "changelog": "git cliff -o CHANGELOG.md"
+    "changelog": "git cliff -o CHANGELOG.md",
+    "build:cli": "bun run scripts/build-cli.ts",
+    "prepublishOnly": "bun run build:cli"
   },
   "dependencies": {
     "@toon-format/toon": "^2.1.0",
@@ -64,18 +71,28 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/bun": "latest",
     "bumpp": "^10.4.0",
-    "typescript": "^5.7"
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "lefthook": "^2.1.3",
+    "prettier": "^3.8.1",
+    "typescript": "^5.7",
+    "typescript-eslint": "^8.56.1"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "files": [
-    "src/",
+    "dist/cli/",
     "LICENSE.md",
     "README.md",
     "CHANGELOG.md"
-  ]
+  ],
+  "engines": {
+    "node": ">=18",
+    "bun": ">=1.0"
+  }
 }

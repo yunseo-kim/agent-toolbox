@@ -4,23 +4,23 @@ on:
   push:
     branches: [main]
     paths:
-      - 'catalog/skills/**'
-      - '.agents/skills/**'
+      - "catalog/skills/**"
+      - ".agents/skills/**"
   pull_request:
     paths:
-      - 'catalog/skills/**'
-      - '.agents/skills/**'
+      - "catalog/skills/**"
+      - ".agents/skills/**"
   schedule:
     # Monthly full scan on 1st at 06:00 UTC
-    - cron: '0 6 1 * *'
+    - cron: "0 6 1 * *"
   workflow_dispatch:
     inputs:
       verbose:
-        description: 'Enable verbose logging (policy fingerprints, co-occurrence metadata, meta-analyzer false positives, and summary in log)'
+        description: "Enable verbose logging (policy fingerprints, co-occurrence metadata, meta-analyzer false positives, and summary in log)"
         type: boolean
         default: true
       archive:
-        description: 'Archive scan reports as markdown to docs/security-reports/'
+        description: "Archive scan reports as markdown to docs/security-reports/"
         type: boolean
         default: false
 
@@ -44,7 +44,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Install skill-scanner
         run: pip install cisco-ai-skill-scanner

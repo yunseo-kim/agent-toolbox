@@ -696,9 +696,7 @@
         "scripts/generate_image.py": "8d60882c4561f26600fd40b839597a91d4026792"
       },
       "upstream_body_sha256": "23247de9c4f102984f454fd12682d32aa6c823a85a6af803822d28007ef9a1f5",
-      "upstream_sections": [
-        "# Nano Banana Pro (Gemini 3 Pro Image)"
-      ]
+      "upstream_sections": ["# Nano Banana Pro (Gemini 3 Pro Image)"]
     },
     "nextjs-cache-components": {
       "file_hashes": {
@@ -923,11 +921,7 @@
         "bin/sherpa-onnx-tts": "82a7cceaf160e80d75e7f1b8bbdd924c88b05b98"
       },
       "upstream_body_sha256": "26879cc20f462c989f010f7237f7b470f6f08c4eb714584545164dc9faf662a8",
-      "upstream_sections": [
-        "# sherpa-onnx-tts",
-        "## Install",
-        "## Usage"
-      ]
+      "upstream_sections": ["# sherpa-onnx-tts", "## Install", "## Usage"]
     },
     "skill-creator": {
       "file_hashes": {
@@ -1016,9 +1010,7 @@
       "last_checked": "2026-03-01T06:57:37.686824+00:00",
       "tree_shas": {},
       "upstream_body_sha256": "a101ff5b5daa53d0b670637241cd925c63dd61522b6eb4ff673bd31294906aaa",
-      "upstream_sections": [
-        "# Things 3 CLI"
-      ]
+      "upstream_sections": ["# Things 3 CLI"]
     },
     "tmux-controller": {
       "file_hashes": {

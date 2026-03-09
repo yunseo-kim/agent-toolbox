@@ -29,6 +29,7 @@
  */
 
 import { execSync } from "node:child_process";
+import { writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -64,9 +65,7 @@ const versionArg = positional[0];
 const descriptionArg = positional[1];
 
 // Resolve version: explicit arg or package.json
-const version = versionArg
-  ? versionArg.replace(/^v/, "")
-  : getPackageVersion();
+const version = versionArg ? versionArg.replace(/^v/, "") : getPackageVersion();
 
 const tag = `v${version}`;
 
@@ -95,14 +94,16 @@ if (!/^\d+\.\d+\.\d+/.test(version)) {
 }
 
 if (tagExists(tag)) {
-  console.error(`Tag ${tag} already exists. Delete it first: git tag -d ${tag}`);
+  console.error(
+    `Tag ${tag} already exists. Delete it first: git tag -d ${tag}`,
+  );
   process.exit(1);
 }
 
 // ─── Create signed annotated tag ──────────────────────────────────────────
 
 const msgFile = join(tmpdir(), `tag-msg-${tag}.txt`);
-await Bun.write(msgFile, message);
+writeFileSync(msgFile, message, "utf8");
 
 execSync(`git tag -s ${tag} -F "${msgFile}"`, { stdio: "inherit" });
 

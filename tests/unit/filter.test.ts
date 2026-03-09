@@ -15,7 +15,11 @@ describe("filter composition", () => {
   });
 
   test("no filters returns all skills", () => {
-    const result = filterSkills(skills, { target: "claude-code", interactive: false, dryRun: false });
+    const result = filterSkills(skills, {
+      target: "claude-code",
+      interactive: false,
+      dryRun: false,
+    });
     expect(result.total).toBe(skills.length);
     expect(result.matched).toHaveLength(skills.length);
     expect(result.appliedFilters).toEqual([]);
@@ -29,7 +33,11 @@ describe("filter composition", () => {
       dryRun: false,
     });
     expect(result.matched.length).toBeGreaterThan(0);
-    expect(result.matched.every((skill) => skill.frontmatter.metadata.domain === "devops")).toBe(true);
+    expect(
+      result.matched.every(
+        (skill) => skill.frontmatter.metadata.domain === "devops",
+      ),
+    ).toBe(true);
   });
 
   test("subdomain filter works", () => {
@@ -52,7 +60,9 @@ describe("filter composition", () => {
   });
 
   test("tag filter is case-insensitive", () => {
-    const withTags = skills.find((skill) => (skill.frontmatter.metadata.tags ?? []).length > 0);
+    const withTags = skills.find(
+      (skill) => (skill.frontmatter.metadata.tags ?? []).length > 0,
+    );
     expect(withTags).toBeDefined();
 
     const targetTag = withTags!.frontmatter.metadata.tags![0];
@@ -64,11 +74,17 @@ describe("filter composition", () => {
       dryRun: false,
     });
 
-    expect(result.matched.some((skill) => skill.frontmatter.name === withTags!.frontmatter.name)).toBe(true);
+    expect(
+      result.matched.some(
+        (skill) => skill.frontmatter.name === withTags!.frontmatter.name,
+      ),
+    ).toBe(true);
   });
 
   test("framework filter works", () => {
-    const withFramework = skills.find((skill) => (skill.frontmatter.metadata.frameworks ?? []).length > 0);
+    const withFramework = skills.find(
+      (skill) => (skill.frontmatter.metadata.frameworks ?? []).length > 0,
+    );
     expect(withFramework).toBeDefined();
 
     const framework = withFramework!.frontmatter.metadata.frameworks![0];
@@ -97,7 +113,9 @@ describe("filter composition", () => {
       dryRun: false,
     });
 
-    const names = result.matched.map((skill) => skill.frontmatter.name).sort((a, b) => a.localeCompare(b));
+    const names = result.matched
+      .map((skill) => skill.frontmatter.name)
+      .sort((a, b) => a.localeCompare(b));
     expect(names).toEqual(["ai-sdk", "docs-writer"]);
   });
 

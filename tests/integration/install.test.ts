@@ -19,10 +19,16 @@ describe("install pipeline", () => {
 
     await symlink(sourceCatalogDir, join(sandboxRoot, "catalog"), "dir");
 
-    const packageJson = await Bun.file(join(rootDir, "package.json")).json() as { version: string };
+    const packageJson = (await Bun.file(
+      join(rootDir, "package.json"),
+    ).json()) as { version: string };
     await Bun.write(
       join(sandboxRoot, "package.json"),
-      JSON.stringify({ name: "install-test-sandbox", version: packageJson.version }, null, 2) + "\n",
+      JSON.stringify(
+        { name: "install-test-sandbox", version: packageJson.version },
+        null,
+        2,
+      ) + "\n",
     );
 
     const scanResult = await scanSkills(sourceCatalogDir);
@@ -67,13 +73,22 @@ describe("install pipeline", () => {
     expect(result.generatorResult).not.toBeNull();
     expect(result.generatorResult?.skillCount).toBe(2);
 
-    const pluginPath = join(sandboxRoot, "dist", "targets", "opencode", "plugins", "awesome-agent-toolbox.js");
+    const pluginPath = join(
+      sandboxRoot,
+      "dist",
+      "targets",
+      "opencode",
+      "plugins",
+      "agent-toolbox.js",
+    );
     const pluginStats = await stat(pluginPath);
     expect(pluginStats.isFile()).toBe(true);
   });
 
   test("domain filter produces correct count", async () => {
-    const expected = allSkills.filter((skill) => skill.frontmatter.metadata.domain === "development").length;
+    const expected = allSkills.filter(
+      (skill) => skill.frontmatter.metadata.domain === "development",
+    ).length;
 
     const result = await install(sandboxRoot, {
       target: "claude-code",

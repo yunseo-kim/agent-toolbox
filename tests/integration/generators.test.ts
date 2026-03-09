@@ -47,7 +47,9 @@ describe("target generators", () => {
     const skillsDirEntries = await readdir(join(claudeOutputDir, "skills"), {
       withFileTypes: true,
     });
-    expect(skillsDirEntries.filter((entry) => entry.isDirectory())).toHaveLength(skills.length);
+    expect(
+      skillsDirEntries.filter((entry) => entry.isDirectory()),
+    ).toHaveLength(skills.length);
 
     const agentsStats = await stat(join(claudeOutputDir, "agents"));
     const commandsStats = await stat(join(claudeOutputDir, "commands"));
@@ -56,8 +58,10 @@ describe("target generators", () => {
     expect(commandsStats.isDirectory()).toBe(true);
     expect(hooksStats.isDirectory()).toBe(true);
 
-    const hooksJson = await Bun.file(join(claudeOutputDir, "hooks", "hooks.json")).text();
-    expect(() => JSON.parse(hooksJson)).not.toThrow();
+    const hooksJson = await Bun.file(
+      join(claudeOutputDir, "hooks", "hooks.json"),
+    ).text();
+    expect(() => JSON.parse(hooksJson) as unknown).not.toThrow();
   });
 
   test("OpenCode generator creates expected artifacts", async () => {
@@ -71,7 +75,7 @@ describe("target generators", () => {
 
     expect(result.skillCount).toBe(skills.length);
 
-    const pluginPath = join(openCodeOutputDir, "plugins", "awesome-agent-toolbox.js");
+    const pluginPath = join(openCodeOutputDir, "plugins", "agent-toolbox.js");
     const pluginStats = await stat(pluginPath);
     expect(pluginStats.isFile()).toBe(true);
 
@@ -81,10 +85,12 @@ describe("target generators", () => {
     const skillsDirEntries = await readdir(join(openCodeOutputDir, "skills"), {
       withFileTypes: true,
     });
-    expect(skillsDirEntries.filter((entry) => entry.isDirectory())).toHaveLength(skills.length);
+    expect(
+      skillsDirEntries.filter((entry) => entry.isDirectory()),
+    ).toHaveLength(skills.length);
 
     const pluginFileUrl = pathToFileURL(pluginPath).href;
-    const pluginModule = await import(pluginFileUrl);
+    const pluginModule: unknown = await import(pluginFileUrl);
     expect(pluginModule).toBeDefined();
   });
 
@@ -100,9 +106,14 @@ describe("target generators", () => {
 
     expect(result.skillCount).toBe(3);
 
-    const skillsDirEntries = await readdir(join(claudeSubsetOutputDir, "skills"), {
-      withFileTypes: true,
-    });
-    expect(skillsDirEntries.filter((entry) => entry.isDirectory())).toHaveLength(3);
+    const skillsDirEntries = await readdir(
+      join(claudeSubsetOutputDir, "skills"),
+      {
+        withFileTypes: true,
+      },
+    );
+    expect(
+      skillsDirEntries.filter((entry) => entry.isDirectory()),
+    ).toHaveLength(3);
   });
 });

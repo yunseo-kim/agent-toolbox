@@ -1,5 +1,8 @@
 import { beforeAll, describe, expect, test } from "bun:test";
-import { buildSkillIndex, writeSkillIndexToon } from "../../src/catalog/index-builder.js";
+import {
+  buildSkillIndex,
+  writeSkillIndexToon,
+} from "../../src/catalog/index-builder.js";
 import { scanSkills } from "../../src/catalog/scanner.js";
 import { SkillIndex } from "../../src/schemas/catalog.js";
 import type { ParsedSkill } from "../../src/schemas/catalog.js";

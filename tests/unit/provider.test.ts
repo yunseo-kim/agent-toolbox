@@ -1,5 +1,9 @@
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { getCacheDir, isRunningFromPackageManager, resolveCatalogDir } from "../../src/catalog/provider.js";
+import {
+  getCacheDir,
+  isRunningFromPackageManager,
+  resolveCatalogDir,
+} from "../../src/catalog/provider.js";
 import { existsSync } from "node:fs";
 import { mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
@@ -21,7 +25,7 @@ describe("getCacheDir", () => {
   test("returns XDG_CACHE_HOME path when set", () => {
     process.env.XDG_CACHE_HOME = "/custom/cache";
     const result = getCacheDir();
-    expect(result).toBe("/custom/cache/awesome-agent-toolbox");
+    expect(result).toBe("/custom/cache/agent-toolbox");
   });
 
   test("returns ~/.cache path on non-Windows when XDG_CACHE_HOME not set", () => {
@@ -31,7 +35,7 @@ describe("getCacheDir", () => {
     // Mock platform check by checking the actual platform
     if (process.platform !== "win32") {
       const result = getCacheDir();
-      expect(result).toBe("/home/testuser/.cache/awesome-agent-toolbox");
+      expect(result).toBe("/home/testuser/.cache/agent-toolbox");
     }
   });
 
@@ -42,7 +46,7 @@ describe("getCacheDir", () => {
     // Only test on Windows
     if (process.platform === "win32") {
       const result = getCacheDir();
-      expect(result).toContain("awesome-agent-toolbox");
+      expect(result).toContain("agent-toolbox");
     }
   });
 
@@ -53,7 +57,7 @@ describe("getCacheDir", () => {
 
     if (process.platform === "win32") {
       const result = getCacheDir();
-      expect(result).toContain("awesome-agent-toolbox");
+      expect(result).toContain("agent-toolbox");
     }
   });
 
@@ -232,7 +236,9 @@ describe("resolveCatalogDir", () => {
         expect.unreachable("Should have thrown");
       } catch (error) {
         expect(error).toBeDefined();
-        expect(error instanceof Error && error.message).toContain("No cached catalog found");
+        expect(error instanceof Error && error.message).toContain(
+          "No cached catalog found",
+        );
       } finally {
         if (originalCacheDir) {
           process.env.XDG_CACHE_HOME = originalCacheDir;
@@ -245,7 +251,7 @@ describe("resolveCatalogDir", () => {
     test("returns cached catalog path when cache exists", async () => {
       const originalCacheDir = process.env.XDG_CACHE_HOME;
       const offlineCacheDir = join(tempDir, "offline-cache-with-catalog");
-      const catalogPath = join(offlineCacheDir, "awesome-agent-toolbox", "catalog");
+      const catalogPath = join(offlineCacheDir, "agent-toolbox", "catalog");
       await mkdir(catalogPath, { recursive: true });
 
       process.env.XDG_CACHE_HOME = offlineCacheDir;

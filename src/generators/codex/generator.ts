@@ -1,8 +1,12 @@
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { stringify as stringifyYaml } from "yaml";
 import { copyDirectoryRecursive } from "../copy-utils.js";
-import type { GeneratorOptions, GeneratorResult, TargetGenerator } from "../types.js";
+import type {
+  GeneratorOptions,
+  GeneratorResult,
+  TargetGenerator,
+} from "../types.js";
 
 function generateInstallMd(): string {
   return [
@@ -56,13 +60,17 @@ export class CodexGenerator implements TargetGenerator {
       icon: "toolbox",
       brand_color: "#2563eb",
       policy:
-        "You have access to skills from the awesome-agent-toolbox catalog. Read the relevant SKILL.md when a user's request matches a skill's description.",
+        "You have access to skills from the agent-toolbox catalog. Read the relevant SKILL.md when a user's request matches a skill's description.",
     };
 
-    await Bun.write(join(agentsDir, "openai.yaml"), stringifyYaml(openAiMetadata));
+    await writeFile(
+      join(agentsDir, "openai.yaml"),
+      stringifyYaml(openAiMetadata),
+      "utf8",
+    );
     artifacts.push("agents/openai.yaml");
 
-    await Bun.write(join(outputDir, "INSTALL.md"), generateInstallMd());
+    await writeFile(join(outputDir, "INSTALL.md"), generateInstallMd(), "utf8");
     artifacts.push("INSTALL.md");
 
     return {

@@ -1,5 +1,8 @@
 import type { ParsedSkill } from "../schemas/catalog.js";
-import { InstallFilters, type InstallFiltersInput } from "../schemas/install.js";
+import {
+  InstallFilters,
+  type InstallFiltersInput,
+} from "../schemas/install.js";
 
 export interface FilterResult {
   /** Skills that passed all filters */
@@ -15,19 +18,26 @@ export interface FilterResult {
  * Multiple filters compose with AND logic.
  * No filters = all skills.
  */
-export function filterSkills(skills: ParsedSkill[], rawFilters: InstallFiltersInput): FilterResult {
+export function filterSkills(
+  skills: ParsedSkill[],
+  rawFilters: InstallFiltersInput,
+): FilterResult {
   const filters = InstallFilters.parse(rawFilters);
   let matched = [...skills];
   const appliedFilters: string[] = [];
   const total = skills.length;
 
   if (filters.domain) {
-    matched = matched.filter((skill) => skill.frontmatter.metadata.domain === filters.domain);
+    matched = matched.filter(
+      (skill) => skill.frontmatter.metadata.domain === filters.domain,
+    );
     appliedFilters.push(`domain=${filters.domain}`);
   }
 
   if (filters.subdomain) {
-    matched = matched.filter((skill) => skill.frontmatter.metadata.subdomain === filters.subdomain);
+    matched = matched.filter(
+      (skill) => skill.frontmatter.metadata.subdomain === filters.subdomain,
+    );
     appliedFilters.push(`subdomain=${filters.subdomain}`);
   }
 
@@ -57,7 +67,9 @@ export function filterSkills(skills: ParsedSkill[], rawFilters: InstallFiltersIn
 
   if (filters.skill && filters.skill.length > 0) {
     const names = new Set(filters.skill.map((name) => name.toLowerCase()));
-    matched = matched.filter((skill) => names.has(skill.frontmatter.name.toLowerCase()));
+    matched = matched.filter((skill) =>
+      names.has(skill.frontmatter.name.toLowerCase()),
+    );
     appliedFilters.push(`skill=${filters.skill.join(",")}`);
   }
 

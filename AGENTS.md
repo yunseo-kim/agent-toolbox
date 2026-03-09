@@ -1,7 +1,7 @@
 # PROJECT KNOWLEDGE BASE
 
-**Last Updated:** 12026-02-27
-**Commit:** 26f2366
+**Last Updated:** 12026-03-09
+**Commit:** bad9e46
 **Branch:** main
 
 ## OVERVIEW
@@ -25,28 +25,34 @@ This repository is a cross-tool distribution system for agent skills, plugins, a
 
 ## WHERE TO LOOK
 
-| Task | Location | Notes |
-|------|----------|-------|
-| Skill authoring rules | `.agents/skills/skill-creator/SKILL.md` | Canonical current guidance |
-| Skill scaffolding script | `.agents/skills/skill-creator/scripts/init_skill.py` | Current Python initializer |
-| Skill packaging script | `.agents/skills/skill-creator/scripts/package_skill.py` | Current `.skill` packager |
-| MCP builder guidance | `.agents/skills/mcp-builder/SKILL.md` | Canonical MCP extension guidance |
-| Root architecture decisions | `AGENTS.md` | This file is authoritative |
-| Dev tooling conventions | `.agents/skills/AGENTS.md` | Skill inventory, symlink structure, dev scripts |
-| Catalog conventions | `catalog/AGENTS.md` | Distributable content rules, frontmatter, licensing |
-| TypeScript toolchain | `src/AGENTS.md` | Module architecture, schemas, generators, CLI |
-| Test conventions | `tests/AGENTS.md` | Test structure, Bun test patterns, coverage |
-| CI/CD automation | `.github/AGENTS.md` | Pipeline jobs, drift detection, upstream sync |
-| Active skill source tree | `.agents/skills/` | Dev tooling source; symlinked to `.agent/`, `.claude/`, `.cursor/`, `.windsurf/` |
-| Catalog taxonomy | `catalog/metadata/taxonomy.yaml` | Controlled vocabulary for domains/subdomains |
-| Install presets | `catalog/metadata/presets.yaml` | Curated skill bundles for common use cases |
-| Skill index | `catalog/metadata/skill-index.json`, `catalog/metadata/skill-index.toon` | Auto-generated; do not hand-edit |
-| Upstream sync config | `catalog/metadata/upstream-sources.yaml` | Ported/adapted skill mappings |
-| Provenance guide | `docs/CLASSIFICATION.md` | Ported vs adapted decision criteria |
-| Release strategy | `docs/RELEASE-STRATEGY.md` | Branch model, versioning, release workflow |
-| Release workflow | `.github/workflows/release.yml` | Tag-triggered npm publish pipeline |
-| Changelog config | `cliff.toml` | git-cliff commit filtering (CLI-scoped only) |
-| Version bump config | `bump.config.ts` | bumpp + git-cliff integration |
+| Task                        | Location                                                                 | Notes                                                                            |
+| --------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Skill authoring rules       | `.agents/skills/skill-creator/SKILL.md`                                  | Canonical current guidance                                                       |
+| Skill scaffolding script    | `.agents/skills/skill-creator/scripts/init_skill.py`                     | Current Python initializer                                                       |
+| Skill packaging script      | `.agents/skills/skill-creator/scripts/package_skill.py`                  | Current `.skill` packager                                                        |
+| MCP builder guidance        | `.agents/skills/mcp-builder/SKILL.md`                                    | Canonical MCP extension guidance                                                 |
+| Root architecture decisions | `AGENTS.md`                                                              | This file is authoritative                                                       |
+| Dev tooling conventions     | `.agents/skills/AGENTS.md`                                               | Skill inventory, symlink structure, dev scripts                                  |
+| Catalog conventions         | `catalog/AGENTS.md`                                                      | Distributable content rules, frontmatter, licensing                              |
+| TypeScript toolchain        | `src/AGENTS.md`                                                          | Module architecture, schemas, generators, CLI                                    |
+| Test conventions            | `tests/AGENTS.md`                                                        | Test structure, Bun test patterns, coverage                                      |
+| CI/CD automation            | `.github/AGENTS.md`                                                      | Pipeline jobs, drift detection, upstream sync                                    |
+| Active skill source tree    | `.agents/skills/`                                                        | Dev tooling source; symlinked to `.agent/`, `.claude/`, `.cursor/`, `.windsurf/` |
+| Catalog taxonomy            | `catalog/metadata/taxonomy.yaml`                                         | Controlled vocabulary for domains/subdomains                                     |
+| Install presets             | `catalog/metadata/presets.yaml`                                          | Curated skill bundles for common use cases                                       |
+| Skill index                 | `catalog/metadata/skill-index.json`, `catalog/metadata/skill-index.toon` | Auto-generated; do not hand-edit                                                 |
+| Upstream sync config        | `catalog/metadata/upstream-sources.yaml`                                 | Ported/adapted skill mappings                                                    |
+| Provenance guide            | `docs/classification.md`                                                 | Ported vs adapted decision criteria                                              |
+| Release strategy            | `docs/release.md`                                                        | Branch model, versioning, release workflow                                       |
+| Dual-runtime architecture   | `docs/dual-runtime.md`                                                   | Launcher flow, shebang semantics, Node.js API compat, perf benchmarks            |
+| Release workflow            | `.github/workflows/release.yml`                                          | Tag-triggered npm publish pipeline                                               |
+| Changelog config            | `cliff.toml`                                                             | git-cliff commit filtering (CLI-scoped only)                                     |
+| Version bump config         | `bump.config.ts`                                                         | bumpp + git-cliff integration                                                    |
+| ESLint config               | `eslint.config.mjs`                                                      | Flat config: typescript-eslint + prettier                                        |
+| Prettier config             | `.prettierrc`, `.prettierignore`                                         | Default settings; ignores dist, catalog skills, lock files                       |
+| Git hooks                   | `lefthook.yml`                                                           | Pre-commit: lint + format check; pre-push: typecheck + test                      |
+| Utility scripts             | `scripts/`                                                               | Release, tag, provenance audit, sync tooling                                     |
+| Security reports            | `docs/security-reports/`                                                 | Monthly archived Cisco Skill Scanner reports                                     |
 
 > **Note:** The `.agents/skills/` paths above are **development tools** for contributors, not project content.
 > They will remain as dev tooling even after `catalog/` is populated with distributable content.
@@ -68,17 +74,17 @@ This repository is a cross-tool distribution system for agent skills, plugins, a
 
 ```yaml
 ---
-name: skill-name                        # required, kebab-case, max 64 chars
-description: "What this skill does..."  # required, max 1024 chars
-license: Sustainable Use License 1.0     # required, default unless NOTICE.md overrides
+name: skill-name # required, kebab-case, max 64 chars
+description: "What this skill does..." # required, max 1024 chars
+license: Sustainable Use License 1.0 # required, default unless NOTICE.md overrides
 metadata:
-  domain: devops                        # required, from taxonomy.yaml
-  subdomain: ci-cd                      # optional, from taxonomy.yaml
-  tags: "github, yaml, automation"      # optional, comma-separated, freeform kebab-case
-  frameworks: "nextjs"                  # optional, comma-separated, freeform kebab-case
+  domain: devops # required, from taxonomy.yaml
+  subdomain: ci-cd # optional, from taxonomy.yaml
+  tags: "github, yaml, automation" # optional, comma-separated, freeform kebab-case
+  frameworks: "nextjs" # optional, comma-separated, freeform kebab-case
   author: "Yunseo Kim <dev@yunseo.kim>" # required, modifier or upstream author
-  lastUpdated: "12026-02-25"            # required, Holocene Era YYYYY-MM-DD
-  provenance: ported                    # required, ported | adapted | synthesized | original
+  lastUpdated: "12026-02-25" # required, Holocene Era YYYYY-MM-DD
+  provenance: ported # required, ported | adapted | synthesized | original
 ---
 ```
 
@@ -134,47 +140,16 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 - Catalog items require `metadata.domain`, `metadata.author`, and `metadata.lastUpdated` in frontmatter; `metadata.subdomain`, `metadata.tags`, `metadata.frameworks` are optional.
 - `catalog/metadata/skill-index.json` and `catalog/metadata/skill-index.toon` are auto-generated by `bun run build:index`; do not hand-edit.
 - **Catalog curation scope**: Skills specialized for a specific language (e.g., JavaScript) or framework (e.g., React, Next.js) ARE considered universally useful for developers in that domain and belong in the catalog. When porting, retain technology-specific expertise, standard tooling references (MDN, official docs), and community best practices — these are the skill's core value. Only strip project-specific internal conventions (proprietary file paths, project-unique workflows, custom component libraries) that would not apply outside the original project.
-- **License field**: Default is `Sustainable Use License 1.0` (per `LICENSE.md`). Only override when `NOTICE.md` explicitly specifies different license terms for that skill.
+- **License field**: Default is `SUL-1.0` (per `LICENSE.md`). Only override when `NOTICE.md` explicitly specifies different license terms for that skill.
 - **Author/lastUpdated rules**: When body content (excluding frontmatter and NOTICE.md additions) was modified from upstream, set `metadata.author` to the modifier and `metadata.lastUpdated` to the last commit date in Holocene Era format (YYYYY-MM-DD, Gregorian year + 10000). When body content is unmodified, look up the upstream repository for the original author and last update date, converting the date to Holocene Era format.
 - **Provenance field**: Required for catalog items. Valid values: `ported`, `adapted`, `synthesized`, `original`. Ported skills listed in `catalog/metadata/upstream-sources.yaml` `skills` section are eligible for automated upstream sync. Adapted skills listed in `adapted_skills` section are monitored for upstream changes (advisory only, never auto-applied).
 - `catalog/metadata/upstream-sources.yaml` maps ported skills (in `skills`) and adapted skills (in `adapted_skills`) to their upstream repos and paths. Ported skills get automated body sync and new-skill detection. Adapted skills get advisory-only change monitoring with section-heading diffs. The `adapted_skills` section supports both `upstream_dir` (standard path under `discover.root`) and `upstream_path` (explicit full path from repo root for non-standard locations).
 - **Ported skill body integrity**: For ported skills (`provenance: ported`), preserve the upstream directory structure and file organization as-is. Do not rename directories (e.g., `rules/` → `references/`) or remove upstream files (e.g., `AGENTS.md`) solely for catalog cosmetic conventions. Unnecessary body modifications forfeit automated upstream sync eligibility — the supply chain maintenance cost outweighs the aesthetic benefit. Only modify body content when functionally necessary (e.g., stripping project-specific conventions). Changes limited to frontmatter and NOTICE.md additions do not affect ported status.
 - **Cache v3 schema**: Tracks `file_hashes` and `tree_shas` for per-file change detection in ported skill syncs. Auto-migrated from v2 on first run.
 - **Full-directory sync for ported skills**: Syncs all files in skill directory (not just SKILL.md body), with per-file safe/review classification and LOCAL_ONLY_FILES exclusion (NOTICE.md never synced from upstream).
-
-## README LISTING POLICY
-
-> Skill tables with domain grouping, provenance column, and references live in [`catalog/README.md`](catalog/README.md).
-> The rules below govern how skill entries are formatted in those tables.
-
-### Column Schema
-
-| Column | Purpose |
-|--------|---------|
-| **Name** | Skill display name, linked to catalog entry (if hosted) or original source (if external-only) |
-| **Source** | Original upstream repository or repositories the skill derives from |
-| **Stars** | GitHub stars badge(s) for the source repository |
-| **Upstream License** | Upstream license badge for the source, linked to license or notice file |
-| **Provenance** | Ported / Adapted / Synthesized / External |
-| **Description** | One-line summary of what the skill does |
-
-### Provenance Types
-
-| Type | Definition | Name link | Source column | Stars | License |
-|------|-----------|-----------|--------------|-------|---------|
-| **External** | Listed in README only; not in `catalog/` | Links to original repo/skill path | Single `[org/repo](url)` | Stars badge of source repo | License badge of source repo |
-| **Ported** | Copied to `catalog/` with minimal changes from one source | Links to `catalog/skills/<name>` | Single `[org/repo](url)` | Stars badge of source repo | License badge of source repo |
-| **Adapted** | In `catalog/` with moderate edits from one source | Links to `catalog/skills/<name>` | Single `[org/repo](url)` | Stars badge of source repo | License badge of source repo |
-| **Synthesized** | In `catalog/` as original work combining multiple sources | Links to `catalog/skills/<name>` | All sources inline: `[org1/repo1](url), [org2/repo2](url), ...` | `—` (dash) | Multi-license badge linking to `catalog/skills/<name>/NOTICE.md` |
-
-### Editing Rules
-
-- Every skill in `catalog/skills/` MUST have a NOTICE.md with attribution and modification notices.
-- For synthesized skills, NOTICE.md MUST list all source projects with their respective license texts.
-- Multi-license badges use the format: `MIT / Apache 2.0` (list unique licenses, separated by ` / `).
-- When a synthesized skill replaces multiple individual external entries, remove the individual rows and add one synthesized row.
-- Source column links point to the repository root (not the skill subdirectory) for badge compatibility.
-- Keep Description concise — one sentence, no trailing period.
+- **Linting**: ESLint flat config (`eslint.config.mjs`) with `typescript-eslint` recommended + stylistic rules and `eslint-config-prettier`. Ignores `dist/`, catalog skills, and lock files.
+- **Formatting**: Prettier with default settings (`.prettierrc` is empty). Run `bun run format` to auto-format.
+- **Git hooks**: Lefthook (`lefthook.yml`) runs lint + format check on pre-commit, typecheck + test on pre-push. Replaces the earlier `.pre-commit-config.yaml` setup.
 
 ## ANTI-PATTERNS (THIS PROJECT)
 
@@ -234,8 +209,18 @@ bun test tests/unit/        # Unit only
 bun test tests/integration/ # Integration only
 bun run typecheck           # TypeScript type checking
 
+# Lint and format
+bun run lint                # ESLint check
+bun run lint:fix            # ESLint auto-fix
+bun run format              # Prettier format
+bun run format:check        # Prettier check
+
+# Release
+bun run release             # Create release PR (version bump + changelog)
+bun run tag --push          # Create GPG-signed tag and push
+
 # npm CLI fallback
-npx awesome-agent-toolbox install --target gemini --domain devops
+npx agent-toolbox install --target gemini --domain devops
 ```
 
 ## NOTES

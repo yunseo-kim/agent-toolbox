@@ -1,0 +1,27 @@
+# Lefthook git hooks configuration
+# Install: bun install && lefthook install
+#
+# Skill-scanner requires separate installation:
+#   pip install cisco-ai-skill-scanner
+#
+# Required environment variables for full skill-scanner analysis:
+#   SKILL_SCANNER_LLM_API_KEY       - OpenAI API key (LLM + Meta analyzers)
+#   SKILL_SCANNER_LLM_MODEL         - LLM Analyzer model (recommended: gpt-5.4)
+#   VIRUSTOTAL_API_KEY              - VirusTotal API key (binary scanning)
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: prettier
+      glob: "*.{ts,tsx,js,mjs,json,yaml,yml,css,md}"
+      run: bunx prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true
+
+    - name: eslint
+      glob: "*.{ts,tsx}"
+      run: bunx eslint --fix {staged_files}
+      stage_fixed: true
+
+    - name: skill-scanner
+      glob: "{catalog/skills,\\.agents/skills}/**/*"
+      run: skill-scanner-pre-commit --severity high --lenient

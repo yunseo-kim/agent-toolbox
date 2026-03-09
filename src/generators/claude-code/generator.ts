@@ -1,7 +1,11 @@
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { copyDirectoryRecursive } from "../copy-utils.js";
-import type { GeneratorOptions, GeneratorResult, TargetGenerator } from "../types.js";
+import type {
+  GeneratorOptions,
+  GeneratorResult,
+  TargetGenerator,
+} from "../types.js";
 
 export class ClaudeCodeGenerator implements TargetGenerator {
   readonly target = "claude-code" as const;
@@ -18,11 +22,16 @@ export class ClaudeCodeGenerator implements TargetGenerator {
     await mkdir(pluginDir, { recursive: true });
 
     const pluginManifest = {
-      name: "awesome-agent-toolbox",
+      name: "agent-toolbox",
       version,
-      description: "Cross-tool distribution system for agent skills, plugins, and MCP servers",
+      description:
+        "Cross-tool distribution system for agent skills, plugins, and MCP servers",
     };
-    await Bun.write(join(pluginDir, "plugin.json"), JSON.stringify(pluginManifest, null, 2) + "\n");
+    await writeFile(
+      join(pluginDir, "plugin.json"),
+      JSON.stringify(pluginManifest, null, 2) + "\n",
+      "utf8",
+    );
     artifacts.push(".claude-plugin/plugin.json");
 
     const skillsDir = join(outputDir, "skills");
@@ -36,16 +45,20 @@ export class ClaudeCodeGenerator implements TargetGenerator {
     }
 
     await mkdir(join(outputDir, "agents"), { recursive: true });
-    await Bun.write(join(outputDir, "agents", ".gitkeep"), "");
+    await writeFile(join(outputDir, "agents", ".gitkeep"), "", "utf8");
     artifacts.push("agents/");
 
     await mkdir(join(outputDir, "commands"), { recursive: true });
-    await Bun.write(join(outputDir, "commands", ".gitkeep"), "");
+    await writeFile(join(outputDir, "commands", ".gitkeep"), "", "utf8");
     artifacts.push("commands/");
 
     const hooksDir = join(outputDir, "hooks");
     await mkdir(hooksDir, { recursive: true });
-    await Bun.write(join(hooksDir, "hooks.json"), JSON.stringify({ hooks: {} }, null, 2) + "\n");
+    await writeFile(
+      join(hooksDir, "hooks.json"),
+      JSON.stringify({ hooks: {} }, null, 2) + "\n",
+      "utf8",
+    );
     artifacts.push("hooks/hooks.json");
 
     return {

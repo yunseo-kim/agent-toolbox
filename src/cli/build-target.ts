@@ -1,6 +1,8 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
-import { join, resolve } from "node:path";
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { scanSkills } from "../catalog/scanner.js";
 import { ClaudeCodeGenerator } from "../generators/claude-code/generator.js";
 import { CodexGenerator } from "../generators/codex/generator.js";
@@ -11,7 +13,13 @@ import type { TargetGenerator } from "../generators/types.js";
 import { TargetTool } from "../schemas/common.js";
 import { green, red, resolveRootDir, yellow } from "./utils.js";
 
-const ALL_TARGETS = ["claude-code", "opencode", "cursor", "codex", "gemini"] as const;
+const ALL_TARGETS = [
+  "claude-code",
+  "opencode",
+  "cursor",
+  "codex",
+  "gemini",
+] as const;
 
 function getGenerator(target: string): TargetGenerator {
   const generators: Record<string, TargetGenerator> = {
@@ -30,12 +38,17 @@ function getGenerator(target: string): TargetGenerator {
   return generator;
 }
 
-export async function runBuildTarget(rootDir: string, target: string): Promise<void> {
+export async function runBuildTarget(
+  rootDir: string,
+  target: string,
+): Promise<void> {
   const catalogDir = join(rootDir, "catalog");
 
   const targetParse = TargetTool.safeParse(target);
   if (!targetParse.success) {
-    console.error(`Invalid target: ${target}. Valid targets: claude-code, opencode, cursor, codex, gemini`);
+    console.error(
+      `Invalid target: ${target}. Valid targets: claude-code, opencode, cursor, codex, gemini`,
+    );
     process.exit(1);
   }
 
@@ -56,7 +69,11 @@ export async function runBuildTarget(rootDir: string, target: string): Promise<v
     process.exit(1);
   }
 
-  const pkg = await Bun.file(join(rootDir, "package.json")).json();
+  const pkg = JSON.parse(
+    await readFile(join(rootDir, "package.json"), "utf8"),
+  ) as {
+    version: string;
+  };
   const version: string = pkg.version;
 
   const outputDir = join(rootDir, "dist", "targets", targetParse.data);
@@ -69,7 +86,9 @@ export async function runBuildTarget(rootDir: string, target: string): Promise<v
     version,
   });
 
-  console.log(`${green("✓")} Generated ${result.skillCount} skills for ${result.target}`);
+  console.log(
+    `${green("✓")} Generated ${result.skillCount} skills for ${result.target}`,
+  );
   console.log(`  Output: ${result.outputDir}`);
   console.log(`  Artifacts: ${result.artifacts.length} items`);
 
@@ -89,20 +108,23 @@ export async function runBuildAll(rootDir: string): Promise<void> {
 }
 
 if (import.meta.main) {
-  const rootDir = resolveRootDir(import.meta.dir);
+  const rootDir = resolveRootDir(dirname(fileURLToPath(import.meta.url)));
 
   const targetArg =
     process.argv.find((_, index) => process.argv[index - 1] === "--target") ??
     process.argv[process.argv.length - 1];
 
   if (!targetArg) {
-    console.error(`Usage: bun run build-target.ts --target <claude-code|opencode|cursor|codex|gemini|all>`);
+    console.error(
+      `Usage: bun run build-target.ts --target <claude-code|opencode|cursor|codex|gemini|all>`,
+    );
     process.exit(1);
   }
 
-  const run = targetArg === "all"
-    ? runBuildAll(rootDir)
-    : runBuildTarget(rootDir, targetArg);
+  const run =
+    targetArg === "all"
+      ? runBuildAll(rootDir)
+      : runBuildTarget(rootDir, targetArg);
 
   run.catch((error) => {
     const reason = error instanceof Error ? error.message : String(error);

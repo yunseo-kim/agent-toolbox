@@ -3,7 +3,7 @@
 Portions of this software are licensed as follows:
 
 - Content of branches other than the main branch are not licensed.
-- Certain third-party components incorporated into the awesome-agent-toolbox Software may retain their original license terms where explicitly indicated by a NOTICE.md file accompanying that component. All other content is governed by the Sustainable Use License below.
+- Certain third-party components incorporated into the agent-toolbox Software may retain their original license terms where explicitly indicated by a NOTICE.md file accompanying that component. All other content is governed by the Sustainable Use License below.
 - Content outside of the above mentioned files or restrictions is available under the "Sustainable Use License" as defined below.
 
 ## Sustainable Use License
