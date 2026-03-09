@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           # Full history for push/PR incremental diff; shallow clone for full scans
-          fetch-depth: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && 0 || 1 }}
+          fetch-depth: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && '0' || 1 }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
