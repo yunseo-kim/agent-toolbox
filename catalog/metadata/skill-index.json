@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-03-06T17:44:12.792Z",
+  "generatedAt": "2026-03-09T20:40:38.016Z",
   "skills": [
     {
       "name": "ab-test-setup",
@@ -34,7 +34,7 @@
     },
     {
       "name": "ai-elements",
-      "description": "Build AI chat interfaces with AI Elements, a component library and custom registry built on shadcn/ui. Use when developers want to (1) add pre-built AI chat components like conversations, messages, prompts, reasoning, code blocks, and tool displays, (2) install AI Elements via CLI or shadcn registry, (3) customize component styles and behavior, (4) integrate with Vercel AI SDK's useChat. Triggers on \"ai-elements\", \"AI chat components\", \"chat UI\", \"message component\", \"prompt input\", \"shadcn ai\", building AI-native interfaces with pre-built composable components.\n",
+      "description": "Documentation-first guidance for adding and customizing AI Elements components in shadcn/ui projects, including installation notes, usage examples, and integration patterns for Vercel AI SDK chat UIs. Trigger this skill for AI Elements-specific work such as \"ai-elements\", \"AI Elements registry\", \"AI Elements shadcn\", and \"Vercel AI Elements components\".\n",
       "domain": "development",
       "subdomain": "frontend",
       "provenance": "ported",
@@ -731,7 +731,7 @@
     },
     {
       "name": "paid-ads",
-      "description": "Plan and optimize paid advertising campaigns on Google Ads, Meta, LinkedIn, Twitter/X, and TikTok platforms",
+      "description": "Provide paid advertising strategy guidance across major platforms and optional local Meta Ads CLI workflows for authenticated read/write actions with explicit user approval",
       "domain": "business",
       "subdomain": "sales-marketing",
       "provenance": "adapted",
