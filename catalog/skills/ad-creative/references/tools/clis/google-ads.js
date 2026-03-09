@@ -67,6 +67,25 @@ function daysToDateRange(days) {
   return `LAST_${d}_DAYS`
 }
 
+function redactSensitive(value) {
+  const SENSITIVE_KEYS = new Set([
+    'api_key', 'apikey', 'secret', 'secret_key',
+    'token', 'access_token', 'refresh_token',
+    'authorization', 'password', 'auth', 'api_secret',
+  ]);
+  if (value === null || typeof value !== 'object') return value;
+  if (Array.isArray(value)) return value.map(redactSensitive);
+  const redacted = {};
+  for (const [key, val] of Object.entries(value)) {
+    if (SENSITIVE_KEYS.has(key.toLowerCase())) {
+      redacted[key] = '***';
+    } else {
+      redacted[key] = redactSensitive(val);
+    }
+  }
+  return redacted;
+}
+
 async function main() {
   let result
 
@@ -180,7 +199,7 @@ async function main() {
       }
   }
 
-  console.log(JSON.stringify(result, null, 2))
+  console.log(JSON.stringify(redactSensitive(result), null, 2))
 }
 
 main().catch(err => {

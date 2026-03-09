@@ -52,45 +52,27 @@ function parseArgs(args) {
   return result
 }
 
-function sanitizeResultForLogging(value) {
-  const SENSITIVE_KEYS = new Set([
-    'api_key',
-    'apikey',
-    'authorization',
-    'Authorization',
-    'password',
-    'secret',
-    'token',
-    'access_token',
-    'refresh_token',
-    'email',
-    'email_address',
-    'merge_fields'
-  ])
-
-  function sanitize(v) {
-    if (v === null || typeof v !== 'object') {
-      return v
-    }
-    if (Array.isArray(v)) {
-      return v.map(sanitize)
-    }
-    const out = {}
-    for (const [k, val] of Object.entries(v)) {
-      if (SENSITIVE_KEYS.has(k)) {
-        out[k] = '***'
-      } else {
-        out[k] = sanitize(val)
-      }
-    }
-    return out
-  }
-
-  return sanitize(value)
-}
-
 const args = parseArgs(process.argv.slice(2))
 const [cmd, sub, ...rest] = args._
+
+function redactSensitive(value) {
+  const SENSITIVE_KEYS = new Set([
+    'api_key', 'apikey', 'secret', 'secret_key',
+    'token', 'access_token', 'refresh_token',
+    'authorization', 'password', 'auth', 'api_secret',
+  ])
+  if (value === null || typeof value !== 'object') return value
+  if (Array.isArray(value)) return value.map(redactSensitive)
+  const redacted = {}
+  for (const [key, val] of Object.entries(value)) {
+    if (SENSITIVE_KEYS.has(key.toLowerCase())) {
+      redacted[key] = '***'
+    } else {
+      redacted[key] = redactSensitive(val)
+    }
+  }
+  return redacted
+}
 
 async function main() {
   let result
@@ -248,25 +230,7 @@ async function main() {
       }
   } 
 
-  let logPayload
-  if (result && typeof result === 'object' && result._dry_run) {
-    // In dry-run mode, log only high-level request metadata to avoid leaking sensitive details
-    const { method, url } = result
-    logPayload = {
-      _dry_run: true,
-      method,
-      url,
-      _info: 'Request not sent (dry-run); headers and body omitted from logs'
-    }
-  } else if (result && typeof result === 'object' && 'status' in result) {
-    // Log only high-level status information, omit potentially sensitive body content
-    logPayload = { status: result.status, _info: 'Response content omitted from logs' }
-  } else {
-    // Generic message when no structured status is available
-    logPayload = { _info: 'Command completed; response content omitted from logs' }
-  }
-
-  console.log(JSON.stringify(logPayload, null, 2))
+  console.log(JSON.stringify(redactSensitive(result), null, 2))
 }
 
 main().catch(err => {

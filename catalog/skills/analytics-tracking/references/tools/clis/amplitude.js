@@ -30,26 +30,22 @@ async function ingestApi(method, path, body) {
 }
 
 function redactSensitive(value) {
-  // Recursively redact known sensitive fields from objects/arrays before logging.
-  const SENSITIVE_KEYS = new Set(['api_key', 'secret', 'secret_key', 'token', 'access_token']);
-
-  if (value === null || typeof value !== 'object') {
-    return value;
-  }
-
-  if (Array.isArray(value)) {
-    return value.map(redactSensitive);
-  }
-
-  const clone = {};
+  const SENSITIVE_KEYS = new Set([
+    'api_key', 'apikey', 'secret', 'secret_key',
+    'token', 'access_token', 'refresh_token',
+    'authorization', 'password', 'auth', 'api_secret',
+  ])
+  if (value === null || typeof value !== 'object') return value
+  if (Array.isArray(value)) return value.map(redactSensitive)
+  const redacted = {}
   for (const [key, val] of Object.entries(value)) {
-    if (SENSITIVE_KEYS.has(key)) {
-      clone[key] = '***';
+    if (SENSITIVE_KEYS.has(key.toLowerCase())) {
+      redacted[key] = '***'
     } else {
-      clone[key] = redactSensitive(val);
+      redacted[key] = redactSensitive(val)
     }
   }
-  return clone;
+  return redacted
 }
 
 async function queryApi(method, path, params) {

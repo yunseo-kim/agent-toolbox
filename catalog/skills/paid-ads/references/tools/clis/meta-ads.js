@@ -9,54 +9,23 @@ if (!TOKEN) {
   process.exit(1)
 }
 
-function sanitizeForLogging(value) {
+function redactSensitive(value) {
   const SENSITIVE_KEYS = new Set([
-    'access_token',
-    'authorization',
-    'auth',
-    'password',
-    'secret',
-    'token',
+    'api_key', 'apikey', 'secret', 'secret_key',
+    'token', 'access_token', 'refresh_token',
+    'authorization', 'password', 'auth', 'api_secret',
   ])
-
-  // Values derived from environment variables or other known-sensitive values
-  const SENSITIVE_VALUES = new Set(
-    [
-      DEFAULT_ACCOUNT_ID,
-    ].filter(v => typeof v === 'string' && v.length > 0)
-  )
-
-  function maskSensitivePrimitive(val) {
-    if (typeof val !== 'string') {
-      return val
+  if (value === null || typeof value !== 'object') return value
+  if (Array.isArray(value)) return value.map(redactSensitive)
+  const redacted = {}
+  for (const [key, val] of Object.entries(value)) {
+    if (SENSITIVE_KEYS.has(key.toLowerCase())) {
+      redacted[key] = '***'
+    } else {
+      redacted[key] = redactSensitive(val)
     }
-    for (const sensitive of SENSITIVE_VALUES) {
-      if (sensitive && val.includes(sensitive)) {
-        return '***'
-      }
-    }
-    return val
   }
-
-  function sanitize(obj) {
-    if (obj === null || typeof obj !== 'object') {
-      return maskSensitivePrimitive(obj)
-    }
-    if (Array.isArray(obj)) {
-      return obj.map(sanitize)
-    }
-    const result = {}
-    for (const [key, val] of Object.entries(obj)) {
-      if (SENSITIVE_KEYS.has(String(key).toLowerCase())) {
-        result[key] = '***'
-      } else {
-        result[key] = sanitize(val)
-      }
-    }
-    return result
-  }
-
-  return sanitize(value)
+  return redacted
 }
 
 async function api(method, path, body) {
@@ -222,7 +191,7 @@ async function main() {
       }
   }
 
-  console.log(JSON.stringify(sanitizeForLogging(result), null, 2))
+  console.log(JSON.stringify(redactSensitive(result), null, 2))
 }
 
 main().catch(err => {

@@ -77,36 +77,23 @@ function getAccountId() {
   return args['account-id'] || DEFAULT_ACCOUNT_ID
 }
 
-function sanitizeResultForLogging(result) {
-  // Treat anything that looks like a Meta ad account id (e.g. act_123456789) as sensitive
-  const accountIdPattern = /\bact_\d+\b/gi
-  // Also treat the default account id from the environment as sensitive, wherever it appears
-  const defaultAccountId = DEFAULT_ACCOUNT_ID
-
-  function redactValue(val) {
-    if (typeof val === 'string') {
-      let redacted = val.replace(accountIdPattern, 'act_***')
-      if (defaultAccountId) {
-        // Replace any direct occurrence of the environment-derived account id
-        redacted = redacted.split(defaultAccountId).join('***')
-      }
-      return redacted
+function redactSensitive(value) {
+  const SENSITIVE_KEYS = new Set([
+    'api_key', 'apikey', 'secret', 'secret_key',
+    'token', 'access_token', 'refresh_token',
+    'authorization', 'password', 'auth', 'api_secret',
+  ])
+  if (value === null || typeof value !== 'object') return value
+  if (Array.isArray(value)) return value.map(redactSensitive)
+  const redacted = {}
+  for (const [key, val] of Object.entries(value)) {
+    if (SENSITIVE_KEYS.has(key.toLowerCase())) {
+      redacted[key] = '***'
+    } else {
+      redacted[key] = redactSensitive(val)
     }
-    return val
   }
-
-  const seen = new WeakSet()
-  const redacted = JSON.parse(
-    JSON.stringify(result, (key, val) => {
-      if (val && typeof val === 'object') {
-        if (seen.has(val)) return
-        seen.add(val)
-      }
-      return redactValue(val)
-    })
-  )
-
-  return safeStringify(redacted, 2)
+  return redacted
 }
 
 async function main() {
@@ -223,13 +210,7 @@ async function main() {
       }
   }
 
-  if (args.verbose) {
-    console.log(sanitizeResultForLogging(result))
-  } else if (result && result.error) {
-    console.log(safeStringify({ error: result.error }, 2))
-  } else {
-    console.log(safeStringify({ status: 'ok' }, 2))
-  }
+  console.log(JSON.stringify(redactSensitive(result), null, 2))
 }
 
 main().catch(err => {
