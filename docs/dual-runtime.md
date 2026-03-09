@@ -220,6 +220,66 @@ Cold-start and warm (steady-state) benchmarks measuring the wall-clock time of e
 - **Path 3 is consistently fastest** across both cold and warm conditions. With a single Bun process, it eliminates Node.js startup entirely, achieving ~0.57x warm and ~0.41x cold relative to Paths 1–2.
 - **Cold variance is high** (stddev 65–278 ms), reflecting macOS disk I/O jitter and dyld cache rebuild variability. Warm variance is low (stddev 1–9 ms), confirming steady-state reproducibility.
 
+### Path 2 Optimization Analysis
+
+The benchmarks above reveal that Path 2's re-exec provides **zero net benefit** for typical CLI operations. Node.js startup (~40 ms) + Bun startup (~25 ms) + process spawn overhead cancels out Bun's faster execution, leaving Path 2 at exactly Path 1 performance. A natural question is whether Path 2 can be improved to approach Path 3.
+
+#### What If the Shebang Were `#!/usr/bin/env bun`?
+
+Changing the launcher shebang from `#!/usr/bin/env node` to `#!/usr/bin/env bun` would make Path 2 match Path 3 — but at the cost of breaking Path 1 entirely:
+
+```
+npx agent-toolbox            (shebang = #!/usr/bin/env bun)
+ |  npm resolves bin -> dist/cli/launcher.js
+ |  OS reads shebang -> #!/usr/bin/env bun
+ v
+env looks up "bun" in $PATH
+ |
+ ├─ bun installed   -> Bun runs launcher.js in-process (fast, like Path 3) ✓
+ └─ bun NOT installed -> "env: bun: No such file or directory"             ✗
+```
+
+```
+bunx agent-toolbox           (shebang = #!/usr/bin/env bun)
+ |  Bun package manager resolves bin -> dist/cli/launcher.js
+ |  OS reads shebang -> #!/usr/bin/env bun -> spawns Bun
+ v
+Bun executes launcher.js     <- single Bun process
+ |  globalThis.Bun = defined  -> else branch
+ v
+await import("./main.js")    -> in-process under Bun (= Path 3 performance) ✓
+```
+
+|                           | `#!/usr/bin/env node` (current)                   | `#!/usr/bin/env bun`         |
+| ------------------------- | ------------------------------------------------- | ---------------------------- |
+| **Path 1** (`npx`)        | ✓ Node.js in-process                              | ✗ Fails if bun not installed |
+| **Path 2** (`bunx`)       | ≈ Path 1 (re-exec overhead cancels Bun advantage) | ✓ = Path 3 performance       |
+| **Path 3** (`bunx --bun`) | ✓ Bun in-process                                  | ✓ Unchanged                  |
+
+On Windows, npm's [`cmd-shim`](https://github.com/npm/cmd-shim) parses the shebang to generate `.cmd` wrappers. A `#!/usr/bin/env bun` shebang produces `@bun "%~dp0\...\launcher.js" %*` — which also fails when bun is not in PATH. There is no silent fallback to Node.js on any platform.
+
+**The fundamental constraint:** a shebang can specify exactly one interpreter. There is no mechanism in npm or Bun's package manager to conditionally select a runtime based on availability. Making Path 2 fast necessarily breaks Path 1 for npm-only users.
+
+#### Alternatives Evaluated
+
+| Alternative                                                      | Mechanism                                                         | Verdict                                                                                                                                                                                                    |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Shell polyglot launcher** (`#!/usr/bin/env sh`)                | Shell script checks for `bun`, falls back to `node`               | Windows `cmd-shim` expects the shebang interpreter to exist; `sh` may be absent. Cross-platform fragile. **Rejected.**                                                                                     |
+| **`bunfig.toml` `[run] bun = true`**                             | Bun config to make `bunx` behave like `bunx --bun` by default     | Only affects `bun run`, not `bunx` for remote packages. User-side setting, not package-controlled. [Known inconsistency](https://github.com/oven-sh/bun/issues/18813). **Not viable.**                     |
+| **Separate bin entries** (`agent-toolbox` + `agent-toolbox-bun`) | Two entry points with different shebangs                          | Namespace pollution, confusing UX. **Rejected.**                                                                                                                                                           |
+| **`bun build --compile`** standalone binary                      | Platform-specific compiled executable, near-zero startup          | Requires per-platform binaries (darwin-arm64, linux-x64, etc.), dramatically increases package size and release complexity. **Disproportionate for current scale.**                                        |
+| **`npm postinstall`** shebang rewrite                            | Detect available runtime at install time, rewrite shebang         | Security concern (postinstall scripts are an attack vector), fragile across package managers. **Rejected.**                                                                                                |
+| **Remove re-exec entirely**                                      | Always run in-process under whatever runtime invoked the launcher | Loses Bun's execution advantage for heavy workloads (commands where Bun saves >42 ms net). The re-exec break-even point is ~300 ms Node.js execution time. **Premature — kept for future heavy commands.** |
+
+#### Current Strategy
+
+Given the structural constraint, the adopted strategy is:
+
+1. **Keep `#!/usr/bin/env node`** for maximum npm compatibility.
+2. **Keep the re-exec** for potential benefit on heavy-workload commands that exceed the ~42 ms break-even threshold.
+3. **Recommend `bunx --bun`** as the documented fast path for Bun users (1.76× warm, 2.5× cold improvement over Paths 1–2).
+4. **Declare `"engines": { "bun": ">=1.0" }`** in `package.json` — a zero-cost, forward-compatible annotation. [Bun Issue #9346](https://github.com/oven-sh/bun/issues/9346) (authored by Bun's creator) proposes using this field to make `bunx` automatically bypass the shebang and run under Bun, which would make Path 2 match Path 3 performance without any launcher code changes.
+
 ## Shebang Semantics
 
 Understanding how shebangs interact with different invocation methods is essential for reasoning about this architecture.
@@ -341,3 +401,4 @@ This ensures the compiled CLI functions correctly under both runtimes on every p
 - **Do not remove the shebang from `src/cli/main.ts`.** Bun's bundler preserves it in the compiled output, where it serves as the fallback interpreter for direct execution.
 - **Do not change `launcher.js` to a TypeScript file.** It must remain plain JavaScript that runs on any Node.js >= 18 without transpilation.
 - **Do not add a `--bun` flag to the launcher re-exec path.** The re-exec uses `bun file.js` (runtime mode), not `bunx` (package manager mode), so shebangs are already ignored.
+- **Do not change the launcher shebang to `#!/usr/bin/env bun`.** This breaks `npx` for all users without Bun installed — on both POSIX (`env: bun: No such file or directory`) and Windows (npm's `cmd-shim` generates a wrapper that calls `bun.exe`). See [Path 2 Optimization Analysis](#path-2-optimization-analysis) for the full tradeoff evaluation.
