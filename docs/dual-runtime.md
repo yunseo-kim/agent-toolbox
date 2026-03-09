@@ -279,6 +279,7 @@ Given the structural constraint, the adopted strategy is:
 2. **Keep the re-exec** for potential benefit on heavy-workload commands that exceed the ~42 ms break-even threshold.
 3. **Recommend `bunx --bun`** as the documented fast path for Bun users (1.76× warm, 2.5× cold improvement over Paths 1–2).
 4. **Declare `"engines": { "bun": ">=1.0" }`** in `package.json` — a zero-cost, forward-compatible annotation. [Bun Issue #9346](https://github.com/oven-sh/bun/issues/9346) (authored by Bun's creator) proposes using this field to make `bunx` automatically bypass the shebang and run under Bun, which would make Path 2 match Path 3 performance without any launcher code changes.
+5. **Set `[run] bun = true` in `bunfig.toml`** for the development environment. Source files use `#!/usr/bin/env node` shebangs for compiled-output compatibility, but in development both Node.js and Bun may be present. Without this setting, `bun run` on a `#!/usr/bin/env node` file could spawn Node.js unnecessarily. The `[run] bun = true` directive makes `bun run` always use the Bun runtime regardless of shebangs, ensuring consistent Bun execution during development. This setting is repository-local (`bunfig.toml` is not included in the published npm package) and does not affect end users.
 
 ## Shebang Semantics
 
