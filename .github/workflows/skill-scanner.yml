@@ -109,7 +109,7 @@ jobs:
           fi
 
           COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
-            --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
+            --use-trigger --use-virustotal --vt-upload-files --enable-meta --lenient --fail-on-severity high"
 
           # Full scan: manual dispatch, schedule, or edge-case fallback
           if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$EVENT_NAME" = "schedule" ] || [ "$CHANGED_SKILLS" = "all" ]; then
@@ -176,7 +176,7 @@ jobs:
           fi
 
           COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
-            --use-trigger --use-virustotal --enable-meta --lenient --fail-on-severity high"
+            --use-trigger --use-virustotal --vt-upload-files --enable-meta --lenient --fail-on-severity high"
 
           # Full scan: manual dispatch, schedule, or edge-case fallback
           if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$EVENT_NAME" = "schedule" ] || [ "$CHANGED_SKILLS" = "all" ]; then
