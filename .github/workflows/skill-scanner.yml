@@ -1,15 +1,24 @@
 name: Skill Security Scan
 
 on:
-  workflow_run:
-    workflows: ["CI"]
-    types: [completed]
+  push:
     branches: [main]
+    paths:
+      - "catalog/skills/**"
+      - ".agents/skills/**"
+  pull_request:
+    paths:
+      - "catalog/skills/**"
+      - ".agents/skills/**"
   schedule:
     # Monthly full scan on 1st at 06:00 UTC
     - cron: "0 6 1 * *"
   workflow_dispatch:
     inputs:
+      verbose:
+        description: "Enable verbose logging (policy fingerprints, co-occurrence metadata, meta-analyzer false positives, and summary in log)"
+        type: boolean
+        default: true
       archive:
         description: "Archive scan reports as markdown to docs/security-reports/"
         type: boolean
@@ -24,33 +33,38 @@ jobs:
   scan:
     name: Skill Scanner
     runs-on: ubuntu-latest
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+          # Full history for push/PR incremental diff; shallow clone for full scans
+          fetch-depth: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && 0 || 1 }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install skill-scanner
+        run: pip install cisco-ai-skill-scanner
+
+      - name: Prepare report directory
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true)
+        run: mkdir -p docs/security-reports
 
       - name: Detect changed skills
         id: changes
-        if: github.event_name == 'workflow_run'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EVENT_NAME: ${{ github.event_name }}
-          WORKFLOW_EVENT: ${{ github.event.workflow_run.event }}
-          WORKFLOW_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
-          WORKFLOW_PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
         run: |
-          HEAD_SHA="$WORKFLOW_HEAD_SHA"
-
-          if [ "$WORKFLOW_EVENT" = "pull_request" ] && [ -n "$WORKFLOW_PR_NUMBER" ]; then
-            BASE_SHA="$(gh pr view "$WORKFLOW_PR_NUMBER" --json baseRefOid --jq '.baseRefOid')"
+          # Determine base SHA for diff
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
           else
-            BASE_SHA="$(git rev-parse "${HEAD_SHA}^" 2>/dev/null || true)"
+            BASE_SHA="${{ github.event.before }}"
           fi
 
+          # Handle edge cases: force push, initial push, invalid SHA
           if [ -z "$BASE_SHA" ] || \
              [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] || \
              ! git cat-file -t "$BASE_SHA" >/dev/null 2>&1; then
@@ -61,11 +75,11 @@ jobs:
           fi
 
           # Detect changed catalog skill directories
-          CATALOG=$(git diff --name-only "$BASE_SHA".."$HEAD_SHA" -- catalog/skills/ 2>/dev/null | \
+          CATALOG=$(git diff --name-only "$BASE_SHA"..HEAD -- catalog/skills/ 2>/dev/null | \
             sed -n 's|^catalog/skills/\([^/]*\)/.*|\1|p' | sort -u | tr '\n' ' ' | xargs)
 
           # Detect changed dev tooling skill directories
-          DEV=$(git diff --name-only "$BASE_SHA".."$HEAD_SHA" -- .agents/skills/ 2>/dev/null | \
+          DEV=$(git diff --name-only "$BASE_SHA"..HEAD -- .agents/skills/ 2>/dev/null | \
             sed -n 's|^\.agents/skills/\([^/]*\)/.*|\1|p' | sort -u | tr '\n' ' ' | xargs)
 
           echo "catalog=${CATALOG:-none}" >> "$GITHUB_OUTPUT"
@@ -74,49 +88,26 @@ jobs:
           [ -n "$CATALOG" ] && echo "Changed catalog skills: $CATALOG" || echo "No catalog skills changed"
           [ -n "$DEV" ] && echo "Changed dev skills: $DEV" || echo "No dev skills changed"
 
-      - name: Decide scan execution
-        id: gate
-        env:
-          CHANGED_CATALOG: ${{ steps.changes.outputs.catalog }}
-          CHANGED_DEV: ${{ steps.changes.outputs.dev }}
-        run: |
-          should_scan=true
-          if [ "${{ github.event_name }}" = "workflow_run" ] && [ "$CHANGED_CATALOG" = "none" ] && [ "$CHANGED_DEV" = "none" ]; then
-            should_scan=false
-          fi
-          echo "should_scan=$should_scan" >> "$GITHUB_OUTPUT"
-
-      - name: Set up Python
-        if: steps.gate.outputs.should_scan == 'true'
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install skill-scanner
-        if: steps.gate.outputs.should_scan == 'true'
-        run: pip install cisco-ai-skill-scanner
-
-      - name: Prepare report directory
-        if: steps.gate.outputs.should_scan == 'true' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true))
-        run: mkdir -p docs/security-reports
-
       - name: Scan catalog skills
         id: scan-catalog
         continue-on-error: true
         if: >-
-          steps.gate.outputs.should_scan == 'true' &&
-          (github.event_name == 'workflow_dispatch' ||
+          github.event_name == 'workflow_dispatch' ||
           github.event_name == 'schedule' ||
-          steps.changes.outputs.catalog != 'none')
+          steps.changes.outputs.catalog != 'none'
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.4-2026-03-05
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+          SCAN_VERBOSE: ${{ inputs.verbose == 'true' || github.event_name == 'schedule' }}
           SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
           CHANGED_SKILLS: ${{ steps.changes.outputs.catalog }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
-          VERBOSE_FLAGS="--verbose"
+          VERBOSE_FLAGS=""
+          if [ "$SCAN_VERBOSE" = "true" ]; then
+            VERBOSE_FLAGS="--verbose"
+          fi
 
           ARCHIVE_FLAGS=""
           if [ "$SCAN_ARCHIVE" = "true" ]; then
@@ -168,19 +159,22 @@ jobs:
         id: scan-dev
         continue-on-error: true
         if: >-
-          steps.gate.outputs.should_scan == 'true' &&
-          (github.event_name == 'workflow_dispatch' ||
+          github.event_name == 'workflow_dispatch' ||
           github.event_name == 'schedule' ||
-          steps.changes.outputs.dev != 'none')
+          steps.changes.outputs.dev != 'none'
         env:
           SKILL_SCANNER_LLM_API_KEY: ${{ secrets.SKILL_SCANNER_LLM_API_KEY }}
           SKILL_SCANNER_LLM_MODEL: gpt-5.4-2026-03-05
           VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+          SCAN_VERBOSE: ${{ inputs.verbose == 'true' || github.event_name == 'schedule' }}
           SCAN_ARCHIVE: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.archive == true) }}
           CHANGED_SKILLS: ${{ steps.changes.outputs.dev }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
-          VERBOSE_FLAGS="--verbose"
+          VERBOSE_FLAGS=""
+          if [ "$SCAN_VERBOSE" = "true" ]; then
+            VERBOSE_FLAGS="--verbose"
+          fi
 
           ARCHIVE_FLAGS=""
           if [ "$SCAN_ARCHIVE" = "true" ]; then
