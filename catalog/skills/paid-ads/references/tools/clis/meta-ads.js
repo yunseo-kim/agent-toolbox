@@ -3,6 +3,7 @@
 const TOKEN = process.env.META_ACCESS_TOKEN
 const DEFAULT_ACCOUNT_ID = process.env.META_AD_ACCOUNT_ID
 const BASE_URL = 'https://graph.facebook.com/v18.0'
+const TRUSTED_HOST = 'graph.facebook.com'
 
 if (!TOKEN) {
   console.error(JSON.stringify({ error: 'META_ACCESS_TOKEN environment variable required' }))
@@ -28,8 +29,24 @@ function redactSensitive(value) {
   return redacted
 }
 
-async function api(method, path, body) {
+async function api(method, path, body, options = {}) {
   const url = `${BASE_URL}${path}`
+  const parsed = new URL(url)
+  if (parsed.hostname !== TRUSTED_HOST) {
+    throw new Error('Refusing request to non-Meta host')
+  }
+
+  if (options.mutating && !args['confirm-write']) {
+    return {
+      error: 'Mutating command requires --confirm-write',
+      hint: 'Re-run with --confirm-write true after explicit user approval.',
+      method,
+      url,
+      body: body || undefined,
+      requires_confirmation: true,
+    }
+  }
+
   const opts = {
     method,
     headers: { 'Authorization': `Bearer ${TOKEN}` },
@@ -115,12 +132,12 @@ async function main() {
             status: args.status || 'PAUSED',
             special_ad_categories: [],
           }
-          result = await api('POST', `/act_${accountId}/campaigns`, body)
+          result = await api('POST', `/act_${accountId}/campaigns`, body, { mutating: true })
           break
         }
         case 'update': {
           if (!args.id || !args.status) { result = { error: '--id and --status required' }; break }
-          result = await api('POST', `/${args.id}`, { status: args.status })
+          result = await api('POST', `/${args.id}`, { status: args.status }, { mutating: true })
           break
         }
         default:
@@ -170,7 +187,7 @@ async function main() {
             subtype: 'LOOKALIKE',
             origin_audience_id: args['source-id'],
             lookalike_spec: JSON.stringify({ type: 'similarity', country: args.country }),
-          })
+          }, { mutating: true })
           break
         }
         default:
@@ -187,6 +204,7 @@ async function main() {
           adsets: 'adsets [list] [--account-id <id>]',
           ads: 'ads [list] --adset-id <id>',
           audiences: 'audiences [list|create-lookalike] [--account-id <id>] [--source-id <id>] [--country US]',
+          write_confirmation: 'Add --confirm-write true for mutating commands after explicit user approval',
         },
       }
   }
