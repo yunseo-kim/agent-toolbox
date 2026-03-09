@@ -75,7 +75,7 @@ await import("./main.js")              -> CLI runs in-process under Node.js
 
 **Result:** Single Node.js process. No re-execution overhead.
 
-### Path 2: `bunx agent-toolbox`
+### Path 2: `bunx agent-toolbox` (Both Bun & Node.js Are Installed)
 
 ```
 bunx agent-toolbox
@@ -114,13 +114,38 @@ await import("./main.js")              -> CLI runs in-process under Bun
 
 **Result:** Single Bun process. No re-execution overhead. This is the most efficient path.
 
+### Path 4: `bunx agent-toolbox` (Node.js Not Installed)
+
+When the user's environment has Bun but **not** Node.js, the flow changes:
+
+```
+bunx agent-toolbox
+ |  Bun package manager resolves bin -> dist/cli/launcher.js
+ |  Shebang says #!/usr/bin/env node, but node is not in PATH
+ |  Bun falls back to running the script with Bun itself
+ v
+Bun executes launcher.js                <- Bun process (single)
+ |  npm_config_user_agent = "bun/..."  -> isBunx = true
+ |  globalThis.Bun = defined           -> already in Bun
+ |  Condition: false && true = false   -> else branch
+ v
+await import("./main.js")              -> CLI runs in-process under Bun
+```
+
+**Result:** Bun's package manager cannot find the `node` interpreter specified in the shebang, so it falls back to executing the script under Bun directly. Since `globalThis.Bun` is defined, the launcher takes the in-process path — identical to Path 3. The re-exec branch is never entered.
+
+This means the CLI works correctly in Bun-only environments **without any additional code or flags**. The existing detection logic handles it as an implicit graceful degradation.
+
+> **Note:** The `npm_config_user_agent` string in this scenario still reports a node version (e.g., `bun/1.x npm/? node/v24.x`). This is Bun's internal compatibility metadata and does not indicate that Node.js is actually present on the system.
+
 ### Summary Table
 
-| Command                    | Launcher Runtime | `globalThis.Bun` | `isBunx` | Branch              | CLI Runtime | Process Count |
-| -------------------------- | ---------------- | ---------------- | -------- | ------------------- | ----------- | ------------- |
-| `npx agent-toolbox`        | Node.js          | `undefined`      | `false`  | `else` (in-process) | **Node.js** | 1             |
-| `bunx agent-toolbox`       | Node.js          | `undefined`      | `true`   | re-exec             | **Bun**     | 2             |
-| `bunx --bun agent-toolbox` | Bun              | defined          | `true`   | `else` (in-process) | **Bun**     | 1             |
+| Command                    | Node.js Required | Launcher Runtime | `globalThis.Bun` | `isBunx` | Branch              | CLI Runtime | Process Count |
+| -------------------------- | ---------------- | ---------------- | ---------------- | -------- | ------------------- | ----------- | ------------- |
+| `npx agent-toolbox`        | **Yes**          | Node.js          | `undefined`      | `false`  | `else` (in-process) | **Node.js** | 1             |
+| `bunx agent-toolbox`       | Yes (available)  | Node.js          | `undefined`      | `true`   | re-exec             | **Bun**     | 2             |
+| `bunx --bun agent-toolbox` | No               | Bun              | `defined`        | `true`   | `else` (in-process) | **Bun**     | 1             |
+| `bunx agent-toolbox`       | No (absent)      | Bun (fallback)   | `defined`        | `true`   | `else` (in-process) | **Bun**     | 1             |
 
 ## Shebang Semantics
 
