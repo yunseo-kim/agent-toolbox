@@ -3,33 +3,12 @@
 import { SpeechInput } from "@/components/ai-elements/speech-input";
 import { useCallback, useState } from "react";
 
-/**
- * Fallback handler for browsers that don't support Web Speech API (Firefox, Safari).
- * This function receives recorded audio and should send it to a transcription service.
- * Example uses OpenAI Whisper API - replace with your preferred service.
- */
 const handleAudioRecorded = async (audioBlob: Blob): Promise<string> => {
-  const formData = new FormData();
-  formData.append("file", audioBlob, "audio.webm");
-  formData.append("model", "whisper-1");
-
-  const response = await fetch(
-    "https://api.openai.com/v1/audio/transcriptions",
-    {
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
-      },
-      method: "POST",
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Transcription failed");
+  if (!audioBlob || audioBlob.size === 0) {
+    throw new Error("No audio captured");
   }
 
-  const data = await response.json();
-  return data.text;
+  return "Transcription placeholder: implement server-side transcription and return text.";
 };
 
 const Example = () => {

@@ -1,13 +1,15 @@
 ---
 name: ai-elements
 description: >
-  Build AI chat interfaces with AI Elements, a component library and custom registry built on shadcn/ui.
-  Use when developers want to (1) add pre-built AI chat components like conversations, messages, prompts,
-  reasoning, code blocks, and tool displays, (2) install AI Elements via CLI or shadcn registry,
-  (3) customize component styles and behavior, (4) integrate with Vercel AI SDK's useChat.
-  Triggers on "ai-elements", "AI chat components", "chat UI", "message component", "prompt input",
-  "shadcn ai", building AI-native interfaces with pre-built composable components.
+  Documentation-first guidance for adding and customizing AI Elements components in
+  shadcn/ui projects, including installation notes, usage examples, and integration
+  patterns for Vercel AI SDK chat UIs.
+  Trigger this skill for AI Elements-specific work such as "ai-elements", "AI Elements registry",
+  "AI Elements shadcn", and "Vercel AI Elements components".
 license: Sustainable Use License 1.0
+compatibility: "Best for React/Next.js projects using shadcn/ui and Vercel AI SDK workflows."
+allowed-tools:
+  - Read
 
 metadata:
   domain: development
@@ -20,6 +22,8 @@ metadata:
 ---
 
 # AI Elements
+
+This skill is documentation-focused: it provides references and examples, and does not execute installation or deployment actions by itself.
 
 [AI Elements](https://www.npmjs.com/package/ai-elements) is a component library and custom registry built on top of [shadcn/ui](https://ui.shadcn.com/) to help you build AI-native applications faster. It provides pre-built components like conversations, messages and more.
 
