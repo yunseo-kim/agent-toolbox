@@ -80,14 +80,14 @@ This is the Google GenAI SDK path. Not affected by GPT-5 specifically (different
 
 ### Default Temperature Values Across Components
 
-| Component | Default | Source |
-|-----------|---------|--------|
-| `LLMAnalyzer` | `0.0` | [`llm_analyzer.py#L120`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/core/analyzers/llm_analyzer.py#L120) |
-| `MetaAnalyzer` | `0.1` | [`meta_analyzer.py#L244`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/core/analyzers/meta_analyzer.py#L244) |
-| `AlignmentLLMClient` | `0.1` | [`alignment_llm_client.py#L63`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/core/analyzers/behavioral/alignment/alignment_llm_client.py#L63) |
-| `AlignmentOrchestrator` | `0.1` | [`alignment_orchestrator.py#L57`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/core/analyzers/behavioral/alignment/alignment_orchestrator.py#L57) |
-| `ScannerDefaults` | `0.0` | [`constants.py#L52`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/config/constants.py#L52) |
-| `Config` | `0.0` | [`config.py#L42`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/config/config.py#L42) |
+| Component               | Default | Source                                                                                                                                                                                                             |
+| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `LLMAnalyzer`           | `0.0`   | [`llm_analyzer.py#L120`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/core/analyzers/llm_analyzer.py#L120)                                        |
+| `MetaAnalyzer`          | `0.1`   | [`meta_analyzer.py#L244`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/core/analyzers/meta_analyzer.py#L244)                                      |
+| `AlignmentLLMClient`    | `0.1`   | [`alignment_llm_client.py#L63`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/core/analyzers/behavioral/alignment/alignment_llm_client.py#L63)     |
+| `AlignmentOrchestrator` | `0.1`   | [`alignment_orchestrator.py#L57`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/core/analyzers/behavioral/alignment/alignment_orchestrator.py#L57) |
+| `ScannerDefaults`       | `0.0`   | [`constants.py#L52`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/config/constants.py#L52)                                                        |
+| `Config`                | `0.0`   | [`config.py#L42`](https://github.com/cisco-ai-defense/skill-scanner/blob/67a29d9e1a54cef87d0dc77a889ec13ac1357f23/skill_scanner/config/config.py#L42)                                                              |
 
 All values are incompatible with GPT-5 (`temperature=1` is the only accepted value).
 
@@ -112,6 +112,7 @@ LiteLLM natively supports `drop_params` as a per-request parameter. When set, it
 ```
 
 This is a two-line fix that:
+
 - Resolves GPT-5 `temperature` incompatibility immediately
 - Future-proofs against any other model-specific parameter restrictions (e.g., a future model dropping `max_tokens` support)
 - Requires no model-name detection logic

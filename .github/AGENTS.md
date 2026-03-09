@@ -204,11 +204,12 @@ Lightweight hash-based check for adapted skills that embed external content not 
 
 **Currently monitors:**
 
-| Skill | Local File | Upstream Source |
-|-------|-----------|----------------|
+| Skill                   | Local File                                                   | Upstream Source                                                                                                                   |
+| ----------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
 | `web-design-guidelines` | `catalog/skills/web-design-guidelines/references/command.md` | [`vercel-labs/web-interface-guidelines/command.md`](https://github.com/vercel-labs/web-interface-guidelines/blob/main/command.md) |
 
 **How it works:**
+
 1. Fetches upstream file via `raw.githubusercontent.com`
 2. Compares SHA-256 hash against local copy
 3. If diverged: creates a GitHub issue labeled `upstream-content` (skips if one is already open)
