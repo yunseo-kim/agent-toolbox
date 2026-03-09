@@ -75,7 +75,7 @@ hidden_files:
     - ".version"
     - ".goreleaser.yaml"
     - ".goreleaser.yml"
-  
+
   benign_dotdirs:
     # CI / IDE
     - ".github"
@@ -116,35 +116,35 @@ hidden_files:
 pipeline:
   # Installer domains whose curl|sh patterns are demoted to LOW severity
   known_installer_domains:
-    - "sh.rustup.rs"               # Rust
-    - "astral.sh"                  # uv / ruff
-    - "raw.githubusercontent.com/nvm-sh"  # nvm
-    - "get.sdkman.io"              # SDKMAN
-    - "pyenv.run"                  # pyenv
-    - "get.docker.com"             # Docker
-    - "install.python-poetry.org"  # Poetry
-    - "bun.sh"                     # Bun
-    - "deno.land"                  # Deno
-    - "get.volta.sh"               # Volta
-    - "brew.sh"                    # Homebrew
-    - "getcomposer.org"            # Composer
-    - "nixos.org"                  # Nix
-    - "get.pnpm.io"               # pnpm
-    - "proto.moonrepo.app"         # proto
-    - "mise.jdx.dev"               # mise
-    - "taskfile.dev"               # Task
+    - "sh.rustup.rs" # Rust
+    - "astral.sh" # uv / ruff
+    - "raw.githubusercontent.com/nvm-sh" # nvm
+    - "get.sdkman.io" # SDKMAN
+    - "pyenv.run" # pyenv
+    - "get.docker.com" # Docker
+    - "install.python-poetry.org" # Poetry
+    - "bun.sh" # Bun
+    - "deno.land" # Deno
+    - "get.volta.sh" # Volta
+    - "brew.sh" # Homebrew
+    - "getcomposer.org" # Composer
+    - "nixos.org" # Nix
+    - "get.pnpm.io" # pnpm
+    - "proto.moonrepo.app" # proto
+    - "mise.jdx.dev" # mise
+    - "taskfile.dev" # Task
 
   # Regex patterns for benign pipe targets (full pipeline is matched)
   benign_pipe_targets:
-    - 'ps\s.*\|\s*grep'                                                  # ps aux | grep
-    - 'grep\s.*\|\s*grep\s+-v'                                           # grep | grep -v
-    - 'cat\s.*\|\s*(sort|uniq|wc|head|tail|grep|cut|awk|sed)'            # cat | text-processing
-    - 'find\s.*\|\s*(sort|head|wc|xargs\s+ls)'                           # find | sort/count
-    - 'ls\s.*\|\s*(sort|head|grep|wc)'                                   # ls | filter
-    - 'echo\s.*\|\s*(tr|sed|awk|cut|base64)'                             # echo | transform
-    - 'curl\s.*\|\s*(jq|python\s+-m\s+json\.tool|json_pp|yq|xmllint)'    # curl | formatter
+    - 'ps\s.*\|\s*grep' # ps aux | grep
+    - 'grep\s.*\|\s*grep\s+-v' # grep | grep -v
+    - 'cat\s.*\|\s*(sort|uniq|wc|head|tail|grep|cut|awk|sed)' # cat | text-processing
+    - 'find\s.*\|\s*(sort|head|wc|xargs\s+ls)' # find | sort/count
+    - 'ls\s.*\|\s*(sort|head|grep|wc)' # ls | filter
+    - 'echo\s.*\|\s*(tr|sed|awk|cut|base64)' # echo | transform
+    - 'curl\s.*\|\s*(jq|python\s+-m\s+json\.tool|json_pp|yq|xmllint)' # curl | formatter
     # Additional trusted patterns for awesome-agent-toolbox
-    - 'curl\s+-s\s+"https://api\.trello\.com/[^"|]+"\s*\|\s*jq(\s|$)'    # Trello API
+    - 'curl\s+-s\s+"https://api\.trello\.com/[^"|]+"\s*\|\s*jq(\s|$)' # Trello API
 
   # Path segments that indicate documentation context (lower severity)
   doc_path_indicators:
@@ -241,7 +241,7 @@ rule_scoping:
 
   # Filename patterns (regex) that mark educational/example content
   doc_filename_patterns:
-    - 'security[_-]patterns|examples?|patterns?|samples?|demo|tutorial|guide|howto|cheatsheet'
+    - "security[_-]patterns|examples?|patterns?|samples?|demo|tutorial|guide|howto|cheatsheet"
     # Treat explicit template source files as instructional/non-runtime context.
     # This prevents false CRITICAL hits such as utilityFunction(...) -> Function( substring matches
     # in assets/*.template.ts(x) example files.
@@ -318,43 +318,43 @@ file_classification:
 # File limits – numeric thresholds for inventory checks
 # ---------------------------------------------------------------------------
 file_limits:
-  max_file_count: 100           # Files above this → EXCESSIVE_FILE_COUNT
-  max_file_size_bytes: 5242880  # 5 MB – files above this → OVERSIZED_FILE
-  max_reference_depth: 5        # Recursion depth for reference resolution
-  max_name_length: 64           # Skill name length limit
-  max_description_length: 1024  # Max description length
-  min_description_length: 30    # Below this → vague description warning
-  max_yara_scan_file_size_bytes: 104857600  # 100 MB — relaxed YARA scan limit
-  max_loader_file_size_bytes: 20971520      # 20 MB — relaxed content loading limit
+  max_file_count: 100 # Files above this → EXCESSIVE_FILE_COUNT
+  max_file_size_bytes: 5242880 # 5 MB – files above this → OVERSIZED_FILE
+  max_reference_depth: 5 # Recursion depth for reference resolution
+  max_name_length: 64 # Skill name length limit
+  max_description_length: 1024 # Max description length
+  min_description_length: 30 # Below this → vague description warning
+  max_yara_scan_file_size_bytes: 104857600 # 100 MB — relaxed YARA scan limit
+  max_loader_file_size_bytes: 20971520 # 20 MB — relaxed content loading limit
 
 # ---------------------------------------------------------------------------
 # Analysis thresholds – YARA and analyzability scoring
 # ---------------------------------------------------------------------------
 analysis_thresholds:
-  zerowidth_threshold_with_decode: 20   # Flag steganography earlier
-  zerowidth_threshold_alone: 100        # Lower bar for standalone zero-width
-  analyzability_low_risk: 90            # Score >= this → LOW risk
-  analyzability_medium_risk: 65         # Score >= this → MEDIUM risk
-  min_dangerous_lines: 3                # Min confusable-char lines for HOMOGLYPH_ATTACK
-  min_confidence_pct: 80                # Min confidence % for FILE_MAGIC_MISMATCH
-  exception_handler_context_lines: 30   # Context lines around exception handlers
-  short_match_max_chars: 2              # Max chars for "short match" in unicode steg
-  cyrillic_cjk_min_chars: 5             # Min Cyrillic/CJK chars to suppress steg FP
-  homoglyph_filter_math_context: true   # Suppress scientific math formula contexts
+  zerowidth_threshold_with_decode: 20 # Flag steganography earlier
+  zerowidth_threshold_alone: 100 # Lower bar for standalone zero-width
+  analyzability_low_risk: 90 # Score >= this → LOW risk
+  analyzability_medium_risk: 40 # Score >= this → MEDIUM risk
+  min_dangerous_lines: 3 # Min confusable-char lines for HOMOGLYPH_ATTACK
+  min_confidence_pct: 80 # Min confidence % for FILE_MAGIC_MISMATCH
+  exception_handler_context_lines: 30 # Context lines around exception handlers
+  short_match_max_chars: 2 # Max chars for "short match" in unicode steg
+  cyrillic_cjk_min_chars: 5 # Min Cyrillic/CJK chars to suppress steg FP
+  homoglyph_filter_math_context: true # Suppress scientific math formula contexts
   homoglyph_math_aliases:
     - "COMMON"
     - "GREEK"
-  max_regex_pattern_length: 500         # Stricter regex length limit (ReDoS protection)
+  max_regex_pattern_length: 500 # Stricter regex length limit (ReDoS protection)
 
 # ---------------------------------------------------------------------------
 # Sensitive files – expanded patterns
 # ---------------------------------------------------------------------------
 sensitive_files:
   patterns:
-    - '/etc/(?:passwd|shadow|hosts|sudoers)'
+    - "/etc/(?:passwd|shadow|hosts|sudoers)"
     - '~?/\.(?:ssh|aws|gnupg|config|env|kube)'
     - '\.(?:env|pem|key|crt|p12|pfx|jks|keystore)'
-    - '(?:credentials|secrets?|tokens?|password|private)'
+    - "(?:credentials|secrets?|tokens?|password|private)"
     - '\$(?:HOME|USER|SSH_AUTH_SOCK|AWS_|KUBECONFIG)'
 
 # ---------------------------------------------------------------------------
@@ -456,12 +456,12 @@ analyzers:
 # The meta analyzer multiplies these limits by meta_budget_multiplier
 # (default 3×) because it needs more context for cross-correlation.
 llm_analysis:
-  max_instruction_body_chars: 50000    # covers marketing-psychology (21k), rag-patterns (19k), js-docs-fact-check (17k)
-  max_code_file_chars: 30000           # catalog max real code file: 15.5k (prompt-input-cursor.tsx); 1.93x headroom
-  max_referenced_file_chars: 48000     # covers torch-export guide (27k), node_mcp_server.md (28k); 1.7x headroom
-  max_total_prompt_chars: 400000       # gpt-5.2 (400k tokens ~1.6M chars); ~100k tokens = 25% of context window
-  max_output_tokens: 8192              # Max tokens for LLM responses
-  meta_budget_multiplier: 3.0          # Meta analyzer multiplier (3× above)
+  max_instruction_body_chars: 50000 # covers marketing-psychology (21k), rag-patterns (19k), js-docs-fact-check (17k)
+  max_code_file_chars: 30000 # catalog max real code file: 15.5k (prompt-input-cursor.tsx); 1.93x headroom
+  max_referenced_file_chars: 48000 # covers torch-export guide (27k), node_mcp_server.md (28k); 1.7x headroom
+  max_total_prompt_chars: 400000 # gpt-5.2 (400k tokens ~1.6M chars); ~100k tokens = 25% of context window
+  max_output_tokens: 8192 # Max tokens for LLM responses
+  meta_budget_multiplier: 3.0 # Meta analyzer multiplier (3× above)
 
 # ---------------------------------------------------------------------------
 # Finding output – strict still dedupes duplicate issue records
