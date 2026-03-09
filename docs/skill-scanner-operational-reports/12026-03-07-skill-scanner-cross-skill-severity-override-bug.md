@@ -3,7 +3,7 @@
 **Upstream:** [cisco-ai-defense/skill-scanner](https://github.com/cisco-ai-defense/skill-scanner)
 **Version:** 2.0.1 (commit [`67a29d9`](https://github.com/cisco-ai-defense/skill-scanner/commit/67a29d9e1a54cef87d0dc77a889ec13ac1357f23))
 **Date:** 12026-03-07
-**Status:** Upstream fix submitted — PR open
+**Status:** Fixed upstream — merged in [2.0.2](https://github.com/cisco-ai-defense/skill-scanner/releases/tag/2.0.2)
 **Upstream PR:** [cisco-ai-defense/skill-scanner#55](https://github.com/cisco-ai-defense/skill-scanner/pull/55) — `fix: apply policy filters to cross-skill findings`
 
 ---
@@ -190,3 +190,11 @@ def test_disabled_rules_applied_to_cross_skill_findings(tmp_path):
 - **SARIF:** GitHub Code Scanning annotations show incorrect severity for cross-skill findings.
 - **Policy file:** [`skill-scanner-policy.yaml`](../../skill-scanner-policy.yaml) lines 508-510 — the override is correctly defined but has no effect.
 - **Other overrides:** `BINARY_FILE_DETECTED`, `HIDDEN_DATA_FILE`, and `PYCACHE_FILES_DETECTED` overrides work correctly because they are individual-skill findings processed through `_scan_single_skill()`.
+
+## Resolution
+
+PR [#55](https://github.com/cisco-ai-defense/skill-scanner/pull/55) was reviewed, approved, and merged by [@vineethsai7](https://github.com/vineethsai7) on 12026-03-09 (merge commit [`0110b88`](https://github.com/cisco-ai-defense/skill-scanner/commit/0110b8839d78a8ee64d36ca2c9837e57e5da6f86)). The fix is included in [skill-scanner 2.0.2](https://github.com/cisco-ai-defense/skill-scanner/releases/tag/2.0.2).
+
+- **CI:** Updating `skill-scanner` to `>=2.0.2` resolves the `--fail-on-severity high` false positives caused by un-overridden cross-skill findings.
+- **SARIF:** Cross-skill finding annotations in GitHub Code Scanning now reflect policy-overridden severity levels.
+- **Policy file:** The `severity_overrides` entry for `CROSS_SKILL_DATA_RELAY` in [`skill-scanner-policy.yaml`](../../skill-scanner-policy.yaml) now takes effect as intended.

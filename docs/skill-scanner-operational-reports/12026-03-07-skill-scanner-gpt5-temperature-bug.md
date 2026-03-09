@@ -3,7 +3,7 @@
 **Upstream:** [cisco-ai-defense/skill-scanner](https://github.com/cisco-ai-defense/skill-scanner)
 **Version:** 2.0.1 (commit [`67a29d9`](https://github.com/cisco-ai-defense/skill-scanner/commit/67a29d9e1a54cef87d0dc77a889ec13ac1357f23))
 **Date:** 12026-03-07
-**Status:** Upstream fix submitted — PR open
+**Status:** Fixed upstream — merged in [2.0.2](https://github.com/cisco-ai-defense/skill-scanner/releases/tag/2.0.2)
 **Upstream PR:** [cisco-ai-defense/skill-scanner#56](https://github.com/cisco-ai-defense/skill-scanner/pull/56) — `feat: add GPT-5 model support via drop_params=True`
 
 ---
@@ -194,3 +194,11 @@ async def test_alignment_client_drop_params(self):
 - **CI:** The workflow sets `SKILL_SCANNER_LLM_MODEL: gpt-5.4-2026-03-05` ([`skill-scanner.yml#L100`](../../.github/workflows/skill-scanner.yml#L100)). Every skill triggers the error — the LLM analyzer and meta-analyzer produce zero findings across the entire scan.
 - **Security coverage:** Without LLM analysis, the scanner operates with static + behavioral analysis only. Semantic threat detection (the strongest analyzer for detecting prompt injection, social engineering, and novel attack patterns) is completely disabled.
 - **Silent degradation:** The scanner logs the error but continues with `continue-on-error: true`. The scan appears to succeed but with significantly reduced coverage. No explicit signal in the workflow output indicates that the most important analyzer was non-functional.
+
+## Resolution
+
+PR [#56](https://github.com/cisco-ai-defense/skill-scanner/pull/56) was reviewed, approved, and merged by [@vineethsai7](https://github.com/vineethsai7) on 12026-03-09 (merge commit [`1116d5f`](https://github.com/cisco-ai-defense/skill-scanner/commit/1116d5f4642ebe5af64656db25ee5c0143ab8c08)). The fix is included in [skill-scanner 2.0.2](https://github.com/cisco-ai-defense/skill-scanner/releases/tag/2.0.2).
+
+- **CI:** Updating `skill-scanner` to `>=2.0.2` restores full LLM-based analysis (semantic threat detection, meta-analysis) for GPT-5 model configurations.
+- **Security coverage:** The LLM analyzer and meta-analyzer now produce findings as expected — the scanner's strongest detection engines are no longer silently disabled.
+- **Silent degradation:** No longer an issue — `drop_params=True` prevents `UnsupportedParamsError` from suppressing analysis without visible signal.
