@@ -138,10 +138,13 @@ jobs:
 
           # Merge individual SARIF files into one
           if ls /tmp/catalog-*.sarif 1>/dev/null 2>&1; then
-            jq -s '{
-              "$schema": .[0]["$schema"],
-              version: .[0].version,
-              runs: [.[].runs[]]
+            jq -s '. as $all | $all[0].runs[0] as $base | {
+              "$schema": $all[0]["$schema"],
+              version: $all[0].version,
+              runs: [$base + {
+                tool: ($base.tool | .driver.rules = ([$all[].runs[0].tool.driver.rules[]?] | unique_by(.id))),
+                results: [$all[].runs[0].results[]?]
+              }]
             }' /tmp/catalog-*.sarif > catalog-results.sarif
           fi
 
@@ -202,10 +205,13 @@ jobs:
 
           # Merge individual SARIF files into one
           if ls /tmp/dev-*.sarif 1>/dev/null 2>&1; then
-            jq -s '{
-              "$schema": .[0]["$schema"],
-              version: .[0].version,
-              runs: [.[].runs[]]
+            jq -s '. as $all | $all[0].runs[0] as $base | {
+              "$schema": $all[0]["$schema"],
+              version: $all[0].version,
+              runs: [$base + {
+                tool: ($base.tool | .driver.rules = ([$all[].runs[0].tool.driver.rules[]?] | unique_by(.id))),
+                results: [$all[].runs[0].results[]?]
+              }]
             }' /tmp/dev-*.sarif > dev-results.sarif
           fi
 
