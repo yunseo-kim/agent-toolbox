@@ -1,6 +1,6 @@
 {
   "name": "agent-toolbox",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Cross-tool registry for agent skills, MCP servers, and hooks with provenance tracking and automated security vetting.",
   "keywords": [
     "opencode",
