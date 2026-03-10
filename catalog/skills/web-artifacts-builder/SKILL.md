@@ -6,13 +6,15 @@ compatibility: "Requires Node.js 18+, pnpm, and network access to fetch npm pack
 allowed-tools:
   - Bash
   - Read
+  - Edit
+  - Write
 metadata:
   domain: development
   subdomain: frontend
   tags: "react, tailwind, shadcn, artifacts, html-bundling"
   frameworks: "react, tailwind, shadcn-ui"
   author: "Yunseo Kim <dev@yunseo.kim>"
-  lastUpdated: "12026-03-05"
+  lastUpdated: "12026-03-11"
   provenance: adapted
 ---
 

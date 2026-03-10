@@ -2,6 +2,7 @@
 name: analytics-tracking
 description: "Set up, improve, or audit analytics tracking with GA4, GTM, event naming conventions, and conversion measurement"
 license: Sustainable Use License 1.0
+compatibility: "Bundled CLI references (references/tools/clis/) require Node.js 18+ and network access to make authenticated requests to external analytics APIs (GA4, Mixpanel, Amplitude, Segment). Execution requires explicit user approval."
 allowed-tools:
   - Read
   - Bash
@@ -10,7 +11,7 @@ metadata:
   subdomain: sales-marketing
   tags: "analytics, ga4, gtm, event-tracking, measurement"
   author: "Yunseo Kim <dev@yunseo.kim>"
-  lastUpdated: "12026-03-06"
+  lastUpdated: "12026-03-11"
   provenance: adapted
 ---
 # Analytics Tracking
