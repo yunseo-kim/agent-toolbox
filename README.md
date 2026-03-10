@@ -60,13 +60,13 @@ agent-toolbox provides:
 - **110+ curated agent skills** across multiple domains
 - **cross-tool compatibility** for major AI coding assistants
 - **automated security scanning**
-- **provenance tracking for upstream sources**
+- **provenance tracking** for upstream sources
 - **flexible installation filters**
 - **tool-specific artifact generation**
 
 Think of it as:
 
-> **Homebrew + Snyk for AI agent skills**
+> **Homebrew + Sigstore + npm audit for AI agent skills**
 
 ## Use Cases
 
@@ -106,9 +106,11 @@ bunx agent-toolbox install --target gemini --tag yaml
 bunx agent-toolbox install --target gemini --domain devops --dry-run
 ```
 
+> [!TIP]
 > **npm users:** Replace `bunx` with `npx`.
 
-All filters compose with AND logic. Default (no filters) installs everything.
+> [!NOTE]
+> All filters compose with AND logic. Default (no filters) installs everything.
 
 ## Browse the Catalog
 
@@ -193,23 +195,25 @@ Monthly full-scan reports are archived in [docs/security-reports/](docs/security
 
 For full details, see [SECURITY.md](SECURITY.md).
 
-To report vulnerabilities:
-
-- [GitHub Security Advisories](https://github.com/yunseo-kim/agent-toolbox/security/advisories/new)
-- email [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim).
+> [!IMPORTANT]
+> To report vulnerabilities:
+>
+> - [GitHub Security Advisories](https://github.com/yunseo-kim/agent-toolbox/security/advisories/new)
+> - email [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim).
 
 ## Support
 
-If you find **agent-toolbox** useful, consider supporting the project.
-
-Maintaining agent-toolbox requires ongoing work including catalog review, security analysis, and cross-tool compatibility maintenance.
-
-Parts of the security pipeline currently rely on personally funded infrastructure, including:
-
-- **OpenAI API** usage for LLM-based security analysis
-- Rate-limited **VirusTotal public API** for malware detection
-
-Support helps sustain these security capabilities and expand the scanning infrastructure.
+> [!NOTE]
+> If you find **agent-toolbox** useful, consider supporting the project.
+>
+> Maintaining agent-toolbox requires ongoing work including catalog review, security analysis, and cross-tool compatibility maintenance.
+>
+> Parts of the security pipeline currently rely on personally funded infrastructure, including:
+>
+> - **OpenAI API** usage for LLM-based security analysis
+> - Rate-limited **VirusTotal public API** for malware detection
+>
+> Support helps sustain these security capabilities and expand the scanning infrastructure.
 
 ### Individual Support
 
@@ -221,8 +225,7 @@ Support helps sustain these security capabilities and expand the scanning infras
 
 ### Corporate Sponsorship
 
-Organizations that rely on AI coding assistants such as  
-Claude Code, Codex, Cursor, or Gemini CLI are encouraged to sponsor.
+Organizations building or relying on AI coding assistants such as Claude Code, Codex, Cursor, or Gemini CLI may consider sponsoring the project.
 
 Corporate sponsorship helps sustain:
 
@@ -231,7 +234,8 @@ Corporate sponsorship helps sustain:
 - cross-tool compatibility maintenance
 - long-term ecosystem development
 
-**_Corporate sponsors may be listed in the README._**
+> [!TIP]
+> Corporate sponsors may be listed in the README.
 
 ## Sponsors
 
@@ -239,7 +243,7 @@ Corporate sponsorship helps sustain:
 
 ## Contributing
 
-Please read [`catalog/README.md`](catalog/README.md) for the skill taxonomy and listing conventions. Skills are defined as SKILL.md files with frontmatter metadataxs.
+Please read [`catalog/README.md`](catalog/README.md) for the skill taxonomy and listing conventions. Skills are defined as SKILL.md files with frontmatter metadata.
 
 ### Suggest a Skill, Hook, or MCP
 
@@ -257,4 +261,27 @@ A few guidelines:
 
 ## License
 
-[Sustainable Use License 1.0](LICENSE.md)
+**agent-toolbox** is released under the [Sustainable Use License 1.0](LICENSE.md).
+
+> [!NOTE]
+> The project is free to use for individuals, research, and open-source development. The Sustainable Use License is designed to enable broad community use while supporting the long-term sustainability of the project and its maintenance.
+
+### Commercial Licensing
+
+**agent-toolbox** aims to serve as secure infrastructure for the emerging AI agent skill ecosystem.
+
+Organizations integrating or distributing **agent-toolbox** as part of a commercial AI product or hosted platform may require a **commercial license**.
+
+Examples include:
+
+- bundling agent-toolbox within an AI coding assistant
+- integrating the catalog into a proprietary developer tool
+- operating a hosted service built on agent-toolbox infrastructure
+
+Commercial licenses provide:
+
+- rights for commercial distribution
+- proprietary product integration
+- optional ecosystem partnership recognition
+
+If your organization is interested in integrating **agent-toolbox** into a commercial product or platform, please reach out to **contact@yunseo.kim**.
