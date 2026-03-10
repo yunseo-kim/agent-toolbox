@@ -243,21 +243,7 @@ Corporate sponsorship helps sustain:
 
 ## Contributing
 
-Please read [`catalog/README.md`](catalog/README.md) for the skill taxonomy and listing conventions. Skills are defined as SKILL.md files with frontmatter metadata.
-
-### Suggest a Skill, Hook, or MCP
-
-[Open a GitHub issue](https://github.com/yunseo-kim/agent-toolbox/issues/new) with:
-
-- upstream project link
-- short description
-- rationale for inclusion
-
-A few guidelines:
-
-- **Quality over quantity.** Whether you wrote it yourself or discovered it elsewhere, every suggestion should be something a third party would independently recognize as high-quality and genuinely useful.
-- **Self-authored work is welcome**, but held to the same bar — community traction, solid documentation, and a clear use case go a long way.
-- **Final decisions rest with the maintainers.** I review every suggestion for quality, security, and catalog fit before inclusion.
+Contributions are welcome. Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines on setting up a development environment, submitting changes, and adding catalog skills.
 
 ## License
 
