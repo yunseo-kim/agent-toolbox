@@ -1,11 +1,6 @@
 name: Skill Security Scan
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "catalog/skills/**"
-      - ".agents/skills/**"
   pull_request:
     paths:
       - "catalog/skills/**"
@@ -34,8 +29,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Full history for push/PR incremental diff; shallow clone for full scans
-          fetch-depth: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && '0' || 1 }}
+          # Full history for PR incremental diff; shallow clone for full scans
+          fetch-depth: ${{ github.event_name == 'pull_request' && '0' || 1 }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -51,16 +46,12 @@ jobs:
 
       - name: Detect changed skills
         id: changes
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request'
         run: |
           # Determine base SHA for diff
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            BASE_SHA="${{ github.event.pull_request.base.sha }}"
-          else
-            BASE_SHA="${{ github.event.before }}"
-          fi
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
 
-          # Handle edge cases: force push, initial push, invalid SHA
+          # Handle edge cases: invalid or missing base SHA
           if [ -z "$BASE_SHA" ] || \
              [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] || \
              ! git cat-file -t "$BASE_SHA" >/dev/null 2>&1; then
@@ -102,10 +93,12 @@ jobs:
         run: |
           VERBOSE_FLAGS="--verbose"
 
-          ARCHIVE_FLAGS=""
+          # Always output detailed markdown report to stdout (visible in Actions log)
+          REPORT_FLAGS="--format markdown --detailed"
           if [ "$SCAN_ARCHIVE" = "true" ]; then
             REPORT_DATE="$(printf '%05d' $(($(date +%Y) + 10000)))-$(date +%m)"
-            ARCHIVE_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-catalog.md --detailed"
+            # When archiving, redirect markdown to file instead of stdout
+            REPORT_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-catalog.md --detailed"
           fi
 
           COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
@@ -115,7 +108,7 @@ jobs:
           if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$EVENT_NAME" = "schedule" ] || [ "$CHANGED_SKILLS" = "all" ]; then
             echo "Running full catalog scan..."
             skill-scanner scan-all catalog/skills \
-              $VERBOSE_FLAGS $ARCHIVE_FLAGS $COMMON_FLAGS \
+              $VERBOSE_FLAGS $REPORT_FLAGS $COMMON_FLAGS \
               --recursive --check-overlap
             exit $?
           fi
@@ -128,7 +121,9 @@ jobs:
             if [ -d "$skill_dir" ]; then
               echo "::group::Scanning $skill_dir"
               skill-scanner scan "$skill_dir" \
-                --format sarif --output "/tmp/catalog-${skill_name}.sarif" \
+                --format markdown --format sarif \
+                --output-sarif "/tmp/catalog-${skill_name}.sarif" \
+                --detailed \
                 $VERBOSE_FLAGS $COMMON_FLAGS || failed=1
               echo "::endgroup::"
             else
@@ -169,10 +164,12 @@ jobs:
         run: |
           VERBOSE_FLAGS="--verbose"
 
-          ARCHIVE_FLAGS=""
+          # Always output detailed markdown report to stdout (visible in Actions log)
+          REPORT_FLAGS="--format markdown --detailed"
           if [ "$SCAN_ARCHIVE" = "true" ]; then
             REPORT_DATE="$(printf '%05d' $(($(date +%Y) + 10000)))-$(date +%m)"
-            ARCHIVE_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-dev.md --detailed"
+            # When archiving, redirect markdown to file instead of stdout
+            REPORT_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-dev.md --detailed"
           fi
 
           COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
@@ -182,7 +179,7 @@ jobs:
           if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$EVENT_NAME" = "schedule" ] || [ "$CHANGED_SKILLS" = "all" ]; then
             echo "Running full dev tooling scan..."
             skill-scanner scan-all .agents/skills \
-              $VERBOSE_FLAGS $ARCHIVE_FLAGS $COMMON_FLAGS \
+              $VERBOSE_FLAGS $REPORT_FLAGS $COMMON_FLAGS \
               --recursive --check-overlap
             exit $?
           fi
@@ -195,7 +192,9 @@ jobs:
             if [ -d "$skill_dir" ]; then
               echo "::group::Scanning $skill_dir"
               skill-scanner scan "$skill_dir" \
-                --format sarif --output "/tmp/dev-${skill_name}.sarif" \
+                --format markdown --format sarif \
+                --output-sarif "/tmp/dev-${skill_name}.sarif" \
+                --detailed \
                 $VERBOSE_FLAGS $COMMON_FLAGS || failed=1
               echo "::endgroup::"
             else
