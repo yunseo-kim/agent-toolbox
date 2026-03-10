@@ -55,6 +55,11 @@ with cross-tool compatibility and automated provenance tracking.
 
 ## What You Get
 
+You're browsing plugin marketplaces. Saving "awesome" lists from the community.  
+You see impressive demos everywhere — but don't want to risk navigating a minefield of prompt injections, credential theft, and malware to boost your productivity.
+
+**agent-toolbox takes care of the hard part. Just remember this: `bunx agent-toolbox install`. Done.**
+
 agent-toolbox provides:
 
 - **110+ curated agent skills** across multiple domains
@@ -62,7 +67,6 @@ agent-toolbox provides:
 - **automated security scanning**
 - **provenance tracking** for upstream sources
 - **flexible installation filters**
-- **tool-specific artifact generation**
 
 Think of it as:
 
