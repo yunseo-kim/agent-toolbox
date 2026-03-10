@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-03-09T20:40:38.016Z",
+  "generatedAt": "2026-03-10T21:29:23.993Z",
   "skills": [
     {
       "name": "ab-test-setup",
@@ -78,7 +78,7 @@
       "subdomain": "sales-marketing",
       "provenance": "adapted",
       "author": "Yunseo Kim <dev@yunseo.kim>",
-      "lastUpdated": "12026-03-06",
+      "lastUpdated": "12026-03-11",
       "license": "Sustainable Use License 1.0"
     },
     {
@@ -1118,7 +1118,7 @@
       "subdomain": "frontend",
       "provenance": "adapted",
       "author": "Yunseo Kim <dev@yunseo.kim>",
-      "lastUpdated": "12026-03-05",
+      "lastUpdated": "12026-03-11",
       "license": "SUL-1.0"
     },
     {
