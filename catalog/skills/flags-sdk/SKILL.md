@@ -19,22 +19,21 @@ metadata:
   tags: "feature-flags, a-b-testing, experimentation, flags-explorer, precompute, vercel"
   frameworks: "flags-sdk, nextjs, sveltekit"
   author: "Hayden Bleasel <hello@haydenbleasel.com>"
-  lastUpdated: "12026-02-24"
+  lastUpdated: "12026-03-09"
   provenance: ported
 ---
-
 # Flags SDK
 
-The Flags SDK (`flags` npm package) is a feature flags toolkit for Next.js and SvelteKit. It turns each feature flag into a callable function, works with any flag provider via adapters, and keeps pages static using the precompute pattern.
+The Flags SDK (`flags` npm package) is a feature flags toolkit for Next.js and SvelteKit. It turns each feature flag into a callable function, works with any flag provider via adapters, and keeps pages static using the precompute pattern. Vercel Flags is the first-party provider, letting you manage flags from the Vercel dashboard or the `vercel flags` CLI.
 
 - Docs: https://flags-sdk.dev
 - Repo: https://github.com/vercel/flags
 
-## Core Concepts
+## Core concepts
 
-### Flags as Code
+### Flags as code
 
-Each flag is declared as a function — no string keys at call sites:
+Each flag is declared as a function. No string keys at call sites:
 
 ```ts
 import { flag } from 'flags/next';
@@ -44,32 +43,132 @@ export const exampleFlag = flag({
   decide() { return false; },
 });
 
-// Usage: just call the function
 const value = await exampleFlag();
 ```
 
-### Server-Side Evaluation
+### Server-side evaluation
 
-Evaluate flags server-side to avoid layout shift, keep pages static, and maintain confidentiality. Use routing middleware + precompute to serve static variants from CDN.
+Flags evaluate server-side to avoid layout shift, keep pages static, and maintain confidentiality. Combine routing middleware with the precompute pattern to serve static variants from CDN.
 
-### Adapter Pattern
+### Adapter pattern
 
-Adapters replace `decide` and `origin` on a flag declaration, enabling provider-agnostic flags:
+Adapters replace `decide` and `origin` on a flag declaration, connecting your flags to a provider. Vercel Flags (`@flags-sdk/vercel`) is the first-party adapter. Third-party adapters are available for Statsig, LaunchDarkly, PostHog, and others.
 
 ```ts
 import { flag } from 'flags/next';
-import { statsigAdapter } from '@flags-sdk/statsig';
+import { vercelAdapter } from '@flags-sdk/vercel';
 
-export const myGate = flag({
-  key: 'my_gate',
-  adapter: statsigAdapter.featureGate((gate) => gate.value),
-  identify,
+export const exampleFlag = flag({
+  key: 'example-flag',
+  adapter: vercelAdapter(),
 });
 ```
 
-## Declaring Flags
+## Vercel Flags
 
-### Basic Flag
+Vercel Flags is Vercel's feature flags platform. You create and manage flags from the Vercel dashboard or the `vercel flags` CLI, then connect them to your code with the `@flags-sdk/vercel` adapter. When you create a flag in Vercel, the `FLAGS` and `FLAGS_SECRET` environment variables are configured automatically.
+
+### Quickstart
+
+Install the adapter:
+
+```bash
+pnpm i flags @flags-sdk/vercel
+```
+
+Create a flag in the Vercel dashboard, then pull environment variables:
+
+```bash
+vercel env pull
+```
+
+You may need to run `vercel link` first if your project isn't linked to Vercel yet.
+
+Declare the flag in your code:
+
+```ts
+// flags.ts
+import { flag } from 'flags/next';
+import { vercelAdapter } from '@flags-sdk/vercel';
+
+export const exampleFlag = flag({
+  key: 'example-flag',
+  adapter: vercelAdapter(),
+});
+```
+
+`vercelAdapter()` reads the `FLAGS` environment variable automatically. Call the flag as a function to resolve its value:
+
+```tsx
+// app/page.tsx
+import { exampleFlag } from '../flags';
+
+export default async function Page() {
+  const showExample = await exampleFlag();
+  return <div>{showExample ? 'Feature enabled' : 'Feature disabled'}</div>;
+}
+```
+
+Toggle the flag in the Vercel dashboard for any environment (development, preview, production) and reload the page to see the change.
+
+### User targeting
+
+Target specific users or groups by providing an `identify` function. The returned entities are passed to Vercel Flags for rule evaluation:
+
+```ts
+import { dedupe, flag } from 'flags/next';
+import { vercelAdapter } from '@flags-sdk/vercel';
+
+type Entities = {
+  team?: { id: string };
+  user?: { id: string };
+};
+
+const identify = dedupe(async (): Promise<Entities> => ({
+  team: { id: 'team-123' },
+  user: { id: 'user-456' },
+}));
+
+export const exampleFlag = flag<boolean, Entities>({
+  key: 'example-flag',
+  identify,
+  adapter: vercelAdapter(),
+});
+```
+
+Configure which entity types are available for targeting in the Vercel Flags dashboard under your project's flags settings.
+
+### `vercel flags` CLI
+
+You can manage Vercel Flags from the terminal with `vercel flags`. The CLI supports creating, toggling, inspecting, archiving, and deleting flags, as well as managing SDK keys. It requires the [Vercel CLI](https://vercel.com/docs/cli) and a linked project (`vercel link`).
+
+Available subcommands: `list`, `add`, `inspect`, `enable`, `disable`, `archive`, `rm`, `sdk-keys`.
+
+For detailed examples and all subcommand options, see [references/providers.md](references/providers.md#vercel-flags-cli). For the full Vercel CLI reference (beyond flags), install the `vercel-cli` skill:
+
+```bash
+npx skills add https://github.com/vercel/vercel --skill vercel-cli
+```
+
+For advanced adapter configuration (custom SDK keys, singleton clients), see [references/providers.md](references/providers.md#vercel).
+
+## Declaring flags
+
+### With Vercel Flags (recommended)
+
+Use `vercelAdapter()` to connect your flag to Vercel Flags. The adapter handles evaluation, so you don't need a `decide` function:
+
+```ts
+import { flag } from 'flags/next';
+import { vercelAdapter } from '@flags-sdk/vercel';
+
+export const exampleFlag = flag({
+  key: 'example-flag',
+  adapter: vercelAdapter(),
+});
+```
+
+### Basic flag
 
 ```ts
 import { flag } from 'flags/next'; // or 'flags/sveltekit'
@@ -86,9 +185,9 @@ export const showBanner = flag<boolean>({
 });
 ```
 
-### Flag with Evaluation Context
+### Flag with evaluation context
 
-Use `identify` to establish who the request is for; `decide` receives the entities:
+Use `identify` to establish who the request is for. The returned entities are passed to `decide`:
 
 ```ts
 import { dedupe, flag } from 'flags/next';
@@ -115,19 +214,24 @@ export const dashboardFlag = flag<boolean, Entities>({
 });
 ```
 
-### Flag with Adapter
+### Flag with another adapter
+
+Adapters connect flags to third-party providers. Each adapter replaces `decide` and `origin`:
 
 ```ts
 import { flag } from 'flags/next';
-import { vercelAdapter } from '@flags-sdk/vercel';
+import { statsigAdapter } from '@flags-sdk/statsig';
 
-export const exampleFlag = flag({
-  key: 'example-flag',
-  adapter: vercelAdapter(),
+export const myGate = flag({
+  key: 'my_gate',
+  adapter: statsigAdapter.featureGate((gate) => gate.value),
+  identify,
 });
 ```
 
-### Key Parameters
+See [references/providers.md](references/providers.md) for all supported adapters.
+
+### Key parameters
 
 | Parameter      | Type                               | Description                                          |
 | -------------- | ---------------------------------- | ---------------------------------------------------- |
@@ -154,7 +258,7 @@ const identify = dedupe(({ cookies }) => {
 
 Note: `dedupe` is not available in Pages Router.
 
-## Flags Explorer Setup
+## Flags Explorer setup
 
 ### Next.js (App Router)
 
@@ -168,7 +272,7 @@ export const GET = createFlagsDiscoveryEndpoint(async () => {
 });
 ```
 
-### With External Provider Data
+### With external provider data
 
 ```ts
 import { getProviderData, createFlagsDiscoveryEndpoint } from 'flags/next';
@@ -208,7 +312,7 @@ node -e "console.log(crypto.randomBytes(32).toString('base64url'))"
 
 Store as `FLAGS_SECRET` env var. On Vercel: `vc env add FLAGS_SECRET` then `vc env pull`.
 
-## Precompute Pattern (Overview)
+## Precompute pattern
 
 Use precompute to keep pages static while using feature flags. Middleware evaluates flags and encodes results into the URL via rewrite. The page reads precomputed values instead of re-evaluating.
 
@@ -222,7 +326,7 @@ For full implementation details, see framework-specific references:
 - **Next.js**: See [references/nextjs.md](references/nextjs.md) — covers proxy middleware, precompute setup, ISR, generatePermutations, multiple groups
 - **SvelteKit**: See [references/sveltekit.md](references/sveltekit.md) — covers reroute hook, middleware, precompute setup, ISR, prerendering
 
-## Custom Adapters
+## Custom adapters
 
 Create an adapter factory returning an object with `origin` and `decide`:
 
@@ -244,7 +348,7 @@ export function createMyAdapter(/* options */) {
 }
 ```
 
-## Encryption Functions
+## Encryption functions
 
 For keeping flag data confidential in the browser (used by Flags Explorer):
 
@@ -269,7 +373,7 @@ async function ConfidentialFlags({ values }) {
 }
 ```
 
-## React Components
+## React components
 
 ```tsx
 import { FlagValues, FlagDefinitions } from 'flags/react';
