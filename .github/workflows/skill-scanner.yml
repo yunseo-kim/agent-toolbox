@@ -5,6 +5,11 @@ on:
     paths:
       - "catalog/skills/**"
       - ".agents/skills/**"
+  push:
+    branches: [main]
+    paths:
+      - "catalog/skills/**"
+      - ".agents/skills/**"
   schedule:
     # Monthly full scan on 1st at 06:00 UTC
     - cron: "0 6 1 * *"
@@ -20,6 +25,10 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.sha }}
+  cancel-in-progress: true
+
 jobs:
   scan:
     name: Skill Scanner
@@ -29,8 +38,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Full history for PR incremental diff; shallow clone for full scans
-          fetch-depth: ${{ github.event_name == 'pull_request' && '0' || 1 }}
+          # Full history for PR/push incremental diff; shallow clone for full scans
+          fetch-depth: ${{ (github.event_name == 'pull_request' || github.event_name == 'push') && '0' || 1 }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -46,10 +55,14 @@ jobs:
 
       - name: Detect changed skills
         id: changes
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
         run: |
           # Determine base SHA for diff
-          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          else
+            BASE_SHA="${{ github.event.before }}"
+          fi
 
           # Handle edge cases: invalid or missing base SHA
           if [ -z "$BASE_SHA" ] || \
@@ -101,8 +114,13 @@ jobs:
             REPORT_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-catalog.md --detailed"
           fi
 
-          COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
-            --use-trigger --use-virustotal --vt-upload-files --enable-meta --lenient --fail-on-severity high"
+          COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral \
+            --use-trigger --use-virustotal --vt-upload-files --lenient --fail-on-severity high"
+
+          # LLM and Meta analyzers: skip on push (squash-merged PRs already passed full scan)
+          if [ "$EVENT_NAME" != "push" ]; then
+            COMMON_FLAGS="$COMMON_FLAGS --use-llm --llm-provider openai --enable-meta"
+          fi
 
           # Full scan: manual dispatch, schedule, or edge-case fallback
           if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$EVENT_NAME" = "schedule" ] || [ "$CHANGED_SKILLS" = "all" ]; then
@@ -172,8 +190,13 @@ jobs:
             REPORT_FLAGS="--format markdown --output docs/security-reports/${REPORT_DATE}-dev.md --detailed"
           fi
 
-          COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral --use-llm --llm-provider openai \
-            --use-trigger --use-virustotal --vt-upload-files --enable-meta --lenient --fail-on-severity high"
+          COMMON_FLAGS="--policy skill-scanner-policy.yaml --use-behavioral \
+            --use-trigger --use-virustotal --vt-upload-files --lenient --fail-on-severity high"
+
+          # LLM and Meta analyzers: skip on push (squash-merged PRs already passed full scan)
+          if [ "$EVENT_NAME" != "push" ]; then
+            COMMON_FLAGS="$COMMON_FLAGS --use-llm --llm-provider openai --enable-meta"
+          fi
 
           # Full scan: manual dispatch, schedule, or edge-case fallback
           if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$EVENT_NAME" = "schedule" ] || [ "$CHANGED_SKILLS" = "all" ]; then
