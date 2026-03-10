@@ -12,19 +12,123 @@
 [![CodeQL](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/github-code-scanning/codeql)
 [![Skill Security Scan](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/skill-scanner.yml/badge.svg)](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/skill-scanner.yml)
 
-A trusted, curated cross-tool registry for agent components, with end-to-end provenance and automated security vetting of skills, MCP servers, and hooks — supporting **Claude Code, OpenCode, Codex, Antigravity, Gemini CLI, Cursor, and Windsurf**.
+Secure infrastructure for the **AI agent skill ecosystem**.
+
+A curated, security-vetted registry of agent skills that works across  
+**Claude Code, Codex, Gemini CLI, Cursor, OpenCode, and more.**
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-yunseo--kim-EA4AAA?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/yunseo-kim)
 
 <a href="https://www.buymeacoffee.com/yunseokim" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 </div>
 
-## Motivation
+## What is agent-toolbox?
 
-AI coding assistants are powerful, but their skills are fragmented across tools and ecosystems. Standards like [Agent Skills](https://agentskills.io) define a common skill format, but don't guarantee that the content itself is tool-neutral. Each tool still integrates skills, hooks, and MCP servers in subtly different ways — so a skill written for Claude Code may not work well in Gemini CLI, and a Cursor plugin can't be installed in Codex.
+AI coding assistants increasingly rely on **agent skills, plugins, hooks, and MCP servers**.
 
-Fragmentation is only half the problem. Agent skills & MCPs are a new software supply chain — and they're already under attack. Snyk's ["Exploring the Emerging Threats of the Agent Skill Ecosystem" technical report](https://github.com/snyk/agent-scan/blob/main/.github/reports/skills-report.pdf) found that **13.4% of ~4,000 scanned skills contained critical security issues** — prompt injection, data exfiltration, and embedded malware — with 76 confirmed malicious payloads. [1Password](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface) and [Cisco](https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare) have independently documented live attacks where the top-downloaded skill on a major registry turned out to be an infostealer, and coordinated campaigns weaponized skills for silent credential theft. In an ecosystem where a SKILL.md file is effectively an installer, distributing unvetted skills means distributing unvetted code.
+But the ecosystem has two major problems:
 
-**agent-toolbox** solves both problems by maintaining a **single neutral catalog** of skills with [end-to-end provenance tracking](catalog/README.md) and [automated security vetting](#security), then generating tool-specific artifacts for each target. Write once, install everywhere — safely.
+1. **Fragmentation** — standards like [Agent Skills](https://agentskills.io) define a common format, but don't guarantee that the content itself is tool-neutral
+2. **Security risks** — agent skills form a new software supply chain
+
+Recent research highlights the scale of the issue:
+
+- [Snyk found **13.4% of ~4,000 scanned agent skills contained critical security issues**](<(https://github.com/snyk/agent-scan/blob/main/.github/reports/skills-report.pdf)>)
+  - documented attacks include prompt injection, credential theft, and malware distribution
+- [1Password **discovered the top-downloaded skill on ClawHub was a multi-stage infostealer**](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface) — the "Twitter" skill embedded a fake "required dependency" that led users through a 5-stage delivery chain ending in a macOS binary with Gatekeeper bypass; [VirusTotal confirmed](https://www.virustotal.com/gui/file/30f97ae88f8861eeadeb54854d47078724e52e2ef36dd847180663b7f5763168) the binary as infostealing malware targeting browser sessions, credentials, developer tokens, and SSH keys
+  - **staged delivery**: fake prerequisite → staging page → obfuscated command → second-stage script → binary execution with quarantine removal
+  - **coordinated campaign**: [subsequent reporting](https://cyberinsider.com/341-openclaw-skills-distribute-macos-malware-via-clickfix-instructions/) revealed hundreds of skills distributing macOS malware via ClickFix-style instructions — not an isolated upload
+- [Cisco's AI Threat Research team **proved the #1 most-downloaded skill on OpenClaw's registry was functional malware**](https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare) — their [Skill Scanner](https://github.com/cisco-ai-defense/skill-scanner) found **9 security findings (2 critical, 5 high severity)** in the "What Would Elon Do?" skill:
+  - **silent data exfiltration**: the skill executed `curl` commands sending user data to an attacker-controlled server without any user notification
+  - **prompt injection**: forced the AI assistant to bypass its own safety guidelines and execute commands without user consent
+  - **command injection**: embedded bash commands executed through the skill's workflow
+  - **tool poisoning**: malicious payloads concealed within the skill file itself
+  - the malicious skill's popularity had been artificially inflated to rank #1 — demonstrating that **bad actors can manufacture trust in unvetted registries**
+
+In many ecosystems, a `SKILL.md` file is effectively **an installer for arbitrary logic**.
+
+**agent-toolbox treats agent skills as a new software supply chain.**
+
+It provides a **curated, security-scanned catalog of agent components**,  
+with cross-tool compatibility and automated provenance tracking.
+
+## What You Get
+
+agent-toolbox provides:
+
+- **110+ curated agent skills** across multiple domains
+- **cross-tool compatibility** for major AI coding assistants
+- **automated security scanning**
+- **provenance tracking for upstream sources**
+- **flexible installation filters**
+- **tool-specific artifact generation**
+
+Think of it as:
+
+> **Homebrew + Snyk for AI agent skills**
+
+## Use Cases
+
+agent-toolbox can be used to:
+
+- install curated agent skills for **Claude Code, Codex, Cursor, or Gemini CLI**
+- share a **standardized skill catalog across teams**
+- **audit third-party skills** before installing them
+- maintain **secure agent tooling infrastructure**
+- experiment with **cross-tool agent ecosystems**
+
+## Getting Started
+
+### Install Skills
+
+```bash
+# Install all skills for a target
+bunx agent-toolbox install --target claude-code
+
+# Filter by domain
+bunx agent-toolbox install --target gemini --domain devops
+
+# Filter by subdomain
+bunx agent-toolbox install --target gemini --domain devops --subdomain ci-cd
+
+# Use a curated preset
+bunx agent-toolbox install --target cursor --preset devops-essentials
+
+# Install specific skills
+bunx agent-toolbox install --target claude-code --skill git-master --skill docs-writer
+
+# Filter by framework or tag
+bunx agent-toolbox install --target codex --framework nextjs
+bunx agent-toolbox install --target gemini --tag yaml
+
+# Preview what would be installed
+bunx agent-toolbox install --target gemini --domain devops --dry-run
+```
+
+> **npm users:** Replace `bunx` with `npx`.
+
+All filters compose with AND logic. Default (no filters) installs everything.
+
+## Browse the Catalog
+
+The catalog currently contains **110+ skills across 10 domains**.
+
+Browse by domain:  
+**[View the full catalog →](catalog/README.md)**
+
+Skills are curated from leading open-source projects and adapted  
+for **cross-tool compatibility**.
+
+## Supported Targets
+
+| Target          | Artifact Format                  | Status      |
+| --------------- | -------------------------------- | ----------- |
+| **Claude Code** | `.claude/` skills + plugins      | Implemented |
+| **OpenCode**    | `skills/` with SKILL.md          | Implemented |
+| **Gemini CLI**  | `gemini-extension.json` + skills | Implemented |
+| **Cursor**      | `.cursor/` compatible artifacts  | Implemented |
+| **Codex**       | Agent skill directories          | Implemented |
 
 ## Architecture
 
@@ -65,91 +169,85 @@ agent-toolbox/
     └── matrix/                       # Cross-target verification
 ```
 
-### How It Works
+### Workflow
 
-1. **Catalog** — Skills live in `catalog/skills/` as tool-neutral SKILL.md files with frontmatter metadata (domain, tags, frameworks, provenance).
-2. **Generators** — Target-specific generators in `src/generators/` transform catalog content into each tool's native format.
-3. **Install** — The install engine applies filters (domain, subdomain, framework, tag, preset, skill name) and deploys to the target environment.
-
-## Browse the Catalog
-
-**[View all skills by domain →](catalog/README.md)**
-
-The catalog currently contains **110+ skills** across 10 domains, curated from leading open-source projects and adapted for cross-tool compatibility.
-
-## Getting Started
-
-### Install Skills
-
-```bash
-# Install all skills for a target
-bunx agent-toolbox install --target claude-code
-
-# Filter by domain
-bunx agent-toolbox install --target gemini --domain devops
-
-# Filter by subdomain
-bunx agent-toolbox install --target gemini --domain devops --subdomain ci-cd
-
-# Use a curated preset
-bunx agent-toolbox install --target cursor --preset devops-essentials
-
-# Install specific skills
-bunx agent-toolbox install --target claude-code --skill git-master --skill docs-writer
-
-# Filter by framework or tag
-bunx agent-toolbox install --target codex --framework nextjs
-bunx agent-toolbox install --target gemini --tag yaml
-
-# Preview what would be installed
-bunx agent-toolbox install --target gemini --domain devops --dry-run
-```
-
-> **npm users:** Replace `bunx` with `npx`.
-
-All filters compose with AND logic. Default (no filters) installs everything.
-
-### Build & Validate
-
-```bash
-bun run validate           # Validate catalog and schemas
-bun run build:index        # Rebuild catalog index from SKILL.md frontmatter
-bun run build:all          # Generate artifacts for all targets
-bun run typecheck          # TypeScript type checking
-bun test                   # Run all tests
-```
-
-## Supported Targets
-
-| Target          | Artifact Format                  | Status      |
-| --------------- | -------------------------------- | ----------- |
-| **Claude Code** | `.claude/` skills + plugins      | Implemented |
-| **OpenCode**    | `skills/` with SKILL.md          | Implemented |
-| **Gemini CLI**  | `gemini-extension.json` + skills | Implemented |
-| **Cursor**      | `.cursor/` compatible artifacts  | Implemented |
-| **Codex**       | Agent skill directories          | Implemented |
+1. **Catalog** — neutral SKILL.md definitions with frontmatter metadata (`domain`, `tags`, `frameworks`, `author`, `lastUpdated`, `provenance`).
+2. **Generators** — transform catalog into tool-specific artifacts
+3. **Install engine** — deploy skills with flexible filtering
 
 ## Security
 
-Every skill in the catalog is automatically scanned for security threats using [Cisco Skill Scanner](https://github.com/cisco-ai-defense/skill-scanner) with a [custom strict-based policy](docs/skill-scanner-policy.md). The scanner runs on every push and pull request that touches skill files, combining eight detection engines:
+Every skill in the catalog is automatically scanned using [**Cisco Skill Scanner**](https://github.com/cisco-ai-defense/skill-scanner) with a [custom strict-based policy](docs/skill-scanner-policy.md).
+
+The security pipeline combines multiple detection engines:
 
 - **Static analysis** — YAML + YARA pattern matching, bytecode verification, shell pipeline taint analysis
 - **Behavioral analysis** — AST-based dataflow tracking from sources to sinks across multiple files
-- **LLM semantic analysis** — OpenAI gpt-5.2 evaluates code intent against Cisco's AITech threat taxonomy
+- **LLM semantic analysis** — OpenAI gpt-5.4 evaluates code intent against Cisco's AITech threat taxonomy
 - **Meta-analysis** — Second-pass false positive filtering with cross-finding correlation
 - **VirusTotal** — Hash-based binary malware scanning
 
-Results are uploaded as SARIF to GitHub Code Scanning, so findings appear as inline PR annotations. A pre-commit hook provides the same scanning locally before every commit. Monthly full-scan reports are archived in [`docs/security-reports/`](docs/security-reports/). For full details, see [`SECURITY.md`](SECURITY.md).
+Security findings are published through **GitHub Code Scanning**.
 
-To report a security vulnerability, use [GitHub Security Advisories](https://github.com/yunseo-kim/agent-toolbox/security/advisories/new) or email [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim).
+Monthly full-scan reports are archived in [docs/security-reports/](docs/security-reports/).
+
+For full details, see [SECURITY.md](SECURITY.md).
+
+To report vulnerabilities:
+
+- [GitHub Security Advisories](https://github.com/yunseo-kim/agent-toolbox/security/advisories/new)
+- email [oss-security@yunseo.kim](mailto:oss-security@yunseo.kim).
+
+## Support
+
+If you find **agent-toolbox** useful, consider supporting the project.
+
+Maintaining agent-toolbox requires ongoing work including catalog review, security analysis, and cross-tool compatibility maintenance.
+
+Parts of the security pipeline currently rely on personally funded infrastructure, including:
+
+- **OpenAI API** usage for LLM-based security analysis
+- Rate-limited **VirusTotal public API** for malware detection
+
+Support helps sustain these security capabilities and expand the scanning infrastructure.
+
+### Individual Support
+
+**GitHub Sponsors:**  
+[![Sponsor](https://img.shields.io/badge/Sponsor-yunseo--kim-EA4AAA?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/yunseo-kim)
+
+**Buy Me a Coffee:**  
+<a href="https://www.buymeacoffee.com/yunseokim" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+### Corporate Sponsorship
+
+Organizations that rely on AI coding assistants such as  
+Claude Code, Codex, Cursor, or Gemini CLI are encouraged to sponsor.
+
+Corporate sponsorship helps sustain:
+
+- security scanning infrastructure
+- catalog curation and review
+- cross-tool compatibility maintenance
+- long-term ecosystem development
+
+**_Corporate sponsors may be listed in the README._**
+
+## Sponsors
+
+<!-- corporate sponsor logos will appear here -->
 
 ## Contributing
 
-See [`catalog/README.md`](catalog/README.md) for the skill taxonomy and listing conventions. Skills are authored as SKILL.md files with frontmatter metadata — no directory nesting required.
+Please read [`catalog/README.md`](catalog/README.md) for the skill taxonomy and listing conventions. Skills are defined as SKILL.md files with frontmatter metadataxs.
 
 ### Suggest a Skill, Hook, or MCP
 
-Want to see a specific upstream project, skill, hook, or MCP server added to the catalog? [Open an issue](https://github.com/yunseo-kim/agent-toolbox/issues/new) with a link and a brief description of why it would be a good fit.
+[Open a GitHub issue](https://github.com/yunseo-kim/agent-toolbox/issues/new) with:
+
+- upstream project link
+- short description
+- rationale for inclusion
 
 A few guidelines:
 
