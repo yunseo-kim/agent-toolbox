@@ -365,7 +365,7 @@ describe("resolveCatalogDir", () => {
                 : input instanceof URL
                   ? input.toString()
                   : input.url;
-            if (url.includes("raw.githubusercontent.com")) {
+            if (url.startsWith("https://raw.githubusercontent.com/")) {
               observedIfNoneMatch = new Headers(init?.headers).get(
                 "If-None-Match",
               );
@@ -424,14 +424,14 @@ describe("resolveCatalogDir", () => {
                 : input.url;
           requestedUrls.push(url);
 
-          if (url.includes("raw.githubusercontent.com")) {
+          if (url.startsWith("https://raw.githubusercontent.com/")) {
             return new Response("{}", {
               status: 200,
               headers: { etag: '"new-etag"' },
             });
           }
 
-          if (url.includes("api.github.com")) {
+          if (url.startsWith("https://api.github.com/")) {
             return new Response(commitShaA, {
               status: 200,
               headers: { etag: '"api-etag"' },
@@ -587,10 +587,10 @@ describe("resolveCatalogDir", () => {
               : input instanceof URL
                 ? input.toString()
                 : input.url;
-          if (url.includes("raw.githubusercontent.com")) {
+          if (url.startsWith("https://raw.githubusercontent.com/")) {
             throw new Error("raw endpoint failed");
           }
-          if (url.includes("api.github.com")) {
+          if (url.startsWith("https://api.github.com/")) {
             throw new Error("api endpoint failed");
           }
           throw new Error(`Unexpected fetch URL: ${url}`);
@@ -640,14 +640,14 @@ describe("resolveCatalogDir", () => {
                 ? input.toString()
                 : input.url;
 
-          if (url.includes("raw.githubusercontent.com")) {
+          if (url.startsWith("https://raw.githubusercontent.com/")) {
             return new Response("{}", {
               status: 200,
               headers: { etag: '"raw-etag"' },
             });
           }
 
-          if (url.includes("api.github.com")) {
+          if (url.startsWith("https://api.github.com/")) {
             apiCallCount += 1;
             if (apiCallCount === 1) {
               return new Response(commitShaB, { status: 200 });
