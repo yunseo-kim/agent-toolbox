@@ -1,6 +1,6 @@
 # CI/CD AND AUTOMATION
 
-GitHub Actions workflows for validation, testing, building, drift detection, security scanning, and automated upstream sync.
+GitHub Actions workflows for validation, testing, building, drift detection, security scanning, code coverage, and automated upstream sync.
 
 ## STRUCTURE
 
@@ -11,7 +11,8 @@ GitHub Actions workflows for validation, testing, building, drift detection, sec
 │   ├── release.yml             # Tag-triggered npm publish pipeline
 │   ├── skill-scanner.yml       # Skill security scanning (push/PR + manual dispatch)
 │   ├── upstream-sync.yml       # Daily upstream skill sync
-│   └── content-check.yml       # Weekly content divergence check
+│   ├── content-check.yml       # Weekly content divergence check
+│   └── scorecard.yml           # OpenSSF Scorecard supply-chain security
 └── upstream-sync/
     ├── sync.py                 # Python 3.10+ stdlib-only full-directory sync script (~1700 lines)
     └── sha-cache.json          # Auto-managed cache v3 (SHA256 + tree SHAs + file hashes)
@@ -31,11 +32,15 @@ validate ──→ drift-check
 | --------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | **validate**    | `bun run typecheck` → `bun run validate`                           | Type errors; invalid frontmatter; domain/subdomain not in taxonomy |
 | **lint**        | `bun run lint` → `bun run format:check`                            | ESLint errors; unformatted files (Prettier)                        |
-| **test**        | `bun test` (all unit + integration)                                | Any test assertion fails                                           |
+| **test**        | `bun test` (all unit + integration) → Codecov upload               | Any test assertion fails; coverage upload is non-blocking          |
 | **build**       | `bun run build:index` → `bun run build:all` → verify 5 target dirs | Missing target directories; build errors                           |
 | **drift-check** | Rebuild index → compare (excluding `generatedAt` timestamp)        | `skill-index.json` is out of date                                  |
 
 **Drift detection**: Strips volatile `generatedAt` timestamp from both committed and rebuilt `skill-index.json`, then diffs content. Fails if any structural difference found. Fix: `bun run build:index && git add catalog/metadata/skill-index.json`.
+
+**Code coverage**: Enabled by default via `bunfig.toml` (`coverage = true`). The test job generates lcov reports and uploads them to [Codecov](https://codecov.io/gh/yunseo-kim/agent-toolbox) via `codecov/codecov-action@v5`. Coverage upload failures are non-blocking (`fail_ci_if_error: false`).
+
+**Required secrets for coverage**: `CODECOV_TOKEN` — Codecov upload token (required for private repos, recommended for public repos to avoid rate limits).
 
 ## RELEASE PIPELINE (`release.yml`)
 

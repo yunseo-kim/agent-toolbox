@@ -74,6 +74,13 @@ jobs:
       - name: Run tests
         run: bun test
 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          fail_ci_if_error: false
+
   build:
     name: Build All Targets
     runs-on: ubuntu-latest
