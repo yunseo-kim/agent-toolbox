@@ -4,13 +4,16 @@
 
 [![SUL-1.0 license](https://img.shields.io/badge/license-SUL%201.0-97ca00)](LICENSE.md)
 [![Release model](https://img.shields.io/badge/release_model-SemVer%20CLI%20%2B%20Rolling%20Catalog-0097a7)](./docs/release.md)
-[![GitHub issues](https://img.shields.io/badge/issue_tracking-GitHub-blue.svg)](https://github.com/snu-hanaro/static-fire-toolkit/issues)
+[![NPM Version](https://img.shields.io/npm/v/agent-toolbox)](https://www.npmjs.com/package/agent-toolbox)
+[![GitHub issues](https://img.shields.io/badge/issue_tracking-GitHub-blue.svg)](https://github.com/yunseo-kim/agent-toolbox/issues)
 [![Cisco AI Defense](https://img.shields.io/badge/Secured%20by-Cisco%20AI%20Defense-049fd9?logo=cisco&logoColor=white)](https://github.com/cisco-ai-defense)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/yunseo-kim/agent-toolbox)
 
 [![CI](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/github-code-scanning/codeql)
 [![Skill Security Scan](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/skill-scanner.yml/badge.svg)](https://github.com/yunseo-kim/agent-toolbox/actions/workflows/skill-scanner.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/yunseo-kim/agent-toolbox/badge)](https://scorecard.dev/viewer/?uri=github.com/yunseo-kim/agent-toolbox)
+[![codecov](https://codecov.io/github/yunseo-kim/agent-toolbox/graph/badge.svg?token=JJK0S2FR94)](https://codecov.io/github/yunseo-kim/agent-toolbox)
 
 Secure infrastructure for the **AI agent skill ecosystem**.
 
@@ -23,9 +26,30 @@ A curated, security-vetted registry of agent skills that works across
 
 </div>
 
+## What You Get
+
+You're browsing plugin marketplaces. Saving "awesome" lists from the community.  
+You see impressive demos everywhere — but don't want to risk navigating a minefield of prompt injections, credential theft, and malware to boost your productivity.
+
+**agent-toolbox takes care of the hard part. Just remember this: `bunx agent-toolbox install`. Done.**
+
+agent-toolbox provides:
+
+- **110+ curated agent skills** across multiple domains
+- **cross-tool compatibility** for major AI coding assistants
+- **automated security scanning**
+- **provenance tracking** for upstream sources
+- **flexible installation filters**
+
+Think of it as:
+
+> **Homebrew + Snyk for AI agent skills**
+
 ## What is agent-toolbox?
 
-AI coding assistants increasingly rely on **agent skills, plugins, hooks, and MCP servers**.
+### The Problem
+
+AI agents increasingly rely on **agent skills, plugins, hooks, and MCP servers**.
 
 But the ecosystem has two major problems:
 
@@ -48,38 +72,19 @@ Recent research highlights the scale of the issue:
 
 In many ecosystems, a `SKILL.md` file is effectively **an installer for arbitrary logic**.
 
+### The Solution
+
 **agent-toolbox treats agent skills as a new software supply chain.**
 
 It provides a **curated, security-scanned catalog of agent components**,  
 with cross-tool compatibility and automated provenance tracking.
 
-## What You Get
+**agent-toolbox** can be used to:
 
-You're browsing plugin marketplaces. Saving "awesome" lists from the community.  
-You see impressive demos everywhere — but don't want to risk navigating a minefield of prompt injections, credential theft, and malware to boost your productivity.
-
-**agent-toolbox takes care of the hard part. Just remember this: `bunx agent-toolbox install`. Done.**
-
-agent-toolbox provides:
-
-- **110+ curated agent skills** across multiple domains
-- **cross-tool compatibility** for major AI coding assistants
-- **automated security scanning**
-- **provenance tracking** for upstream sources
-- **flexible installation filters**
-
-Think of it as:
-
-> **Homebrew + Sigstore + npm audit for AI agent skills**
-
-## Use Cases
-
-agent-toolbox can be used to:
-
-- install curated agent skills for **Claude Code, Codex, Cursor, or Gemini CLI**
+- install curated agent skills for **Claude Code, Codex, Cursor, Gemini CLI, etc.**
 - share a **standardized skill catalog across teams**
-- **audit third-party skills** before installing them
-- maintain **secure agent tooling infrastructure**
+- attach **security-vetted registry** for AI agents
+- maintain **secure agentic engineering infrastructure**
 - experiment with **cross-tool agent ecosystems**
 
 ## Getting Started
