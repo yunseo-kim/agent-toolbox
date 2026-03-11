@@ -5,7 +5,7 @@ import {
   resolveCatalogDir,
 } from "../../src/catalog/provider.js";
 import { existsSync } from "node:fs";
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
@@ -296,6 +296,437 @@ describe("resolveCatalogDir", () => {
       });
 
       expect(result).toBe(join(tempDir, "catalog"));
+    });
+
+    describe("remote cache metadata and fetch paths", () => {
+      const originalFetch = global.fetch;
+      const originalWarn = console.warn;
+      const originalCacheDir = process.env.XDG_CACHE_HOME;
+      const createFetchMock = (
+        impl: (
+          input: RequestInfo | URL,
+          init?: RequestInit,
+        ) => Response | Promise<Response>,
+      ): typeof fetch => {
+        const wrapper = (
+          input: RequestInfo | URL,
+          init?: RequestInit,
+        ): Promise<Response> => Promise.resolve(impl(input, init));
+        return Object.assign(wrapper, {
+          preconnect: originalFetch.preconnect.bind(originalFetch),
+        });
+      };
+
+      const commitShaA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+      const commitShaB = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
+
+      afterEach(() => {
+        global.fetch = originalFetch;
+        console.warn = originalWarn;
+        if (originalCacheDir) {
+          process.env.XDG_CACHE_HOME = originalCacheDir;
+        } else {
+          delete process.env.XDG_CACHE_HOME;
+        }
+      });
+
+      test("returns cached catalog on 304 and sends If-None-Match header", async () => {
+        const cacheHome = join(tempDir, "etag-304-cache-home");
+        const cacheRoot = join(cacheHome, "agent-toolbox");
+        const catalogPath = join(cacheRoot, "catalog");
+        await mkdir(catalogPath, { recursive: true });
+        await writeFile(
+          join(cacheRoot, "cache-meta.json"),
+          JSON.stringify(
+            {
+              commitSha: commitShaA,
+              etag: '"etag-123"',
+              fetchedAt: "2026-01-01T00:00:00.000Z",
+              source: {
+                owner: "yunseo-kim",
+                repo: "agent-toolbox",
+                branch: "main",
+              },
+            },
+            null,
+            2,
+          ),
+          "utf8",
+        );
+
+        process.env.XDG_CACHE_HOME = cacheHome;
+
+        let observedIfNoneMatch: string | null = null;
+        global.fetch = createFetchMock(
+          (input: RequestInfo | URL, init?: RequestInit) => {
+            const url =
+              typeof input === "string"
+                ? input
+                : input instanceof URL
+                  ? input.toString()
+                  : input.url;
+            if (url.startsWith("https://raw.githubusercontent.com/")) {
+              observedIfNoneMatch = new Headers(init?.headers).get(
+                "If-None-Match",
+              );
+              return new Response(null, {
+                status: 304,
+                statusText: "Not Modified",
+              });
+            }
+
+            throw new Error(`Unexpected fetch URL: ${url}`);
+          },
+        );
+
+        const result = await resolveCatalogDir({
+          rootDir: tempDir,
+          remote: true,
+        });
+
+        expect(result).toBe(catalogPath);
+        expect(observedIfNoneMatch === '"etag-123"').toBe(true);
+      });
+
+      test("updates cache metadata when remote SHA matches cached SHA", async () => {
+        const cacheHome = join(tempDir, "sha-match-cache-home");
+        const cacheRoot = join(cacheHome, "agent-toolbox");
+        const catalogPath = join(cacheRoot, "catalog");
+        await mkdir(catalogPath, { recursive: true });
+        await writeFile(
+          join(cacheRoot, "cache-meta.json"),
+          JSON.stringify(
+            {
+              commitSha: commitShaA,
+              etag: '"old-etag"',
+              fetchedAt: "2026-01-01T00:00:00.000Z",
+              source: {
+                owner: "yunseo-kim",
+                repo: "agent-toolbox",
+                branch: "main",
+              },
+            },
+            null,
+            2,
+          ),
+          "utf8",
+        );
+
+        process.env.XDG_CACHE_HOME = cacheHome;
+
+        const requestedUrls: string[] = [];
+        global.fetch = createFetchMock((input: RequestInfo | URL) => {
+          const url =
+            typeof input === "string"
+              ? input
+              : input instanceof URL
+                ? input.toString()
+                : input.url;
+          requestedUrls.push(url);
+
+          if (url.startsWith("https://raw.githubusercontent.com/")) {
+            return new Response("{}", {
+              status: 200,
+              headers: { etag: '"new-etag"' },
+            });
+          }
+
+          if (url.startsWith("https://api.github.com/")) {
+            return new Response(commitShaA, {
+              status: 200,
+              headers: { etag: '"api-etag"' },
+            });
+          }
+
+          throw new Error(`Unexpected fetch URL: ${url}`);
+        });
+
+        const result = await resolveCatalogDir({
+          rootDir: tempDir,
+          remote: true,
+          source: {
+            owner: "custom-owner",
+            repo: "custom-repo",
+            branch: "develop",
+          },
+        });
+
+        expect(result).toBe(catalogPath);
+        expect(
+          requestedUrls.some((url) => url.includes("custom-owner/custom-repo")),
+        ).toBe(true);
+
+        const persistedMeta = JSON.parse(
+          await readFile(join(cacheRoot, "cache-meta.json"), "utf8"),
+        ) as {
+          commitSha: string;
+          etag: string | null;
+          fetchedAt: string;
+          source: { owner: string; repo: string; branch: string };
+        };
+
+        expect(persistedMeta.commitSha).toBe(commitShaA);
+        expect(persistedMeta.etag).toBe('"api-etag"');
+        expect(persistedMeta.source.owner).toBe("custom-owner");
+        expect(persistedMeta.source.repo).toBe("custom-repo");
+        expect(persistedMeta.source.branch).toBe("develop");
+      });
+
+      test("throws when remote fetch fails and no cache exists", async () => {
+        const cacheHome = join(tempDir, "no-cache-fetch-fail-home");
+        await mkdir(cacheHome, { recursive: true });
+        process.env.XDG_CACHE_HOME = cacheHome;
+
+        global.fetch = createFetchMock(() => {
+          throw new Error("network unreachable");
+        });
+
+        expect(
+          resolveCatalogDir({
+            rootDir: tempDir,
+            remote: true,
+          }),
+        ).rejects.toThrow("network unreachable");
+      });
+
+      test("returns cached catalog when fetch fails and cache exists", async () => {
+        const cacheHome = join(tempDir, "cache-fetch-fail-home");
+        const cacheRoot = join(cacheHome, "agent-toolbox");
+        const catalogPath = join(cacheRoot, "catalog");
+        await mkdir(catalogPath, { recursive: true });
+
+        process.env.XDG_CACHE_HOME = cacheHome;
+
+        let warningMessage = "";
+        console.warn = (...args: unknown[]) => {
+          warningMessage = args
+            .map((a) => (typeof a === "string" ? a : JSON.stringify(a)))
+            .join(" ");
+        };
+
+        global.fetch = createFetchMock(() => {
+          throw new Error("remote down");
+        });
+
+        const result = await resolveCatalogDir({
+          rootDir: tempDir,
+          remote: true,
+        });
+
+        expect(result).toBe(catalogPath);
+        expect(warningMessage).toContain("Failed to update catalog");
+        expect(warningMessage).toContain("remote down");
+      });
+
+      test("falls back to cache when cache metadata is invalid JSON", async () => {
+        const cacheHome = join(tempDir, "invalid-meta-cache-home");
+        const cacheRoot = join(cacheHome, "agent-toolbox");
+        const catalogPath = join(cacheRoot, "catalog");
+        await mkdir(catalogPath, { recursive: true });
+        await writeFile(join(cacheRoot, "cache-meta.json"), "not-json", "utf8");
+
+        process.env.XDG_CACHE_HOME = cacheHome;
+
+        let warningMessage = "";
+        console.warn = (...args: unknown[]) => {
+          warningMessage = args
+            .map((a) => (typeof a === "string" ? a : JSON.stringify(a)))
+            .join(" ");
+        };
+
+        global.fetch = createFetchMock(() => {
+          throw new Error("metadata refresh failed");
+        });
+
+        const result = await resolveCatalogDir({
+          rootDir: tempDir,
+          remote: true,
+        });
+
+        expect(result).toBe(catalogPath);
+        expect(warningMessage).toContain("Failed to update catalog");
+      });
+
+      test("uses cache when freshness check fails with valid cache metadata", async () => {
+        const cacheHome = join(tempDir, "freshness-failure-cache-home");
+        const cacheRoot = join(cacheHome, "agent-toolbox");
+        const catalogPath = join(cacheRoot, "catalog");
+        await mkdir(catalogPath, { recursive: true });
+        await writeFile(
+          join(cacheRoot, "cache-meta.json"),
+          JSON.stringify(
+            {
+              commitSha: commitShaA,
+              etag: '"cached-etag"',
+              fetchedAt: "2026-01-01T00:00:00.000Z",
+              source: {
+                owner: "yunseo-kim",
+                repo: "agent-toolbox",
+                branch: "main",
+              },
+            },
+            null,
+            2,
+          ),
+          "utf8",
+        );
+
+        process.env.XDG_CACHE_HOME = cacheHome;
+
+        let warningMessage = "";
+        console.warn = (...args: unknown[]) => {
+          warningMessage = args
+            .map((a) => (typeof a === "string" ? a : JSON.stringify(a)))
+            .join(" ");
+        };
+
+        global.fetch = createFetchMock((input: RequestInfo | URL) => {
+          const url =
+            typeof input === "string"
+              ? input
+              : input instanceof URL
+                ? input.toString()
+                : input.url;
+          if (url.startsWith("https://raw.githubusercontent.com/")) {
+            throw new Error("raw endpoint failed");
+          }
+          if (url.startsWith("https://api.github.com/")) {
+            throw new Error("api endpoint failed");
+          }
+          throw new Error(`Unexpected fetch URL: ${url}`);
+        });
+
+        const result = await resolveCatalogDir({
+          rootDir: tempDir,
+          remote: true,
+        });
+
+        expect(result).toBe(catalogPath);
+        expect(warningMessage).toContain("Could not refresh catalog metadata");
+      });
+
+      test("rewrites cache metadata when latest SHA matches cache after freshness mismatch", async () => {
+        const cacheHome = join(tempDir, "latest-match-cache-home");
+        const cacheRoot = join(cacheHome, "agent-toolbox");
+        const catalogPath = join(cacheRoot, "catalog");
+        await mkdir(catalogPath, { recursive: true });
+        await writeFile(
+          join(cacheRoot, "cache-meta.json"),
+          JSON.stringify(
+            {
+              commitSha: commitShaA,
+              etag: '"persisted-etag"',
+              fetchedAt: "2026-01-01T00:00:00.000Z",
+              source: {
+                owner: "yunseo-kim",
+                repo: "agent-toolbox",
+                branch: "main",
+              },
+            },
+            null,
+            2,
+          ),
+          "utf8",
+        );
+
+        process.env.XDG_CACHE_HOME = cacheHome;
+
+        let apiCallCount = 0;
+        global.fetch = createFetchMock((input: RequestInfo | URL) => {
+          const url =
+            typeof input === "string"
+              ? input
+              : input instanceof URL
+                ? input.toString()
+                : input.url;
+
+          if (url.startsWith("https://raw.githubusercontent.com/")) {
+            return new Response("{}", {
+              status: 200,
+              headers: { etag: '"raw-etag"' },
+            });
+          }
+
+          if (url.startsWith("https://api.github.com/")) {
+            apiCallCount += 1;
+            if (apiCallCount === 1) {
+              return new Response(commitShaB, { status: 200 });
+            }
+            return new Response(commitShaA, { status: 200 });
+          }
+
+          throw new Error(`Unexpected fetch URL: ${url}`);
+        });
+
+        const result = await resolveCatalogDir({
+          rootDir: tempDir,
+          remote: true,
+        });
+
+        expect(result).toBe(catalogPath);
+        expect(apiCallCount).toBe(2);
+
+        const persistedMeta = JSON.parse(
+          await readFile(join(cacheRoot, "cache-meta.json"), "utf8"),
+        ) as {
+          commitSha: string;
+          etag: string | null;
+          source: { owner: string; repo: string; branch: string };
+        };
+
+        expect(persistedMeta.commitSha).toBe(commitShaA);
+        expect(persistedMeta.etag).toBe('"persisted-etag"');
+        expect(persistedMeta.source.owner).toBe("yunseo-kim");
+      });
+
+      test("throws in offline mode when remote cache is missing", async () => {
+        const cacheHome = join(tempDir, "offline-remote-missing-home");
+        await mkdir(cacheHome, { recursive: true });
+        process.env.XDG_CACHE_HOME = cacheHome;
+
+        expect(
+          resolveCatalogDir({
+            rootDir: tempDir,
+            remote: true,
+            offline: true,
+          }),
+        ).rejects.toThrow("No cached catalog found");
+      });
+
+      test("uses cached catalog in offline mode even with cache metadata present", async () => {
+        const cacheHome = join(tempDir, "offline-meta-cache-home");
+        const cacheRoot = join(cacheHome, "agent-toolbox");
+        const catalogPath = join(cacheRoot, "catalog");
+        await mkdir(catalogPath, { recursive: true });
+        await writeFile(
+          join(cacheRoot, "cache-meta.json"),
+          JSON.stringify(
+            {
+              commitSha: commitShaB,
+              etag: '"offline-etag"',
+              fetchedAt: "2026-01-01T00:00:00.000Z",
+              source: {
+                owner: "yunseo-kim",
+                repo: "agent-toolbox",
+                branch: "main",
+              },
+            },
+            null,
+            2,
+          ),
+          "utf8",
+        );
+
+        process.env.XDG_CACHE_HOME = cacheHome;
+
+        const result = await resolveCatalogDir({
+          rootDir: tempDir,
+          remote: true,
+          offline: true,
+        });
+
+        expect(result).toBe(catalogPath);
+      });
     });
   });
 });

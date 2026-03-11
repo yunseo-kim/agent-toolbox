@@ -1,6 +1,7 @@
 import { beforeAll, describe, expect, test } from "bun:test";
 import {
   buildSkillIndex,
+  writeSkillIndex,
   writeSkillIndexToon,
 } from "../../src/catalog/index-builder.js";
 import { scanSkills } from "../../src/catalog/scanner.js";
@@ -147,6 +148,57 @@ describe("index builder", () => {
       const content = await Bun.file(outPath).text();
       expect(content.length).toBeGreaterThan(0);
       expect(content).toContain("version: 2");
+      // cleanup
+      await Bun.write(outPath, "");
+    });
+  });
+
+  describe("writeSkillIndex", () => {
+    test("writes JSON index to file", async () => {
+      const index = buildSkillIndex(skills);
+      const outPath = join(
+        tmpdir(),
+        `skill-index-test-json-${Date.now()}.json`,
+      );
+      await writeSkillIndex(index, outPath);
+      const content = await Bun.file(outPath).text();
+      expect(content.length).toBeGreaterThan(0);
+      expect(content).toContain('"version": 2');
+      expect(content).toContain('"skills"');
+      // cleanup
+      await Bun.write(outPath, "");
+    });
+
+    test("creates parent directories if they do not exist", async () => {
+      const index = buildSkillIndex(skills);
+      const outPath = join(
+        tmpdir(),
+        `nested-${Date.now()}`,
+        "subdir",
+        "skill-index.json",
+      );
+      await writeSkillIndex(index, outPath);
+      const content = await Bun.file(outPath).text();
+      expect(content.length).toBeGreaterThan(0);
+      // cleanup
+      await Bun.write(outPath, "");
+    });
+
+    test("JSON output is valid and parseable", async () => {
+      const index = buildSkillIndex(skills);
+      const outPath = join(
+        tmpdir(),
+        `skill-index-parse-test-${Date.now()}.json`,
+      );
+      await writeSkillIndex(index, outPath);
+      const content = await Bun.file(outPath).text();
+      const parsed = JSON.parse(content) as {
+        version: number;
+        skills: unknown[];
+      };
+      expect(parsed.version).toBe(2);
+      expect(Array.isArray(parsed.skills)).toBe(true);
+      expect(parsed.skills.length).toBeGreaterThan(0);
       // cleanup
       await Bun.write(outPath, "");
     });

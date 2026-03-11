@@ -106,4 +106,46 @@ describe("parseFrontmatter", () => {
 
     expect(() => parseFrontmatter(input)).toThrow("Malformed YAML frontmatter");
   });
+
+  test("throws on invalid YAML syntax", () => {
+    const input = [
+      "---",
+      "name: test-skill",
+      "metadata:",
+      "  domain: development",
+      "  invalid: [unclosed bracket",
+      "---",
+      "Body",
+    ].join("\n");
+
+    expect(() => parseFrontmatter(input)).toThrow("Malformed YAML frontmatter");
+  });
+
+  test("throws when YAML parses to non-object", () => {
+    const input = ["---", "- item1", "- item2", "---", "Body"].join("\n");
+
+    expect(() => parseFrontmatter(input)).toThrow(
+      "Malformed YAML frontmatter: expected a key-value object",
+    );
+  });
+
+  test("handles BOM (Byte Order Mark) at start of content", () => {
+    const input = [
+      "\uFEFF---",
+      "name: bom-test",
+      "description: BOM test",
+      "license: Sustainable Use License 1.0",
+      "metadata:",
+      "  domain: development",
+      "  author: Dev <dev@example.com>",
+      "  lastUpdated: 12026-02-25",
+      "  provenance: original",
+      "---",
+      "Body",
+    ].join("\n");
+
+    const parsed = parseFrontmatter(input);
+    expect(parsed.frontmatter.name).toBe("bom-test");
+    expect(parsed.body).toBe("Body");
+  });
 });
