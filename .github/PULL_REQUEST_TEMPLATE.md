@@ -39,6 +39,14 @@
 - [ ] Catalog index is up to date (`bun run build:index`)
 - [ ] For ported skills: upstream directory structure and file names are preserved as-is
 
+### CI / Workflows
+
+<!-- Skip this section if your change does not touch .github/workflows/. -->
+
+- [ ] All action `uses:` references are pinned to full commit SHAs (not mutable tags)
+- [ ] Every job has `step-security/harden-runner` as its first step
+- [ ] Write permissions are scoped at job level, not top level
+
 ### Breaking Changes
 
 <!-- If this PR introduces breaking changes, describe them here. -->

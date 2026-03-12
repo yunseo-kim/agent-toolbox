@@ -243,6 +243,55 @@ Lightweight hash-based check for adapted skills that embed external content not 
 | Configure version bump         | `bump.config.ts` -- bumpp + git-cliff integration                        |
 | Check content divergence.      | `.github/workflows/content-check.yml` — weekly hash check                |
 
+## WORKFLOW HARDENING
+
+All workflows enforce two supply-chain protections. These are mandatory for any workflow change.
+
+### SHA Pinning
+
+Every `uses:` reference must be pinned to the full 40-character commit SHA with a version comment:
+
+```yaml
+# CORRECT
+- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+# WRONG — mutable tag can be silently repointed
+- uses: actions/checkout@v4
+```
+
+Dependabot (`github-actions` ecosystem) manages SHA updates automatically.
+
+### Harden-Runner
+
+Every job must start with `step-security/harden-runner` as its first step:
+
+```yaml
+steps:
+  - name: Harden the runner (Audit all outbound calls)
+    uses: step-security/harden-runner@58077d3c7e43986b6b15fba718e8ea69e387dfcc # v2.15.1
+    with:
+      egress-policy: audit
+```
+
+### Least-Privilege Permissions
+
+Prefer job-level `permissions` over top-level. Only grant `write` where functionally required:
+
+```yaml
+# CORRECT — scoped to the job that needs it
+permissions:
+  contents: read
+jobs:
+  publish:
+    permissions:
+      contents: write
+      id-token: write
+
+# WRONG — grants write to all jobs
+permissions:
+  contents: write
+```
+
 ## ANTI-PATTERNS
 
 - Do not hand-edit `sha-cache.json` — it is auto-managed by `sync.py`.
@@ -252,3 +301,6 @@ Lightweight hash-based check for adapted skills that embed external content not 
 - Do not disable analyzers in the skill-scanner workflow without security review.
 - Do not skip the skill security scan — it catches prompt injection, data exfiltration, and malicious code in skills.
 - Do not commit API keys or tokens in `.pre-commit-config.yaml` — set them as environment variables.
+- Do not use mutable tags (`@v4`, `@v2`) for action references — always pin to full commit SHAs.
+- Do not omit `step-security/harden-runner` when adding new workflow jobs.
+- Do not use top-level `permissions: write` when only one job needs write access.

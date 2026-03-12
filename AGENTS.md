@@ -151,6 +151,7 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 - **Linting**: ESLint flat config (`eslint.config.mjs`) with `typescript-eslint` recommended + stylistic rules and `eslint-config-prettier`. Ignores `dist/`, catalog skills, and lock files.
 - **Formatting**: Prettier with default settings (`.prettierrc` is empty). Run `bun run format` to auto-format.
 - **Git hooks**: Lefthook (`lefthook.yml`) runs lint + format check on pre-commit, typecheck + test on pre-push. Replaces the earlier `.pre-commit-config.yaml` setup.
+- **Workflow hardening**: All GitHub Actions `uses:` references must be pinned to full 40-character commit SHAs (not mutable tags). Every workflow job must include `step-security/harden-runner` as its first step. Write permissions must be scoped at job level, not top level. See `SECURITY.md` for full policy.
 
 ## ANTI-PATTERNS (THIS PROJECT)
 
@@ -163,6 +164,9 @@ Presets are curated bundles of catalog items for common use cases, defined in `c
 - Do not nest catalog items in domain subdirectories; taxonomy is metadata-driven, not directory-driven.
 - Do not use freeform strings for `domain` or `subdomain`; always validate against `taxonomy.yaml`.
 - Do not define presets inside individual SKILL.md files; presets are cross-cutting and live in `presets.yaml`.
+- Do not use mutable tags (`@v4`, `@v2`) in GitHub Actions `uses:` references; always pin to full commit SHAs.
+- Do not omit `step-security/harden-runner` when adding new workflow jobs.
+- Do not grant top-level write `permissions` when only specific jobs need write access.
 
 ## COMMANDS (CURRENT)
 

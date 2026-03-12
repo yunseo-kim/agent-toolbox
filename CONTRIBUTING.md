@@ -222,6 +222,16 @@ bunx lefthook run pre-push
 - Strict mode is enabled
 - Do not use `as any`, `@ts-ignore`, or `@ts-expect-error`
 
+### CI Workflows
+
+When adding or modifying GitHub Actions workflows:
+
+- **Pin all actions to commit SHAs** — Use the full 40-character hash, not a mutable tag. Add a `# vX.Y.Z` comment for readability (e.g., `uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2`).
+- **Add harden-runner as the first step in every job** — Use `step-security/harden-runner` with `egress-policy: audit`.
+- **Scope permissions to job level** — Prefer job-level `permissions` blocks over top-level to enforce least privilege.
+
+For details on these policies, see [`SECURITY.md`](SECURITY.md#workflow-hardening).
+
 ## Pull Request Process
 
 ### Before Submitting
@@ -232,6 +242,12 @@ bunx lefthook run pre-push
 - [ ] Type check passes (`bun run typecheck`)
 - [ ] No secrets, credentials, or machine-local paths included
 
+For CI workflow PRs, also verify:
+
+- [ ] All action `uses:` references are pinned to full commit SHAs
+- [ ] Every job has `step-security/harden-runner` as its first step
+- [ ] Write permissions are scoped at job level, not top level
+
 For catalog skill PRs, also verify:
 
 - [ ] SKILL.md has valid frontmatter
@@ -240,7 +256,7 @@ For catalog skill PRs, also verify:
 - [ ] Catalog index is up to date (`bun run build:index`)
 - [ ] For ported skills: upstream directory structure and file names are preserved as-is
 
-See the full [PR template](.github/pull_request_template.md) for the complete checklist.
+See the full [PR template](.github/PULL_REQUEST_TEMPLATE.md) for the complete checklist.
 
 ### Review Process
 

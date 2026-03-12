@@ -131,6 +131,19 @@ The workflow fails if any findings at or above **HIGH** severity are detected, b
 
 **Monthly full scan** -- A scheduled workflow runs on the 1st of each month, scanning all catalog and dev tooling skills with verbose output. Results are archived as detailed markdown reports in [`docs/security-reports/`](docs/security-reports/). Full scans can also be triggered manually from the Actions tab with the `archive` option.
 
+### Workflow Hardening
+
+All GitHub Actions workflows enforce two supply-chain protections:
+
+- **SHA-pinned actions** — Every `uses:` reference is pinned to the full 40-character commit SHA (not a mutable tag like `@v4`). This prevents supply-chain attacks where a tag is silently repointed to a compromised commit. Dependabot keeps SHAs up to date automatically via weekly PRs.
+- **Harden-runner** — Every job starts with [`step-security/harden-runner`](https://github.com/step-security/harden-runner) in audit mode (`egress-policy: audit`), logging all outbound network calls. This provides visibility into unexpected egress from CI runners.
+
+When adding or modifying workflows, contributors must:
+
+1. Pin all new action references to commit SHAs (add a `# vX.Y.Z` comment for readability).
+2. Include the harden-runner step as the first step in every job.
+3. Prefer job-level `permissions` over top-level `permissions` to enforce least privilege.
+
 ### Release Integrity
 
 - **GPG-signed tags** — All release tags are GPG-signed annotated tags.
