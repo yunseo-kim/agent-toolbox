@@ -21,9 +21,7 @@ on:
         default: false
 
 permissions:
-  security-events: write
-  contents: write
-  pull-requests: write
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.sha }}
@@ -33,6 +31,10 @@ jobs:
   scan:
     name: Skill Scanner
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Harden the runner (Audit all outbound calls)
