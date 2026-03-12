@@ -1,0 +1,108 @@
+# Dependabot version updates — keeps dependencies fresh via automated PRs.
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # ── npm (Bun) ecosystem ──────────────────────────────────────────────
+  # Monitors package.json / bun.lock at the repository root.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Seoul"
+
+    # Conventional Commits style: chore(deps): bump X / chore(deps-dev): bump Y
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+      include: "scope"
+
+    labels:
+      - "dependencies"
+      - "npm"
+    assignees:
+      - "yunseo-kim"
+    reviewers:
+      - "yunseo-kim"
+
+    # "increase" raises the minimum version constraint in package.json
+    # when a newer version satisfying the range is available.
+    versioning-strategy: "increase"
+
+    open-pull-requests-limit: 10
+
+    # Group minor+patch updates to reduce PR noise.
+    # Major version bumps always get individual PRs for careful review.
+    groups:
+      # ── Lint & Format toolchain ──
+      # eslint + prettier ecosystem moves in lockstep;
+      # grouping avoids 5 separate PRs per release cycle.
+      lint-and-format:
+        patterns:
+          - "eslint*"
+          - "@eslint/*"
+          - "prettier*"
+          - "typescript-eslint"
+        update-types:
+          - "minor"
+          - "patch"
+      # ── Build & Release tooling ──
+      build-and-release:
+        patterns:
+          - "bumpp"
+          - "lefthook"
+        update-types:
+          - "minor"
+          - "patch"
+      # ── Catch-all: production deps ──
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      # ── Catch-all: remaining dev deps (currently: typescript) ──
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+
+    ignore:
+      # Pinned to "latest" — tracks Bun runtime, not SemVer.
+      # Updated manually alongside Bun runtime upgrades.
+      - dependency-name: "@types/bun"
+
+  # ── GitHub Actions ecosystem ─────────────────────────────────────────
+  # Keeps SHA-pinned action references up to date across all workflows.
+  # Required to maintain OSSF Scorecard Pinned-Dependencies check (10/10).
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "09:00"
+      timezone: "Asia/Seoul"
+
+    # Conventional Commits style: ci(deps): bump actions/checkout
+    commit-message:
+      prefix: "ci(deps)"
+      include: "scope"
+
+    labels:
+      - "dependencies"
+      - "github-actions"
+    assignees:
+      - "yunseo-kim"
+    reviewers:
+      - "yunseo-kim"
+
+    open-pull-requests-limit: 5
+
+    # Group all action SHA updates into a single PR —
+    # all references are SHA-pinned and CI validates compatibility.
+    groups:
+      github-actions:
+        patterns:
+          - "*"
