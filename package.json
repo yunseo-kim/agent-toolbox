@@ -78,7 +78,7 @@
     "eslint-config-prettier": "^10.1.8",
     "lefthook": "^2.1.4",
     "prettier": "^3.8.1",
-    "typescript": "^5.7",
+    "typescript": "^5.9",
     "typescript-eslint": "^8.57.0"
   },
   "publishConfig": {
