@@ -13,13 +13,12 @@ metadata:
   tags: "react, nextjs, performance, optimization, ssr, bundle-size, waterfalls, re-renders"
   frameworks: "react, nextjs"
   author: "Fernando Rojo"
-  lastUpdated: "12026-01-26"
+  lastUpdated: "12026-03-02"
   provenance: ported
 ---
-
 # Vercel React Best Practices
 
-Comprehensive performance optimization guide for React and Next.js applications, maintained by Vercel. Contains 57 rules across 8 categories, prioritized by impact to guide automated refactoring and code generation.
+Comprehensive performance optimization guide for React and Next.js applications, maintained by Vercel. Contains 58 rules across 8 categories, prioritized by impact to guide automated refactoring and code generation.
 
 ## When to Apply
 
@@ -67,6 +66,7 @@ Reference these guidelines when:
 - `server-cache-react` - Use React.cache() for per-request deduplication
 - `server-cache-lru` - Use LRU cache for cross-request caching
 - `server-dedup-props` - Avoid duplicate serialization in RSC props
+- `server-hoist-static-io` - Hoist static I/O (fonts, logos) to module level
 - `server-serialization` - Minimize data passed to client components
 - `server-parallel-fetching` - Restructure components to parallelize fetches
 - `server-after-nonblocking` - Use after() for non-blocking operations
