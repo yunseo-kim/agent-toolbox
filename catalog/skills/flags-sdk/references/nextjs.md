@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Quickstart](#quickstart)
+- [Toolbar Setup](#toolbar-setup)
 - [App Router](#app-router)
 - [Pages Router](#pages-router)
 - [Evaluation Context](#evaluation-context)
@@ -32,9 +33,55 @@ export const exampleFlag = flag({
 });
 ```
 
+## Toolbar Setup
+
+1. Install `@vercel/toolbar`:
+
+```sh
+pnpm i @vercel/toolbar
+```
+
+2. Add Next.js plugin:
+
+```ts
+// next.config.ts
+import type { NextConfig } from 'next';
+import createWithVercelToolbar from '@vercel/toolbar/plugins/next';
+
+const nextConfig: NextConfig = {};
+
+const withVercelToolbar = createWithVercelToolbar();
+export default withVercelToolbar(nextConfig);
+```
+
+3. Render toolbar in root layout:
+
+```tsx
+// app/layout.tsx
+import { VercelToolbar } from '@vercel/toolbar/next';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // On Vercel, the toolbar is auto-injected in preview deployments.
+  // This manual injection is only needed for local development.
+  const shouldInjectToolbar = process.env.NODE_ENV === 'development';
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        {shouldInjectToolbar && <VercelToolbar />}
+      </body>
+    </html>
+  );
+}
+```
+
 ## App Router
 
-Call the flag function from any async server component or middleware:
+Call the flag function from any async server component or proxy:
 
 ```tsx
 // app/page.tsx
@@ -95,7 +142,7 @@ export const myFlag = flag<boolean, Entities>({
 });
 ```
 
-`identify` receives normalized `headers` and `cookies` that work across App Router, Pages Router, and Middleware.
+`identify` receives normalized `headers` and `cookies` that work across App Router, Pages Router, and Proxy.
 
 ### Custom evaluation context
 
@@ -126,7 +173,7 @@ Not available in Pages Router.
 
 ## Precompute
 
-Keep pages static while using feature flags. Middleware evaluates flags and encodes results into the URL.
+Keep pages static while using feature flags. Proxy evaluates flags and encodes results into the URL.
 
 ### Prerequisites
 
@@ -155,7 +202,7 @@ export const showBanner = flag({
 export const marketingFlags = [showSummerSale, showBanner] as const;
 ```
 
-### Step 2: Precompute in middleware
+### Step 2: Precompute in proxy
 
 ```ts
 // proxy.ts
@@ -197,27 +244,19 @@ export default async function Page({ params }: { params: Params }) {
 }
 ```
 
-### Enable ISR
+### Step 4: Enable ISR & build time prerendering
 
 ```tsx
 // app/[code]/layout.tsx
-export async function generateStaticParams() {
-  return []; // empty array enables ISR
-}
-
-export default async function Layout({ children }) {
-  return children;
-}
-```
-
-### Build-time rendering
-
-```tsx
 import { generatePermutations } from 'flags/next';
 
 export async function generateStaticParams() {
   const codes = await generatePermutations(marketingFlags);
   return codes.map((code) => ({ code }));
+}
+
+export default async function Layout({ children }) {
+  return children;
 }
 ```
 
@@ -328,7 +367,7 @@ export default async function DashboardPage() {
 
 For static marketing pages with A/B tests, combine precompute with visitor ID generation:
 
-### Visitor ID in middleware
+### Visitor ID in proxy
 
 ```ts
 // proxy.ts
@@ -337,7 +376,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { marketingFlags } from './flags';
 import { getOrGenerateVisitorId } from './get-or-generate-visitor-id';
 
-export async function marketingMiddleware(request: NextRequest) {
+export async function marketingProxy(request: NextRequest) {
   const visitorId = await getOrGenerateVisitorId(
     request.cookies,
     request.headers,
@@ -402,7 +441,7 @@ export const marketingAbTest = flag<boolean, Entities>({
 
 ## Proxy (Middleware)
 
-Use flags in middleware to rewrite requests to static page variants:
+Use flags in proxy to rewrite requests to static page variants:
 
 ```ts
 // proxy.ts
@@ -439,6 +478,8 @@ async function Example() {
 The `hasAuthCookieFlag` checks cookie existence without authenticating. Two shells get prerendered — one for each auth state — served statically with no layout shift.
 
 ## Flags Explorer (Next.js)
+
+The Flags Explorer is part of the Vercel Toolbar. Before adding the discovery endpoint below, make sure the toolbar is set up by following the [Toolbar Setup](#toolbar-setup) steps first.
 
 ### App Router
 
