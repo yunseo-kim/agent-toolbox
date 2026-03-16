@@ -9,10 +9,9 @@ metadata:
   domain: productivity
   tags: "notion, api, database, pages, project-management"
   author: "cpojer <christoph.pojer@gmail.com>"
-  lastUpdated: "12026-01-31"
+  lastUpdated: "12026-03-07"
   provenance: ported
 ---
-
 # notion
 
 Use the Notion API to create/read/update pages, data sources (databases), and blocks.
@@ -172,5 +171,7 @@ Common property formats for database items:
 
 - Page/database IDs are UUIDs (with or without dashes)
 - The API cannot set database view filters — that's UI-only
-- Rate limit: ~3 requests/second average
+- Rate limit: ~3 requests/second average, with `429 rate_limited` responses using `Retry-After`
+- Append block children: up to 100 children per request, up to two levels of nesting in a single append request
+- Payload size limits: up to 1000 block elements and 500KB overall
 - Use `is_inline: true` when creating data sources to embed them in pages
