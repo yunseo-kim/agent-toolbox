@@ -16,10 +16,9 @@ metadata:
   tags: "markdown, streaming, ai, react, tailwind, shiki, mermaid, katex, cjk"
   frameworks: "react, nextjs, streamdown"
   author: "Hayden Bleasel <hello@haydenbleasel.com>"
-  lastUpdated: "12026-02-18"
+  lastUpdated: "12026-03-03"
   provenance: ported
 ---
-
 # Streamdown
 
 Streaming-optimized React Markdown renderer. Drop-in replacement for `react-markdown` with built-in streaming support, security, and interactive controls.
@@ -45,6 +44,13 @@ npm install @streamdown/code @streamdown/mermaid @streamdown/math @streamdown/cj
 ```css
 @source "../node_modules/streamdown/dist/*.js";
 ```
+
+Add plugin `@source` lines **only for packages you have installed** (omitting uninstalled plugins avoids Tailwind errors). See plugin pages for exact paths:
+- Code: `@source "../node_modules/@streamdown/code/dist/*.js";`
+- CJK: `@source "../node_modules/@streamdown/cjk/dist/*.js";`
+- Math: `@source "../node_modules/@streamdown/math/dist/*.js";`
+- Mermaid: `@source "../node_modules/@streamdown/mermaid/dist/*.js";`
+
 
 **Tailwind v3** — add to `tailwind.config.js`:
 ```js
