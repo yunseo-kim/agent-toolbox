@@ -10,10 +10,9 @@ metadata:
   subdomain: media-processing
   tags: "ffmpeg, video, frames, extraction, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
-  lastUpdated: "12026-01-31"
+  lastUpdated: "12026-05-17"
   provenance: ported
 ---
-
 # Video Frames (ffmpeg)
 
 Extract a single frame from a video, or create quick thumbnails for inspection.
@@ -34,5 +33,5 @@ At a timestamp:
 
 ## Notes
 
-- Prefer `--time` for “what is happening around here?”.
+- Prefer `--time` for "what is happening around here?".
 - Use a `.jpg` for quick share; use `.png` for crisp UI frames.
