@@ -10,10 +10,9 @@ metadata:
   domain: research
   tags: "google-places, maps, location, search, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
-  lastUpdated: "12026-01-31"
+  lastUpdated: "12026-05-17"
   provenance: ported
 ---
-
 # goplaces
 
 Modern Google Places API (New) CLI. Human output by default, `--json` for scripts.
@@ -39,5 +38,5 @@ Common commands
 Notes
 
 - `--no-color` or `NO_COLOR` disables ANSI color.
-- Price levels: 0..4 (free → very expensive).
+- Price levels: 0..4 (free -> very expensive).
 - Type filter sends only the first `--type` value (API accepts one).
