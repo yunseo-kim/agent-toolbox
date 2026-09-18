@@ -9,24 +9,27 @@ metadata:
   domain: data-ai
   tags: "google, gemini, ai, cli, llm"
   author: "cpojer <christoph.pojer@gmail.com>"
-  lastUpdated: "12026-01-31"
+  lastUpdated: "12026-05-17"
   provenance: ported
 ---
-
 # Gemini CLI
 
-Use Gemini in one-shot mode with a positional prompt (avoid interactive mode).
+Use Gemini in headless one-shot mode. Positional text starts interactive mode; use `-p/--prompt`.
 
 Quick start
 
-- `gemini "Answer this question..."`
-- `gemini --model <name> "Prompt..."`
-- `gemini --output-format json "Return JSON"`
+- `gemini -p "Answer this question..."`
+- `gemini -m <model> -p "Prompt..."`
+- `gemini -p "Return JSON" --output-format json`
+- stdin appends to `-p`: `cat notes.md | gemini -p "Summarize"`
 
 Extensions
 
 - List: `gemini --list-extensions`
 - Manage: `gemini extensions <command>`
+- Skills: `gemini skills <command>`
+- Hooks: `gemini hooks <command>`
+- MCP: `gemini mcp <command>`
 
 Notes
 
