@@ -16,10 +16,9 @@ metadata:
   tags: "markdown, streaming, ai, react, tailwind, shiki, mermaid, katex, cjk"
   frameworks: "react, nextjs, streamdown"
   author: "Hayden Bleasel <hello@haydenbleasel.com>"
-  lastUpdated: "12026-02-18"
+  lastUpdated: "12026-08-24"
   provenance: ported
 ---
-
 # Streamdown
 
 Streaming-optimized React Markdown renderer. Drop-in replacement for `react-markdown` with built-in streaming support, security, and interactive controls.
@@ -45,6 +44,13 @@ npm install @streamdown/code @streamdown/mermaid @streamdown/math @streamdown/cj
 ```css
 @source "../node_modules/streamdown/dist/*.js";
 ```
+
+Add plugin `@source` lines **only for packages you have installed** (omitting uninstalled plugins avoids Tailwind errors). See plugin pages for exact paths:
+- Code: `@source "../node_modules/@streamdown/code/dist/*.js";`
+- CJK: `@source "../node_modules/@streamdown/cjk/dist/*.js";`
+- Math: `@source "../node_modules/@streamdown/math/dist/*.js";`
+- Mermaid: `@source "../node_modules/@streamdown/mermaid/dist/*.js";`
+
 
 **Tailwind v3** — add to `tailwind.config.js`:
 ```js
@@ -113,7 +119,7 @@ export default function Chat() {
 | `isAnimating` | `boolean` | `false` | Streaming indicator |
 | `caret` | `"block" \| "circle"` | — | Cursor style |
 | `components` | `Components` | — | Custom element overrides |
-| `controls` | `boolean \| object` | `true` | Interactive buttons |
+| `controls` | `boolean \| object` | `true` | Interactive buttons; `download: { filename }` sets custom download names |
 | `linkSafety` | `LinkSafetyConfig` | `{ enabled: true }` | Link confirmation modal |
 | `shikiTheme` | `[light, dark]` | `['github-light', 'github-dark']` | Code themes |
 | `className` | `string` | — | Container class |
