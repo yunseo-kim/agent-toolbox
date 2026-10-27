@@ -3,12 +3,11 @@
 ## Table of Contents
 
 - [Vercel](#vercel)
-- [Edge Config](#edge-config)
+- [Global Config](#global-config)
 - [Statsig](#statsig)
 - [LaunchDarkly](#launchdarkly)
 - [PostHog](#posthog)
 - [GrowthBook](#growthbook)
-- [Hypertune](#hypertune)
 - [Flagsmith](#flagsmith)
 - [Reflag](#reflag)
 - [OpenFeature](#openfeature)
@@ -20,16 +19,20 @@
 
 ## Vercel
 
-Package: `@flags-sdk/vercel` (also requires `@vercel/flags-core`)
+Package: `@flags-sdk/vercel`
 
 ```bash
-pnpm i flags @flags-sdk/vercel @vercel/flags-core
+pnpm i flags @flags-sdk/vercel
 ```
 
 ### Setup
 
-1. Create a flag in the Vercel dashboard
-2. Pull env vars: `vercel env pull` (sets `FLAGS` and `FLAGS_SECRET`)
+> **Prerequisite**: The Vercel CLI must be installed and authenticated. If it is not installed, run `pnpm i -g vercel`. For authentication or linking issues, follow the `vercel-cli` skill if it's already available. If it isn't, suggest the user install it with `npx skills add vercel/vercel@vercel-cli` (don't auto-install it) and rely on `vercel <command> --help` in the meantime.
+
+The following steps integrate a flag into an app and need a linked project for `vercel env pull` ([Set up the SDK](../SKILL.md#set-up-the-sdk), step 2). To only inspect or change remote flags, use the `vercel-flags` skill instead.
+
+1. Create a flag in the Vercel dashboard or via CLI: `vercel flags create <flag-key> --kind boolean --description "<description>"`
+2. Pull env vars: run `vercel env pull` to write the Vercel OIDC token and the Development `FLAGS_SECRET` to `.env.local` ([Pull environment variables](../SKILL.md#pull-environment-variables)).
 3. Declare the flag:
 
 ```ts
@@ -38,7 +41,7 @@ import { vercelAdapter } from '@flags-sdk/vercel';
 
 export const exampleFlag = flag({
   key: 'example-flag',
-  adapter: vercelAdapter(),
+  adapter: vercelAdapter,
 });
 ```
 
@@ -61,8 +64,26 @@ const identify = dedupe(async (): Promise<Entities> => ({
 export const exampleFlag = flag<boolean, Entities>({
   key: 'example-flag',
   identify,
-  adapter: vercelAdapter(),
+  adapter: vercelAdapter,
 });
+```
+
+Define the entities and attributes under Flags → Entities in the dashboard before you use them in rules or segments, and return the same names from `identify` ([Entities](https://vercel.com/docs/flags/vercel-flags/dashboard/entities)). The example above allows `--by user.id` / `--by team.id` in `vercel flags split`, `rollout`, and `rules add`, and the matching conditions in dashboard rules. Entities are evaluated fresh on every call; a rule whose attribute is missing from the context is skipped.
+
+#### Attribute types
+
+Each attribute has a type: String, Number, Boolean, String Array, or Timestamp. The value `identify` returns must match it.
+
+- **Timestamp** is a Unix epoch in **milliseconds** as a `number` (`Date.now()`, `user.createdAt.getTime()`, `1719792000000`). Do not pass a `Date`, an ISO string, or seconds.
+- Timestamp rules only compare: is after / is before / is at or after / is at or before (`gt` / `lt` / `gte` / `lte`). Equality, one-of, and exists operators are not available for Timestamp attributes.
+- Timestamp attributes cannot bucket a split or rollout (`--by`); use them in rule conditions only.
+- To release at a certain time, pass the current time as `system.time` and compare against it in a rule. Keep `Date.now()` inside `dedupe` so every flag in the request sees the same time:
+
+```ts
+const identify = dedupe(async () => ({
+  system: { time: Date.now() },
+  user: { id: 'user-456', signupAt: 1719792000000 },
+}));
 ```
 
 ### Flags Explorer
@@ -86,35 +107,64 @@ const customAdapter = createVercelAdapter(process.env.CUSTOM_FLAGS_KEY!);
 
 export const exampleFlag = flag({
   key: 'example-flag',
-  adapter: customAdapter(),
+  adapter: customAdapter,
 });
 ```
 
----
+### Using your own client (e.g. for singleton)
 
-## Edge Config
+If the app also uses `@vercel/flags-core` directly, create the client once and pass it to the adapter so both share the same instance:
 
-Package: `@flags-sdk/edge-config`
+```ts
+import { createClient } from '@vercel/flags-core';
+import { createVercelAdapter } from '@flags-sdk/vercel';
 
-```bash
-pnpm i @flags-sdk/edge-config
+const vercelFlagsClient = createClient(); // Vercel OIDC token, on deployments and after `vercel env pull`
+const vercelAdapter = createVercelAdapter(vercelFlagsClient);
+
+export const exampleFlag = flag({
+  key: 'example-flag',
+  adapter: vercelAdapter,
+});
 ```
 
-Env: `EDGE_CONFIG="edge-config-connection-string"`
+Outside Vercel, pass the SDK key: `createClient(process.env.FLAGS)`. Unlike `vercelAdapter()`, `createClient()` does not read `FLAGS` on its own.
+
+### Core client in other frameworks (for example, Express)
+
+Frameworks without a Flags SDK entrypoint use `@vercel/flags-core` directly instead of this SDK. The `vercel-flags` skill carries the example and the OIDC timing rules ([Core SDK](https://vercel.com/docs/flags/vercel-flags/sdks/core)).
+
+### Managing flags
+
+What a flag serves (enable, set, split, rollout, rules, segments, archive) is configured in the Vercel dashboard or with the `vercel flags` CLI, not in code. Keep the declaration in sync with the remote definition: the CLI key is the `key` in `flag()`, the kind matches the type parameter, `options` mirror the variants, and `defaultValue` is what the flag serves when it is archived or still a draft. The `vercel-flags` skill covers rollouts, experiments, promotion order, and the checks to run before archiving; `vercel flags <cmd> --help` lists the options.
+
+CLI reference: https://vercel.com/docs/cli/flags
+
+---
+
+## Global Config
+
+Package: `@flags-sdk/global-config`
+
+```bash
+pnpm i @flags-sdk/global-config
+```
+
+Env: `GLOBAL_CONFIG="global-config-connection-string"`
 
 ### Usage
 
 ```ts
 import { flag } from 'flags/next';
-import { edgeConfigAdapter } from '@flags-sdk/edge-config';
+import { globalConfigAdapter } from '@flags-sdk/global-config';
 
 export const exampleFlag = flag({
-  adapter: edgeConfigAdapter(),
+  adapter: globalConfigAdapter,
   key: 'example-flag',
 });
 ```
 
-Edge Config should contain:
+Global Config should contain:
 
 ```json
 {
@@ -128,12 +178,12 @@ Edge Config should contain:
 ### Custom configuration
 
 ```ts
-import { createEdgeConfigAdapter } from '@flags-sdk/edge-config';
+import { createGlobalConfigAdapter } from '@flags-sdk/global-config';
 
-const myAdapter = createEdgeConfigAdapter({
-  connectionString: process.env.OTHER_EDGE_CONFIG,
+const myAdapter = createGlobalConfigAdapter({
+  connectionString: process.env.OTHER_GLOBAL_CONFIG,
   options: {
-    edgeConfigItemKey: 'other-flags-key',
+    globalConfigItemKey: 'other-flags-key',
     teamSlug: 'my-team',
   },
 });
@@ -152,7 +202,7 @@ pnpm i @flags-sdk/statsig
 Env vars:
 - `STATSIG_SERVER_API_KEY` (required)
 - `STATSIG_PROJECT_ID` (optional)
-- `EXPERIMENTATION_CONFIG` (optional, Edge Config)
+- `EXPERIMENTATION_CONFIG` (optional, Global Config)
 - `EXPERIMENTATION_CONFIG_ITEM_KEY` (optional)
 
 ### Methods
@@ -256,7 +306,7 @@ pnpm i @flags-sdk/launchdarkly
 Env vars:
 - `LAUNCHDARKLY_CLIENT_SIDE_ID` (required)
 - `LAUNCHDARKLY_PROJECT_SLUG` (required)
-- `EDGE_CONFIG` (required)
+- `GLOBAL_CONFIG` (required)
 
 ### Usage
 
@@ -300,37 +350,46 @@ Package: `@flags-sdk/posthog`
 pnpm i @flags-sdk/posthog
 ```
 
-Env vars:
-- `NEXT_PUBLIC_POSTHOG_KEY`
-- `NEXT_PUBLIC_POSTHOG_HOST` (e.g. `https://us.i.posthog.com`)
+Env vars, always required:
+- `POSTHOG_HOST` (e.g. `https://us.i.posthog.com` or `https://eu.i.posthog.com`)
+- `POSTHOG_PROJECT_API_KEY` (`phc_...`)
+
+Optional, opts into local evaluation (background polling) instead of remote:
+- `POSTHOG_SECRET_KEY` (`phs_...`)
+
+For the Flags Explorer (`getProviderData` only):
+- `POSTHOG_PERSONAL_API_KEY` (`phx_...`)
+- `POSTHOG_PROJECT_ID` (e.g. `521742`)
 
 ### Methods
 
 ```ts
 import { postHogAdapter } from '@flags-sdk/posthog';
 
-// Boolean check
-export const myFlag = flag({
+// Value — boolean flag. Pass the adapter uninvoked or invoked, both work.
+export const myFlag = flag<boolean>({
   key: 'my-flag',
-  adapter: postHogAdapter.isFeatureEnabled(),
+  adapter: postHogAdapter,
   identify,
 });
 
-// Multivariate value
-export const myVariant = flag({
+// Value — multivariate flag resolves to the variant string
+export const myVariant = flag<string>({
   key: 'my-flag',
-  adapter: postHogAdapter.featureFlagValue(),
+  adapter: postHogAdapter,
   identify,
 });
 
 // Payload
 export const myPayload = flag({
   key: 'my-flag',
-  adapter: postHogAdapter.featureFlagPayload((v) => v),
+  adapter: postHogAdapter.payload,
   defaultValue: {},
   identify,
 });
 ```
+
+`identify` must return `{ distinctId }`.
 
 ### Flags Explorer
 
@@ -341,8 +400,8 @@ import { getProviderData as getPostHogProviderData } from '@flags-sdk/posthog';
 
 export const GET = createFlagsDiscoveryEndpoint(() =>
   getPostHogProviderData({
-    personalApiKey: process.env.POSTHOG_PERSONAL_API_KEY,
-    projectId: process.env.NEXT_PUBLIC_POSTHOG_PROJECT_ID,
+    personalApiKey: process.env.POSTHOG_PERSONAL_API_KEY!,
+    projectId: process.env.POSTHOG_PROJECT_ID!,
   }),
 );
 ```
@@ -375,7 +434,7 @@ export const myFlag = flag({
 });
 ```
 
-### Edge Config
+### Global Config
 
 Set `GROWTHBOOK_EDGE_CONNECTION_STRING` or `EXPERIMENTATION_CONFIG` (Vercel Marketplace).
 
@@ -391,32 +450,6 @@ growthbookAdapter.setTrackingCallback((experiment, result) => {
 
 ---
 
-## Hypertune
-
-Package: `@flags-sdk/hypertune`
-
-```bash
-pnpm i hypertune flags server-only @flags-sdk/hypertune @vercel/edge-config
-```
-
-Requires code generation: `npx hypertune`
-
-```ts
-import { createHypertuneAdapter } from '@flags-sdk/hypertune';
-import { createSource, flagFallbacks, vercelFlagDefinitions, type Context, type FlagValues } from './generated/hypertune';
-
-const hypertuneAdapter = createHypertuneAdapter<FlagValues, Context>({
-  createSource,
-  flagFallbacks,
-  flagDefinitions: vercelFlagDefinitions,
-  identify,
-});
-
-export const exampleFlag = flag(hypertuneAdapter.declarations.exampleFlag);
-```
-
----
-
 ## Flagsmith
 
 Package: `@flags-sdk/flagsmith`
@@ -425,7 +458,9 @@ Package: `@flags-sdk/flagsmith`
 pnpm i @flags-sdk/flagsmith
 ```
 
-Env: `FLAGSMITH_ENVIRONMENT_ID` (required)
+Env: `FLAGSMITH_ENVIRONMENT_KEY` (required)
+
+Remote evaluation is the default for serverless deployments. For a long-running server, use `createFlagsmithAdapter({ environmentKey, enableLocalEvaluation: true })` with a server-side key to opt into local evaluation and environment polling. Call `adapter.close()` on shutdown to stop polling.
 
 ### Usage with type coercion
 
@@ -566,6 +601,36 @@ export function createMyAdapter(/* options */) {
 }
 ```
 
+### Bulk evaluation (`bulkDecide`)
+
+Adapters can implement an optional `bulkDecide` hook. When set (and the adapter has an `adapterId`), `evaluate()` calls it once for every group of flags that share this adapter and the same `identify` source — instead of calling `decide` per flag. This lets the provider share work across evaluations (e.g. a single network request for many flags).
+
+```ts
+return {
+  adapterId: 'my-provider', // required for bulkDecide to be used
+  origin(key) {
+    return `https://my-provider.com/flags/${key}`;
+  },
+  async decide({ key }): Promise<ValueType> {
+    return false as ValueType;
+  },
+  // Called by evaluate() for a batch of flags sharing this adapter + identify
+  async bulkDecide({ flags, entities, headers, cookies }) {
+    // flags: { key: string; defaultValue?: unknown }[]
+    // Return a record keyed by flag key.
+    return Object.fromEntries(
+      flags.map(({ key }) => [key, false as ValueType]),
+    );
+  },
+};
+```
+
+Contract:
+
+- Return `Record<flagKey, value>`. Missing keys or `value: undefined` fall back to each flag's `defaultValue`.
+- Throwing falls back to `defaultValue` per flag (and rejects for flags without a `defaultValue`).
+- A flag with an inline `decide` takes precedence and is excluded from bulk evaluation.
+
 ### Default adapter pattern
 
 Expose a lazily-initialized default for simpler usage:
@@ -589,6 +654,6 @@ import { myAdapter } from './my-adapter';
 
 export const exampleFlag = flag({
   key: 'example',
-  adapter: myAdapter(),
+  adapter: myAdapter,
 });
 ```
