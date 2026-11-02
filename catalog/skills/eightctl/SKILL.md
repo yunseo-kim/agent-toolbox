@@ -9,10 +9,9 @@ metadata:
   domain: productivity
   tags: "eight-sleep, iot, smart-home, sleep, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
-  lastUpdated: "12026-01-31"
+  lastUpdated: "12026-09-24"
   provenance: ported
 ---
-
 # eightctl
 
 Use `eightctl` for Eight Sleep pod control. Requires auth.
@@ -38,4 +37,3 @@ Common tasks
 Notes
 
 - API is unofficial and rate-limited; avoid repeated logins.
-- Confirm before changing temperature or alarms.

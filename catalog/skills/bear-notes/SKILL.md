@@ -9,10 +9,9 @@ metadata:
   domain: productivity
   tags: "macos, bear, cli, note-taking"
   author: "cpojer <christoph.pojer@gmail.com>"
-  lastUpdated: "12026-01-31"
+  lastUpdated: "12026-05-17"
   provenance: ported
 ---
-
 # Bear Notes
 
 Use `grizzly` to create, read, and manage notes in Bear on macOS.
@@ -26,7 +25,7 @@ Requirements
 
 For operations that require a token (add-text, tags, open-note --selected), you need an authentication token:
 
-1. Open Bear → Help → API Token → Copy Token
+1. Open Bear -> Help -> API Token -> Copy Token
 2. Save it: `echo "YOUR_TOKEN" > ~/.config/grizzly/token`
 
 ## Common Commands
@@ -66,11 +65,11 @@ grizzly open-tag --name "work" --enable-callback --json
 
 Common flags:
 
-- `--dry-run` — Preview the URL without executing
-- `--print-url` — Show the x-callback-url
-- `--enable-callback` — Wait for Bear's response (needed for reading data)
-- `--json` — Output as JSON (when using callbacks)
-- `--token-file PATH` — Path to Bear API token file
+- `--dry-run` - Preview the URL without executing
+- `--print-url` - Show the x-callback-url
+- `--enable-callback` - Wait for Bear's response (needed for reading data)
+- `--json` - Output as JSON (when using callbacks)
+- `--token-file PATH` - Path to Bear API token file
 
 ## Configuration
 
