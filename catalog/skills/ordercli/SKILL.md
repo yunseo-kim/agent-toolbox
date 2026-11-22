@@ -10,10 +10,9 @@ metadata:
   domain: productivity
   tags: "food-delivery, foodora, order-tracking, cli"
   author: "cpojer <christoph.pojer@gmail.com>"
-  lastUpdated: "12026-01-31"
+  lastUpdated: "12026-09-24"
   provenance: ported
 ---
-
 # ordercli
 
 Use `ordercli` to check past orders and track active order status (Foodora only right now).
@@ -60,4 +59,3 @@ Deliveroo (WIP, not working yet)
 Notes
 
 - Use `--config /tmp/ordercli.json` for testing.
-- Confirm before any reorder or cart-changing action.
